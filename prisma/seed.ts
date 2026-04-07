@@ -190,7 +190,7 @@ const menus: MenuSeed[] = [
 
   // 3. 생산계획
   { menu_id: 3, parent_menu_id: null, menu_nm: '생산계획', menu_url: null, sort_order: 3, depth: 1 },
-  { menu_id: 301, parent_menu_id: 3, menu_nm: '생산계획 관리', menu_url: '/plan/production', sort_order: 1, depth: 2 },
+  { menu_id: 301, parent_menu_id: 3, menu_nm: '생산계획 관리', menu_url: '/plan/management', sort_order: 1, depth: 2 },
   { menu_id: 302, parent_menu_id: 3, menu_nm: '수요관리', menu_url: '/plan/demand', sort_order: 2, depth: 2 },
 
   // 4. 작업지시
@@ -295,6 +295,7 @@ const permMatrix: Record<number, Record<string, string>> = {
 // ═══════════════════════════════════════════════════════════
 const numberingRules = [
   { num_type: 'ITEM', prefix: 'RM', date_format: '', seq_length: 4, last_seq: 0 },
+  { num_type: 'PROD_PLAN', prefix: 'PP', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'WORK_ORDER', prefix: 'WO', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'LOT', prefix: '', date_format: 'YYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'INSPECTION', prefix: '', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },

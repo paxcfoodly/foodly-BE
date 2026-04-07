@@ -19,6 +19,7 @@ import workshopsRouter from './workshops';
 import workersRouter from './workers';
 import customersRouter from './customers';
 import inspectStdsRouter from './inspectStds';
+import prodPlansRouter from './prodPlans';
 
 const v1Router = Router();
 
@@ -69,6 +70,7 @@ v1Router.use('/workshops', workshopsRouter);
 v1Router.use('/workers', workersRouter);
 v1Router.use('/customers', customersRouter);
 v1Router.use('/inspect-stds', inspectStdsRouter);
+v1Router.use('/prod-plans', prodPlansRouter);
 // v1Router.use('/production', productionRouter);
 // v1Router.use('/quality', qualityRouter);
 // v1Router.use('/inventory', inventoryRouter);
