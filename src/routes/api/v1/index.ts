@@ -9,6 +9,7 @@ import usersRouter from './users';
 import rolesRouter from './roles';
 import auditLogsRouter from './auditLogs';
 import noticesRouter from './notices';
+import itemsRouter from './items';
 
 const v1Router = Router();
 
@@ -49,6 +50,7 @@ v1Router.use('/roles', rolesRouter);
 v1Router.use('/common-codes-admin', commonCodesAdminRouter);
 v1Router.use('/audit-logs', auditLogsRouter);
 v1Router.use('/notices', noticesRouter);
+v1Router.use('/items', itemsRouter);
 // v1Router.use('/production', productionRouter);
 // v1Router.use('/quality', qualityRouter);
 // v1Router.use('/inventory', inventoryRouter);
