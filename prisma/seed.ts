@@ -195,7 +195,7 @@ const menus: MenuSeed[] = [
 
   // 4. 작업지시
   { menu_id: 4, parent_menu_id: null, menu_nm: '작업지시', menu_url: null, sort_order: 4, depth: 1 },
-  { menu_id: 401, parent_menu_id: 4, menu_nm: '작업지시 관리', menu_url: '/work-order/manage', sort_order: 1, depth: 2 },
+  { menu_id: 401, parent_menu_id: 4, menu_nm: '작업지시 관리', menu_url: '/work-order/management', sort_order: 1, depth: 2 },
   { menu_id: 402, parent_menu_id: 4, menu_nm: '작업배정', menu_url: '/work-order/assign', sort_order: 2, depth: 2 },
 
   // 5. 생산실적
