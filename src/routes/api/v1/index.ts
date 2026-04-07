@@ -10,6 +10,7 @@ import rolesRouter from './roles';
 import auditLogsRouter from './auditLogs';
 import noticesRouter from './notices';
 import itemsRouter from './items';
+import bomsRouter from './boms';
 
 const v1Router = Router();
 
@@ -51,6 +52,7 @@ v1Router.use('/common-codes-admin', commonCodesAdminRouter);
 v1Router.use('/audit-logs', auditLogsRouter);
 v1Router.use('/notices', noticesRouter);
 v1Router.use('/items', itemsRouter);
+v1Router.use('/boms', bomsRouter);
 // v1Router.use('/production', productionRouter);
 // v1Router.use('/quality', qualityRouter);
 // v1Router.use('/inventory', inventoryRouter);
