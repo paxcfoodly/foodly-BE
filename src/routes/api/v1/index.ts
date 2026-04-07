@@ -11,6 +11,11 @@ import auditLogsRouter from './auditLogs';
 import noticesRouter from './notices';
 import itemsRouter from './items';
 import bomsRouter from './boms';
+import processesRouter from './processes';
+import routingsRouter from './routings';
+import equipmentsRouter from './equipments';
+import moldsRouter from './molds';
+import workshopsRouter from './workshops';
 
 const v1Router = Router();
 
@@ -53,6 +58,11 @@ v1Router.use('/audit-logs', auditLogsRouter);
 v1Router.use('/notices', noticesRouter);
 v1Router.use('/items', itemsRouter);
 v1Router.use('/boms', bomsRouter);
+v1Router.use('/processes', processesRouter);
+v1Router.use('/routings', routingsRouter);
+v1Router.use('/equipments', equipmentsRouter);
+v1Router.use('/molds', moldsRouter);
+v1Router.use('/workshops', workshopsRouter);
 // v1Router.use('/production', productionRouter);
 // v1Router.use('/quality', qualityRouter);
 // v1Router.use('/inventory', inventoryRouter);
