@@ -16,6 +16,9 @@ import routingsRouter from './routings';
 import equipmentsRouter from './equipments';
 import moldsRouter from './molds';
 import workshopsRouter from './workshops';
+import workersRouter from './workers';
+import customersRouter from './customers';
+import inspectStdsRouter from './inspectStds';
 
 const v1Router = Router();
 
@@ -63,6 +66,9 @@ v1Router.use('/routings', routingsRouter);
 v1Router.use('/equipments', equipmentsRouter);
 v1Router.use('/molds', moldsRouter);
 v1Router.use('/workshops', workshopsRouter);
+v1Router.use('/workers', workersRouter);
+v1Router.use('/customers', customersRouter);
+v1Router.use('/inspect-stds', inspectStdsRouter);
 // v1Router.use('/production', productionRouter);
 // v1Router.use('/quality', qualityRouter);
 // v1Router.use('/inventory', inventoryRouter);
