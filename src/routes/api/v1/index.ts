@@ -1,0 +1,56 @@
+import { Router } from 'express';
+import authRouter from './auth';
+import filesRouter from './files';
+import excelRouter from './excel';
+import commonCodesRouter from './commonCodes';
+import commonCodesAdminRouter from './commonCodesAdmin';
+import dataHistoryRouter from './dataHistory';
+import usersRouter from './users';
+import rolesRouter from './roles';
+import auditLogsRouter from './auditLogs';
+import noticesRouter from './notices';
+
+const v1Router = Router();
+
+/**
+ * @openapi
+ * /api/v1:
+ *   get:
+ *     tags: [System]
+ *     summary: API v1 루트
+ *     description: API v1 버전 정보를 반환합니다.
+ *     responses:
+ *       200:
+ *         description: API 버전 정보
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiResponse'
+ */
+v1Router.get('/', (_req, res) => {
+  res.json({
+    success: true,
+    data: {
+      version: 'v1',
+      status: 'active',
+    },
+    error: null,
+  });
+});
+
+// Domain routers
+v1Router.use('/auth', authRouter);
+v1Router.use('/files', filesRouter);
+v1Router.use('/excel', excelRouter);
+v1Router.use('/common-codes', commonCodesRouter);
+v1Router.use('/data-history', dataHistoryRouter);
+v1Router.use('/users', usersRouter);
+v1Router.use('/roles', rolesRouter);
+v1Router.use('/common-codes-admin', commonCodesAdminRouter);
+v1Router.use('/audit-logs', auditLogsRouter);
+v1Router.use('/notices', noticesRouter);
+// v1Router.use('/production', productionRouter);
+// v1Router.use('/quality', qualityRouter);
+// v1Router.use('/inventory', inventoryRouter);
+
+export default v1Router;

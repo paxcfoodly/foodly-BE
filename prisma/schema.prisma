@@ -1,0 +1,1371 @@
+// ─── MES Database Schema ───
+// Master(15) + Transaction(24) + System(14) = 53 tables
+// Based on proposal.md sections 5-1, 5-2, 5-3
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ════════════════════════════════════════════════════════════
+// M01: TB_COMPANY — 회사정보
+// ════════════════════════════════════════════════════════════
+model TbCompany {
+  company_cd String  @id @db.VarChar(20)
+  company_nm String  @db.VarChar(100)
+  biz_no     String? @db.VarChar(20) // 사업자번호
+  ceo_nm     String? @db.VarChar(50)
+  address    String? @db.VarChar(500)
+  tel        String? @db.VarChar(20)
+  fax        String? @db.VarChar(20)
+  use_yn     String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  plants TbPlant[]
+  users  TbUser[]
+
+  @@map("tb_company")
+}
+
+// ════════════════════════════════════════════════════════════
+// M02: TB_PLANT — 공장
+// ════════════════════════════════════════════════════════════
+model TbPlant {
+  plant_cd   String  @id @db.VarChar(20)
+  company_cd String  @db.VarChar(20)
+  plant_nm   String  @db.VarChar(100)
+  address    String? @db.VarChar(500)
+  use_yn     String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  company    TbCompany     @relation(fields: [company_cd], references: [company_cd])
+  workshops  TbWorkshop[]
+  warehouses TbWarehouse[]
+  prod_plans TbProdPlan[]
+
+  @@index([company_cd])
+  @@map("tb_plant")
+}
+
+// ════════════════════════════════════════════════════════════
+// M03: TB_WORKSHOP — 작업장/라인 (자기참조)
+// ════════════════════════════════════════════════════════════
+model TbWorkshop {
+  workshop_cd   String  @id @db.VarChar(20)
+  plant_cd      String  @db.VarChar(20)
+  parent_cd     String? @db.VarChar(20) // 자기참조 FK
+  workshop_nm   String  @db.VarChar(100)
+  workshop_type String? @db.VarChar(20) // 동/층/라인 등
+  sort_order    Int     @default(0)
+  use_yn        String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  plant         TbPlant         @relation(fields: [plant_cd], references: [plant_cd])
+  parent        TbWorkshop?     @relation("WorkshopHierarchy", fields: [parent_cd], references: [workshop_cd])
+  children      TbWorkshop[]    @relation("WorkshopHierarchy")
+  processes     TbProcess[]
+  equipment     TbEquipment[]
+  workers       TbWorker[]
+
+  @@index([plant_cd])
+  @@index([parent_cd])
+  @@map("tb_workshop")
+}
+
+// ════════════════════════════════════════════════════════════
+// M04: TB_ITEM — 품목 마스터
+// ════════════════════════════════════════════════════════════
+model TbItem {
+  item_cd      String   @id @db.VarChar(30)
+  item_nm      String   @db.VarChar(200)
+  item_type    String   @db.VarChar(10) // RAW, SEMI, FIN
+  unit_cd      String?  @db.VarChar(10) // EA, KG, M, etc.
+  spec         String?  @db.VarChar(500)
+  drawing_no   String?  @db.VarChar(50)
+  safety_stock Decimal? @db.Decimal(15, 3)
+  use_yn       String   @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  bom_parents       TbBom[]              @relation("BomParent")
+  bom_children      TbBom[]              @relation("BomChild")
+  bom_alts          TbBom[]              @relation("BomAlt")
+  routings          TbRouting[]
+  molds             TbMold[]
+  inspect_stds      TbInspectStd[]
+  prod_plans        TbProdPlan[]
+  work_orders       TbWorkOrder[]
+  lots              TbLot[]
+  material_inputs   TbMaterialInput[]
+  material_issue_dtls TbMaterialIssueDtl[]
+  inspect_results   TbInspectResult[]
+  defects           TbDefect[]
+  inventories       TbInventory[]
+  inventory_txs     TbInventoryTx[]
+  inventory_adjusts TbInventoryAdjust[]
+  shipment_dtls     TbShipmentDtl[]
+  incoming_dtls     TbIncomingDtl[]
+
+  @@index([item_type])
+  @@map("tb_item")
+}
+
+// ════════════════════════════════════════════════════════════
+// M05: TB_BOM — BOM (Bill of Materials)
+// ════════════════════════════════════════════════════════════
+model TbBom {
+  bom_id         Int      @id @default(autoincrement())
+  parent_item_cd String   @db.VarChar(30)
+  child_item_cd  String   @db.VarChar(30)
+  level_no       Int      @default(1)
+  qty            Decimal  @db.Decimal(15, 5) // 소요량
+  loss_rate      Decimal? @db.Decimal(5, 2) // 손실률 %
+  alt_item_cd    String?  @db.VarChar(30) // 대체자재
+  process_cd     String?  @db.VarChar(20) // 투입공정
+  use_yn         String   @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  parent_item TbItem     @relation("BomParent", fields: [parent_item_cd], references: [item_cd])
+  child_item  TbItem     @relation("BomChild", fields: [child_item_cd], references: [item_cd])
+  alt_item    TbItem?    @relation("BomAlt", fields: [alt_item_cd], references: [item_cd])
+  process     TbProcess? @relation(fields: [process_cd], references: [process_cd])
+
+  @@index([parent_item_cd])
+  @@index([child_item_cd])
+  @@map("tb_bom")
+}
+
+// ════════════════════════════════════════════════════════════
+// M06: TB_PROCESS — 공정 마스터
+// ════════════════════════════════════════════════════════════
+model TbProcess {
+  process_cd   String   @id @db.VarChar(20)
+  process_nm   String   @db.VarChar(100)
+  process_type String?  @db.VarChar(20) // MACHINING, ASSY, INSP, PKG
+  std_time     Decimal? @db.Decimal(10, 2) // 표준시간(분)
+  workshop_cd  String?  @db.VarChar(20)
+  use_yn       String   @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  workshop       TbWorkshop?      @relation(fields: [workshop_cd], references: [workshop_cd])
+  routings       TbRouting[]
+  equip_mappings TbEquipProcess[]
+  worker_skills  TbWorkerSkill[]
+  boms           TbBom[]
+  inspect_stds   TbInspectStd[]
+  wo_processes   TbWoProcess[]
+
+  @@index([workshop_cd])
+  @@map("tb_process")
+}
+
+// ════════════════════════════════════════════════════════════
+// M07: TB_ROUTING — 라우팅 (품목별 공정순서)
+// ════════════════════════════════════════════════════════════
+model TbRouting {
+  routing_id Int      @id @default(autoincrement())
+  item_cd    String   @db.VarChar(30)
+  process_cd String   @db.VarChar(20)
+  seq_no     Int // 공정순서 (10, 20, 30...)
+  std_time   Decimal? @db.Decimal(10, 2) // 표준 작업시간(분)
+  setup_time Decimal? @db.Decimal(10, 2) // 준비시간(분)
+  use_yn     String   @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  item    TbItem    @relation(fields: [item_cd], references: [item_cd])
+  process TbProcess @relation(fields: [process_cd], references: [process_cd])
+
+  @@unique([item_cd, seq_no]) // 동일 품목 동일 순서 중복 불가
+  @@index([item_cd])
+  @@index([process_cd])
+  @@map("tb_routing")
+}
+
+// ════════════════════════════════════════════════════════════
+// M08: TB_EQUIPMENT — 설비 마스터
+// ════════════════════════════════════════════════════════════
+model TbEquipment {
+  equip_cd     String    @id @db.VarChar(20)
+  equip_nm     String    @db.VarChar(100)
+  equip_type   String?   @db.VarChar(20) // CNC, PRESS, INJECTION, PACKAGING
+  maker        String?   @db.VarChar(100) // 제조사
+  model_nm     String?   @db.VarChar(100)
+  install_date DateTime? @db.Date
+  workshop_cd  String?   @db.VarChar(20)
+  use_yn       String    @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  workshop         TbWorkshop?        @relation(fields: [workshop_cd], references: [workshop_cd])
+  process_mappings TbEquipProcess[]
+  wo_processes     TbWoProcess[]
+  prod_results     TbProdResult[]
+  equip_statuses   TbEquipStatus[]
+  maint_plans      TbMaintPlan[]
+  maint_results    TbMaintResult[]
+
+  @@index([workshop_cd])
+  @@index([equip_type])
+  @@map("tb_equipment")
+}
+
+// ════════════════════════════════════════════════════════════
+// M09: TB_EQUIP_PROCESS — 설비-공정 매핑 (복합 PK)
+// ════════════════════════════════════════════════════════════
+model TbEquipProcess {
+  equip_cd   String @db.VarChar(20)
+  process_cd String @db.VarChar(20)
+  priority   Int    @default(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  equipment TbEquipment @relation(fields: [equip_cd], references: [equip_cd])
+  process   TbProcess   @relation(fields: [process_cd], references: [process_cd])
+
+  @@id([equip_cd, process_cd])
+  @@map("tb_equip_process")
+}
+
+// ════════════════════════════════════════════════════════════
+// M10: TB_MOLD — 금형 마스터
+// ════════════════════════════════════════════════════════════
+model TbMold {
+  mold_cd        String  @id @db.VarChar(20)
+  mold_nm        String  @db.VarChar(100)
+  item_cd        String? @db.VarChar(30) // 적용품목
+  warranty_shots Int? // 보증타수
+  current_shots  Int     @default(0) // 현재타수
+  use_yn         String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  item TbItem? @relation(fields: [item_cd], references: [item_cd])
+
+  @@index([item_cd])
+  @@map("tb_mold")
+}
+
+// ════════════════════════════════════════════════════════════
+// M11: TB_WORKER — 작업자 마스터
+// ════════════════════════════════════════════════════════════
+model TbWorker {
+  worker_id   String  @id @db.VarChar(20) // 사번
+  worker_nm   String  @db.VarChar(50)
+  dept_cd     String? @db.VarChar(20)
+  workshop_cd String? @db.VarChar(20)
+  shift_cd    String? @db.VarChar(10) // A/B/C조
+  use_yn      String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  workshop       TbWorkshop?       @relation(fields: [workshop_cd], references: [workshop_cd])
+  skills         TbWorkerSkill[]
+  wo_workers     TbWoWorker[]
+  prod_results   TbProdResult[]
+  material_inputs TbMaterialInput[]
+  maint_results  TbMaintResult[]
+
+  @@index([workshop_cd])
+  @@map("tb_worker")
+}
+
+// ════════════════════════════════════════════════════════════
+// M12: TB_WORKER_SKILL — 작업자 스킬 매핑 (복합 PK)
+// ════════════════════════════════════════════════════════════
+model TbWorkerSkill {
+  worker_id   String @db.VarChar(20)
+  process_cd  String @db.VarChar(20)
+  skill_level Int?   @default(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  worker  TbWorker  @relation(fields: [worker_id], references: [worker_id])
+  process TbProcess @relation(fields: [process_cd], references: [process_cd])
+
+  @@id([worker_id, process_cd])
+  @@map("tb_worker_skill")
+}
+
+// ════════════════════════════════════════════════════════════
+// M13: TB_CUSTOMER — 거래처
+// ════════════════════════════════════════════════════════════
+model TbCustomer {
+  cust_cd    String  @id @db.VarChar(20)
+  cust_nm    String  @db.VarChar(100)
+  cust_type  String? @db.VarChar(20) // 고객/공급사
+  biz_no     String? @db.VarChar(20) // 사업자번호
+  contact_nm String? @db.VarChar(50)
+  tel        String? @db.VarChar(20)
+  email      String? @db.VarChar(100)
+  address    String? @db.VarChar(500)
+  use_yn     String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  shipments TbShipment[]
+  incomings TbIncoming[]
+
+  @@map("tb_customer")
+}
+
+// ════════════════════════════════════════════════════════════
+// M14: TB_INSPECT_STD — 검사기준
+// ════════════════════════════════════════════════════════════
+model TbInspectStd {
+  inspect_std_id  Int      @id @default(autoincrement())
+  item_cd         String?  @db.VarChar(30)
+  process_cd      String?  @db.VarChar(20)
+  inspect_type    String?  @db.VarChar(20) // INCOMING, PROCESS, SHIPPING
+  inspect_item_nm String   @db.VarChar(100) // 검사항목명
+  measure_type    String?  @db.VarChar(10) // 계량/계수
+  lsl             Decimal? @db.Decimal(15, 5) // 하한
+  target_val      Decimal? @db.Decimal(15, 5) // 목표값
+  usl             Decimal? @db.Decimal(15, 5) // 상한
+  unit            String?  @db.VarChar(10)
+  sampling_std    String?  @db.VarChar(50) // 샘플링 기준
+  use_yn          String   @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  item               TbItem?              @relation(fields: [item_cd], references: [item_cd])
+  process            TbProcess?           @relation(fields: [process_cd], references: [process_cd])
+  inspect_result_dtls TbInspectResultDtl[]
+
+  @@index([item_cd])
+  @@index([process_cd])
+  @@map("tb_inspect_std")
+}
+
+// ════════════════════════════════════════════════════════════
+// M15: TB_WAREHOUSE — 창고 마스터
+// ════════════════════════════════════════════════════════════
+model TbWarehouse {
+  wh_cd    String  @id @db.VarChar(20)
+  wh_nm    String  @db.VarChar(100)
+  wh_type  String? @db.VarChar(20) // 원자재/완제품/부자재 등
+  plant_cd String? @db.VarChar(20)
+  use_yn   String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  plant       TbPlant?       @relation(fields: [plant_cd], references: [plant_cd])
+  lots        TbLot[]
+  inventories TbInventory[]
+
+  @@index([plant_cd])
+  @@map("tb_warehouse")
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  TRANSACTION TABLES (24) — proposal.md section 5-2
+// ════════════════════════════════════════════════════════════════════
+
+// ────────────────────────────────────────
+// T01: TB_PROD_PLAN — 생산계획
+// ────────────────────────────────────────
+model TbProdPlan {
+  plan_id   Int       @id @default(autoincrement())
+  plan_no   String    @unique @db.VarChar(30)
+  plant_cd  String    @db.VarChar(20)
+  item_cd   String    @db.VarChar(30)
+  plan_qty  Decimal   @db.Decimal(15, 3)
+  due_date  DateTime  @db.Date
+  priority  Int       @default(5)
+  status    String    @default("PLAN") @db.VarChar(20) // PLAN, CONFIRMED, PROGRESS, COMPLETE, CANCEL
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  plant       TbPlant       @relation(fields: [plant_cd], references: [plant_cd])
+  item        TbItem        @relation(fields: [item_cd], references: [item_cd])
+  work_orders TbWorkOrder[]
+
+  @@index([plant_cd])
+  @@index([item_cd])
+  @@index([status])
+  @@index([due_date])
+  @@map("tb_prod_plan")
+}
+
+// ────────────────────────────────────────
+// T02: TB_WORK_ORDER — 작업지시
+// ────────────────────────────────────────
+model TbWorkOrder {
+  wo_id      Int      @id @default(autoincrement())
+  wo_no      String   @unique @db.VarChar(30)
+  plan_id    Int?
+  item_cd    String   @db.VarChar(30)
+  order_qty  Decimal  @db.Decimal(15, 3)
+  good_qty   Decimal  @default(0) @db.Decimal(15, 3)
+  defect_qty Decimal  @default(0) @db.Decimal(15, 3)
+  priority   Int      @default(5)
+  status     String   @default("WAIT") @db.VarChar(20) // WAIT, PROGRESS, COMPLETE, CLOSE, CANCEL
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  prod_plan       TbProdPlan?      @relation(fields: [plan_id], references: [plan_id])
+  item            TbItem           @relation(fields: [item_cd], references: [item_cd])
+  wo_processes    TbWoProcess[]
+  wo_workers      TbWoWorker[]
+  prod_results    TbProdResult[]
+  lots            TbLot[]
+  material_inputs TbMaterialInput[]
+  material_issues TbMaterialIssue[]
+  defects         TbDefect[]
+
+  @@index([plan_id])
+  @@index([item_cd])
+  @@index([status])
+  @@map("tb_work_order")
+}
+
+// ────────────────────────────────────────
+// T03: TB_WO_PROCESS — 작업지시 공정
+// ────────────────────────────────────────
+model TbWoProcess {
+  wo_process_id Int     @id @default(autoincrement())
+  wo_id         Int
+  process_cd    String  @db.VarChar(20)
+  seq_no        Int
+  equip_cd      String? @db.VarChar(20)
+  status        String  @default("WAIT") @db.VarChar(20)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  work_order TbWorkOrder  @relation(fields: [wo_id], references: [wo_id])
+  process    TbProcess    @relation(fields: [process_cd], references: [process_cd])
+  equipment  TbEquipment? @relation(fields: [equip_cd], references: [equip_cd])
+
+  @@index([wo_id])
+  @@index([process_cd])
+  @@map("tb_wo_process")
+}
+
+// ────────────────────────────────────────
+// T04: TB_WO_WORKER — 작업지시 배정 (복합PK)
+// ────────────────────────────────────────
+model TbWoWorker {
+  wo_id     Int
+  worker_id String   @db.VarChar(20)
+  assign_dt DateTime @default(now())
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  work_order TbWorkOrder @relation(fields: [wo_id], references: [wo_id])
+  worker     TbWorker    @relation(fields: [worker_id], references: [worker_id])
+
+  @@id([wo_id, worker_id])
+  @@map("tb_wo_worker")
+}
+
+// ────────────────────────────────────────
+// T05: TB_PROD_RESULT — 생산실적
+// ────────────────────────────────────────
+model TbProdResult {
+  result_id     Int       @id @default(autoincrement())
+  wo_id         Int
+  lot_no        String?   @db.VarChar(50)
+  equip_cd      String?   @db.VarChar(20)
+  worker_id     String?   @db.VarChar(20)
+  good_qty      Decimal   @default(0) @db.Decimal(15, 3)
+  defect_qty    Decimal   @default(0) @db.Decimal(15, 3)
+  work_start_dt DateTime?
+  work_end_dt   DateTime?
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  work_order TbWorkOrder  @relation(fields: [wo_id], references: [wo_id])
+  lot        TbLot?       @relation(fields: [lot_no], references: [lot_no])
+  equipment  TbEquipment? @relation(fields: [equip_cd], references: [equip_cd])
+  worker     TbWorker?    @relation(fields: [worker_id], references: [worker_id])
+
+  @@index([wo_id])
+  @@index([lot_no])
+  @@index([equip_cd])
+  @@index([worker_id])
+  @@map("tb_prod_result")
+}
+
+// ────────────────────────────────────────
+// T06: TB_LOT — LOT 마스터
+// ────────────────────────────────────────
+model TbLot {
+  lot_no        String  @id @db.VarChar(50)
+  item_cd       String  @db.VarChar(30)
+  lot_qty       Decimal @db.Decimal(15, 3)
+  lot_status    String  @default("ACTIVE") @db.VarChar(20)
+  create_type   String? @db.VarChar(20) // PRODUCTION, INCOMING, SPLIT, MERGE
+  parent_lot_no String? @db.VarChar(50)
+  wo_id         Int?
+  wh_cd         String? @db.VarChar(20)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  item            TbItem             @relation(fields: [item_cd], references: [item_cd])
+  parent_lot      TbLot?             @relation("LotHierarchy", fields: [parent_lot_no], references: [lot_no])
+  child_lots      TbLot[]            @relation("LotHierarchy")
+  work_order      TbWorkOrder?       @relation(fields: [wo_id], references: [wo_id])
+  warehouse       TbWarehouse?       @relation(fields: [wh_cd], references: [wh_cd])
+  lot_histories   TbLotHistory[]
+  prod_results    TbProdResult[]
+  material_inputs TbMaterialInput[]
+  material_issue_dtls TbMaterialIssueDtl[]
+  inspect_results TbInspectResult[]
+  defects         TbDefect[]
+  inventories     TbInventory[]
+  inventory_txs   TbInventoryTx[]
+  inventory_adjusts TbInventoryAdjust[]
+  shipment_dtls   TbShipmentDtl[]
+  incoming_dtls   TbIncomingDtl[]
+
+  @@index([item_cd])
+  @@index([wo_id])
+  @@index([wh_cd])
+  @@index([lot_status])
+  @@map("tb_lot")
+}
+
+// ────────────────────────────────────────
+// T07: TB_LOT_HISTORY — LOT 이력
+// ────────────────────────────────────────
+model TbLotHistory {
+  lot_hist_id  Int      @id @default(autoincrement())
+  lot_no       String   @db.VarChar(50)
+  event_type   String   @db.VarChar(20) // CREATE, SPLIT, MERGE, MOVE, CONSUME, ADJUST
+  event_detail String?  @db.VarChar(500)
+  qty          Decimal? @db.Decimal(15, 3)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+
+  // Relations
+  lot TbLot @relation(fields: [lot_no], references: [lot_no])
+
+  @@index([lot_no])
+  @@index([create_dt])
+  @@map("tb_lot_history")
+}
+
+// ────────────────────────────────────────
+// T08: TB_MATERIAL_INPUT — 자재투입
+// ────────────────────────────────────────
+model TbMaterialInput {
+  input_id  Int     @id @default(autoincrement())
+  wo_id     Int
+  item_cd   String  @db.VarChar(30)
+  lot_no    String? @db.VarChar(50)
+  input_qty Decimal @db.Decimal(15, 3)
+  worker_id String? @db.VarChar(20)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  work_order TbWorkOrder @relation(fields: [wo_id], references: [wo_id])
+  item       TbItem      @relation(fields: [item_cd], references: [item_cd])
+  lot        TbLot?      @relation(fields: [lot_no], references: [lot_no])
+  worker     TbWorker?   @relation(fields: [worker_id], references: [worker_id])
+
+  @@index([wo_id])
+  @@index([item_cd])
+  @@map("tb_material_input")
+}
+
+// ────────────────────────────────────────
+// T09: TB_MATERIAL_ISSUE — 자재불출
+// ────────────────────────────────────────
+model TbMaterialIssue {
+  issue_id Int    @id @default(autoincrement())
+  issue_no String @unique @db.VarChar(30)
+  wo_id    Int?
+  status   String @default("REQUESTED") @db.VarChar(20)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  work_order TbWorkOrder?        @relation(fields: [wo_id], references: [wo_id])
+  details    TbMaterialIssueDtl[]
+
+  @@index([wo_id])
+  @@map("tb_material_issue")
+}
+
+// ────────────────────────────────────────
+// T10: TB_MATERIAL_ISSUE_DTL — 자재불출 상세
+// ────────────────────────────────────────
+model TbMaterialIssueDtl {
+  issue_dtl_id Int     @id @default(autoincrement())
+  issue_id     Int
+  item_cd      String  @db.VarChar(30)
+  lot_no       String? @db.VarChar(50)
+  request_qty  Decimal @db.Decimal(15, 3)
+  issue_qty    Decimal @default(0) @db.Decimal(15, 3)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  material_issue TbMaterialIssue @relation(fields: [issue_id], references: [issue_id])
+  item           TbItem          @relation(fields: [item_cd], references: [item_cd])
+  lot            TbLot?          @relation(fields: [lot_no], references: [lot_no])
+
+  @@index([issue_id])
+  @@index([item_cd])
+  @@map("tb_material_issue_dtl")
+}
+
+// ────────────────────────────────────────
+// T11: TB_INSPECT_RESULT — 검사결과
+// ────────────────────────────────────────
+model TbInspectResult {
+  inspect_id   Int     @id @default(autoincrement())
+  inspect_no   String  @unique @db.VarChar(30)
+  inspect_type String? @db.VarChar(20) // INCOMING, PROCESS, SHIPPING
+  item_cd      String? @db.VarChar(30)
+  lot_no       String? @db.VarChar(50)
+  judge        String? @db.VarChar(20) // PASS, FAIL, CONDITIONAL
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  item    TbItem?              @relation(fields: [item_cd], references: [item_cd])
+  lot     TbLot?               @relation(fields: [lot_no], references: [lot_no])
+  details TbInspectResultDtl[]
+
+  @@index([item_cd])
+  @@index([lot_no])
+  @@index([inspect_type])
+  @@map("tb_inspect_result")
+}
+
+// ────────────────────────────────────────
+// T12: TB_INSPECT_RESULT_DTL — 검사결과 상세
+// ────────────────────────────────────────
+model TbInspectResultDtl {
+  inspect_dtl_id Int      @id @default(autoincrement())
+  inspect_id     Int
+  inspect_std_id Int?
+  measure_value  Decimal? @db.Decimal(15, 5)
+  judge          String?  @db.VarChar(20) // PASS, FAIL
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  inspect_result TbInspectResult @relation(fields: [inspect_id], references: [inspect_id])
+  inspect_std    TbInspectStd?   @relation(fields: [inspect_std_id], references: [inspect_std_id])
+
+  @@index([inspect_id])
+  @@index([inspect_std_id])
+  @@map("tb_inspect_result_dtl")
+}
+
+// ────────────────────────────────────────
+// T13: TB_DEFECT — 불량
+// ────────────────────────────────────────
+model TbDefect {
+  defect_id       Int     @id @default(autoincrement())
+  defect_no       String  @unique @db.VarChar(30)
+  wo_id           Int?
+  item_cd         String? @db.VarChar(30)
+  lot_no          String? @db.VarChar(50)
+  defect_type_cd  String? @db.VarChar(20)
+  defect_cause_cd String? @db.VarChar(20)
+  defect_qty      Decimal @db.Decimal(15, 3)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  work_order TbWorkOrder?     @relation(fields: [wo_id], references: [wo_id])
+  item       TbItem?          @relation(fields: [item_cd], references: [item_cd])
+  lot        TbLot?           @relation(fields: [lot_no], references: [lot_no])
+  disposals  TbDefectDispose[]
+
+  @@index([wo_id])
+  @@index([lot_no])
+  @@index([defect_type_cd])
+  @@map("tb_defect")
+}
+
+// ────────────────────────────────────────
+// T14: TB_DEFECT_DISPOSE — 불량처리
+// ────────────────────────────────────────
+model TbDefectDispose {
+  dispose_id   Int     @id @default(autoincrement())
+  defect_id    Int
+  dispose_type String? @db.VarChar(20) // REWORK, SCRAP, CONCESSION
+  dispose_qty  Decimal @db.Decimal(15, 3)
+  approve_by   String? @db.VarChar(50)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  defect TbDefect @relation(fields: [defect_id], references: [defect_id])
+
+  @@index([defect_id])
+  @@map("tb_defect_dispose")
+}
+
+// ────────────────────────────────────────
+// T15: TB_EQUIP_STATUS — 설비상태
+// ────────────────────────────────────────
+model TbEquipStatus {
+  status_id      Int       @id @default(autoincrement())
+  equip_cd       String    @db.VarChar(20)
+  status_type    String    @db.VarChar(20) // RUN, IDLE, DOWN, SETUP
+  down_reason_cd String?   @db.VarChar(20)
+  start_dt       DateTime?
+  end_dt         DateTime?
+  duration       Int?      // 분 단위
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  equipment TbEquipment @relation(fields: [equip_cd], references: [equip_cd])
+
+  @@index([equip_cd])
+  @@index([start_dt])
+  @@map("tb_equip_status")
+}
+
+// ────────────────────────────────────────
+// T16: TB_MAINT_PLAN — 보전계획
+// ────────────────────────────────────────
+model TbMaintPlan {
+  maint_plan_id  Int       @id @default(autoincrement())
+  equip_cd       String    @db.VarChar(20)
+  maint_type_cd  String?   @db.VarChar(20) // PM, CM, BM
+  cycle_type     String?   @db.VarChar(20) // DAILY, WEEKLY, MONTHLY, YEARLY
+  next_plan_date DateTime? @db.Date
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  equipment TbEquipment @relation(fields: [equip_cd], references: [equip_cd])
+
+  @@index([equip_cd])
+  @@index([next_plan_date])
+  @@map("tb_maint_plan")
+}
+
+// ────────────────────────────────────────
+// T17: TB_MAINT_RESULT — 보전실적
+// ────────────────────────────────────────
+model TbMaintResult {
+  maint_result_id Int       @id @default(autoincrement())
+  equip_cd        String    @db.VarChar(20)
+  maint_type_cd   String?   @db.VarChar(20)
+  work_dt         DateTime? @db.Date
+  worker_id       String?   @db.VarChar(20)
+  cost            Decimal?  @db.Decimal(15, 2)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  equipment TbEquipment @relation(fields: [equip_cd], references: [equip_cd])
+  worker    TbWorker?   @relation(fields: [worker_id], references: [worker_id])
+
+  @@index([equip_cd])
+  @@index([worker_id])
+  @@map("tb_maint_result")
+}
+
+// ────────────────────────────────────────
+// T18: TB_INVENTORY — 재고
+// ────────────────────────────────────────
+model TbInventory {
+  inventory_id  Int     @id @default(autoincrement())
+  item_cd       String  @db.VarChar(30)
+  lot_no        String? @db.VarChar(50)
+  wh_cd         String  @db.VarChar(20)
+  qty           Decimal @default(0) @db.Decimal(15, 3)
+  allocated_qty Decimal @default(0) @db.Decimal(15, 3)
+  available_qty Decimal @default(0) @db.Decimal(15, 3)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  item      TbItem     @relation(fields: [item_cd], references: [item_cd])
+  lot       TbLot?     @relation(fields: [lot_no], references: [lot_no])
+  warehouse TbWarehouse @relation(fields: [wh_cd], references: [wh_cd])
+
+  @@unique([item_cd, lot_no, wh_cd])
+  @@index([item_cd])
+  @@index([wh_cd])
+  @@map("tb_inventory")
+}
+
+// ────────────────────────────────────────
+// T19: TB_INVENTORY_TX — 재고 트랜잭션
+// ────────────────────────────────────────
+model TbInventoryTx {
+  tx_id      Int     @id @default(autoincrement())
+  item_cd    String  @db.VarChar(30)
+  lot_no     String? @db.VarChar(50)
+  tx_type    String  @db.VarChar(20) // IN, OUT, ADJUST, MOVE
+  tx_qty     Decimal @db.Decimal(15, 3)
+  before_qty Decimal @db.Decimal(15, 3)
+  after_qty  Decimal @db.Decimal(15, 3)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+
+  // Relations
+  item TbItem @relation(fields: [item_cd], references: [item_cd])
+  lot  TbLot? @relation(fields: [lot_no], references: [lot_no])
+
+  @@index([item_cd])
+  @@index([lot_no])
+  @@index([create_dt])
+  @@map("tb_inventory_tx")
+}
+
+// ────────────────────────────────────────
+// T20: TB_INVENTORY_ADJUST — 재고조정
+// ────────────────────────────────────────
+model TbInventoryAdjust {
+  adjust_id     Int     @id @default(autoincrement())
+  item_cd       String  @db.VarChar(30)
+  lot_no        String? @db.VarChar(50)
+  adjust_qty    Decimal @db.Decimal(15, 3)
+  adjust_reason String? @db.VarChar(500)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  item TbItem @relation(fields: [item_cd], references: [item_cd])
+  lot  TbLot? @relation(fields: [lot_no], references: [lot_no])
+
+  @@index([item_cd])
+  @@map("tb_inventory_adjust")
+}
+
+// ────────────────────────────────────────
+// T21: TB_SHIPMENT — 출하
+// ────────────────────────────────────────
+model TbShipment {
+  ship_id Int    @id @default(autoincrement())
+  ship_no String @unique @db.VarChar(30)
+  cust_cd String @db.VarChar(20)
+  status  String @default("PLAN") @db.VarChar(20)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  customer TbCustomer     @relation(fields: [cust_cd], references: [cust_cd])
+  details  TbShipmentDtl[]
+
+  @@index([cust_cd])
+  @@map("tb_shipment")
+}
+
+// ────────────────────────────────────────
+// T22: TB_SHIPMENT_DTL — 출하 상세
+// ────────────────────────────────────────
+model TbShipmentDtl {
+  ship_dtl_id Int     @id @default(autoincrement())
+  ship_id     Int
+  item_cd     String  @db.VarChar(30)
+  lot_no      String? @db.VarChar(50)
+  ship_qty    Decimal @db.Decimal(15, 3)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  shipment TbShipment @relation(fields: [ship_id], references: [ship_id])
+  item     TbItem     @relation(fields: [item_cd], references: [item_cd])
+  lot      TbLot?     @relation(fields: [lot_no], references: [lot_no])
+
+  @@index([ship_id])
+  @@index([item_cd])
+  @@map("tb_shipment_dtl")
+}
+
+// ────────────────────────────────────────
+// T23: TB_INCOMING — 입고
+// ────────────────────────────────────────
+model TbIncoming {
+  incoming_id Int    @id @default(autoincrement())
+  incoming_no String @unique @db.VarChar(30)
+  cust_cd     String @db.VarChar(20)
+  status      String @default("PLAN") @db.VarChar(20)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  customer TbCustomer    @relation(fields: [cust_cd], references: [cust_cd])
+  details  TbIncomingDtl[]
+
+  @@index([cust_cd])
+  @@map("tb_incoming")
+}
+
+// ────────────────────────────────────────
+// T24: TB_INCOMING_DTL — 입고 상세
+// ────────────────────────────────────────
+model TbIncomingDtl {
+  incoming_dtl_id Int     @id @default(autoincrement())
+  incoming_id     Int
+  item_cd         String  @db.VarChar(30)
+  lot_no          String? @db.VarChar(50)
+  incoming_qty    Decimal @db.Decimal(15, 3)
+  inspect_status  String? @db.VarChar(20) // PENDING, PASS, FAIL
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  incoming TbIncoming @relation(fields: [incoming_id], references: [incoming_id])
+  item     TbItem     @relation(fields: [item_cd], references: [item_cd])
+  lot      TbLot?     @relation(fields: [lot_no], references: [lot_no])
+
+  @@index([incoming_id])
+  @@index([item_cd])
+  @@map("tb_incoming_dtl")
+}
+
+// ════════════════════════════════════════════════════════════════════
+//  SYSTEM TABLES (14) — proposal.md section 5-3
+// ════════════════════════════════════════════════════════════════════
+
+// ────────────────────────────────────────
+// S01: TB_USER — 사용자
+// ────────────────────────────────────────
+model TbUser {
+  user_id    Int     @id @default(autoincrement())
+  login_id   String  @unique @db.VarChar(50)
+  password   String  @db.VarChar(200) // bcrypt hashed
+  user_nm    String  @db.VarChar(50)
+  role_cd    String? @db.VarChar(20)
+  company_cd String? @db.VarChar(20)
+  status     String  @default("ACTIVE") @db.VarChar(20) // ACTIVE, INACTIVE, LOCKED
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  role          TbRole?          @relation(fields: [role_cd], references: [role_cd])
+  company       TbCompany?       @relation(fields: [company_cd], references: [company_cd])
+  notifications TbNotification[]
+  audit_logs    TbAuditLog[]
+
+  @@index([role_cd])
+  @@index([company_cd])
+  @@map("tb_user")
+}
+
+// ────────────────────────────────────────
+// S02: TB_ROLE — 역할
+// ────────────────────────────────────────
+model TbRole {
+  role_cd   String  @id @db.VarChar(20)
+  role_nm   String  @db.VarChar(50)
+  role_desc String? @db.VarChar(200)
+  use_yn    String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  users      TbUser[]
+  role_menus TbRoleMenu[]
+  noti_rules TbNotiRule[]
+
+  @@map("tb_role")
+}
+
+// ────────────────────────────────────────
+// S03: TB_MENU — 메뉴
+// ────────────────────────────────────────
+model TbMenu {
+  menu_id        Int     @id @default(autoincrement())
+  parent_menu_id Int?
+  menu_nm        String  @db.VarChar(100)
+  menu_url       String? @db.VarChar(200)
+  sort_order     Int     @default(0)
+  depth          Int     @default(1)
+  use_yn         String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  parent     TbMenu?      @relation("MenuHierarchy", fields: [parent_menu_id], references: [menu_id])
+  children   TbMenu[]     @relation("MenuHierarchy")
+  role_menus TbRoleMenu[]
+
+  @@index([parent_menu_id])
+  @@map("tb_menu")
+}
+
+// ────────────────────────────────────────
+// S04: TB_ROLE_MENU — 역할-메뉴 권한 (복합PK)
+// ────────────────────────────────────────
+model TbRoleMenu {
+  role_cd    String  @db.VarChar(20)
+  menu_id    Int
+  can_create String  @default("N") @db.Char(1)
+  can_read   String  @default("Y") @db.Char(1)
+  can_update String  @default("N") @db.Char(1)
+  can_delete String  @default("N") @db.Char(1)
+  can_print  String  @default("N") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  role TbRole @relation(fields: [role_cd], references: [role_cd])
+  menu TbMenu @relation(fields: [menu_id], references: [menu_id])
+
+  @@id([role_cd, menu_id])
+  @@map("tb_role_menu")
+}
+
+// ────────────────────────────────────────
+// S05: TB_COMMON_CODE_GRP — 공통코드 그룹
+// ────────────────────────────────────────
+model TbCommonCodeGrp {
+  group_cd String @id @db.VarChar(30)
+  group_nm String @db.VarChar(100)
+  use_yn   String @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  codes TbCommonCode[]
+
+  @@map("tb_common_code_grp")
+}
+
+// ────────────────────────────────────────
+// S06: TB_COMMON_CODE — 공통코드 상세 (복합PK)
+// ────────────────────────────────────────
+model TbCommonCode {
+  group_cd   String @db.VarChar(30)
+  code       String @db.VarChar(30)
+  code_nm    String @db.VarChar(100)
+  sort_order Int    @default(0)
+  use_yn     String @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  group TbCommonCodeGrp @relation(fields: [group_cd], references: [group_cd])
+
+  @@id([group_cd, code])
+  @@map("tb_common_code")
+}
+
+// ────────────────────────────────────────
+// S07: TB_NUMBERING — 채번 규칙
+// ────────────────────────────────────────
+model TbNumbering {
+  num_type    String @id @db.VarChar(30)
+  prefix      String @db.VarChar(10)
+  date_format String @default("YYMMDD") @db.VarChar(10)
+  seq_length  Int    @default(4)
+  last_seq    Int    @default(0)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  @@map("tb_numbering")
+}
+
+// ────────────────────────────────────────
+// S08: TB_FILE — 파일 첨부
+// ────────────────────────────────────────
+model TbFile {
+  file_id     Int    @id @default(autoincrement())
+  original_nm String @db.VarChar(200)
+  stored_nm   String @db.VarChar(200)
+  file_path   String @db.VarChar(500)
+  file_size   Int?
+  file_ext    String? @db.VarChar(10)
+  ref_table   String? @db.VarChar(50) // 참조 테이블명
+  ref_id      String? @db.VarChar(50) // 참조 레코드 ID
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+
+  @@index([ref_table, ref_id])
+  @@map("tb_file")
+}
+
+// ────────────────────────────────────────
+// S09: TB_AUDIT_LOG — 감사 로그
+// ────────────────────────────────────────
+model TbAuditLog {
+  log_id       Int     @id @default(autoincrement())
+  user_id      Int?
+  action       String  @db.VarChar(20) // CREATE, UPDATE, DELETE, LOGIN, LOGOUT
+  target_table String? @db.VarChar(50)
+  record_id    String? @db.VarChar(50)
+  before_data  Json?   // 변경 전 데이터
+  after_data   Json?   // 변경 후 데이터
+  ip_address   String? @db.VarChar(50)
+
+  create_dt DateTime @default(now())
+
+  // Relations
+  user TbUser? @relation(fields: [user_id], references: [user_id])
+
+  @@index([user_id])
+  @@index([target_table])
+  @@index([create_dt])
+  @@map("tb_audit_log")
+}
+
+// ────────────────────────────────────────
+// S10: TB_NOTIFICATION — 알림
+// ────────────────────────────────────────
+model TbNotification {
+  noti_id        Int     @id @default(autoincrement())
+  noti_type      String? @db.VarChar(20)
+  noti_title     String  @db.VarChar(200)
+  noti_content   String? @db.Text
+  target_user_id Int?
+  channel        String? @db.VarChar(20) // WEB, EMAIL, SMS
+  send_status    String  @default("PENDING") @db.VarChar(20) // PENDING, SENT, FAILED
+  read_yn        String  @default("N") @db.Char(1)
+
+  create_dt DateTime @default(now())
+
+  // Relations
+  target_user TbUser? @relation(fields: [target_user_id], references: [user_id])
+
+  @@index([target_user_id])
+  @@index([read_yn])
+  @@map("tb_notification")
+}
+
+// ────────────────────────────────────────
+// S11: TB_NOTI_RULE — 알림 규칙
+// ────────────────────────────────────────
+model TbNotiRule {
+  rule_id        Int     @id @default(autoincrement())
+  event_type     String  @db.VarChar(50) // WO_CREATED, DEFECT_FOUND, etc.
+  target_role_cd String? @db.VarChar(20)
+  channel        String? @db.VarChar(20)
+  template_id    String? @db.VarChar(50)
+  use_yn         String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  target_role TbRole? @relation(fields: [target_role_cd], references: [role_cd])
+
+  @@index([event_type])
+  @@map("tb_noti_rule")
+}
+
+// ────────────────────────────────────────
+// S12: TB_BATCH_LOG — 배치 실행 이력
+// ────────────────────────────────────────
+model TbBatchLog {
+  batch_log_id Int       @id @default(autoincrement())
+  batch_nm     String    @db.VarChar(100)
+  start_dt     DateTime?
+  end_dt       DateTime?
+  status       String    @default("RUNNING") @db.VarChar(20) // RUNNING, SUCCESS, FAILED
+  result_msg   String?   @db.Text
+
+  create_dt DateTime @default(now())
+
+  @@index([batch_nm])
+  @@index([start_dt])
+  @@map("tb_batch_log")
+}
+
+// ────────────────────────────────────────
+// S13: TB_NOTICE — 공지사항
+// ────────────────────────────────────────
+model TbNotice {
+  notice_id Int     @id @default(autoincrement())
+  title     String  @db.VarChar(200)
+  content   String? @db.Text
+  is_popup  String  @default("N") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  @@map("tb_notice")
+}
+
+// ────────────────────────────────────────
+// S14: TB_DATA_HISTORY — 데이터 변경이력
+// ────────────────────────────────────────
+model TbDataHistory {
+  history_id    Int     @id @default(autoincrement())
+  table_nm      String  @db.VarChar(50)
+  record_id     String  @db.VarChar(50)
+  column_nm     String  @db.VarChar(50)
+  before_value  String? @db.Text
+  after_value   String? @db.Text
+  change_reason String? @db.VarChar(500)
+  change_by     String? @db.VarChar(50)
+
+  change_dt DateTime @default(now())
+
+  @@index([table_nm, record_id])
+  @@index([change_dt])
+  @@map("tb_data_history")
+}
