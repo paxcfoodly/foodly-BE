@@ -30,6 +30,7 @@ import materialIssuesRouter from './materialIssues';
 import inventoryRouter from './inventory';
 import incomingsRouter from './incomings';
 import spcRouter from './spc';
+import shipmentsRouter from './shipments';
 
 const v1Router = Router();
 
@@ -91,5 +92,6 @@ v1Router.use('/material-issues', materialIssuesRouter);
 v1Router.use('/inventory', inventoryRouter);
 v1Router.use('/incomings', incomingsRouter);
 v1Router.use('/spc', spcRouter);
+v1Router.use('/shipments', shipmentsRouter);
 
 export default v1Router;
