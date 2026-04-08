@@ -180,13 +180,15 @@ model TbProcess {
   update_dt DateTime @updatedAt
 
   // Relations
-  workshop       TbWorkshop?      @relation(fields: [workshop_cd], references: [workshop_cd])
-  routings       TbRouting[]
-  equip_mappings TbEquipProcess[]
-  worker_skills  TbWorkerSkill[]
-  boms           TbBom[]
-  inspect_stds   TbInspectStd[]
-  wo_processes   TbWoProcess[]
+  workshop        TbWorkshop?       @relation(fields: [workshop_cd], references: [workshop_cd])
+  routings        TbRouting[]
+  equip_mappings  TbEquipProcess[]
+  worker_skills   TbWorkerSkill[]
+  boms            TbBom[]
+  inspect_stds    TbInspectStd[]
+  wo_processes    TbWoProcess[]
+  inspect_results TbInspectResult[]
+  defects         TbDefect[]
 
   @@index([workshop_cd])
   @@map("tb_process")
@@ -480,8 +482,8 @@ model TbWorkOrder {
   update_dt DateTime @updatedAt
 
   // Relations
-  prod_plan       TbProdPlan?      @relation(fields: [plan_id], references: [plan_id])
-  item            TbItem           @relation(fields: [item_cd], references: [item_cd])
+  prod_plan       TbProdPlan?       @relation(fields: [plan_id], references: [plan_id])
+  item            TbItem            @relation(fields: [item_cd], references: [item_cd])
   wo_processes    TbWoProcess[]
   wo_workers      TbWoWorker[]
   prod_results    TbProdResult[]
@@ -489,6 +491,7 @@ model TbWorkOrder {
   material_inputs TbMaterialInput[]
   material_issues TbMaterialIssue[]
   defects         TbDefect[]
+  inspect_results TbInspectResult[]
 
   @@index([plan_id])
   @@index([item_cd])
@@ -724,6 +727,9 @@ model TbInspectResult {
   item_cd      String? @db.VarChar(30)
   lot_no       String? @db.VarChar(50)
   judge        String? @db.VarChar(20) // PASS, FAIL, CONDITIONAL
+  wo_id        Int?                         // Link to work order (for PROCESS inspection)
+  process_cd   String?  @db.VarChar(20)    // Process code (for PROCESS inspection)
+  remark       String?  @db.VarChar(500)   // Inspector notes
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())
@@ -731,13 +737,17 @@ model TbInspectResult {
   update_dt DateTime @updatedAt
 
   // Relations
-  item    TbItem?              @relation(fields: [item_cd], references: [item_cd])
-  lot     TbLot?               @relation(fields: [lot_no], references: [lot_no])
-  details TbInspectResultDtl[]
+  item       TbItem?              @relation(fields: [item_cd], references: [item_cd])
+  lot        TbLot?               @relation(fields: [lot_no], references: [lot_no])
+  details    TbInspectResultDtl[]
+  work_order TbWorkOrder?         @relation(fields: [wo_id], references: [wo_id])
+  process    TbProcess?           @relation(fields: [process_cd], references: [process_cd])
 
   @@index([item_cd])
   @@index([lot_no])
   @@index([inspect_type])
+  @@index([wo_id])
+  @@index([process_cd])
   @@map("tb_inspect_result")
 }
 
@@ -777,6 +787,10 @@ model TbDefect {
   defect_type_cd  String? @db.VarChar(20)
   defect_cause_cd String? @db.VarChar(20)
   defect_qty      Decimal @db.Decimal(15, 3)
+  status          String  @default("REGISTERED") @db.VarChar(20)  // REGISTERED, PROCESSING, COMPLETED
+  process_cd      String? @db.VarChar(20)    // Defect occurrence process
+  remark          String? @db.VarChar(500)   // Description
+  file_id         Int?                        // Photo attachment FK to TbFile
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())
@@ -788,10 +802,13 @@ model TbDefect {
   item       TbItem?          @relation(fields: [item_cd], references: [item_cd])
   lot        TbLot?           @relation(fields: [lot_no], references: [lot_no])
   disposals  TbDefectDispose[]
+  process    TbProcess?       @relation(fields: [process_cd], references: [process_cd])
 
   @@index([wo_id])
   @@index([lot_no])
   @@index([defect_type_cd])
+  @@index([status])
+  @@index([process_cd])
   @@map("tb_defect")
 }
 
@@ -804,6 +821,8 @@ model TbDefectDispose {
   dispose_type String? @db.VarChar(20) // REWORK, SCRAP, CONCESSION
   dispose_qty  Decimal @db.Decimal(15, 3)
   approve_by   String? @db.VarChar(50)
+  remark       String? @db.VarChar(500)   // Disposal notes
+  approve_dt   DateTime?                   // Approval timestamp (for CONCESSION)
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())

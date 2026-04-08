@@ -298,7 +298,7 @@ const numberingRules = [
   { num_type: 'PROD_PLAN', prefix: 'PP', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'WORK_ORDER', prefix: 'WO', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'LOT', prefix: '', date_format: 'YYMMDD', seq_length: 3, last_seq: 0 },
-  { num_type: 'INSPECTION', prefix: '', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
+  { num_type: 'INSPECTION', prefix: 'QC', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'SHIPPING', prefix: 'SH', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'DEFECT', prefix: 'DF', date_format: 'YYYYMMDD', seq_length: 4, last_seq: 0 },
   { num_type: 'MAINTENANCE', prefix: 'MT', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
