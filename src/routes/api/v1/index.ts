@@ -24,6 +24,9 @@ import workOrdersRouter from './workOrders';
 import prodResultsRouter from './prodResults';
 import lotsRouter from './lots';
 import materialInputsRouter from './materialInputs';
+import materialIssuesRouter from './materialIssues';
+import inventoryRouter from './inventory';
+import incomingsRouter from './incomings';
 
 const v1Router = Router();
 
@@ -79,9 +82,8 @@ v1Router.use('/work-orders', workOrdersRouter);
 v1Router.use('/prod-results', prodResultsRouter);
 v1Router.use('/lots', lotsRouter);
 v1Router.use('/material-inputs', materialInputsRouter);
-
-// v1Router.use('/production', productionRouter);
-// v1Router.use('/quality', qualityRouter);
-// v1Router.use('/inventory', inventoryRouter);
+v1Router.use('/material-issues', materialIssuesRouter);
+v1Router.use('/inventory', inventoryRouter);
+v1Router.use('/incomings', incomingsRouter);
 
 export default v1Router;

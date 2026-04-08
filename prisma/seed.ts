@@ -302,6 +302,8 @@ const numberingRules = [
   { num_type: 'SHIPPING', prefix: 'SH', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'DEFECT', prefix: 'DF', date_format: 'YYYYMMDD', seq_length: 4, last_seq: 0 },
   { num_type: 'MAINTENANCE', prefix: 'MT', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
+  { num_type: 'ISSUE', prefix: 'IS', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
+  { num_type: 'INCOMING', prefix: 'IC', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
 ];
 
 // ═══════════════════════════════════════════════════════════
