@@ -226,8 +226,8 @@ const menus: MenuSeed[] = [
 
   // 9. 출하관리
   { menu_id: 9, parent_menu_id: null, menu_nm: '출하관리', menu_url: null, sort_order: 9, depth: 1 },
-  { menu_id: 901, parent_menu_id: 9, menu_nm: '출하지시', menu_url: '/shipping/order', sort_order: 1, depth: 2 },
-  { menu_id: 902, parent_menu_id: 9, menu_nm: '출하처리', menu_url: '/shipping/process', sort_order: 2, depth: 2 },
+  { menu_id: 901, parent_menu_id: 9, menu_nm: '출하지시', menu_url: '/shipment/order', sort_order: 1, depth: 2 },
+  { menu_id: 902, parent_menu_id: 9, menu_nm: '출하처리', menu_url: '/shipment/process', sort_order: 2, depth: 2 },
 
   // 10. 리포트
   { menu_id: 10, parent_menu_id: null, menu_nm: '리포트', menu_url: null, sort_order: 10, depth: 1 },

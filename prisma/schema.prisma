@@ -993,6 +993,12 @@ model TbShipment {
   ship_no String @unique @db.VarChar(30)
   cust_cd String @db.VarChar(20)
   status  String @default("PLAN") @db.VarChar(20)
+  plan_dt        DateTime?
+  actual_ship_dt DateTime?
+  cancel_reason  String? @db.VarChar(500)
+  cancel_by      String? @db.VarChar(50)
+  cancel_dt      DateTime?
+  remark         String? @db.VarChar(500)
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())
@@ -1015,7 +1021,8 @@ model TbShipmentDtl {
   ship_id     Int
   item_cd     String  @db.VarChar(30)
   lot_no      String? @db.VarChar(50)
-  ship_qty    Decimal @db.Decimal(15, 3)
+  order_qty   Decimal  @db.Decimal(15, 3)
+  actual_qty  Decimal? @db.Decimal(15, 3)
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())
