@@ -31,6 +31,10 @@ import inventoryRouter from './inventory';
 import incomingsRouter from './incomings';
 import spcRouter from './spc';
 import shipmentsRouter from './shipments';
+import equipStatusesRouter from './equipStatuses';
+import oeeRouter from './oee';
+import maintPlansRouter from './maintPlans';
+import maintResultsRouter from './maintResults';
 
 const v1Router = Router();
 
@@ -93,5 +97,9 @@ v1Router.use('/inventory', inventoryRouter);
 v1Router.use('/incomings', incomingsRouter);
 v1Router.use('/spc', spcRouter);
 v1Router.use('/shipments', shipmentsRouter);
+v1Router.use('/equip-statuses', equipStatusesRouter);
+v1Router.use('/oee', oeeRouter);
+v1Router.use('/maint-plans', maintPlansRouter);
+v1Router.use('/maint-results', maintResultsRouter);
 
 export default v1Router;
