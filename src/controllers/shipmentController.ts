@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { successResponse, errorResponse } from '../types/apiResponse';
 import * as shipmentService from '../services/shipmentService';
+import { generateShipmentPdf } from '../services/shipmentPdfService';
 
 // ─── List Shipments (paginated) ───
 
@@ -211,7 +212,7 @@ export async function getEligibleLotsHandler(req: Request, res: Response, next: 
   }
 }
 
-// ─── Download PDF (stub — implemented in Plan 03) ───
+// ─── Download PDF ───
 
 export async function downloadPdfHandler(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
@@ -220,12 +221,18 @@ export async function downloadPdfHandler(req: Request, res: Response, next: Next
       res.status(400).json(errorResponse('유효하지 않은 출하 ID입니다.'));
       return;
     }
-    const type = req.query.type as string | undefined;
-    if (!type || !['order', 'statement', 'delivery', 'inspection'].includes(type)) {
-      res.status(400).json(errorResponse('type은 order, statement, delivery, inspection 중 하나여야 합니다.'));
+
+    const docType = req.query.type as string;
+    if (!docType || !['order', 'statement', 'delivery', 'inspection'].includes(docType)) {
+      res.status(400).json(errorResponse('유효하지 않은 문서 유형입니다. order, statement, delivery, inspection 중 선택하세요.'));
       return;
     }
-    res.status(501).json(errorResponse('PDF generation not yet implemented'));
+
+    const doc = await generateShipmentPdf(shipId, docType as 'order' | 'statement' | 'delivery' | 'inspection');
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="shipment-${shipId}-${docType}.pdf"`);
+    doc.pipe(res);
   } catch (err) {
     next(err);
   }
