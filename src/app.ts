@@ -31,21 +31,19 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // ─── Logging ───
 app.use(requestLogger);
 
-// ─── Swagger API docs ───
+// ─── Routes ───
+app.use(healthRouter);
+app.use('/api/v1', v1Router);
+
+// ─── Swagger API docs (after routes to avoid Express 5 static middleware interference) ───
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   explorer: true,
   customSiteTitle: 'Foodly MES API Docs',
 }));
-
-// Swagger JSON endpoint for programmatic access
 app.get('/api-docs.json', (_req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
 });
-
-// ─── Routes ───
-app.use(healthRouter);
-app.use('/api/v1', v1Router);
 
 // ─── Error handling ───
 app.use(notFoundHandler);
