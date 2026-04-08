@@ -29,6 +29,7 @@ import materialInputsRouter from './materialInputs';
 import materialIssuesRouter from './materialIssues';
 import inventoryRouter from './inventory';
 import incomingsRouter from './incomings';
+import spcRouter from './spc';
 
 const v1Router = Router();
 
@@ -89,5 +90,6 @@ v1Router.use('/material-inputs', materialInputsRouter);
 v1Router.use('/material-issues', materialIssuesRouter);
 v1Router.use('/inventory', inventoryRouter);
 v1Router.use('/incomings', incomingsRouter);
+v1Router.use('/spc', spcRouter);
 
 export default v1Router;
