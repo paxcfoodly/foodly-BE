@@ -320,6 +320,7 @@ model TbWorker {
   prod_results   TbProdResult[]
   material_inputs TbMaterialInput[]
   maint_results  TbMaintResult[]
+  maint_plan_assignments TbMaintPlan[] @relation("MaintPlanAssignee")
 
   @@index([workshop_cd])
   @@map("tb_worker")
@@ -847,6 +848,7 @@ model TbEquipStatus {
   start_dt       DateTime?
   end_dt         DateTime?
   duration       Int?      // 분 단위
+  memo           String?   @db.VarChar(500)
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())
@@ -867,9 +869,12 @@ model TbEquipStatus {
 model TbMaintPlan {
   maint_plan_id  Int       @id @default(autoincrement())
   equip_cd       String    @db.VarChar(20)
+  plan_nm        String?   @db.VarChar(100)
+  description    String?   @db.VarChar(500)
   maint_type_cd  String?   @db.VarChar(20) // PM, CM, BM
   cycle_type     String?   @db.VarChar(20) // DAILY, WEEKLY, MONTHLY, YEARLY
   next_plan_date DateTime? @db.Date
+  assignee_id    String?   @db.VarChar(20)
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())
@@ -877,11 +882,37 @@ model TbMaintPlan {
   update_dt DateTime @updatedAt
 
   // Relations
-  equipment TbEquipment @relation(fields: [equip_cd], references: [equip_cd])
+  equipment      TbEquipment      @relation(fields: [equip_cd], references: [equip_cd])
+  assignee       TbWorker?        @relation("MaintPlanAssignee", fields: [assignee_id], references: [worker_id])
+  plan_dtls      TbMaintPlanDtl[]
+  maint_results  TbMaintResult[]
 
   @@index([equip_cd])
   @@index([next_plan_date])
+  @@index([assignee_id])
   @@map("tb_maint_plan")
+}
+
+// ────────────────────────────────────────
+// T16-DTL: TB_MAINT_PLAN_DTL — 보전계획 체크리스트
+// ────────────────────────────────────────
+model TbMaintPlanDtl {
+  plan_dtl_id   Int    @id @default(autoincrement())
+  maint_plan_id Int
+  item_no       Int
+  check_item    String  @db.VarChar(200)
+  check_std     String? @db.VarChar(500)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  maint_plan  TbMaintPlan        @relation(fields: [maint_plan_id], references: [maint_plan_id])
+  result_dtls TbMaintResultDtl[]
+
+  @@index([maint_plan_id])
+  @@map("tb_maint_plan_dtl")
 }
 
 // ────────────────────────────────────────
@@ -890,10 +921,14 @@ model TbMaintPlan {
 model TbMaintResult {
   maint_result_id Int       @id @default(autoincrement())
   equip_cd        String    @db.VarChar(20)
+  maint_no        String?   @db.VarChar(30)
+  maint_plan_id   Int?
   maint_type_cd   String?   @db.VarChar(20)
   work_dt         DateTime? @db.Date
   worker_id       String?   @db.VarChar(20)
   cost            Decimal?  @db.Decimal(15, 2)
+  memo            String?   @db.VarChar(1000)
+  replaced_parts  Json?
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())
@@ -901,12 +936,38 @@ model TbMaintResult {
   update_dt DateTime @updatedAt
 
   // Relations
-  equipment TbEquipment @relation(fields: [equip_cd], references: [equip_cd])
-  worker    TbWorker?   @relation(fields: [worker_id], references: [worker_id])
+  equipment   TbEquipment      @relation(fields: [equip_cd], references: [equip_cd])
+  worker      TbWorker?        @relation(fields: [worker_id], references: [worker_id])
+  maint_plan  TbMaintPlan?     @relation(fields: [maint_plan_id], references: [maint_plan_id])
+  result_dtls TbMaintResultDtl[]
 
   @@index([equip_cd])
   @@index([worker_id])
+  @@index([maint_plan_id])
   @@map("tb_maint_result")
+}
+
+// ────────────────────────────────────────
+// T17-DTL: TB_MAINT_RESULT_DTL — 보전실적 체크리스트
+// ────────────────────────────────────────
+model TbMaintResultDtl {
+  result_dtl_id   Int    @id @default(autoincrement())
+  maint_result_id Int
+  plan_dtl_id     Int?
+  check_item      String  @db.VarChar(200)
+  check_result    String  @db.VarChar(20)  // OK, ACTION_NEEDED, REPLACED
+  memo            String? @db.VarChar(500)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  maint_result TbMaintResult   @relation(fields: [maint_result_id], references: [maint_result_id])
+  plan_dtl     TbMaintPlanDtl? @relation(fields: [plan_dtl_id], references: [plan_dtl_id])
+
+  @@index([maint_result_id])
+  @@map("tb_maint_result_dtl")
 }
 
 // ────────────────────────────────────────
