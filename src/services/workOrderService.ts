@@ -610,6 +610,15 @@ export async function assignWorkers(woId: number, workerIds: string[], userId?: 
   const order = await prisma.tbWorkOrder.findUnique({ where: { wo_id: woId } });
   if (!order) throw new AppError('존재하지 않는 작업지시입니다.', 404);
 
+  // Validate that all worker IDs exist
+  const existingWorkers = await prisma.tbWorker.findMany({
+    where: { worker_id: { in: workerIds } },
+    select: { worker_id: true },
+  });
+  if (existingWorkers.length !== workerIds.length) {
+    throw new AppError('존재하지 않는 작업자 ID가 포함되어 있습니다.', 400);
+  }
+
   await prisma.tbWoWorker.createMany({
     data: workerIds.map((id) => ({
       wo_id: woId,
