@@ -37,9 +37,12 @@ export type TbMaintPlanSumAggregateOutputType = {
 export type TbMaintPlanMinAggregateOutputType = {
   maint_plan_id: number | null
   equip_cd: string | null
+  plan_nm: string | null
+  description: string | null
   maint_type_cd: string | null
   cycle_type: string | null
   next_plan_date: Date | null
+  assignee_id: string | null
   create_by: string | null
   create_dt: Date | null
   update_by: string | null
@@ -49,9 +52,12 @@ export type TbMaintPlanMinAggregateOutputType = {
 export type TbMaintPlanMaxAggregateOutputType = {
   maint_plan_id: number | null
   equip_cd: string | null
+  plan_nm: string | null
+  description: string | null
   maint_type_cd: string | null
   cycle_type: string | null
   next_plan_date: Date | null
+  assignee_id: string | null
   create_by: string | null
   create_dt: Date | null
   update_by: string | null
@@ -61,9 +67,12 @@ export type TbMaintPlanMaxAggregateOutputType = {
 export type TbMaintPlanCountAggregateOutputType = {
   maint_plan_id: number
   equip_cd: number
+  plan_nm: number
+  description: number
   maint_type_cd: number
   cycle_type: number
   next_plan_date: number
+  assignee_id: number
   create_by: number
   create_dt: number
   update_by: number
@@ -83,9 +92,12 @@ export type TbMaintPlanSumAggregateInputType = {
 export type TbMaintPlanMinAggregateInputType = {
   maint_plan_id?: true
   equip_cd?: true
+  plan_nm?: true
+  description?: true
   maint_type_cd?: true
   cycle_type?: true
   next_plan_date?: true
+  assignee_id?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -95,9 +107,12 @@ export type TbMaintPlanMinAggregateInputType = {
 export type TbMaintPlanMaxAggregateInputType = {
   maint_plan_id?: true
   equip_cd?: true
+  plan_nm?: true
+  description?: true
   maint_type_cd?: true
   cycle_type?: true
   next_plan_date?: true
+  assignee_id?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -107,9 +122,12 @@ export type TbMaintPlanMaxAggregateInputType = {
 export type TbMaintPlanCountAggregateInputType = {
   maint_plan_id?: true
   equip_cd?: true
+  plan_nm?: true
+  description?: true
   maint_type_cd?: true
   cycle_type?: true
   next_plan_date?: true
+  assignee_id?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -206,9 +224,12 @@ export type TbMaintPlanGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type TbMaintPlanGroupByOutputType = {
   maint_plan_id: number
   equip_cd: string
+  plan_nm: string | null
+  description: string | null
   maint_type_cd: string | null
   cycle_type: string | null
   next_plan_date: Date | null
+  assignee_id: string | null
   create_by: string | null
   create_dt: Date
   update_by: string | null
@@ -241,27 +262,39 @@ export type TbMaintPlanWhereInput = {
   NOT?: Prisma.TbMaintPlanWhereInput | Prisma.TbMaintPlanWhereInput[]
   maint_plan_id?: Prisma.IntFilter<"TbMaintPlan"> | number
   equip_cd?: Prisma.StringFilter<"TbMaintPlan"> | string
+  plan_nm?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
+  description?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   maint_type_cd?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   cycle_type?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   next_plan_date?: Prisma.DateTimeNullableFilter<"TbMaintPlan"> | Date | string | null
+  assignee_id?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   create_by?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   create_dt?: Prisma.DateTimeFilter<"TbMaintPlan"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   update_dt?: Prisma.DateTimeFilter<"TbMaintPlan"> | Date | string
   equipment?: Prisma.XOR<Prisma.TbEquipmentScalarRelationFilter, Prisma.TbEquipmentWhereInput>
+  assignee?: Prisma.XOR<Prisma.TbWorkerNullableScalarRelationFilter, Prisma.TbWorkerWhereInput> | null
+  plan_dtls?: Prisma.TbMaintPlanDtlListRelationFilter
+  maint_results?: Prisma.TbMaintResultListRelationFilter
 }
 
 export type TbMaintPlanOrderByWithRelationInput = {
   maint_plan_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
+  plan_nm?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   maint_type_cd?: Prisma.SortOrderInput | Prisma.SortOrder
   cycle_type?: Prisma.SortOrderInput | Prisma.SortOrder
   next_plan_date?: Prisma.SortOrderInput | Prisma.SortOrder
+  assignee_id?: Prisma.SortOrderInput | Prisma.SortOrder
   create_by?: Prisma.SortOrderInput | Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
   update_dt?: Prisma.SortOrder
   equipment?: Prisma.TbEquipmentOrderByWithRelationInput
+  assignee?: Prisma.TbWorkerOrderByWithRelationInput
+  plan_dtls?: Prisma.TbMaintPlanDtlOrderByRelationAggregateInput
+  maint_results?: Prisma.TbMaintResultOrderByRelationAggregateInput
 }
 
 export type TbMaintPlanWhereUniqueInput = Prisma.AtLeast<{
@@ -270,22 +303,31 @@ export type TbMaintPlanWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.TbMaintPlanWhereInput[]
   NOT?: Prisma.TbMaintPlanWhereInput | Prisma.TbMaintPlanWhereInput[]
   equip_cd?: Prisma.StringFilter<"TbMaintPlan"> | string
+  plan_nm?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
+  description?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   maint_type_cd?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   cycle_type?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   next_plan_date?: Prisma.DateTimeNullableFilter<"TbMaintPlan"> | Date | string | null
+  assignee_id?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   create_by?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   create_dt?: Prisma.DateTimeFilter<"TbMaintPlan"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   update_dt?: Prisma.DateTimeFilter<"TbMaintPlan"> | Date | string
   equipment?: Prisma.XOR<Prisma.TbEquipmentScalarRelationFilter, Prisma.TbEquipmentWhereInput>
+  assignee?: Prisma.XOR<Prisma.TbWorkerNullableScalarRelationFilter, Prisma.TbWorkerWhereInput> | null
+  plan_dtls?: Prisma.TbMaintPlanDtlListRelationFilter
+  maint_results?: Prisma.TbMaintResultListRelationFilter
 }, "maint_plan_id">
 
 export type TbMaintPlanOrderByWithAggregationInput = {
   maint_plan_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
+  plan_nm?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   maint_type_cd?: Prisma.SortOrderInput | Prisma.SortOrder
   cycle_type?: Prisma.SortOrderInput | Prisma.SortOrder
   next_plan_date?: Prisma.SortOrderInput | Prisma.SortOrder
+  assignee_id?: Prisma.SortOrderInput | Prisma.SortOrder
   create_by?: Prisma.SortOrderInput | Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -303,9 +345,12 @@ export type TbMaintPlanScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TbMaintPlanScalarWhereWithAggregatesInput | Prisma.TbMaintPlanScalarWhereWithAggregatesInput[]
   maint_plan_id?: Prisma.IntWithAggregatesFilter<"TbMaintPlan"> | number
   equip_cd?: Prisma.StringWithAggregatesFilter<"TbMaintPlan"> | string
+  plan_nm?: Prisma.StringNullableWithAggregatesFilter<"TbMaintPlan"> | string | null
+  description?: Prisma.StringNullableWithAggregatesFilter<"TbMaintPlan"> | string | null
   maint_type_cd?: Prisma.StringNullableWithAggregatesFilter<"TbMaintPlan"> | string | null
   cycle_type?: Prisma.StringNullableWithAggregatesFilter<"TbMaintPlan"> | string | null
   next_plan_date?: Prisma.DateTimeNullableWithAggregatesFilter<"TbMaintPlan"> | Date | string | null
+  assignee_id?: Prisma.StringNullableWithAggregatesFilter<"TbMaintPlan"> | string | null
   create_by?: Prisma.StringNullableWithAggregatesFilter<"TbMaintPlan"> | string | null
   create_dt?: Prisma.DateTimeWithAggregatesFilter<"TbMaintPlan"> | Date | string
   update_by?: Prisma.StringNullableWithAggregatesFilter<"TbMaintPlan"> | string | null
@@ -313,6 +358,8 @@ export type TbMaintPlanScalarWhereWithAggregatesInput = {
 }
 
 export type TbMaintPlanCreateInput = {
+  plan_nm?: string | null
+  description?: string | null
   maint_type_cd?: string | null
   cycle_type?: string | null
   next_plan_date?: Date | string | null
@@ -321,21 +368,31 @@ export type TbMaintPlanCreateInput = {
   update_by?: string | null
   update_dt?: Date | string
   equipment: Prisma.TbEquipmentCreateNestedOneWithoutMaint_plansInput
+  assignee?: Prisma.TbWorkerCreateNestedOneWithoutMaint_plan_assignmentsInput
+  plan_dtls?: Prisma.TbMaintPlanDtlCreateNestedManyWithoutMaint_planInput
+  maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutMaint_planInput
 }
 
 export type TbMaintPlanUncheckedCreateInput = {
   maint_plan_id?: number
   equip_cd: string
+  plan_nm?: string | null
+  description?: string | null
   maint_type_cd?: string | null
   cycle_type?: string | null
   next_plan_date?: Date | string | null
+  assignee_id?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
   update_dt?: Date | string
+  plan_dtls?: Prisma.TbMaintPlanDtlUncheckedCreateNestedManyWithoutMaint_planInput
+  maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutMaint_planInput
 }
 
 export type TbMaintPlanUpdateInput = {
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -344,26 +401,37 @@ export type TbMaintPlanUpdateInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   equipment?: Prisma.TbEquipmentUpdateOneRequiredWithoutMaint_plansNestedInput
+  assignee?: Prisma.TbWorkerUpdateOneWithoutMaint_plan_assignmentsNestedInput
+  plan_dtls?: Prisma.TbMaintPlanDtlUpdateManyWithoutMaint_planNestedInput
+  maint_results?: Prisma.TbMaintResultUpdateManyWithoutMaint_planNestedInput
 }
 
 export type TbMaintPlanUncheckedUpdateInput = {
   maint_plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignee_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  plan_dtls?: Prisma.TbMaintPlanDtlUncheckedUpdateManyWithoutMaint_planNestedInput
+  maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutMaint_planNestedInput
 }
 
 export type TbMaintPlanCreateManyInput = {
   maint_plan_id?: number
   equip_cd: string
+  plan_nm?: string | null
+  description?: string | null
   maint_type_cd?: string | null
   cycle_type?: string | null
   next_plan_date?: Date | string | null
+  assignee_id?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -371,6 +439,8 @@ export type TbMaintPlanCreateManyInput = {
 }
 
 export type TbMaintPlanUpdateManyMutationInput = {
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -383,9 +453,12 @@ export type TbMaintPlanUpdateManyMutationInput = {
 export type TbMaintPlanUncheckedUpdateManyInput = {
   maint_plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignee_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -405,9 +478,12 @@ export type TbMaintPlanOrderByRelationAggregateInput = {
 export type TbMaintPlanCountOrderByAggregateInput = {
   maint_plan_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
+  plan_nm?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   maint_type_cd?: Prisma.SortOrder
   cycle_type?: Prisma.SortOrder
   next_plan_date?: Prisma.SortOrder
+  assignee_id?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -421,9 +497,12 @@ export type TbMaintPlanAvgOrderByAggregateInput = {
 export type TbMaintPlanMaxOrderByAggregateInput = {
   maint_plan_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
+  plan_nm?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   maint_type_cd?: Prisma.SortOrder
   cycle_type?: Prisma.SortOrder
   next_plan_date?: Prisma.SortOrder
+  assignee_id?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -433,9 +512,12 @@ export type TbMaintPlanMaxOrderByAggregateInput = {
 export type TbMaintPlanMinOrderByAggregateInput = {
   maint_plan_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
+  plan_nm?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   maint_type_cd?: Prisma.SortOrder
   cycle_type?: Prisma.SortOrder
   next_plan_date?: Prisma.SortOrder
+  assignee_id?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -444,6 +526,16 @@ export type TbMaintPlanMinOrderByAggregateInput = {
 
 export type TbMaintPlanSumOrderByAggregateInput = {
   maint_plan_id?: Prisma.SortOrder
+}
+
+export type TbMaintPlanScalarRelationFilter = {
+  is?: Prisma.TbMaintPlanWhereInput
+  isNot?: Prisma.TbMaintPlanWhereInput
+}
+
+export type TbMaintPlanNullableScalarRelationFilter = {
+  is?: Prisma.TbMaintPlanWhereInput | null
+  isNot?: Prisma.TbMaintPlanWhereInput | null
 }
 
 export type TbMaintPlanCreateNestedManyWithoutEquipmentInput = {
@@ -488,7 +580,81 @@ export type TbMaintPlanUncheckedUpdateManyWithoutEquipmentNestedInput = {
   deleteMany?: Prisma.TbMaintPlanScalarWhereInput | Prisma.TbMaintPlanScalarWhereInput[]
 }
 
+export type TbMaintPlanCreateNestedManyWithoutAssigneeInput = {
+  create?: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutAssigneeInput, Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput> | Prisma.TbMaintPlanCreateWithoutAssigneeInput[] | Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput[]
+  connectOrCreate?: Prisma.TbMaintPlanCreateOrConnectWithoutAssigneeInput | Prisma.TbMaintPlanCreateOrConnectWithoutAssigneeInput[]
+  createMany?: Prisma.TbMaintPlanCreateManyAssigneeInputEnvelope
+  connect?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+}
+
+export type TbMaintPlanUncheckedCreateNestedManyWithoutAssigneeInput = {
+  create?: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutAssigneeInput, Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput> | Prisma.TbMaintPlanCreateWithoutAssigneeInput[] | Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput[]
+  connectOrCreate?: Prisma.TbMaintPlanCreateOrConnectWithoutAssigneeInput | Prisma.TbMaintPlanCreateOrConnectWithoutAssigneeInput[]
+  createMany?: Prisma.TbMaintPlanCreateManyAssigneeInputEnvelope
+  connect?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+}
+
+export type TbMaintPlanUpdateManyWithoutAssigneeNestedInput = {
+  create?: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutAssigneeInput, Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput> | Prisma.TbMaintPlanCreateWithoutAssigneeInput[] | Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput[]
+  connectOrCreate?: Prisma.TbMaintPlanCreateOrConnectWithoutAssigneeInput | Prisma.TbMaintPlanCreateOrConnectWithoutAssigneeInput[]
+  upsert?: Prisma.TbMaintPlanUpsertWithWhereUniqueWithoutAssigneeInput | Prisma.TbMaintPlanUpsertWithWhereUniqueWithoutAssigneeInput[]
+  createMany?: Prisma.TbMaintPlanCreateManyAssigneeInputEnvelope
+  set?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+  disconnect?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+  delete?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+  connect?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+  update?: Prisma.TbMaintPlanUpdateWithWhereUniqueWithoutAssigneeInput | Prisma.TbMaintPlanUpdateWithWhereUniqueWithoutAssigneeInput[]
+  updateMany?: Prisma.TbMaintPlanUpdateManyWithWhereWithoutAssigneeInput | Prisma.TbMaintPlanUpdateManyWithWhereWithoutAssigneeInput[]
+  deleteMany?: Prisma.TbMaintPlanScalarWhereInput | Prisma.TbMaintPlanScalarWhereInput[]
+}
+
+export type TbMaintPlanUncheckedUpdateManyWithoutAssigneeNestedInput = {
+  create?: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutAssigneeInput, Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput> | Prisma.TbMaintPlanCreateWithoutAssigneeInput[] | Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput[]
+  connectOrCreate?: Prisma.TbMaintPlanCreateOrConnectWithoutAssigneeInput | Prisma.TbMaintPlanCreateOrConnectWithoutAssigneeInput[]
+  upsert?: Prisma.TbMaintPlanUpsertWithWhereUniqueWithoutAssigneeInput | Prisma.TbMaintPlanUpsertWithWhereUniqueWithoutAssigneeInput[]
+  createMany?: Prisma.TbMaintPlanCreateManyAssigneeInputEnvelope
+  set?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+  disconnect?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+  delete?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+  connect?: Prisma.TbMaintPlanWhereUniqueInput | Prisma.TbMaintPlanWhereUniqueInput[]
+  update?: Prisma.TbMaintPlanUpdateWithWhereUniqueWithoutAssigneeInput | Prisma.TbMaintPlanUpdateWithWhereUniqueWithoutAssigneeInput[]
+  updateMany?: Prisma.TbMaintPlanUpdateManyWithWhereWithoutAssigneeInput | Prisma.TbMaintPlanUpdateManyWithWhereWithoutAssigneeInput[]
+  deleteMany?: Prisma.TbMaintPlanScalarWhereInput | Prisma.TbMaintPlanScalarWhereInput[]
+}
+
+export type TbMaintPlanCreateNestedOneWithoutPlan_dtlsInput = {
+  create?: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutPlan_dtlsInput, Prisma.TbMaintPlanUncheckedCreateWithoutPlan_dtlsInput>
+  connectOrCreate?: Prisma.TbMaintPlanCreateOrConnectWithoutPlan_dtlsInput
+  connect?: Prisma.TbMaintPlanWhereUniqueInput
+}
+
+export type TbMaintPlanUpdateOneRequiredWithoutPlan_dtlsNestedInput = {
+  create?: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutPlan_dtlsInput, Prisma.TbMaintPlanUncheckedCreateWithoutPlan_dtlsInput>
+  connectOrCreate?: Prisma.TbMaintPlanCreateOrConnectWithoutPlan_dtlsInput
+  upsert?: Prisma.TbMaintPlanUpsertWithoutPlan_dtlsInput
+  connect?: Prisma.TbMaintPlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TbMaintPlanUpdateToOneWithWhereWithoutPlan_dtlsInput, Prisma.TbMaintPlanUpdateWithoutPlan_dtlsInput>, Prisma.TbMaintPlanUncheckedUpdateWithoutPlan_dtlsInput>
+}
+
+export type TbMaintPlanCreateNestedOneWithoutMaint_resultsInput = {
+  create?: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutMaint_resultsInput, Prisma.TbMaintPlanUncheckedCreateWithoutMaint_resultsInput>
+  connectOrCreate?: Prisma.TbMaintPlanCreateOrConnectWithoutMaint_resultsInput
+  connect?: Prisma.TbMaintPlanWhereUniqueInput
+}
+
+export type TbMaintPlanUpdateOneWithoutMaint_resultsNestedInput = {
+  create?: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutMaint_resultsInput, Prisma.TbMaintPlanUncheckedCreateWithoutMaint_resultsInput>
+  connectOrCreate?: Prisma.TbMaintPlanCreateOrConnectWithoutMaint_resultsInput
+  upsert?: Prisma.TbMaintPlanUpsertWithoutMaint_resultsInput
+  disconnect?: Prisma.TbMaintPlanWhereInput | boolean
+  delete?: Prisma.TbMaintPlanWhereInput | boolean
+  connect?: Prisma.TbMaintPlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TbMaintPlanUpdateToOneWithWhereWithoutMaint_resultsInput, Prisma.TbMaintPlanUpdateWithoutMaint_resultsInput>, Prisma.TbMaintPlanUncheckedUpdateWithoutMaint_resultsInput>
+}
+
 export type TbMaintPlanCreateWithoutEquipmentInput = {
+  plan_nm?: string | null
+  description?: string | null
   maint_type_cd?: string | null
   cycle_type?: string | null
   next_plan_date?: Date | string | null
@@ -496,17 +662,25 @@ export type TbMaintPlanCreateWithoutEquipmentInput = {
   create_dt?: Date | string
   update_by?: string | null
   update_dt?: Date | string
+  assignee?: Prisma.TbWorkerCreateNestedOneWithoutMaint_plan_assignmentsInput
+  plan_dtls?: Prisma.TbMaintPlanDtlCreateNestedManyWithoutMaint_planInput
+  maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutMaint_planInput
 }
 
 export type TbMaintPlanUncheckedCreateWithoutEquipmentInput = {
   maint_plan_id?: number
+  plan_nm?: string | null
+  description?: string | null
   maint_type_cd?: string | null
   cycle_type?: string | null
   next_plan_date?: Date | string | null
+  assignee_id?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
   update_dt?: Date | string
+  plan_dtls?: Prisma.TbMaintPlanDtlUncheckedCreateNestedManyWithoutMaint_planInput
+  maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutMaint_planInput
 }
 
 export type TbMaintPlanCreateOrConnectWithoutEquipmentInput = {
@@ -541,17 +715,295 @@ export type TbMaintPlanScalarWhereInput = {
   NOT?: Prisma.TbMaintPlanScalarWhereInput | Prisma.TbMaintPlanScalarWhereInput[]
   maint_plan_id?: Prisma.IntFilter<"TbMaintPlan"> | number
   equip_cd?: Prisma.StringFilter<"TbMaintPlan"> | string
+  plan_nm?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
+  description?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   maint_type_cd?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   cycle_type?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   next_plan_date?: Prisma.DateTimeNullableFilter<"TbMaintPlan"> | Date | string | null
+  assignee_id?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   create_by?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   create_dt?: Prisma.DateTimeFilter<"TbMaintPlan"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbMaintPlan"> | string | null
   update_dt?: Prisma.DateTimeFilter<"TbMaintPlan"> | Date | string
 }
 
+export type TbMaintPlanCreateWithoutAssigneeInput = {
+  plan_nm?: string | null
+  description?: string | null
+  maint_type_cd?: string | null
+  cycle_type?: string | null
+  next_plan_date?: Date | string | null
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  equipment: Prisma.TbEquipmentCreateNestedOneWithoutMaint_plansInput
+  plan_dtls?: Prisma.TbMaintPlanDtlCreateNestedManyWithoutMaint_planInput
+  maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutMaint_planInput
+}
+
+export type TbMaintPlanUncheckedCreateWithoutAssigneeInput = {
+  maint_plan_id?: number
+  equip_cd: string
+  plan_nm?: string | null
+  description?: string | null
+  maint_type_cd?: string | null
+  cycle_type?: string | null
+  next_plan_date?: Date | string | null
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  plan_dtls?: Prisma.TbMaintPlanDtlUncheckedCreateNestedManyWithoutMaint_planInput
+  maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutMaint_planInput
+}
+
+export type TbMaintPlanCreateOrConnectWithoutAssigneeInput = {
+  where: Prisma.TbMaintPlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutAssigneeInput, Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput>
+}
+
+export type TbMaintPlanCreateManyAssigneeInputEnvelope = {
+  data: Prisma.TbMaintPlanCreateManyAssigneeInput | Prisma.TbMaintPlanCreateManyAssigneeInput[]
+  skipDuplicates?: boolean
+}
+
+export type TbMaintPlanUpsertWithWhereUniqueWithoutAssigneeInput = {
+  where: Prisma.TbMaintPlanWhereUniqueInput
+  update: Prisma.XOR<Prisma.TbMaintPlanUpdateWithoutAssigneeInput, Prisma.TbMaintPlanUncheckedUpdateWithoutAssigneeInput>
+  create: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutAssigneeInput, Prisma.TbMaintPlanUncheckedCreateWithoutAssigneeInput>
+}
+
+export type TbMaintPlanUpdateWithWhereUniqueWithoutAssigneeInput = {
+  where: Prisma.TbMaintPlanWhereUniqueInput
+  data: Prisma.XOR<Prisma.TbMaintPlanUpdateWithoutAssigneeInput, Prisma.TbMaintPlanUncheckedUpdateWithoutAssigneeInput>
+}
+
+export type TbMaintPlanUpdateManyWithWhereWithoutAssigneeInput = {
+  where: Prisma.TbMaintPlanScalarWhereInput
+  data: Prisma.XOR<Prisma.TbMaintPlanUpdateManyMutationInput, Prisma.TbMaintPlanUncheckedUpdateManyWithoutAssigneeInput>
+}
+
+export type TbMaintPlanCreateWithoutPlan_dtlsInput = {
+  plan_nm?: string | null
+  description?: string | null
+  maint_type_cd?: string | null
+  cycle_type?: string | null
+  next_plan_date?: Date | string | null
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  equipment: Prisma.TbEquipmentCreateNestedOneWithoutMaint_plansInput
+  assignee?: Prisma.TbWorkerCreateNestedOneWithoutMaint_plan_assignmentsInput
+  maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutMaint_planInput
+}
+
+export type TbMaintPlanUncheckedCreateWithoutPlan_dtlsInput = {
+  maint_plan_id?: number
+  equip_cd: string
+  plan_nm?: string | null
+  description?: string | null
+  maint_type_cd?: string | null
+  cycle_type?: string | null
+  next_plan_date?: Date | string | null
+  assignee_id?: string | null
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutMaint_planInput
+}
+
+export type TbMaintPlanCreateOrConnectWithoutPlan_dtlsInput = {
+  where: Prisma.TbMaintPlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutPlan_dtlsInput, Prisma.TbMaintPlanUncheckedCreateWithoutPlan_dtlsInput>
+}
+
+export type TbMaintPlanUpsertWithoutPlan_dtlsInput = {
+  update: Prisma.XOR<Prisma.TbMaintPlanUpdateWithoutPlan_dtlsInput, Prisma.TbMaintPlanUncheckedUpdateWithoutPlan_dtlsInput>
+  create: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutPlan_dtlsInput, Prisma.TbMaintPlanUncheckedCreateWithoutPlan_dtlsInput>
+  where?: Prisma.TbMaintPlanWhereInput
+}
+
+export type TbMaintPlanUpdateToOneWithWhereWithoutPlan_dtlsInput = {
+  where?: Prisma.TbMaintPlanWhereInput
+  data: Prisma.XOR<Prisma.TbMaintPlanUpdateWithoutPlan_dtlsInput, Prisma.TbMaintPlanUncheckedUpdateWithoutPlan_dtlsInput>
+}
+
+export type TbMaintPlanUpdateWithoutPlan_dtlsInput = {
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  equipment?: Prisma.TbEquipmentUpdateOneRequiredWithoutMaint_plansNestedInput
+  assignee?: Prisma.TbWorkerUpdateOneWithoutMaint_plan_assignmentsNestedInput
+  maint_results?: Prisma.TbMaintResultUpdateManyWithoutMaint_planNestedInput
+}
+
+export type TbMaintPlanUncheckedUpdateWithoutPlan_dtlsInput = {
+  maint_plan_id?: Prisma.IntFieldUpdateOperationsInput | number
+  equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignee_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutMaint_planNestedInput
+}
+
+export type TbMaintPlanCreateWithoutMaint_resultsInput = {
+  plan_nm?: string | null
+  description?: string | null
+  maint_type_cd?: string | null
+  cycle_type?: string | null
+  next_plan_date?: Date | string | null
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  equipment: Prisma.TbEquipmentCreateNestedOneWithoutMaint_plansInput
+  assignee?: Prisma.TbWorkerCreateNestedOneWithoutMaint_plan_assignmentsInput
+  plan_dtls?: Prisma.TbMaintPlanDtlCreateNestedManyWithoutMaint_planInput
+}
+
+export type TbMaintPlanUncheckedCreateWithoutMaint_resultsInput = {
+  maint_plan_id?: number
+  equip_cd: string
+  plan_nm?: string | null
+  description?: string | null
+  maint_type_cd?: string | null
+  cycle_type?: string | null
+  next_plan_date?: Date | string | null
+  assignee_id?: string | null
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  plan_dtls?: Prisma.TbMaintPlanDtlUncheckedCreateNestedManyWithoutMaint_planInput
+}
+
+export type TbMaintPlanCreateOrConnectWithoutMaint_resultsInput = {
+  where: Prisma.TbMaintPlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutMaint_resultsInput, Prisma.TbMaintPlanUncheckedCreateWithoutMaint_resultsInput>
+}
+
+export type TbMaintPlanUpsertWithoutMaint_resultsInput = {
+  update: Prisma.XOR<Prisma.TbMaintPlanUpdateWithoutMaint_resultsInput, Prisma.TbMaintPlanUncheckedUpdateWithoutMaint_resultsInput>
+  create: Prisma.XOR<Prisma.TbMaintPlanCreateWithoutMaint_resultsInput, Prisma.TbMaintPlanUncheckedCreateWithoutMaint_resultsInput>
+  where?: Prisma.TbMaintPlanWhereInput
+}
+
+export type TbMaintPlanUpdateToOneWithWhereWithoutMaint_resultsInput = {
+  where?: Prisma.TbMaintPlanWhereInput
+  data: Prisma.XOR<Prisma.TbMaintPlanUpdateWithoutMaint_resultsInput, Prisma.TbMaintPlanUncheckedUpdateWithoutMaint_resultsInput>
+}
+
+export type TbMaintPlanUpdateWithoutMaint_resultsInput = {
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  equipment?: Prisma.TbEquipmentUpdateOneRequiredWithoutMaint_plansNestedInput
+  assignee?: Prisma.TbWorkerUpdateOneWithoutMaint_plan_assignmentsNestedInput
+  plan_dtls?: Prisma.TbMaintPlanDtlUpdateManyWithoutMaint_planNestedInput
+}
+
+export type TbMaintPlanUncheckedUpdateWithoutMaint_resultsInput = {
+  maint_plan_id?: Prisma.IntFieldUpdateOperationsInput | number
+  equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignee_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  plan_dtls?: Prisma.TbMaintPlanDtlUncheckedUpdateManyWithoutMaint_planNestedInput
+}
+
 export type TbMaintPlanCreateManyEquipmentInput = {
   maint_plan_id?: number
+  plan_nm?: string | null
+  description?: string | null
+  maint_type_cd?: string | null
+  cycle_type?: string | null
+  next_plan_date?: Date | string | null
+  assignee_id?: string | null
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+}
+
+export type TbMaintPlanUpdateWithoutEquipmentInput = {
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignee?: Prisma.TbWorkerUpdateOneWithoutMaint_plan_assignmentsNestedInput
+  plan_dtls?: Prisma.TbMaintPlanDtlUpdateManyWithoutMaint_planNestedInput
+  maint_results?: Prisma.TbMaintResultUpdateManyWithoutMaint_planNestedInput
+}
+
+export type TbMaintPlanUncheckedUpdateWithoutEquipmentInput = {
+  maint_plan_id?: Prisma.IntFieldUpdateOperationsInput | number
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignee_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  plan_dtls?: Prisma.TbMaintPlanDtlUncheckedUpdateManyWithoutMaint_planNestedInput
+  maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutMaint_planNestedInput
+}
+
+export type TbMaintPlanUncheckedUpdateManyWithoutEquipmentInput = {
+  maint_plan_id?: Prisma.IntFieldUpdateOperationsInput | number
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignee_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TbMaintPlanCreateManyAssigneeInput = {
+  maint_plan_id?: number
+  equip_cd: string
+  plan_nm?: string | null
+  description?: string | null
   maint_type_cd?: string | null
   cycle_type?: string | null
   next_plan_date?: Date | string | null
@@ -561,7 +1013,9 @@ export type TbMaintPlanCreateManyEquipmentInput = {
   update_dt?: Date | string
 }
 
-export type TbMaintPlanUpdateWithoutEquipmentInput = {
+export type TbMaintPlanUpdateWithoutAssigneeInput = {
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -569,10 +1023,16 @@ export type TbMaintPlanUpdateWithoutEquipmentInput = {
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  equipment?: Prisma.TbEquipmentUpdateOneRequiredWithoutMaint_plansNestedInput
+  plan_dtls?: Prisma.TbMaintPlanDtlUpdateManyWithoutMaint_planNestedInput
+  maint_results?: Prisma.TbMaintResultUpdateManyWithoutMaint_planNestedInput
 }
 
-export type TbMaintPlanUncheckedUpdateWithoutEquipmentInput = {
+export type TbMaintPlanUncheckedUpdateWithoutAssigneeInput = {
   maint_plan_id?: Prisma.IntFieldUpdateOperationsInput | number
+  equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -580,10 +1040,15 @@ export type TbMaintPlanUncheckedUpdateWithoutEquipmentInput = {
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  plan_dtls?: Prisma.TbMaintPlanDtlUncheckedUpdateManyWithoutMaint_planNestedInput
+  maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutMaint_planNestedInput
 }
 
-export type TbMaintPlanUncheckedUpdateManyWithoutEquipmentInput = {
+export type TbMaintPlanUncheckedUpdateManyWithoutAssigneeInput = {
   maint_plan_id?: Prisma.IntFieldUpdateOperationsInput | number
+  equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cycle_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   next_plan_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -593,81 +1058,149 @@ export type TbMaintPlanUncheckedUpdateManyWithoutEquipmentInput = {
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type TbMaintPlanCountOutputType
+ */
+
+export type TbMaintPlanCountOutputType = {
+  plan_dtls: number
+  maint_results: number
+}
+
+export type TbMaintPlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  plan_dtls?: boolean | TbMaintPlanCountOutputTypeCountPlan_dtlsArgs
+  maint_results?: boolean | TbMaintPlanCountOutputTypeCountMaint_resultsArgs
+}
+
+/**
+ * TbMaintPlanCountOutputType without action
+ */
+export type TbMaintPlanCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TbMaintPlanCountOutputType
+   */
+  select?: Prisma.TbMaintPlanCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TbMaintPlanCountOutputType without action
+ */
+export type TbMaintPlanCountOutputTypeCountPlan_dtlsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TbMaintPlanDtlWhereInput
+}
+
+/**
+ * TbMaintPlanCountOutputType without action
+ */
+export type TbMaintPlanCountOutputTypeCountMaint_resultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TbMaintResultWhereInput
+}
 
 
 export type TbMaintPlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   maint_plan_id?: boolean
   equip_cd?: boolean
+  plan_nm?: boolean
+  description?: boolean
   maint_type_cd?: boolean
   cycle_type?: boolean
   next_plan_date?: boolean
+  assignee_id?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
+  assignee?: boolean | Prisma.TbMaintPlan$assigneeArgs<ExtArgs>
+  plan_dtls?: boolean | Prisma.TbMaintPlan$plan_dtlsArgs<ExtArgs>
+  maint_results?: boolean | Prisma.TbMaintPlan$maint_resultsArgs<ExtArgs>
+  _count?: boolean | Prisma.TbMaintPlanCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tbMaintPlan"]>
 
 export type TbMaintPlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   maint_plan_id?: boolean
   equip_cd?: boolean
+  plan_nm?: boolean
+  description?: boolean
   maint_type_cd?: boolean
   cycle_type?: boolean
   next_plan_date?: boolean
+  assignee_id?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
+  assignee?: boolean | Prisma.TbMaintPlan$assigneeArgs<ExtArgs>
 }, ExtArgs["result"]["tbMaintPlan"]>
 
 export type TbMaintPlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   maint_plan_id?: boolean
   equip_cd?: boolean
+  plan_nm?: boolean
+  description?: boolean
   maint_type_cd?: boolean
   cycle_type?: boolean
   next_plan_date?: boolean
+  assignee_id?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
+  assignee?: boolean | Prisma.TbMaintPlan$assigneeArgs<ExtArgs>
 }, ExtArgs["result"]["tbMaintPlan"]>
 
 export type TbMaintPlanSelectScalar = {
   maint_plan_id?: boolean
   equip_cd?: boolean
+  plan_nm?: boolean
+  description?: boolean
   maint_type_cd?: boolean
   cycle_type?: boolean
   next_plan_date?: boolean
+  assignee_id?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
 }
 
-export type TbMaintPlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"maint_plan_id" | "equip_cd" | "maint_type_cd" | "cycle_type" | "next_plan_date" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMaintPlan"]>
+export type TbMaintPlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"maint_plan_id" | "equip_cd" | "plan_nm" | "description" | "maint_type_cd" | "cycle_type" | "next_plan_date" | "assignee_id" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMaintPlan"]>
 export type TbMaintPlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
+  assignee?: boolean | Prisma.TbMaintPlan$assigneeArgs<ExtArgs>
+  plan_dtls?: boolean | Prisma.TbMaintPlan$plan_dtlsArgs<ExtArgs>
+  maint_results?: boolean | Prisma.TbMaintPlan$maint_resultsArgs<ExtArgs>
+  _count?: boolean | Prisma.TbMaintPlanCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TbMaintPlanIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
+  assignee?: boolean | Prisma.TbMaintPlan$assigneeArgs<ExtArgs>
 }
 export type TbMaintPlanIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
+  assignee?: boolean | Prisma.TbMaintPlan$assigneeArgs<ExtArgs>
 }
 
 export type $TbMaintPlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TbMaintPlan"
   objects: {
     equipment: Prisma.$TbEquipmentPayload<ExtArgs>
+    assignee: Prisma.$TbWorkerPayload<ExtArgs> | null
+    plan_dtls: Prisma.$TbMaintPlanDtlPayload<ExtArgs>[]
+    maint_results: Prisma.$TbMaintResultPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     maint_plan_id: number
     equip_cd: string
+    plan_nm: string | null
+    description: string | null
     maint_type_cd: string | null
     cycle_type: string | null
     next_plan_date: Date | null
+    assignee_id: string | null
     create_by: string | null
     create_dt: Date
     update_by: string | null
@@ -1067,6 +1600,9 @@ readonly fields: TbMaintPlanFieldRefs;
 export interface Prisma__TbMaintPlanClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   equipment<T extends Prisma.TbEquipmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbEquipmentDefaultArgs<ExtArgs>>): Prisma.Prisma__TbEquipmentClient<runtime.Types.Result.GetResult<Prisma.$TbEquipmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  assignee<T extends Prisma.TbMaintPlan$assigneeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbMaintPlan$assigneeArgs<ExtArgs>>): Prisma.Prisma__TbWorkerClient<runtime.Types.Result.GetResult<Prisma.$TbWorkerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  plan_dtls<T extends Prisma.TbMaintPlan$plan_dtlsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbMaintPlan$plan_dtlsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMaintPlanDtlPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  maint_results<T extends Prisma.TbMaintPlan$maint_resultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbMaintPlan$maint_resultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMaintResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1098,9 +1634,12 @@ export interface Prisma__TbMaintPlanClient<T, Null = never, ExtArgs extends runt
 export interface TbMaintPlanFieldRefs {
   readonly maint_plan_id: Prisma.FieldRef<"TbMaintPlan", 'Int'>
   readonly equip_cd: Prisma.FieldRef<"TbMaintPlan", 'String'>
+  readonly plan_nm: Prisma.FieldRef<"TbMaintPlan", 'String'>
+  readonly description: Prisma.FieldRef<"TbMaintPlan", 'String'>
   readonly maint_type_cd: Prisma.FieldRef<"TbMaintPlan", 'String'>
   readonly cycle_type: Prisma.FieldRef<"TbMaintPlan", 'String'>
   readonly next_plan_date: Prisma.FieldRef<"TbMaintPlan", 'DateTime'>
+  readonly assignee_id: Prisma.FieldRef<"TbMaintPlan", 'String'>
   readonly create_by: Prisma.FieldRef<"TbMaintPlan", 'String'>
   readonly create_dt: Prisma.FieldRef<"TbMaintPlan", 'DateTime'>
   readonly update_by: Prisma.FieldRef<"TbMaintPlan", 'String'>
@@ -1503,6 +2042,73 @@ export type TbMaintPlanDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many TbMaintPlans to delete.
    */
   limit?: number
+}
+
+/**
+ * TbMaintPlan.assignee
+ */
+export type TbMaintPlan$assigneeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TbWorker
+   */
+  select?: Prisma.TbWorkerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TbWorker
+   */
+  omit?: Prisma.TbWorkerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TbWorkerInclude<ExtArgs> | null
+  where?: Prisma.TbWorkerWhereInput
+}
+
+/**
+ * TbMaintPlan.plan_dtls
+ */
+export type TbMaintPlan$plan_dtlsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TbMaintPlanDtl
+   */
+  select?: Prisma.TbMaintPlanDtlSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TbMaintPlanDtl
+   */
+  omit?: Prisma.TbMaintPlanDtlOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TbMaintPlanDtlInclude<ExtArgs> | null
+  where?: Prisma.TbMaintPlanDtlWhereInput
+  orderBy?: Prisma.TbMaintPlanDtlOrderByWithRelationInput | Prisma.TbMaintPlanDtlOrderByWithRelationInput[]
+  cursor?: Prisma.TbMaintPlanDtlWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TbMaintPlanDtlScalarFieldEnum | Prisma.TbMaintPlanDtlScalarFieldEnum[]
+}
+
+/**
+ * TbMaintPlan.maint_results
+ */
+export type TbMaintPlan$maint_resultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TbMaintResult
+   */
+  select?: Prisma.TbMaintResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TbMaintResult
+   */
+  omit?: Prisma.TbMaintResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TbMaintResultInclude<ExtArgs> | null
+  where?: Prisma.TbMaintResultWhereInput
+  orderBy?: Prisma.TbMaintResultOrderByWithRelationInput | Prisma.TbMaintResultOrderByWithRelationInput[]
+  cursor?: Prisma.TbMaintResultWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TbMaintResultScalarFieldEnum | Prisma.TbMaintResultScalarFieldEnum[]
 }
 
 /**

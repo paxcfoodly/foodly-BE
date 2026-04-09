@@ -44,6 +44,7 @@ export type TbEquipStatusMinAggregateOutputType = {
   start_dt: Date | null
   end_dt: Date | null
   duration: number | null
+  memo: string | null
   create_by: string | null
   create_dt: Date | null
   update_by: string | null
@@ -58,6 +59,7 @@ export type TbEquipStatusMaxAggregateOutputType = {
   start_dt: Date | null
   end_dt: Date | null
   duration: number | null
+  memo: string | null
   create_by: string | null
   create_dt: Date | null
   update_by: string | null
@@ -72,6 +74,7 @@ export type TbEquipStatusCountAggregateOutputType = {
   start_dt: number
   end_dt: number
   duration: number
+  memo: number
   create_by: number
   create_dt: number
   update_by: number
@@ -98,6 +101,7 @@ export type TbEquipStatusMinAggregateInputType = {
   start_dt?: true
   end_dt?: true
   duration?: true
+  memo?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -112,6 +116,7 @@ export type TbEquipStatusMaxAggregateInputType = {
   start_dt?: true
   end_dt?: true
   duration?: true
+  memo?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -126,6 +131,7 @@ export type TbEquipStatusCountAggregateInputType = {
   start_dt?: true
   end_dt?: true
   duration?: true
+  memo?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -227,6 +233,7 @@ export type TbEquipStatusGroupByOutputType = {
   start_dt: Date | null
   end_dt: Date | null
   duration: number | null
+  memo: string | null
   create_by: string | null
   create_dt: Date
   update_by: string | null
@@ -264,6 +271,7 @@ export type TbEquipStatusWhereInput = {
   start_dt?: Prisma.DateTimeNullableFilter<"TbEquipStatus"> | Date | string | null
   end_dt?: Prisma.DateTimeNullableFilter<"TbEquipStatus"> | Date | string | null
   duration?: Prisma.IntNullableFilter<"TbEquipStatus"> | number | null
+  memo?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
   create_by?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
   create_dt?: Prisma.DateTimeFilter<"TbEquipStatus"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
@@ -279,6 +287,7 @@ export type TbEquipStatusOrderByWithRelationInput = {
   start_dt?: Prisma.SortOrderInput | Prisma.SortOrder
   end_dt?: Prisma.SortOrderInput | Prisma.SortOrder
   duration?: Prisma.SortOrderInput | Prisma.SortOrder
+  memo?: Prisma.SortOrderInput | Prisma.SortOrder
   create_by?: Prisma.SortOrderInput | Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -297,6 +306,7 @@ export type TbEquipStatusWhereUniqueInput = Prisma.AtLeast<{
   start_dt?: Prisma.DateTimeNullableFilter<"TbEquipStatus"> | Date | string | null
   end_dt?: Prisma.DateTimeNullableFilter<"TbEquipStatus"> | Date | string | null
   duration?: Prisma.IntNullableFilter<"TbEquipStatus"> | number | null
+  memo?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
   create_by?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
   create_dt?: Prisma.DateTimeFilter<"TbEquipStatus"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
@@ -312,6 +322,7 @@ export type TbEquipStatusOrderByWithAggregationInput = {
   start_dt?: Prisma.SortOrderInput | Prisma.SortOrder
   end_dt?: Prisma.SortOrderInput | Prisma.SortOrder
   duration?: Prisma.SortOrderInput | Prisma.SortOrder
+  memo?: Prisma.SortOrderInput | Prisma.SortOrder
   create_by?: Prisma.SortOrderInput | Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -334,6 +345,7 @@ export type TbEquipStatusScalarWhereWithAggregatesInput = {
   start_dt?: Prisma.DateTimeNullableWithAggregatesFilter<"TbEquipStatus"> | Date | string | null
   end_dt?: Prisma.DateTimeNullableWithAggregatesFilter<"TbEquipStatus"> | Date | string | null
   duration?: Prisma.IntNullableWithAggregatesFilter<"TbEquipStatus"> | number | null
+  memo?: Prisma.StringNullableWithAggregatesFilter<"TbEquipStatus"> | string | null
   create_by?: Prisma.StringNullableWithAggregatesFilter<"TbEquipStatus"> | string | null
   create_dt?: Prisma.DateTimeWithAggregatesFilter<"TbEquipStatus"> | Date | string
   update_by?: Prisma.StringNullableWithAggregatesFilter<"TbEquipStatus"> | string | null
@@ -346,6 +358,7 @@ export type TbEquipStatusCreateInput = {
   start_dt?: Date | string | null
   end_dt?: Date | string | null
   duration?: number | null
+  memo?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -361,6 +374,7 @@ export type TbEquipStatusUncheckedCreateInput = {
   start_dt?: Date | string | null
   end_dt?: Date | string | null
   duration?: number | null
+  memo?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -373,6 +387,7 @@ export type TbEquipStatusUpdateInput = {
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  memo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -388,6 +403,7 @@ export type TbEquipStatusUncheckedUpdateInput = {
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  memo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -402,6 +418,7 @@ export type TbEquipStatusCreateManyInput = {
   start_dt?: Date | string | null
   end_dt?: Date | string | null
   duration?: number | null
+  memo?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -414,6 +431,7 @@ export type TbEquipStatusUpdateManyMutationInput = {
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  memo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -428,6 +446,7 @@ export type TbEquipStatusUncheckedUpdateManyInput = {
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  memo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -452,6 +471,7 @@ export type TbEquipStatusCountOrderByAggregateInput = {
   start_dt?: Prisma.SortOrder
   end_dt?: Prisma.SortOrder
   duration?: Prisma.SortOrder
+  memo?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -471,6 +491,7 @@ export type TbEquipStatusMaxOrderByAggregateInput = {
   start_dt?: Prisma.SortOrder
   end_dt?: Prisma.SortOrder
   duration?: Prisma.SortOrder
+  memo?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -485,6 +506,7 @@ export type TbEquipStatusMinOrderByAggregateInput = {
   start_dt?: Prisma.SortOrder
   end_dt?: Prisma.SortOrder
   duration?: Prisma.SortOrder
+  memo?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -544,6 +566,7 @@ export type TbEquipStatusCreateWithoutEquipmentInput = {
   start_dt?: Date | string | null
   end_dt?: Date | string | null
   duration?: number | null
+  memo?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -557,6 +580,7 @@ export type TbEquipStatusUncheckedCreateWithoutEquipmentInput = {
   start_dt?: Date | string | null
   end_dt?: Date | string | null
   duration?: number | null
+  memo?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -600,6 +624,7 @@ export type TbEquipStatusScalarWhereInput = {
   start_dt?: Prisma.DateTimeNullableFilter<"TbEquipStatus"> | Date | string | null
   end_dt?: Prisma.DateTimeNullableFilter<"TbEquipStatus"> | Date | string | null
   duration?: Prisma.IntNullableFilter<"TbEquipStatus"> | number | null
+  memo?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
   create_by?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
   create_dt?: Prisma.DateTimeFilter<"TbEquipStatus"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
@@ -613,6 +638,7 @@ export type TbEquipStatusCreateManyEquipmentInput = {
   start_dt?: Date | string | null
   end_dt?: Date | string | null
   duration?: number | null
+  memo?: string | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -625,6 +651,7 @@ export type TbEquipStatusUpdateWithoutEquipmentInput = {
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  memo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -638,6 +665,7 @@ export type TbEquipStatusUncheckedUpdateWithoutEquipmentInput = {
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  memo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -651,6 +679,7 @@ export type TbEquipStatusUncheckedUpdateManyWithoutEquipmentInput = {
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  memo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -667,6 +696,7 @@ export type TbEquipStatusSelect<ExtArgs extends runtime.Types.Extensions.Interna
   start_dt?: boolean
   end_dt?: boolean
   duration?: boolean
+  memo?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
@@ -682,6 +712,7 @@ export type TbEquipStatusSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   start_dt?: boolean
   end_dt?: boolean
   duration?: boolean
+  memo?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
@@ -697,6 +728,7 @@ export type TbEquipStatusSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   start_dt?: boolean
   end_dt?: boolean
   duration?: boolean
+  memo?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
@@ -712,13 +744,14 @@ export type TbEquipStatusSelectScalar = {
   start_dt?: boolean
   end_dt?: boolean
   duration?: boolean
+  memo?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
 }
 
-export type TbEquipStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"status_id" | "equip_cd" | "status_type" | "down_reason_cd" | "start_dt" | "end_dt" | "duration" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbEquipStatus"]>
+export type TbEquipStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"status_id" | "equip_cd" | "status_type" | "down_reason_cd" | "start_dt" | "end_dt" | "duration" | "memo" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbEquipStatus"]>
 export type TbEquipStatusInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
 }
@@ -742,6 +775,7 @@ export type $TbEquipStatusPayload<ExtArgs extends runtime.Types.Extensions.Inter
     start_dt: Date | null
     end_dt: Date | null
     duration: number | null
+    memo: string | null
     create_by: string | null
     create_dt: Date
     update_by: string | null
@@ -1177,6 +1211,7 @@ export interface TbEquipStatusFieldRefs {
   readonly start_dt: Prisma.FieldRef<"TbEquipStatus", 'DateTime'>
   readonly end_dt: Prisma.FieldRef<"TbEquipStatus", 'DateTime'>
   readonly duration: Prisma.FieldRef<"TbEquipStatus", 'Int'>
+  readonly memo: Prisma.FieldRef<"TbEquipStatus", 'String'>
   readonly create_by: Prisma.FieldRef<"TbEquipStatus", 'String'>
   readonly create_dt: Prisma.FieldRef<"TbEquipStatus", 'DateTime'>
   readonly update_by: Prisma.FieldRef<"TbEquipStatus", 'String'>

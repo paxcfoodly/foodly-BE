@@ -66,6 +66,7 @@ export const ModelName = {
   TbCustomer: 'TbCustomer',
   TbInspectStd: 'TbInspectStd',
   TbWarehouse: 'TbWarehouse',
+  TbDemand: 'TbDemand',
   TbProdPlan: 'TbProdPlan',
   TbWorkOrder: 'TbWorkOrder',
   TbWoProcess: 'TbWoProcess',
@@ -82,7 +83,9 @@ export const ModelName = {
   TbDefectDispose: 'TbDefectDispose',
   TbEquipStatus: 'TbEquipStatus',
   TbMaintPlan: 'TbMaintPlan',
+  TbMaintPlanDtl: 'TbMaintPlanDtl',
   TbMaintResult: 'TbMaintResult',
+  TbMaintResultDtl: 'TbMaintResultDtl',
   TbInventory: 'TbInventory',
   TbInventoryTx: 'TbInventoryTx',
   TbInventoryAdjust: 'TbInventoryAdjust',
@@ -374,6 +377,24 @@ export const TbWarehouseScalarFieldEnum = {
 export type TbWarehouseScalarFieldEnum = (typeof TbWarehouseScalarFieldEnum)[keyof typeof TbWarehouseScalarFieldEnum]
 
 
+export const TbDemandScalarFieldEnum = {
+  demand_id: 'demand_id',
+  demand_no: 'demand_no',
+  cust_cd: 'cust_cd',
+  item_cd: 'item_cd',
+  demand_qty: 'demand_qty',
+  due_date: 'due_date',
+  status: 'status',
+  remark: 'remark',
+  create_by: 'create_by',
+  create_dt: 'create_dt',
+  update_by: 'update_by',
+  update_dt: 'update_dt'
+} as const
+
+export type TbDemandScalarFieldEnum = (typeof TbDemandScalarFieldEnum)[keyof typeof TbDemandScalarFieldEnum]
+
+
 export const TbProdPlanScalarFieldEnum = {
   plan_id: 'plan_id',
   plan_no: 'plan_no',
@@ -383,6 +404,7 @@ export const TbProdPlanScalarFieldEnum = {
   due_date: 'due_date',
   priority: 'priority',
   status: 'status',
+  demand_id: 'demand_id',
   create_by: 'create_by',
   create_dt: 'create_dt',
   update_by: 'update_by',
@@ -617,6 +639,7 @@ export const TbEquipStatusScalarFieldEnum = {
   start_dt: 'start_dt',
   end_dt: 'end_dt',
   duration: 'duration',
+  memo: 'memo',
   create_by: 'create_by',
   create_dt: 'create_dt',
   update_by: 'update_by',
@@ -629,9 +652,12 @@ export type TbEquipStatusScalarFieldEnum = (typeof TbEquipStatusScalarFieldEnum)
 export const TbMaintPlanScalarFieldEnum = {
   maint_plan_id: 'maint_plan_id',
   equip_cd: 'equip_cd',
+  plan_nm: 'plan_nm',
+  description: 'description',
   maint_type_cd: 'maint_type_cd',
   cycle_type: 'cycle_type',
   next_plan_date: 'next_plan_date',
+  assignee_id: 'assignee_id',
   create_by: 'create_by',
   create_dt: 'create_dt',
   update_by: 'update_by',
@@ -641,13 +667,32 @@ export const TbMaintPlanScalarFieldEnum = {
 export type TbMaintPlanScalarFieldEnum = (typeof TbMaintPlanScalarFieldEnum)[keyof typeof TbMaintPlanScalarFieldEnum]
 
 
+export const TbMaintPlanDtlScalarFieldEnum = {
+  plan_dtl_id: 'plan_dtl_id',
+  maint_plan_id: 'maint_plan_id',
+  item_no: 'item_no',
+  check_item: 'check_item',
+  check_std: 'check_std',
+  create_by: 'create_by',
+  create_dt: 'create_dt',
+  update_by: 'update_by',
+  update_dt: 'update_dt'
+} as const
+
+export type TbMaintPlanDtlScalarFieldEnum = (typeof TbMaintPlanDtlScalarFieldEnum)[keyof typeof TbMaintPlanDtlScalarFieldEnum]
+
+
 export const TbMaintResultScalarFieldEnum = {
   maint_result_id: 'maint_result_id',
   equip_cd: 'equip_cd',
+  maint_no: 'maint_no',
+  maint_plan_id: 'maint_plan_id',
   maint_type_cd: 'maint_type_cd',
   work_dt: 'work_dt',
   worker_id: 'worker_id',
   cost: 'cost',
+  memo: 'memo',
+  replaced_parts: 'replaced_parts',
   create_by: 'create_by',
   create_dt: 'create_dt',
   update_by: 'update_by',
@@ -655,6 +700,22 @@ export const TbMaintResultScalarFieldEnum = {
 } as const
 
 export type TbMaintResultScalarFieldEnum = (typeof TbMaintResultScalarFieldEnum)[keyof typeof TbMaintResultScalarFieldEnum]
+
+
+export const TbMaintResultDtlScalarFieldEnum = {
+  result_dtl_id: 'result_dtl_id',
+  maint_result_id: 'maint_result_id',
+  plan_dtl_id: 'plan_dtl_id',
+  check_item: 'check_item',
+  check_result: 'check_result',
+  memo: 'memo',
+  create_by: 'create_by',
+  create_dt: 'create_dt',
+  update_by: 'update_by',
+  update_dt: 'update_dt'
+} as const
+
+export type TbMaintResultDtlScalarFieldEnum = (typeof TbMaintResultDtlScalarFieldEnum)[keyof typeof TbMaintResultDtlScalarFieldEnum]
 
 
 export const TbInventoryScalarFieldEnum = {

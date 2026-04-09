@@ -93,6 +93,11 @@ export type TbInspectStd = Prisma.TbInspectStdModel
  */
 export type TbWarehouse = Prisma.TbWarehouseModel
 /**
+ * Model TbDemand
+ * 
+ */
+export type TbDemand = Prisma.TbDemandModel
+/**
  * Model TbProdPlan
  * 
  */
@@ -173,10 +178,20 @@ export type TbEquipStatus = Prisma.TbEquipStatusModel
  */
 export type TbMaintPlan = Prisma.TbMaintPlanModel
 /**
+ * Model TbMaintPlanDtl
+ * 
+ */
+export type TbMaintPlanDtl = Prisma.TbMaintPlanDtlModel
+/**
  * Model TbMaintResult
  * 
  */
 export type TbMaintResult = Prisma.TbMaintResultModel
+/**
+ * Model TbMaintResultDtl
+ * 
+ */
+export type TbMaintResultDtl = Prisma.TbMaintResultDtlModel
 /**
  * Model TbInventory
  * 

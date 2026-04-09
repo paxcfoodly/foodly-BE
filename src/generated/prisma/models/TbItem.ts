@@ -290,6 +290,7 @@ export type TbItemWhereInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustListRelationFilter
   shipment_dtls?: Prisma.TbShipmentDtlListRelationFilter
   incoming_dtls?: Prisma.TbIncomingDtlListRelationFilter
+  demands?: Prisma.TbDemandListRelationFilter
 }
 
 export type TbItemOrderByWithRelationInput = {
@@ -323,6 +324,7 @@ export type TbItemOrderByWithRelationInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustOrderByRelationAggregateInput
   shipment_dtls?: Prisma.TbShipmentDtlOrderByRelationAggregateInput
   incoming_dtls?: Prisma.TbIncomingDtlOrderByRelationAggregateInput
+  demands?: Prisma.TbDemandOrderByRelationAggregateInput
 }
 
 export type TbItemWhereUniqueInput = Prisma.AtLeast<{
@@ -359,6 +361,7 @@ export type TbItemWhereUniqueInput = Prisma.AtLeast<{
   inventory_adjusts?: Prisma.TbInventoryAdjustListRelationFilter
   shipment_dtls?: Prisma.TbShipmentDtlListRelationFilter
   incoming_dtls?: Prisma.TbIncomingDtlListRelationFilter
+  demands?: Prisma.TbDemandListRelationFilter
 }, "item_cd">
 
 export type TbItemOrderByWithAggregationInput = {
@@ -430,6 +433,7 @@ export type TbItemCreateInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateInput = {
@@ -463,6 +467,7 @@ export type TbItemUncheckedCreateInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUpdateInput = {
@@ -496,6 +501,7 @@ export type TbItemUpdateInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateInput = {
@@ -529,6 +535,7 @@ export type TbItemUncheckedUpdateInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateManyInput = {
@@ -737,6 +744,20 @@ export type TbItemUpdateOneWithoutInspect_stdsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TbItemUpdateToOneWithWhereWithoutInspect_stdsInput, Prisma.TbItemUpdateWithoutInspect_stdsInput>, Prisma.TbItemUncheckedUpdateWithoutInspect_stdsInput>
 }
 
+export type TbItemCreateNestedOneWithoutDemandsInput = {
+  create?: Prisma.XOR<Prisma.TbItemCreateWithoutDemandsInput, Prisma.TbItemUncheckedCreateWithoutDemandsInput>
+  connectOrCreate?: Prisma.TbItemCreateOrConnectWithoutDemandsInput
+  connect?: Prisma.TbItemWhereUniqueInput
+}
+
+export type TbItemUpdateOneRequiredWithoutDemandsNestedInput = {
+  create?: Prisma.XOR<Prisma.TbItemCreateWithoutDemandsInput, Prisma.TbItemUncheckedCreateWithoutDemandsInput>
+  connectOrCreate?: Prisma.TbItemCreateOrConnectWithoutDemandsInput
+  upsert?: Prisma.TbItemUpsertWithoutDemandsInput
+  connect?: Prisma.TbItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TbItemUpdateToOneWithWhereWithoutDemandsInput, Prisma.TbItemUpdateWithoutDemandsInput>, Prisma.TbItemUncheckedUpdateWithoutDemandsInput>
+}
+
 export type TbItemCreateNestedOneWithoutProd_plansInput = {
   create?: Prisma.XOR<Prisma.TbItemCreateWithoutProd_plansInput, Prisma.TbItemUncheckedCreateWithoutProd_plansInput>
   connectOrCreate?: Prisma.TbItemCreateOrConnectWithoutProd_plansInput
@@ -939,6 +960,7 @@ export type TbItemCreateWithoutBom_parentsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutBom_parentsInput = {
@@ -971,6 +993,7 @@ export type TbItemUncheckedCreateWithoutBom_parentsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutBom_parentsInput = {
@@ -1008,6 +1031,7 @@ export type TbItemCreateWithoutBom_childrenInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutBom_childrenInput = {
@@ -1040,6 +1064,7 @@ export type TbItemUncheckedCreateWithoutBom_childrenInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutBom_childrenInput = {
@@ -1077,6 +1102,7 @@ export type TbItemCreateWithoutBom_altsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutBom_altsInput = {
@@ -1109,6 +1135,7 @@ export type TbItemUncheckedCreateWithoutBom_altsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutBom_altsInput = {
@@ -1157,6 +1184,7 @@ export type TbItemUpdateWithoutBom_parentsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutBom_parentsInput = {
@@ -1189,6 +1217,7 @@ export type TbItemUncheckedUpdateWithoutBom_parentsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUpsertWithoutBom_childrenInput = {
@@ -1232,6 +1261,7 @@ export type TbItemUpdateWithoutBom_childrenInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutBom_childrenInput = {
@@ -1264,6 +1294,7 @@ export type TbItemUncheckedUpdateWithoutBom_childrenInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUpsertWithoutBom_altsInput = {
@@ -1307,6 +1338,7 @@ export type TbItemUpdateWithoutBom_altsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutBom_altsInput = {
@@ -1339,6 +1371,7 @@ export type TbItemUncheckedUpdateWithoutBom_altsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutRoutingsInput = {
@@ -1371,6 +1404,7 @@ export type TbItemCreateWithoutRoutingsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutRoutingsInput = {
@@ -1403,6 +1437,7 @@ export type TbItemUncheckedCreateWithoutRoutingsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutRoutingsInput = {
@@ -1451,6 +1486,7 @@ export type TbItemUpdateWithoutRoutingsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutRoutingsInput = {
@@ -1483,6 +1519,7 @@ export type TbItemUncheckedUpdateWithoutRoutingsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutMoldsInput = {
@@ -1515,6 +1552,7 @@ export type TbItemCreateWithoutMoldsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutMoldsInput = {
@@ -1547,6 +1585,7 @@ export type TbItemUncheckedCreateWithoutMoldsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutMoldsInput = {
@@ -1595,6 +1634,7 @@ export type TbItemUpdateWithoutMoldsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutMoldsInput = {
@@ -1627,6 +1667,7 @@ export type TbItemUncheckedUpdateWithoutMoldsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutInspect_stdsInput = {
@@ -1659,6 +1700,7 @@ export type TbItemCreateWithoutInspect_stdsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutInspect_stdsInput = {
@@ -1691,6 +1733,7 @@ export type TbItemUncheckedCreateWithoutInspect_stdsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutInspect_stdsInput = {
@@ -1739,6 +1782,7 @@ export type TbItemUpdateWithoutInspect_stdsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutInspect_stdsInput = {
@@ -1759,6 +1803,155 @@ export type TbItemUncheckedUpdateWithoutInspect_stdsInput = {
   bom_alts?: Prisma.TbBomUncheckedUpdateManyWithoutAlt_itemNestedInput
   routings?: Prisma.TbRoutingUncheckedUpdateManyWithoutItemNestedInput
   molds?: Prisma.TbMoldUncheckedUpdateManyWithoutItemNestedInput
+  prod_plans?: Prisma.TbProdPlanUncheckedUpdateManyWithoutItemNestedInput
+  work_orders?: Prisma.TbWorkOrderUncheckedUpdateManyWithoutItemNestedInput
+  lots?: Prisma.TbLotUncheckedUpdateManyWithoutItemNestedInput
+  material_inputs?: Prisma.TbMaterialInputUncheckedUpdateManyWithoutItemNestedInput
+  material_issue_dtls?: Prisma.TbMaterialIssueDtlUncheckedUpdateManyWithoutItemNestedInput
+  inspect_results?: Prisma.TbInspectResultUncheckedUpdateManyWithoutItemNestedInput
+  defects?: Prisma.TbDefectUncheckedUpdateManyWithoutItemNestedInput
+  inventories?: Prisma.TbInventoryUncheckedUpdateManyWithoutItemNestedInput
+  inventory_txs?: Prisma.TbInventoryTxUncheckedUpdateManyWithoutItemNestedInput
+  inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
+  shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
+  incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
+}
+
+export type TbItemCreateWithoutDemandsInput = {
+  item_cd: string
+  item_nm: string
+  item_type: string
+  unit_cd?: string | null
+  spec?: string | null
+  drawing_no?: string | null
+  safety_stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  use_yn?: string
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  bom_parents?: Prisma.TbBomCreateNestedManyWithoutParent_itemInput
+  bom_children?: Prisma.TbBomCreateNestedManyWithoutChild_itemInput
+  bom_alts?: Prisma.TbBomCreateNestedManyWithoutAlt_itemInput
+  routings?: Prisma.TbRoutingCreateNestedManyWithoutItemInput
+  molds?: Prisma.TbMoldCreateNestedManyWithoutItemInput
+  inspect_stds?: Prisma.TbInspectStdCreateNestedManyWithoutItemInput
+  prod_plans?: Prisma.TbProdPlanCreateNestedManyWithoutItemInput
+  work_orders?: Prisma.TbWorkOrderCreateNestedManyWithoutItemInput
+  lots?: Prisma.TbLotCreateNestedManyWithoutItemInput
+  material_inputs?: Prisma.TbMaterialInputCreateNestedManyWithoutItemInput
+  material_issue_dtls?: Prisma.TbMaterialIssueDtlCreateNestedManyWithoutItemInput
+  inspect_results?: Prisma.TbInspectResultCreateNestedManyWithoutItemInput
+  defects?: Prisma.TbDefectCreateNestedManyWithoutItemInput
+  inventories?: Prisma.TbInventoryCreateNestedManyWithoutItemInput
+  inventory_txs?: Prisma.TbInventoryTxCreateNestedManyWithoutItemInput
+  inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
+  shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
+  incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+}
+
+export type TbItemUncheckedCreateWithoutDemandsInput = {
+  item_cd: string
+  item_nm: string
+  item_type: string
+  unit_cd?: string | null
+  spec?: string | null
+  drawing_no?: string | null
+  safety_stock?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  use_yn?: string
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  bom_parents?: Prisma.TbBomUncheckedCreateNestedManyWithoutParent_itemInput
+  bom_children?: Prisma.TbBomUncheckedCreateNestedManyWithoutChild_itemInput
+  bom_alts?: Prisma.TbBomUncheckedCreateNestedManyWithoutAlt_itemInput
+  routings?: Prisma.TbRoutingUncheckedCreateNestedManyWithoutItemInput
+  molds?: Prisma.TbMoldUncheckedCreateNestedManyWithoutItemInput
+  inspect_stds?: Prisma.TbInspectStdUncheckedCreateNestedManyWithoutItemInput
+  prod_plans?: Prisma.TbProdPlanUncheckedCreateNestedManyWithoutItemInput
+  work_orders?: Prisma.TbWorkOrderUncheckedCreateNestedManyWithoutItemInput
+  lots?: Prisma.TbLotUncheckedCreateNestedManyWithoutItemInput
+  material_inputs?: Prisma.TbMaterialInputUncheckedCreateNestedManyWithoutItemInput
+  material_issue_dtls?: Prisma.TbMaterialIssueDtlUncheckedCreateNestedManyWithoutItemInput
+  inspect_results?: Prisma.TbInspectResultUncheckedCreateNestedManyWithoutItemInput
+  defects?: Prisma.TbDefectUncheckedCreateNestedManyWithoutItemInput
+  inventories?: Prisma.TbInventoryUncheckedCreateNestedManyWithoutItemInput
+  inventory_txs?: Prisma.TbInventoryTxUncheckedCreateNestedManyWithoutItemInput
+  inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
+  shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
+  incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+}
+
+export type TbItemCreateOrConnectWithoutDemandsInput = {
+  where: Prisma.TbItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.TbItemCreateWithoutDemandsInput, Prisma.TbItemUncheckedCreateWithoutDemandsInput>
+}
+
+export type TbItemUpsertWithoutDemandsInput = {
+  update: Prisma.XOR<Prisma.TbItemUpdateWithoutDemandsInput, Prisma.TbItemUncheckedUpdateWithoutDemandsInput>
+  create: Prisma.XOR<Prisma.TbItemCreateWithoutDemandsInput, Prisma.TbItemUncheckedCreateWithoutDemandsInput>
+  where?: Prisma.TbItemWhereInput
+}
+
+export type TbItemUpdateToOneWithWhereWithoutDemandsInput = {
+  where?: Prisma.TbItemWhereInput
+  data: Prisma.XOR<Prisma.TbItemUpdateWithoutDemandsInput, Prisma.TbItemUncheckedUpdateWithoutDemandsInput>
+}
+
+export type TbItemUpdateWithoutDemandsInput = {
+  item_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  item_nm?: Prisma.StringFieldUpdateOperationsInput | string
+  item_type?: Prisma.StringFieldUpdateOperationsInput | string
+  unit_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawing_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safety_stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  use_yn?: Prisma.StringFieldUpdateOperationsInput | string
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bom_parents?: Prisma.TbBomUpdateManyWithoutParent_itemNestedInput
+  bom_children?: Prisma.TbBomUpdateManyWithoutChild_itemNestedInput
+  bom_alts?: Prisma.TbBomUpdateManyWithoutAlt_itemNestedInput
+  routings?: Prisma.TbRoutingUpdateManyWithoutItemNestedInput
+  molds?: Prisma.TbMoldUpdateManyWithoutItemNestedInput
+  inspect_stds?: Prisma.TbInspectStdUpdateManyWithoutItemNestedInput
+  prod_plans?: Prisma.TbProdPlanUpdateManyWithoutItemNestedInput
+  work_orders?: Prisma.TbWorkOrderUpdateManyWithoutItemNestedInput
+  lots?: Prisma.TbLotUpdateManyWithoutItemNestedInput
+  material_inputs?: Prisma.TbMaterialInputUpdateManyWithoutItemNestedInput
+  material_issue_dtls?: Prisma.TbMaterialIssueDtlUpdateManyWithoutItemNestedInput
+  inspect_results?: Prisma.TbInspectResultUpdateManyWithoutItemNestedInput
+  defects?: Prisma.TbDefectUpdateManyWithoutItemNestedInput
+  inventories?: Prisma.TbInventoryUpdateManyWithoutItemNestedInput
+  inventory_txs?: Prisma.TbInventoryTxUpdateManyWithoutItemNestedInput
+  inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
+  shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
+  incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+}
+
+export type TbItemUncheckedUpdateWithoutDemandsInput = {
+  item_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  item_nm?: Prisma.StringFieldUpdateOperationsInput | string
+  item_type?: Prisma.StringFieldUpdateOperationsInput | string
+  unit_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spec?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drawing_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  safety_stock?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  use_yn?: Prisma.StringFieldUpdateOperationsInput | string
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bom_parents?: Prisma.TbBomUncheckedUpdateManyWithoutParent_itemNestedInput
+  bom_children?: Prisma.TbBomUncheckedUpdateManyWithoutChild_itemNestedInput
+  bom_alts?: Prisma.TbBomUncheckedUpdateManyWithoutAlt_itemNestedInput
+  routings?: Prisma.TbRoutingUncheckedUpdateManyWithoutItemNestedInput
+  molds?: Prisma.TbMoldUncheckedUpdateManyWithoutItemNestedInput
+  inspect_stds?: Prisma.TbInspectStdUncheckedUpdateManyWithoutItemNestedInput
   prod_plans?: Prisma.TbProdPlanUncheckedUpdateManyWithoutItemNestedInput
   work_orders?: Prisma.TbWorkOrderUncheckedUpdateManyWithoutItemNestedInput
   lots?: Prisma.TbLotUncheckedUpdateManyWithoutItemNestedInput
@@ -1803,6 +1996,7 @@ export type TbItemCreateWithoutProd_plansInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutProd_plansInput = {
@@ -1835,6 +2029,7 @@ export type TbItemUncheckedCreateWithoutProd_plansInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutProd_plansInput = {
@@ -1883,6 +2078,7 @@ export type TbItemUpdateWithoutProd_plansInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutProd_plansInput = {
@@ -1915,6 +2111,7 @@ export type TbItemUncheckedUpdateWithoutProd_plansInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutWork_ordersInput = {
@@ -1947,6 +2144,7 @@ export type TbItemCreateWithoutWork_ordersInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutWork_ordersInput = {
@@ -1979,6 +2177,7 @@ export type TbItemUncheckedCreateWithoutWork_ordersInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutWork_ordersInput = {
@@ -2027,6 +2226,7 @@ export type TbItemUpdateWithoutWork_ordersInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutWork_ordersInput = {
@@ -2059,6 +2259,7 @@ export type TbItemUncheckedUpdateWithoutWork_ordersInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutLotsInput = {
@@ -2091,6 +2292,7 @@ export type TbItemCreateWithoutLotsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutLotsInput = {
@@ -2123,6 +2325,7 @@ export type TbItemUncheckedCreateWithoutLotsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutLotsInput = {
@@ -2171,6 +2374,7 @@ export type TbItemUpdateWithoutLotsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutLotsInput = {
@@ -2203,6 +2407,7 @@ export type TbItemUncheckedUpdateWithoutLotsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutMaterial_inputsInput = {
@@ -2235,6 +2440,7 @@ export type TbItemCreateWithoutMaterial_inputsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutMaterial_inputsInput = {
@@ -2267,6 +2473,7 @@ export type TbItemUncheckedCreateWithoutMaterial_inputsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutMaterial_inputsInput = {
@@ -2315,6 +2522,7 @@ export type TbItemUpdateWithoutMaterial_inputsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutMaterial_inputsInput = {
@@ -2347,6 +2555,7 @@ export type TbItemUncheckedUpdateWithoutMaterial_inputsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutMaterial_issue_dtlsInput = {
@@ -2379,6 +2588,7 @@ export type TbItemCreateWithoutMaterial_issue_dtlsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutMaterial_issue_dtlsInput = {
@@ -2411,6 +2621,7 @@ export type TbItemUncheckedCreateWithoutMaterial_issue_dtlsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutMaterial_issue_dtlsInput = {
@@ -2459,6 +2670,7 @@ export type TbItemUpdateWithoutMaterial_issue_dtlsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutMaterial_issue_dtlsInput = {
@@ -2491,6 +2703,7 @@ export type TbItemUncheckedUpdateWithoutMaterial_issue_dtlsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutInspect_resultsInput = {
@@ -2523,6 +2736,7 @@ export type TbItemCreateWithoutInspect_resultsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutInspect_resultsInput = {
@@ -2555,6 +2769,7 @@ export type TbItemUncheckedCreateWithoutInspect_resultsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutInspect_resultsInput = {
@@ -2603,6 +2818,7 @@ export type TbItemUpdateWithoutInspect_resultsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutInspect_resultsInput = {
@@ -2635,6 +2851,7 @@ export type TbItemUncheckedUpdateWithoutInspect_resultsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutDefectsInput = {
@@ -2667,6 +2884,7 @@ export type TbItemCreateWithoutDefectsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutDefectsInput = {
@@ -2699,6 +2917,7 @@ export type TbItemUncheckedCreateWithoutDefectsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutDefectsInput = {
@@ -2747,6 +2966,7 @@ export type TbItemUpdateWithoutDefectsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutDefectsInput = {
@@ -2779,6 +2999,7 @@ export type TbItemUncheckedUpdateWithoutDefectsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutInventoriesInput = {
@@ -2811,6 +3032,7 @@ export type TbItemCreateWithoutInventoriesInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutInventoriesInput = {
@@ -2843,6 +3065,7 @@ export type TbItemUncheckedCreateWithoutInventoriesInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutInventoriesInput = {
@@ -2891,6 +3114,7 @@ export type TbItemUpdateWithoutInventoriesInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutInventoriesInput = {
@@ -2923,6 +3147,7 @@ export type TbItemUncheckedUpdateWithoutInventoriesInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutInventory_txsInput = {
@@ -2955,6 +3180,7 @@ export type TbItemCreateWithoutInventory_txsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutInventory_txsInput = {
@@ -2987,6 +3213,7 @@ export type TbItemUncheckedCreateWithoutInventory_txsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutInventory_txsInput = {
@@ -3035,6 +3262,7 @@ export type TbItemUpdateWithoutInventory_txsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutInventory_txsInput = {
@@ -3067,6 +3295,7 @@ export type TbItemUncheckedUpdateWithoutInventory_txsInput = {
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutInventory_adjustsInput = {
@@ -3099,6 +3328,7 @@ export type TbItemCreateWithoutInventory_adjustsInput = {
   inventory_txs?: Prisma.TbInventoryTxCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutInventory_adjustsInput = {
@@ -3131,6 +3361,7 @@ export type TbItemUncheckedCreateWithoutInventory_adjustsInput = {
   inventory_txs?: Prisma.TbInventoryTxUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutInventory_adjustsInput = {
@@ -3179,6 +3410,7 @@ export type TbItemUpdateWithoutInventory_adjustsInput = {
   inventory_txs?: Prisma.TbInventoryTxUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutInventory_adjustsInput = {
@@ -3211,6 +3443,7 @@ export type TbItemUncheckedUpdateWithoutInventory_adjustsInput = {
   inventory_txs?: Prisma.TbInventoryTxUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutShipment_dtlsInput = {
@@ -3243,6 +3476,7 @@ export type TbItemCreateWithoutShipment_dtlsInput = {
   inventory_txs?: Prisma.TbInventoryTxCreateNestedManyWithoutItemInput
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutShipment_dtlsInput = {
@@ -3275,6 +3509,7 @@ export type TbItemUncheckedCreateWithoutShipment_dtlsInput = {
   inventory_txs?: Prisma.TbInventoryTxUncheckedCreateNestedManyWithoutItemInput
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutShipment_dtlsInput = {
@@ -3323,6 +3558,7 @@ export type TbItemUpdateWithoutShipment_dtlsInput = {
   inventory_txs?: Prisma.TbInventoryTxUpdateManyWithoutItemNestedInput
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutShipment_dtlsInput = {
@@ -3355,6 +3591,7 @@ export type TbItemUncheckedUpdateWithoutShipment_dtlsInput = {
   inventory_txs?: Prisma.TbInventoryTxUncheckedUpdateManyWithoutItemNestedInput
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   incoming_dtls?: Prisma.TbIncomingDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemCreateWithoutIncoming_dtlsInput = {
@@ -3387,6 +3624,7 @@ export type TbItemCreateWithoutIncoming_dtlsInput = {
   inventory_txs?: Prisma.TbInventoryTxCreateNestedManyWithoutItemInput
   inventory_adjusts?: Prisma.TbInventoryAdjustCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutItemInput
 }
 
 export type TbItemUncheckedCreateWithoutIncoming_dtlsInput = {
@@ -3419,6 +3657,7 @@ export type TbItemUncheckedCreateWithoutIncoming_dtlsInput = {
   inventory_txs?: Prisma.TbInventoryTxUncheckedCreateNestedManyWithoutItemInput
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedCreateNestedManyWithoutItemInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedCreateNestedManyWithoutItemInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type TbItemCreateOrConnectWithoutIncoming_dtlsInput = {
@@ -3467,6 +3706,7 @@ export type TbItemUpdateWithoutIncoming_dtlsInput = {
   inventory_txs?: Prisma.TbInventoryTxUpdateManyWithoutItemNestedInput
   inventory_adjusts?: Prisma.TbInventoryAdjustUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutItemNestedInput
 }
 
 export type TbItemUncheckedUpdateWithoutIncoming_dtlsInput = {
@@ -3499,6 +3739,7 @@ export type TbItemUncheckedUpdateWithoutIncoming_dtlsInput = {
   inventory_txs?: Prisma.TbInventoryTxUncheckedUpdateManyWithoutItemNestedInput
   inventory_adjusts?: Prisma.TbInventoryAdjustUncheckedUpdateManyWithoutItemNestedInput
   shipment_dtls?: Prisma.TbShipmentDtlUncheckedUpdateManyWithoutItemNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutItemNestedInput
 }
 
 
@@ -3525,6 +3766,7 @@ export type TbItemCountOutputType = {
   inventory_adjusts: number
   shipment_dtls: number
   incoming_dtls: number
+  demands: number
 }
 
 export type TbItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3546,6 +3788,7 @@ export type TbItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   inventory_adjusts?: boolean | TbItemCountOutputTypeCountInventory_adjustsArgs
   shipment_dtls?: boolean | TbItemCountOutputTypeCountShipment_dtlsArgs
   incoming_dtls?: boolean | TbItemCountOutputTypeCountIncoming_dtlsArgs
+  demands?: boolean | TbItemCountOutputTypeCountDemandsArgs
 }
 
 /**
@@ -3684,6 +3927,13 @@ export type TbItemCountOutputTypeCountIncoming_dtlsArgs<ExtArgs extends runtime.
   where?: Prisma.TbIncomingDtlWhereInput
 }
 
+/**
+ * TbItemCountOutputType without action
+ */
+export type TbItemCountOutputTypeCountDemandsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TbDemandWhereInput
+}
+
 
 export type TbItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   item_cd?: boolean
@@ -3716,6 +3966,7 @@ export type TbItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   inventory_adjusts?: boolean | Prisma.TbItem$inventory_adjustsArgs<ExtArgs>
   shipment_dtls?: boolean | Prisma.TbItem$shipment_dtlsArgs<ExtArgs>
   incoming_dtls?: boolean | Prisma.TbItem$incoming_dtlsArgs<ExtArgs>
+  demands?: boolean | Prisma.TbItem$demandsArgs<ExtArgs>
   _count?: boolean | Prisma.TbItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tbItem"]>
 
@@ -3784,6 +4035,7 @@ export type TbItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   inventory_adjusts?: boolean | Prisma.TbItem$inventory_adjustsArgs<ExtArgs>
   shipment_dtls?: boolean | Prisma.TbItem$shipment_dtlsArgs<ExtArgs>
   incoming_dtls?: boolean | Prisma.TbItem$incoming_dtlsArgs<ExtArgs>
+  demands?: boolean | Prisma.TbItem$demandsArgs<ExtArgs>
   _count?: boolean | Prisma.TbItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TbItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3810,6 +4062,7 @@ export type $TbItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     inventory_adjusts: Prisma.$TbInventoryAdjustPayload<ExtArgs>[]
     shipment_dtls: Prisma.$TbShipmentDtlPayload<ExtArgs>[]
     incoming_dtls: Prisma.$TbIncomingDtlPayload<ExtArgs>[]
+    demands: Prisma.$TbDemandPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     item_cd: string
@@ -4236,6 +4489,7 @@ export interface Prisma__TbItemClient<T, Null = never, ExtArgs extends runtime.T
   inventory_adjusts<T extends Prisma.TbItem$inventory_adjustsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbItem$inventory_adjustsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbInventoryAdjustPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   shipment_dtls<T extends Prisma.TbItem$shipment_dtlsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbItem$shipment_dtlsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbShipmentDtlPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   incoming_dtls<T extends Prisma.TbItem$incoming_dtlsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbItem$incoming_dtlsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbIncomingDtlPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  demands<T extends Prisma.TbItem$demandsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbItem$demandsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbDemandPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5099,6 +5353,30 @@ export type TbItem$incoming_dtlsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.TbIncomingDtlScalarFieldEnum | Prisma.TbIncomingDtlScalarFieldEnum[]
+}
+
+/**
+ * TbItem.demands
+ */
+export type TbItem$demandsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TbDemand
+   */
+  select?: Prisma.TbDemandSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TbDemand
+   */
+  omit?: Prisma.TbDemandOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TbDemandInclude<ExtArgs> | null
+  where?: Prisma.TbDemandWhereInput
+  orderBy?: Prisma.TbDemandOrderByWithRelationInput | Prisma.TbDemandOrderByWithRelationInput[]
+  cursor?: Prisma.TbDemandWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TbDemandScalarFieldEnum | Prisma.TbDemandScalarFieldEnum[]
 }
 
 /**

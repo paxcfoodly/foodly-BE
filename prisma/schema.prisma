@@ -1,5 +1,5 @@
 // ─── MES Database Schema ───
-// Master(15) + Transaction(24) + System(14) = 53 tables
+// Master(15) + Transaction(25) + System(14) = 54 tables
 // Based on proposal.md sections 5-1, 5-2, 5-3
 
 generator client {
@@ -128,6 +128,7 @@ model TbItem {
   inventory_adjusts TbInventoryAdjust[]
   shipment_dtls     TbShipmentDtl[]
   incoming_dtls     TbIncomingDtl[]
+  demands           TbDemand[]
 
   @@index([item_type])
   @@map("tb_item")
@@ -369,6 +370,7 @@ model TbCustomer {
   // Relations
   shipments TbShipment[]
   incomings TbIncoming[]
+  demands   TbDemand[]
 
   @@map("tb_customer")
 }
@@ -430,8 +432,37 @@ model TbWarehouse {
 }
 
 // ════════════════════════════════════════════════════════════════════
-//  TRANSACTION TABLES (24) — proposal.md section 5-2
+//  TRANSACTION TABLES (25) — proposal.md section 5-2
 // ════════════════════════════════════════════════════════════════════
+
+// ────────────────────────────────────────
+// T00: TB_DEMAND — 수주(수요)
+// ────────────────────────────────────────
+model TbDemand {
+  demand_id  Int       @id @default(autoincrement())
+  demand_no  String    @unique @db.VarChar(30)
+  cust_cd    String?   @db.VarChar(20)
+  item_cd    String    @db.VarChar(30)
+  demand_qty Decimal   @db.Decimal(15, 3)
+  due_date   DateTime? @db.Date
+  status     String    @default("OPEN") @db.VarChar(20) // OPEN, PLANNED, CLOSED
+  remark     String?   @db.VarChar(500)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  // Relations
+  customer  TbCustomer? @relation(fields: [cust_cd], references: [cust_cd])
+  item      TbItem      @relation(fields: [item_cd], references: [item_cd])
+  prod_plan TbProdPlan?
+
+  @@index([item_cd])
+  @@index([cust_cd])
+  @@index([status])
+  @@map("tb_demand")
+}
 
 // ────────────────────────────────────────
 // T01: TB_PROD_PLAN — 생산계획
@@ -445,6 +476,7 @@ model TbProdPlan {
   due_date  DateTime  @db.Date
   priority  Int       @default(5)
   status    String    @default("PLAN") @db.VarChar(20) // PLAN, CONFIRMED, PROGRESS, COMPLETE, CANCEL
+  demand_id Int?      @unique
 
   create_by String?  @db.VarChar(50)
   create_dt DateTime @default(now())
@@ -454,6 +486,7 @@ model TbProdPlan {
   // Relations
   plant       TbPlant       @relation(fields: [plant_cd], references: [plant_cd])
   item        TbItem        @relation(fields: [item_cd], references: [item_cd])
+  demand      TbDemand?     @relation(fields: [demand_id], references: [demand_id])
   work_orders TbWorkOrder[]
 
   @@index([plant_cd])

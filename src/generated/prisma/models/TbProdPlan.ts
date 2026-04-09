@@ -30,12 +30,14 @@ export type TbProdPlanAvgAggregateOutputType = {
   plan_id: number | null
   plan_qty: runtime.Decimal | null
   priority: number | null
+  demand_id: number | null
 }
 
 export type TbProdPlanSumAggregateOutputType = {
   plan_id: number | null
   plan_qty: runtime.Decimal | null
   priority: number | null
+  demand_id: number | null
 }
 
 export type TbProdPlanMinAggregateOutputType = {
@@ -47,6 +49,7 @@ export type TbProdPlanMinAggregateOutputType = {
   due_date: Date | null
   priority: number | null
   status: string | null
+  demand_id: number | null
   create_by: string | null
   create_dt: Date | null
   update_by: string | null
@@ -62,6 +65,7 @@ export type TbProdPlanMaxAggregateOutputType = {
   due_date: Date | null
   priority: number | null
   status: string | null
+  demand_id: number | null
   create_by: string | null
   create_dt: Date | null
   update_by: string | null
@@ -77,6 +81,7 @@ export type TbProdPlanCountAggregateOutputType = {
   due_date: number
   priority: number
   status: number
+  demand_id: number
   create_by: number
   create_dt: number
   update_by: number
@@ -89,12 +94,14 @@ export type TbProdPlanAvgAggregateInputType = {
   plan_id?: true
   plan_qty?: true
   priority?: true
+  demand_id?: true
 }
 
 export type TbProdPlanSumAggregateInputType = {
   plan_id?: true
   plan_qty?: true
   priority?: true
+  demand_id?: true
 }
 
 export type TbProdPlanMinAggregateInputType = {
@@ -106,6 +113,7 @@ export type TbProdPlanMinAggregateInputType = {
   due_date?: true
   priority?: true
   status?: true
+  demand_id?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -121,6 +129,7 @@ export type TbProdPlanMaxAggregateInputType = {
   due_date?: true
   priority?: true
   status?: true
+  demand_id?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -136,6 +145,7 @@ export type TbProdPlanCountAggregateInputType = {
   due_date?: true
   priority?: true
   status?: true
+  demand_id?: true
   create_by?: true
   create_dt?: true
   update_by?: true
@@ -238,6 +248,7 @@ export type TbProdPlanGroupByOutputType = {
   due_date: Date
   priority: number
   status: string
+  demand_id: number | null
   create_by: string | null
   create_dt: Date
   update_by: string | null
@@ -276,12 +287,14 @@ export type TbProdPlanWhereInput = {
   due_date?: Prisma.DateTimeFilter<"TbProdPlan"> | Date | string
   priority?: Prisma.IntFilter<"TbProdPlan"> | number
   status?: Prisma.StringFilter<"TbProdPlan"> | string
+  demand_id?: Prisma.IntNullableFilter<"TbProdPlan"> | number | null
   create_by?: Prisma.StringNullableFilter<"TbProdPlan"> | string | null
   create_dt?: Prisma.DateTimeFilter<"TbProdPlan"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbProdPlan"> | string | null
   update_dt?: Prisma.DateTimeFilter<"TbProdPlan"> | Date | string
   plant?: Prisma.XOR<Prisma.TbPlantScalarRelationFilter, Prisma.TbPlantWhereInput>
   item?: Prisma.XOR<Prisma.TbItemScalarRelationFilter, Prisma.TbItemWhereInput>
+  demand?: Prisma.XOR<Prisma.TbDemandNullableScalarRelationFilter, Prisma.TbDemandWhereInput> | null
   work_orders?: Prisma.TbWorkOrderListRelationFilter
 }
 
@@ -294,18 +307,21 @@ export type TbProdPlanOrderByWithRelationInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  demand_id?: Prisma.SortOrderInput | Prisma.SortOrder
   create_by?: Prisma.SortOrderInput | Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
   update_dt?: Prisma.SortOrder
   plant?: Prisma.TbPlantOrderByWithRelationInput
   item?: Prisma.TbItemOrderByWithRelationInput
+  demand?: Prisma.TbDemandOrderByWithRelationInput
   work_orders?: Prisma.TbWorkOrderOrderByRelationAggregateInput
 }
 
 export type TbProdPlanWhereUniqueInput = Prisma.AtLeast<{
   plan_id?: number
   plan_no?: string
+  demand_id?: number
   AND?: Prisma.TbProdPlanWhereInput | Prisma.TbProdPlanWhereInput[]
   OR?: Prisma.TbProdPlanWhereInput[]
   NOT?: Prisma.TbProdPlanWhereInput | Prisma.TbProdPlanWhereInput[]
@@ -321,8 +337,9 @@ export type TbProdPlanWhereUniqueInput = Prisma.AtLeast<{
   update_dt?: Prisma.DateTimeFilter<"TbProdPlan"> | Date | string
   plant?: Prisma.XOR<Prisma.TbPlantScalarRelationFilter, Prisma.TbPlantWhereInput>
   item?: Prisma.XOR<Prisma.TbItemScalarRelationFilter, Prisma.TbItemWhereInput>
+  demand?: Prisma.XOR<Prisma.TbDemandNullableScalarRelationFilter, Prisma.TbDemandWhereInput> | null
   work_orders?: Prisma.TbWorkOrderListRelationFilter
-}, "plan_id" | "plan_no">
+}, "plan_id" | "plan_no" | "demand_id">
 
 export type TbProdPlanOrderByWithAggregationInput = {
   plan_id?: Prisma.SortOrder
@@ -333,6 +350,7 @@ export type TbProdPlanOrderByWithAggregationInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  demand_id?: Prisma.SortOrderInput | Prisma.SortOrder
   create_by?: Prisma.SortOrderInput | Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -356,6 +374,7 @@ export type TbProdPlanScalarWhereWithAggregatesInput = {
   due_date?: Prisma.DateTimeWithAggregatesFilter<"TbProdPlan"> | Date | string
   priority?: Prisma.IntWithAggregatesFilter<"TbProdPlan"> | number
   status?: Prisma.StringWithAggregatesFilter<"TbProdPlan"> | string
+  demand_id?: Prisma.IntNullableWithAggregatesFilter<"TbProdPlan"> | number | null
   create_by?: Prisma.StringNullableWithAggregatesFilter<"TbProdPlan"> | string | null
   create_dt?: Prisma.DateTimeWithAggregatesFilter<"TbProdPlan"> | Date | string
   update_by?: Prisma.StringNullableWithAggregatesFilter<"TbProdPlan"> | string | null
@@ -374,6 +393,7 @@ export type TbProdPlanCreateInput = {
   update_dt?: Date | string
   plant: Prisma.TbPlantCreateNestedOneWithoutProd_plansInput
   item: Prisma.TbItemCreateNestedOneWithoutProd_plansInput
+  demand?: Prisma.TbDemandCreateNestedOneWithoutProd_planInput
   work_orders?: Prisma.TbWorkOrderCreateNestedManyWithoutProd_planInput
 }
 
@@ -386,6 +406,7 @@ export type TbProdPlanUncheckedCreateInput = {
   due_date: Date | string
   priority?: number
   status?: string
+  demand_id?: number | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -405,6 +426,7 @@ export type TbProdPlanUpdateInput = {
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plant?: Prisma.TbPlantUpdateOneRequiredWithoutProd_plansNestedInput
   item?: Prisma.TbItemUpdateOneRequiredWithoutProd_plansNestedInput
+  demand?: Prisma.TbDemandUpdateOneWithoutProd_planNestedInput
   work_orders?: Prisma.TbWorkOrderUpdateManyWithoutProd_planNestedInput
 }
 
@@ -417,6 +439,7 @@ export type TbProdPlanUncheckedUpdateInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  demand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -433,6 +456,7 @@ export type TbProdPlanCreateManyInput = {
   due_date: Date | string
   priority?: number
   status?: string
+  demand_id?: number | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -460,6 +484,7 @@ export type TbProdPlanUncheckedUpdateManyInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  demand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -476,6 +501,11 @@ export type TbProdPlanOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type TbProdPlanNullableScalarRelationFilter = {
+  is?: Prisma.TbProdPlanWhereInput | null
+  isNot?: Prisma.TbProdPlanWhereInput | null
+}
+
 export type TbProdPlanCountOrderByAggregateInput = {
   plan_id?: Prisma.SortOrder
   plan_no?: Prisma.SortOrder
@@ -485,6 +515,7 @@ export type TbProdPlanCountOrderByAggregateInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  demand_id?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -495,6 +526,7 @@ export type TbProdPlanAvgOrderByAggregateInput = {
   plan_id?: Prisma.SortOrder
   plan_qty?: Prisma.SortOrder
   priority?: Prisma.SortOrder
+  demand_id?: Prisma.SortOrder
 }
 
 export type TbProdPlanMaxOrderByAggregateInput = {
@@ -506,6 +538,7 @@ export type TbProdPlanMaxOrderByAggregateInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  demand_id?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -521,6 +554,7 @@ export type TbProdPlanMinOrderByAggregateInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  demand_id?: Prisma.SortOrder
   create_by?: Prisma.SortOrder
   create_dt?: Prisma.SortOrder
   update_by?: Prisma.SortOrder
@@ -531,11 +565,7 @@ export type TbProdPlanSumOrderByAggregateInput = {
   plan_id?: Prisma.SortOrder
   plan_qty?: Prisma.SortOrder
   priority?: Prisma.SortOrder
-}
-
-export type TbProdPlanNullableScalarRelationFilter = {
-  is?: Prisma.TbProdPlanWhereInput | null
-  isNot?: Prisma.TbProdPlanWhereInput | null
+  demand_id?: Prisma.SortOrder
 }
 
 export type TbProdPlanCreateNestedManyWithoutPlantInput = {
@@ -622,6 +652,38 @@ export type TbProdPlanUncheckedUpdateManyWithoutItemNestedInput = {
   deleteMany?: Prisma.TbProdPlanScalarWhereInput | Prisma.TbProdPlanScalarWhereInput[]
 }
 
+export type TbProdPlanCreateNestedOneWithoutDemandInput = {
+  create?: Prisma.XOR<Prisma.TbProdPlanCreateWithoutDemandInput, Prisma.TbProdPlanUncheckedCreateWithoutDemandInput>
+  connectOrCreate?: Prisma.TbProdPlanCreateOrConnectWithoutDemandInput
+  connect?: Prisma.TbProdPlanWhereUniqueInput
+}
+
+export type TbProdPlanUncheckedCreateNestedOneWithoutDemandInput = {
+  create?: Prisma.XOR<Prisma.TbProdPlanCreateWithoutDemandInput, Prisma.TbProdPlanUncheckedCreateWithoutDemandInput>
+  connectOrCreate?: Prisma.TbProdPlanCreateOrConnectWithoutDemandInput
+  connect?: Prisma.TbProdPlanWhereUniqueInput
+}
+
+export type TbProdPlanUpdateOneWithoutDemandNestedInput = {
+  create?: Prisma.XOR<Prisma.TbProdPlanCreateWithoutDemandInput, Prisma.TbProdPlanUncheckedCreateWithoutDemandInput>
+  connectOrCreate?: Prisma.TbProdPlanCreateOrConnectWithoutDemandInput
+  upsert?: Prisma.TbProdPlanUpsertWithoutDemandInput
+  disconnect?: Prisma.TbProdPlanWhereInput | boolean
+  delete?: Prisma.TbProdPlanWhereInput | boolean
+  connect?: Prisma.TbProdPlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TbProdPlanUpdateToOneWithWhereWithoutDemandInput, Prisma.TbProdPlanUpdateWithoutDemandInput>, Prisma.TbProdPlanUncheckedUpdateWithoutDemandInput>
+}
+
+export type TbProdPlanUncheckedUpdateOneWithoutDemandNestedInput = {
+  create?: Prisma.XOR<Prisma.TbProdPlanCreateWithoutDemandInput, Prisma.TbProdPlanUncheckedCreateWithoutDemandInput>
+  connectOrCreate?: Prisma.TbProdPlanCreateOrConnectWithoutDemandInput
+  upsert?: Prisma.TbProdPlanUpsertWithoutDemandInput
+  disconnect?: Prisma.TbProdPlanWhereInput | boolean
+  delete?: Prisma.TbProdPlanWhereInput | boolean
+  connect?: Prisma.TbProdPlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TbProdPlanUpdateToOneWithWhereWithoutDemandInput, Prisma.TbProdPlanUpdateWithoutDemandInput>, Prisma.TbProdPlanUncheckedUpdateWithoutDemandInput>
+}
+
 export type TbProdPlanCreateNestedOneWithoutWork_ordersInput = {
   create?: Prisma.XOR<Prisma.TbProdPlanCreateWithoutWork_ordersInput, Prisma.TbProdPlanUncheckedCreateWithoutWork_ordersInput>
   connectOrCreate?: Prisma.TbProdPlanCreateOrConnectWithoutWork_ordersInput
@@ -649,6 +711,7 @@ export type TbProdPlanCreateWithoutPlantInput = {
   update_by?: string | null
   update_dt?: Date | string
   item: Prisma.TbItemCreateNestedOneWithoutProd_plansInput
+  demand?: Prisma.TbDemandCreateNestedOneWithoutProd_planInput
   work_orders?: Prisma.TbWorkOrderCreateNestedManyWithoutProd_planInput
 }
 
@@ -660,6 +723,7 @@ export type TbProdPlanUncheckedCreateWithoutPlantInput = {
   due_date: Date | string
   priority?: number
   status?: string
+  demand_id?: number | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -705,6 +769,7 @@ export type TbProdPlanScalarWhereInput = {
   due_date?: Prisma.DateTimeFilter<"TbProdPlan"> | Date | string
   priority?: Prisma.IntFilter<"TbProdPlan"> | number
   status?: Prisma.StringFilter<"TbProdPlan"> | string
+  demand_id?: Prisma.IntNullableFilter<"TbProdPlan"> | number | null
   create_by?: Prisma.StringNullableFilter<"TbProdPlan"> | string | null
   create_dt?: Prisma.DateTimeFilter<"TbProdPlan"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbProdPlan"> | string | null
@@ -722,6 +787,7 @@ export type TbProdPlanCreateWithoutItemInput = {
   update_by?: string | null
   update_dt?: Date | string
   plant: Prisma.TbPlantCreateNestedOneWithoutProd_plansInput
+  demand?: Prisma.TbDemandCreateNestedOneWithoutProd_planInput
   work_orders?: Prisma.TbWorkOrderCreateNestedManyWithoutProd_planInput
 }
 
@@ -733,6 +799,7 @@ export type TbProdPlanUncheckedCreateWithoutItemInput = {
   due_date: Date | string
   priority?: number
   status?: string
+  demand_id?: number | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -766,6 +833,84 @@ export type TbProdPlanUpdateManyWithWhereWithoutItemInput = {
   data: Prisma.XOR<Prisma.TbProdPlanUpdateManyMutationInput, Prisma.TbProdPlanUncheckedUpdateManyWithoutItemInput>
 }
 
+export type TbProdPlanCreateWithoutDemandInput = {
+  plan_no: string
+  plan_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
+  due_date: Date | string
+  priority?: number
+  status?: string
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  plant: Prisma.TbPlantCreateNestedOneWithoutProd_plansInput
+  item: Prisma.TbItemCreateNestedOneWithoutProd_plansInput
+  work_orders?: Prisma.TbWorkOrderCreateNestedManyWithoutProd_planInput
+}
+
+export type TbProdPlanUncheckedCreateWithoutDemandInput = {
+  plan_id?: number
+  plan_no: string
+  plant_cd: string
+  item_cd: string
+  plan_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
+  due_date: Date | string
+  priority?: number
+  status?: string
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  work_orders?: Prisma.TbWorkOrderUncheckedCreateNestedManyWithoutProd_planInput
+}
+
+export type TbProdPlanCreateOrConnectWithoutDemandInput = {
+  where: Prisma.TbProdPlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.TbProdPlanCreateWithoutDemandInput, Prisma.TbProdPlanUncheckedCreateWithoutDemandInput>
+}
+
+export type TbProdPlanUpsertWithoutDemandInput = {
+  update: Prisma.XOR<Prisma.TbProdPlanUpdateWithoutDemandInput, Prisma.TbProdPlanUncheckedUpdateWithoutDemandInput>
+  create: Prisma.XOR<Prisma.TbProdPlanCreateWithoutDemandInput, Prisma.TbProdPlanUncheckedCreateWithoutDemandInput>
+  where?: Prisma.TbProdPlanWhereInput
+}
+
+export type TbProdPlanUpdateToOneWithWhereWithoutDemandInput = {
+  where?: Prisma.TbProdPlanWhereInput
+  data: Prisma.XOR<Prisma.TbProdPlanUpdateWithoutDemandInput, Prisma.TbProdPlanUncheckedUpdateWithoutDemandInput>
+}
+
+export type TbProdPlanUpdateWithoutDemandInput = {
+  plan_no?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  priority?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  plant?: Prisma.TbPlantUpdateOneRequiredWithoutProd_plansNestedInput
+  item?: Prisma.TbItemUpdateOneRequiredWithoutProd_plansNestedInput
+  work_orders?: Prisma.TbWorkOrderUpdateManyWithoutProd_planNestedInput
+}
+
+export type TbProdPlanUncheckedUpdateWithoutDemandInput = {
+  plan_id?: Prisma.IntFieldUpdateOperationsInput | number
+  plan_no?: Prisma.StringFieldUpdateOperationsInput | string
+  plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  item_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  plan_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  priority?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  work_orders?: Prisma.TbWorkOrderUncheckedUpdateManyWithoutProd_planNestedInput
+}
+
 export type TbProdPlanCreateWithoutWork_ordersInput = {
   plan_no: string
   plan_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -778,6 +923,7 @@ export type TbProdPlanCreateWithoutWork_ordersInput = {
   update_dt?: Date | string
   plant: Prisma.TbPlantCreateNestedOneWithoutProd_plansInput
   item: Prisma.TbItemCreateNestedOneWithoutProd_plansInput
+  demand?: Prisma.TbDemandCreateNestedOneWithoutProd_planInput
 }
 
 export type TbProdPlanUncheckedCreateWithoutWork_ordersInput = {
@@ -789,6 +935,7 @@ export type TbProdPlanUncheckedCreateWithoutWork_ordersInput = {
   due_date: Date | string
   priority?: number
   status?: string
+  demand_id?: number | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -823,6 +970,7 @@ export type TbProdPlanUpdateWithoutWork_ordersInput = {
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plant?: Prisma.TbPlantUpdateOneRequiredWithoutProd_plansNestedInput
   item?: Prisma.TbItemUpdateOneRequiredWithoutProd_plansNestedInput
+  demand?: Prisma.TbDemandUpdateOneWithoutProd_planNestedInput
 }
 
 export type TbProdPlanUncheckedUpdateWithoutWork_ordersInput = {
@@ -834,6 +982,7 @@ export type TbProdPlanUncheckedUpdateWithoutWork_ordersInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  demand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -848,6 +997,7 @@ export type TbProdPlanCreateManyPlantInput = {
   due_date: Date | string
   priority?: number
   status?: string
+  demand_id?: number | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -865,6 +1015,7 @@ export type TbProdPlanUpdateWithoutPlantInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   item?: Prisma.TbItemUpdateOneRequiredWithoutProd_plansNestedInput
+  demand?: Prisma.TbDemandUpdateOneWithoutProd_planNestedInput
   work_orders?: Prisma.TbWorkOrderUpdateManyWithoutProd_planNestedInput
 }
 
@@ -876,6 +1027,7 @@ export type TbProdPlanUncheckedUpdateWithoutPlantInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  demand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -891,6 +1043,7 @@ export type TbProdPlanUncheckedUpdateManyWithoutPlantInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  demand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -905,6 +1058,7 @@ export type TbProdPlanCreateManyItemInput = {
   due_date: Date | string
   priority?: number
   status?: string
+  demand_id?: number | null
   create_by?: string | null
   create_dt?: Date | string
   update_by?: string | null
@@ -922,6 +1076,7 @@ export type TbProdPlanUpdateWithoutItemInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   plant?: Prisma.TbPlantUpdateOneRequiredWithoutProd_plansNestedInput
+  demand?: Prisma.TbDemandUpdateOneWithoutProd_planNestedInput
   work_orders?: Prisma.TbWorkOrderUpdateManyWithoutProd_planNestedInput
 }
 
@@ -933,6 +1088,7 @@ export type TbProdPlanUncheckedUpdateWithoutItemInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  demand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -948,6 +1104,7 @@ export type TbProdPlanUncheckedUpdateManyWithoutItemInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  demand_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -994,12 +1151,14 @@ export type TbProdPlanSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   due_date?: boolean
   priority?: boolean
   status?: boolean
+  demand_id?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
   plant?: boolean | Prisma.TbPlantDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
+  demand?: boolean | Prisma.TbProdPlan$demandArgs<ExtArgs>
   work_orders?: boolean | Prisma.TbProdPlan$work_ordersArgs<ExtArgs>
   _count?: boolean | Prisma.TbProdPlanCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tbProdPlan"]>
@@ -1013,12 +1172,14 @@ export type TbProdPlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   due_date?: boolean
   priority?: boolean
   status?: boolean
+  demand_id?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
   plant?: boolean | Prisma.TbPlantDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
+  demand?: boolean | Prisma.TbProdPlan$demandArgs<ExtArgs>
 }, ExtArgs["result"]["tbProdPlan"]>
 
 export type TbProdPlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1030,12 +1191,14 @@ export type TbProdPlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   due_date?: boolean
   priority?: boolean
   status?: boolean
+  demand_id?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
   plant?: boolean | Prisma.TbPlantDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
+  demand?: boolean | Prisma.TbProdPlan$demandArgs<ExtArgs>
 }, ExtArgs["result"]["tbProdPlan"]>
 
 export type TbProdPlanSelectScalar = {
@@ -1047,26 +1210,30 @@ export type TbProdPlanSelectScalar = {
   due_date?: boolean
   priority?: boolean
   status?: boolean
+  demand_id?: boolean
   create_by?: boolean
   create_dt?: boolean
   update_by?: boolean
   update_dt?: boolean
 }
 
-export type TbProdPlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"plan_id" | "plan_no" | "plant_cd" | "item_cd" | "plan_qty" | "due_date" | "priority" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbProdPlan"]>
+export type TbProdPlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"plan_id" | "plan_no" | "plant_cd" | "item_cd" | "plan_qty" | "due_date" | "priority" | "status" | "demand_id" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbProdPlan"]>
 export type TbProdPlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plant?: boolean | Prisma.TbPlantDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
+  demand?: boolean | Prisma.TbProdPlan$demandArgs<ExtArgs>
   work_orders?: boolean | Prisma.TbProdPlan$work_ordersArgs<ExtArgs>
   _count?: boolean | Prisma.TbProdPlanCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TbProdPlanIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plant?: boolean | Prisma.TbPlantDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
+  demand?: boolean | Prisma.TbProdPlan$demandArgs<ExtArgs>
 }
 export type TbProdPlanIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plant?: boolean | Prisma.TbPlantDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
+  demand?: boolean | Prisma.TbProdPlan$demandArgs<ExtArgs>
 }
 
 export type $TbProdPlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1074,6 +1241,7 @@ export type $TbProdPlanPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     plant: Prisma.$TbPlantPayload<ExtArgs>
     item: Prisma.$TbItemPayload<ExtArgs>
+    demand: Prisma.$TbDemandPayload<ExtArgs> | null
     work_orders: Prisma.$TbWorkOrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1085,6 +1253,7 @@ export type $TbProdPlanPayload<ExtArgs extends runtime.Types.Extensions.Internal
     due_date: Date
     priority: number
     status: string
+    demand_id: number | null
     create_by: string | null
     create_dt: Date
     update_by: string | null
@@ -1485,6 +1654,7 @@ export interface Prisma__TbProdPlanClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   plant<T extends Prisma.TbPlantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbPlantDefaultArgs<ExtArgs>>): Prisma.Prisma__TbPlantClient<runtime.Types.Result.GetResult<Prisma.$TbPlantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   item<T extends Prisma.TbItemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbItemDefaultArgs<ExtArgs>>): Prisma.Prisma__TbItemClient<runtime.Types.Result.GetResult<Prisma.$TbItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  demand<T extends Prisma.TbProdPlan$demandArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbProdPlan$demandArgs<ExtArgs>>): Prisma.Prisma__TbDemandClient<runtime.Types.Result.GetResult<Prisma.$TbDemandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   work_orders<T extends Prisma.TbProdPlan$work_ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbProdPlan$work_ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbWorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1523,6 +1693,7 @@ export interface TbProdPlanFieldRefs {
   readonly due_date: Prisma.FieldRef<"TbProdPlan", 'DateTime'>
   readonly priority: Prisma.FieldRef<"TbProdPlan", 'Int'>
   readonly status: Prisma.FieldRef<"TbProdPlan", 'String'>
+  readonly demand_id: Prisma.FieldRef<"TbProdPlan", 'Int'>
   readonly create_by: Prisma.FieldRef<"TbProdPlan", 'String'>
   readonly create_dt: Prisma.FieldRef<"TbProdPlan", 'DateTime'>
   readonly update_by: Prisma.FieldRef<"TbProdPlan", 'String'>
@@ -1925,6 +2096,25 @@ export type TbProdPlanDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many TbProdPlans to delete.
    */
   limit?: number
+}
+
+/**
+ * TbProdPlan.demand
+ */
+export type TbProdPlan$demandArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TbDemand
+   */
+  select?: Prisma.TbDemandSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TbDemand
+   */
+  omit?: Prisma.TbDemandOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TbDemandInclude<ExtArgs> | null
+  where?: Prisma.TbDemandWhereInput
 }
 
 /**

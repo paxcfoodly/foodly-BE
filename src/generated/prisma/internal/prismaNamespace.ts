@@ -399,6 +399,7 @@ export const ModelName = {
   TbCustomer: 'TbCustomer',
   TbInspectStd: 'TbInspectStd',
   TbWarehouse: 'TbWarehouse',
+  TbDemand: 'TbDemand',
   TbProdPlan: 'TbProdPlan',
   TbWorkOrder: 'TbWorkOrder',
   TbWoProcess: 'TbWoProcess',
@@ -415,7 +416,9 @@ export const ModelName = {
   TbDefectDispose: 'TbDefectDispose',
   TbEquipStatus: 'TbEquipStatus',
   TbMaintPlan: 'TbMaintPlan',
+  TbMaintPlanDtl: 'TbMaintPlanDtl',
   TbMaintResult: 'TbMaintResult',
+  TbMaintResultDtl: 'TbMaintResultDtl',
   TbInventory: 'TbInventory',
   TbInventoryTx: 'TbInventoryTx',
   TbInventoryAdjust: 'TbInventoryAdjust',
@@ -452,7 +455,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tbCompany" | "tbPlant" | "tbWorkshop" | "tbItem" | "tbBom" | "tbProcess" | "tbRouting" | "tbEquipment" | "tbEquipProcess" | "tbMold" | "tbWorker" | "tbWorkerSkill" | "tbCustomer" | "tbInspectStd" | "tbWarehouse" | "tbProdPlan" | "tbWorkOrder" | "tbWoProcess" | "tbWoWorker" | "tbProdResult" | "tbLot" | "tbLotHistory" | "tbMaterialInput" | "tbMaterialIssue" | "tbMaterialIssueDtl" | "tbInspectResult" | "tbInspectResultDtl" | "tbDefect" | "tbDefectDispose" | "tbEquipStatus" | "tbMaintPlan" | "tbMaintResult" | "tbInventory" | "tbInventoryTx" | "tbInventoryAdjust" | "tbShipment" | "tbShipmentDtl" | "tbIncoming" | "tbIncomingDtl" | "tbUser" | "tbRole" | "tbMenu" | "tbRoleMenu" | "tbCommonCodeGrp" | "tbCommonCode" | "tbNumbering" | "tbFile" | "tbAuditLog" | "tbNotification" | "tbNotiRule" | "tbBatchLog" | "tbNotice" | "tbDataHistory"
+    modelProps: "tbCompany" | "tbPlant" | "tbWorkshop" | "tbItem" | "tbBom" | "tbProcess" | "tbRouting" | "tbEquipment" | "tbEquipProcess" | "tbMold" | "tbWorker" | "tbWorkerSkill" | "tbCustomer" | "tbInspectStd" | "tbWarehouse" | "tbDemand" | "tbProdPlan" | "tbWorkOrder" | "tbWoProcess" | "tbWoWorker" | "tbProdResult" | "tbLot" | "tbLotHistory" | "tbMaterialInput" | "tbMaterialIssue" | "tbMaterialIssueDtl" | "tbInspectResult" | "tbInspectResultDtl" | "tbDefect" | "tbDefectDispose" | "tbEquipStatus" | "tbMaintPlan" | "tbMaintPlanDtl" | "tbMaintResult" | "tbMaintResultDtl" | "tbInventory" | "tbInventoryTx" | "tbInventoryAdjust" | "tbShipment" | "tbShipmentDtl" | "tbIncoming" | "tbIncomingDtl" | "tbUser" | "tbRole" | "tbMenu" | "tbRoleMenu" | "tbCommonCodeGrp" | "tbCommonCode" | "tbNumbering" | "tbFile" | "tbAuditLog" | "tbNotification" | "tbNotiRule" | "tbBatchLog" | "tbNotice" | "tbDataHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1563,6 +1566,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.TbWarehouseCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.TbWarehouseCountAggregateOutputType> | number
+        }
+      }
+    }
+    TbDemand: {
+      payload: Prisma.$TbDemandPayload<ExtArgs>
+      fields: Prisma.TbDemandFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TbDemandFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TbDemandFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>
+        }
+        findFirst: {
+          args: Prisma.TbDemandFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TbDemandFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>
+        }
+        findMany: {
+          args: Prisma.TbDemandFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>[]
+        }
+        create: {
+          args: Prisma.TbDemandCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>
+        }
+        createMany: {
+          args: Prisma.TbDemandCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TbDemandCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>[]
+        }
+        delete: {
+          args: Prisma.TbDemandDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>
+        }
+        update: {
+          args: Prisma.TbDemandUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>
+        }
+        deleteMany: {
+          args: Prisma.TbDemandDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TbDemandUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TbDemandUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>[]
+        }
+        upsert: {
+          args: Prisma.TbDemandUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbDemandPayload>
+        }
+        aggregate: {
+          args: Prisma.TbDemandAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTbDemand>
+        }
+        groupBy: {
+          args: Prisma.TbDemandGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TbDemandGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TbDemandCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TbDemandCountAggregateOutputType> | number
         }
       }
     }
@@ -2750,6 +2827,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TbMaintPlanDtl: {
+      payload: Prisma.$TbMaintPlanDtlPayload<ExtArgs>
+      fields: Prisma.TbMaintPlanDtlFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TbMaintPlanDtlFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TbMaintPlanDtlFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>
+        }
+        findFirst: {
+          args: Prisma.TbMaintPlanDtlFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TbMaintPlanDtlFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>
+        }
+        findMany: {
+          args: Prisma.TbMaintPlanDtlFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>[]
+        }
+        create: {
+          args: Prisma.TbMaintPlanDtlCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>
+        }
+        createMany: {
+          args: Prisma.TbMaintPlanDtlCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TbMaintPlanDtlCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>[]
+        }
+        delete: {
+          args: Prisma.TbMaintPlanDtlDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>
+        }
+        update: {
+          args: Prisma.TbMaintPlanDtlUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>
+        }
+        deleteMany: {
+          args: Prisma.TbMaintPlanDtlDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TbMaintPlanDtlUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TbMaintPlanDtlUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>[]
+        }
+        upsert: {
+          args: Prisma.TbMaintPlanDtlUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintPlanDtlPayload>
+        }
+        aggregate: {
+          args: Prisma.TbMaintPlanDtlAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTbMaintPlanDtl>
+        }
+        groupBy: {
+          args: Prisma.TbMaintPlanDtlGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TbMaintPlanDtlGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TbMaintPlanDtlCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TbMaintPlanDtlCountAggregateOutputType> | number
+        }
+      }
+    }
     TbMaintResult: {
       payload: Prisma.$TbMaintResultPayload<ExtArgs>
       fields: Prisma.TbMaintResultFieldRefs
@@ -2821,6 +2972,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.TbMaintResultCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.TbMaintResultCountAggregateOutputType> | number
+        }
+      }
+    }
+    TbMaintResultDtl: {
+      payload: Prisma.$TbMaintResultDtlPayload<ExtArgs>
+      fields: Prisma.TbMaintResultDtlFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TbMaintResultDtlFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TbMaintResultDtlFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>
+        }
+        findFirst: {
+          args: Prisma.TbMaintResultDtlFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TbMaintResultDtlFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>
+        }
+        findMany: {
+          args: Prisma.TbMaintResultDtlFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>[]
+        }
+        create: {
+          args: Prisma.TbMaintResultDtlCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>
+        }
+        createMany: {
+          args: Prisma.TbMaintResultDtlCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TbMaintResultDtlCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>[]
+        }
+        delete: {
+          args: Prisma.TbMaintResultDtlDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>
+        }
+        update: {
+          args: Prisma.TbMaintResultDtlUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>
+        }
+        deleteMany: {
+          args: Prisma.TbMaintResultDtlDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TbMaintResultDtlUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TbMaintResultDtlUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>[]
+        }
+        upsert: {
+          args: Prisma.TbMaintResultDtlUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbMaintResultDtlPayload>
+        }
+        aggregate: {
+          args: Prisma.TbMaintResultDtlAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTbMaintResultDtl>
+        }
+        groupBy: {
+          args: Prisma.TbMaintResultDtlGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TbMaintResultDtlGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TbMaintResultDtlCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TbMaintResultDtlCountAggregateOutputType> | number
         }
       }
     }
@@ -4669,6 +4894,24 @@ export const TbWarehouseScalarFieldEnum = {
 export type TbWarehouseScalarFieldEnum = (typeof TbWarehouseScalarFieldEnum)[keyof typeof TbWarehouseScalarFieldEnum]
 
 
+export const TbDemandScalarFieldEnum = {
+  demand_id: 'demand_id',
+  demand_no: 'demand_no',
+  cust_cd: 'cust_cd',
+  item_cd: 'item_cd',
+  demand_qty: 'demand_qty',
+  due_date: 'due_date',
+  status: 'status',
+  remark: 'remark',
+  create_by: 'create_by',
+  create_dt: 'create_dt',
+  update_by: 'update_by',
+  update_dt: 'update_dt'
+} as const
+
+export type TbDemandScalarFieldEnum = (typeof TbDemandScalarFieldEnum)[keyof typeof TbDemandScalarFieldEnum]
+
+
 export const TbProdPlanScalarFieldEnum = {
   plan_id: 'plan_id',
   plan_no: 'plan_no',
@@ -4678,6 +4921,7 @@ export const TbProdPlanScalarFieldEnum = {
   due_date: 'due_date',
   priority: 'priority',
   status: 'status',
+  demand_id: 'demand_id',
   create_by: 'create_by',
   create_dt: 'create_dt',
   update_by: 'update_by',
@@ -4912,6 +5156,7 @@ export const TbEquipStatusScalarFieldEnum = {
   start_dt: 'start_dt',
   end_dt: 'end_dt',
   duration: 'duration',
+  memo: 'memo',
   create_by: 'create_by',
   create_dt: 'create_dt',
   update_by: 'update_by',
@@ -4924,9 +5169,12 @@ export type TbEquipStatusScalarFieldEnum = (typeof TbEquipStatusScalarFieldEnum)
 export const TbMaintPlanScalarFieldEnum = {
   maint_plan_id: 'maint_plan_id',
   equip_cd: 'equip_cd',
+  plan_nm: 'plan_nm',
+  description: 'description',
   maint_type_cd: 'maint_type_cd',
   cycle_type: 'cycle_type',
   next_plan_date: 'next_plan_date',
+  assignee_id: 'assignee_id',
   create_by: 'create_by',
   create_dt: 'create_dt',
   update_by: 'update_by',
@@ -4936,13 +5184,32 @@ export const TbMaintPlanScalarFieldEnum = {
 export type TbMaintPlanScalarFieldEnum = (typeof TbMaintPlanScalarFieldEnum)[keyof typeof TbMaintPlanScalarFieldEnum]
 
 
+export const TbMaintPlanDtlScalarFieldEnum = {
+  plan_dtl_id: 'plan_dtl_id',
+  maint_plan_id: 'maint_plan_id',
+  item_no: 'item_no',
+  check_item: 'check_item',
+  check_std: 'check_std',
+  create_by: 'create_by',
+  create_dt: 'create_dt',
+  update_by: 'update_by',
+  update_dt: 'update_dt'
+} as const
+
+export type TbMaintPlanDtlScalarFieldEnum = (typeof TbMaintPlanDtlScalarFieldEnum)[keyof typeof TbMaintPlanDtlScalarFieldEnum]
+
+
 export const TbMaintResultScalarFieldEnum = {
   maint_result_id: 'maint_result_id',
   equip_cd: 'equip_cd',
+  maint_no: 'maint_no',
+  maint_plan_id: 'maint_plan_id',
   maint_type_cd: 'maint_type_cd',
   work_dt: 'work_dt',
   worker_id: 'worker_id',
   cost: 'cost',
+  memo: 'memo',
+  replaced_parts: 'replaced_parts',
   create_by: 'create_by',
   create_dt: 'create_dt',
   update_by: 'update_by',
@@ -4950,6 +5217,22 @@ export const TbMaintResultScalarFieldEnum = {
 } as const
 
 export type TbMaintResultScalarFieldEnum = (typeof TbMaintResultScalarFieldEnum)[keyof typeof TbMaintResultScalarFieldEnum]
+
+
+export const TbMaintResultDtlScalarFieldEnum = {
+  result_dtl_id: 'result_dtl_id',
+  maint_result_id: 'maint_result_id',
+  plan_dtl_id: 'plan_dtl_id',
+  check_item: 'check_item',
+  check_result: 'check_result',
+  memo: 'memo',
+  create_by: 'create_by',
+  create_dt: 'create_dt',
+  update_by: 'update_by',
+  update_dt: 'update_dt'
+} as const
+
+export type TbMaintResultDtlScalarFieldEnum = (typeof TbMaintResultDtlScalarFieldEnum)[keyof typeof TbMaintResultDtlScalarFieldEnum]
 
 
 export const TbInventoryScalarFieldEnum = {
@@ -5517,6 +5800,7 @@ export type GlobalOmitConfig = {
   tbCustomer?: Prisma.TbCustomerOmit
   tbInspectStd?: Prisma.TbInspectStdOmit
   tbWarehouse?: Prisma.TbWarehouseOmit
+  tbDemand?: Prisma.TbDemandOmit
   tbProdPlan?: Prisma.TbProdPlanOmit
   tbWorkOrder?: Prisma.TbWorkOrderOmit
   tbWoProcess?: Prisma.TbWoProcessOmit
@@ -5533,7 +5817,9 @@ export type GlobalOmitConfig = {
   tbDefectDispose?: Prisma.TbDefectDisposeOmit
   tbEquipStatus?: Prisma.TbEquipStatusOmit
   tbMaintPlan?: Prisma.TbMaintPlanOmit
+  tbMaintPlanDtl?: Prisma.TbMaintPlanDtlOmit
   tbMaintResult?: Prisma.TbMaintResultOmit
+  tbMaintResultDtl?: Prisma.TbMaintResultDtlOmit
   tbInventory?: Prisma.TbInventoryOmit
   tbInventoryTx?: Prisma.TbInventoryTxOmit
   tbInventoryAdjust?: Prisma.TbInventoryAdjustOmit

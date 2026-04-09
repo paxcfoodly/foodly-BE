@@ -228,6 +228,7 @@ export type TbWorkerWhereInput = {
   prod_results?: Prisma.TbProdResultListRelationFilter
   material_inputs?: Prisma.TbMaterialInputListRelationFilter
   maint_results?: Prisma.TbMaintResultListRelationFilter
+  maint_plan_assignments?: Prisma.TbMaintPlanListRelationFilter
 }
 
 export type TbWorkerOrderByWithRelationInput = {
@@ -247,6 +248,7 @@ export type TbWorkerOrderByWithRelationInput = {
   prod_results?: Prisma.TbProdResultOrderByRelationAggregateInput
   material_inputs?: Prisma.TbMaterialInputOrderByRelationAggregateInput
   maint_results?: Prisma.TbMaintResultOrderByRelationAggregateInput
+  maint_plan_assignments?: Prisma.TbMaintPlanOrderByRelationAggregateInput
 }
 
 export type TbWorkerWhereUniqueInput = Prisma.AtLeast<{
@@ -269,6 +271,7 @@ export type TbWorkerWhereUniqueInput = Prisma.AtLeast<{
   prod_results?: Prisma.TbProdResultListRelationFilter
   material_inputs?: Prisma.TbMaterialInputListRelationFilter
   maint_results?: Prisma.TbMaintResultListRelationFilter
+  maint_plan_assignments?: Prisma.TbMaintPlanListRelationFilter
 }, "worker_id">
 
 export type TbWorkerOrderByWithAggregationInput = {
@@ -319,6 +322,7 @@ export type TbWorkerCreateInput = {
   prod_results?: Prisma.TbProdResultCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerUncheckedCreateInput = {
@@ -337,6 +341,7 @@ export type TbWorkerUncheckedCreateInput = {
   prod_results?: Prisma.TbProdResultUncheckedCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputUncheckedCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerUpdateInput = {
@@ -355,6 +360,7 @@ export type TbWorkerUpdateInput = {
   prod_results?: Prisma.TbProdResultUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerUncheckedUpdateInput = {
@@ -373,6 +379,7 @@ export type TbWorkerUncheckedUpdateInput = {
   prod_results?: Prisma.TbProdResultUncheckedUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUncheckedUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerCreateManyInput = {
@@ -574,6 +581,22 @@ export type TbWorkerUpdateOneWithoutMaterial_inputsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TbWorkerUpdateToOneWithWhereWithoutMaterial_inputsInput, Prisma.TbWorkerUpdateWithoutMaterial_inputsInput>, Prisma.TbWorkerUncheckedUpdateWithoutMaterial_inputsInput>
 }
 
+export type TbWorkerCreateNestedOneWithoutMaint_plan_assignmentsInput = {
+  create?: Prisma.XOR<Prisma.TbWorkerCreateWithoutMaint_plan_assignmentsInput, Prisma.TbWorkerUncheckedCreateWithoutMaint_plan_assignmentsInput>
+  connectOrCreate?: Prisma.TbWorkerCreateOrConnectWithoutMaint_plan_assignmentsInput
+  connect?: Prisma.TbWorkerWhereUniqueInput
+}
+
+export type TbWorkerUpdateOneWithoutMaint_plan_assignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.TbWorkerCreateWithoutMaint_plan_assignmentsInput, Prisma.TbWorkerUncheckedCreateWithoutMaint_plan_assignmentsInput>
+  connectOrCreate?: Prisma.TbWorkerCreateOrConnectWithoutMaint_plan_assignmentsInput
+  upsert?: Prisma.TbWorkerUpsertWithoutMaint_plan_assignmentsInput
+  disconnect?: Prisma.TbWorkerWhereInput | boolean
+  delete?: Prisma.TbWorkerWhereInput | boolean
+  connect?: Prisma.TbWorkerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TbWorkerUpdateToOneWithWhereWithoutMaint_plan_assignmentsInput, Prisma.TbWorkerUpdateWithoutMaint_plan_assignmentsInput>, Prisma.TbWorkerUncheckedUpdateWithoutMaint_plan_assignmentsInput>
+}
+
 export type TbWorkerCreateNestedOneWithoutMaint_resultsInput = {
   create?: Prisma.XOR<Prisma.TbWorkerCreateWithoutMaint_resultsInput, Prisma.TbWorkerUncheckedCreateWithoutMaint_resultsInput>
   connectOrCreate?: Prisma.TbWorkerCreateOrConnectWithoutMaint_resultsInput
@@ -605,6 +628,7 @@ export type TbWorkerCreateWithoutWorkshopInput = {
   prod_results?: Prisma.TbProdResultCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerUncheckedCreateWithoutWorkshopInput = {
@@ -622,6 +646,7 @@ export type TbWorkerUncheckedCreateWithoutWorkshopInput = {
   prod_results?: Prisma.TbProdResultUncheckedCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputUncheckedCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerCreateOrConnectWithoutWorkshopInput = {
@@ -681,6 +706,7 @@ export type TbWorkerCreateWithoutSkillsInput = {
   prod_results?: Prisma.TbProdResultCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerUncheckedCreateWithoutSkillsInput = {
@@ -698,6 +724,7 @@ export type TbWorkerUncheckedCreateWithoutSkillsInput = {
   prod_results?: Prisma.TbProdResultUncheckedCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputUncheckedCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerCreateOrConnectWithoutSkillsInput = {
@@ -731,6 +758,7 @@ export type TbWorkerUpdateWithoutSkillsInput = {
   prod_results?: Prisma.TbProdResultUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerUncheckedUpdateWithoutSkillsInput = {
@@ -748,6 +776,7 @@ export type TbWorkerUncheckedUpdateWithoutSkillsInput = {
   prod_results?: Prisma.TbProdResultUncheckedUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUncheckedUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerCreateWithoutWo_workersInput = {
@@ -765,6 +794,7 @@ export type TbWorkerCreateWithoutWo_workersInput = {
   prod_results?: Prisma.TbProdResultCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerUncheckedCreateWithoutWo_workersInput = {
@@ -782,6 +812,7 @@ export type TbWorkerUncheckedCreateWithoutWo_workersInput = {
   prod_results?: Prisma.TbProdResultUncheckedCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputUncheckedCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerCreateOrConnectWithoutWo_workersInput = {
@@ -815,6 +846,7 @@ export type TbWorkerUpdateWithoutWo_workersInput = {
   prod_results?: Prisma.TbProdResultUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerUncheckedUpdateWithoutWo_workersInput = {
@@ -832,6 +864,7 @@ export type TbWorkerUncheckedUpdateWithoutWo_workersInput = {
   prod_results?: Prisma.TbProdResultUncheckedUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUncheckedUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerCreateWithoutProd_resultsInput = {
@@ -849,6 +882,7 @@ export type TbWorkerCreateWithoutProd_resultsInput = {
   wo_workers?: Prisma.TbWoWorkerCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerUncheckedCreateWithoutProd_resultsInput = {
@@ -866,6 +900,7 @@ export type TbWorkerUncheckedCreateWithoutProd_resultsInput = {
   wo_workers?: Prisma.TbWoWorkerUncheckedCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputUncheckedCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerCreateOrConnectWithoutProd_resultsInput = {
@@ -899,6 +934,7 @@ export type TbWorkerUpdateWithoutProd_resultsInput = {
   wo_workers?: Prisma.TbWoWorkerUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerUncheckedUpdateWithoutProd_resultsInput = {
@@ -916,6 +952,7 @@ export type TbWorkerUncheckedUpdateWithoutProd_resultsInput = {
   wo_workers?: Prisma.TbWoWorkerUncheckedUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUncheckedUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerCreateWithoutMaterial_inputsInput = {
@@ -933,6 +970,7 @@ export type TbWorkerCreateWithoutMaterial_inputsInput = {
   wo_workers?: Prisma.TbWoWorkerCreateNestedManyWithoutWorkerInput
   prod_results?: Prisma.TbProdResultCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerUncheckedCreateWithoutMaterial_inputsInput = {
@@ -950,6 +988,7 @@ export type TbWorkerUncheckedCreateWithoutMaterial_inputsInput = {
   wo_workers?: Prisma.TbWoWorkerUncheckedCreateNestedManyWithoutWorkerInput
   prod_results?: Prisma.TbProdResultUncheckedCreateNestedManyWithoutWorkerInput
   maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerCreateOrConnectWithoutMaterial_inputsInput = {
@@ -983,6 +1022,7 @@ export type TbWorkerUpdateWithoutMaterial_inputsInput = {
   wo_workers?: Prisma.TbWoWorkerUpdateManyWithoutWorkerNestedInput
   prod_results?: Prisma.TbProdResultUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerUncheckedUpdateWithoutMaterial_inputsInput = {
@@ -999,6 +1039,95 @@ export type TbWorkerUncheckedUpdateWithoutMaterial_inputsInput = {
   skills?: Prisma.TbWorkerSkillUncheckedUpdateManyWithoutWorkerNestedInput
   wo_workers?: Prisma.TbWoWorkerUncheckedUpdateManyWithoutWorkerNestedInput
   prod_results?: Prisma.TbProdResultUncheckedUpdateManyWithoutWorkerNestedInput
+  maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedUpdateManyWithoutAssigneeNestedInput
+}
+
+export type TbWorkerCreateWithoutMaint_plan_assignmentsInput = {
+  worker_id: string
+  worker_nm: string
+  dept_cd?: string | null
+  shift_cd?: string | null
+  use_yn?: string
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  workshop?: Prisma.TbWorkshopCreateNestedOneWithoutWorkersInput
+  skills?: Prisma.TbWorkerSkillCreateNestedManyWithoutWorkerInput
+  wo_workers?: Prisma.TbWoWorkerCreateNestedManyWithoutWorkerInput
+  prod_results?: Prisma.TbProdResultCreateNestedManyWithoutWorkerInput
+  material_inputs?: Prisma.TbMaterialInputCreateNestedManyWithoutWorkerInput
+  maint_results?: Prisma.TbMaintResultCreateNestedManyWithoutWorkerInput
+}
+
+export type TbWorkerUncheckedCreateWithoutMaint_plan_assignmentsInput = {
+  worker_id: string
+  worker_nm: string
+  dept_cd?: string | null
+  workshop_cd?: string | null
+  shift_cd?: string | null
+  use_yn?: string
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  skills?: Prisma.TbWorkerSkillUncheckedCreateNestedManyWithoutWorkerInput
+  wo_workers?: Prisma.TbWoWorkerUncheckedCreateNestedManyWithoutWorkerInput
+  prod_results?: Prisma.TbProdResultUncheckedCreateNestedManyWithoutWorkerInput
+  material_inputs?: Prisma.TbMaterialInputUncheckedCreateNestedManyWithoutWorkerInput
+  maint_results?: Prisma.TbMaintResultUncheckedCreateNestedManyWithoutWorkerInput
+}
+
+export type TbWorkerCreateOrConnectWithoutMaint_plan_assignmentsInput = {
+  where: Prisma.TbWorkerWhereUniqueInput
+  create: Prisma.XOR<Prisma.TbWorkerCreateWithoutMaint_plan_assignmentsInput, Prisma.TbWorkerUncheckedCreateWithoutMaint_plan_assignmentsInput>
+}
+
+export type TbWorkerUpsertWithoutMaint_plan_assignmentsInput = {
+  update: Prisma.XOR<Prisma.TbWorkerUpdateWithoutMaint_plan_assignmentsInput, Prisma.TbWorkerUncheckedUpdateWithoutMaint_plan_assignmentsInput>
+  create: Prisma.XOR<Prisma.TbWorkerCreateWithoutMaint_plan_assignmentsInput, Prisma.TbWorkerUncheckedCreateWithoutMaint_plan_assignmentsInput>
+  where?: Prisma.TbWorkerWhereInput
+}
+
+export type TbWorkerUpdateToOneWithWhereWithoutMaint_plan_assignmentsInput = {
+  where?: Prisma.TbWorkerWhereInput
+  data: Prisma.XOR<Prisma.TbWorkerUpdateWithoutMaint_plan_assignmentsInput, Prisma.TbWorkerUncheckedUpdateWithoutMaint_plan_assignmentsInput>
+}
+
+export type TbWorkerUpdateWithoutMaint_plan_assignmentsInput = {
+  worker_id?: Prisma.StringFieldUpdateOperationsInput | string
+  worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
+  dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shift_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  use_yn?: Prisma.StringFieldUpdateOperationsInput | string
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workshop?: Prisma.TbWorkshopUpdateOneWithoutWorkersNestedInput
+  skills?: Prisma.TbWorkerSkillUpdateManyWithoutWorkerNestedInput
+  wo_workers?: Prisma.TbWoWorkerUpdateManyWithoutWorkerNestedInput
+  prod_results?: Prisma.TbProdResultUpdateManyWithoutWorkerNestedInput
+  material_inputs?: Prisma.TbMaterialInputUpdateManyWithoutWorkerNestedInput
+  maint_results?: Prisma.TbMaintResultUpdateManyWithoutWorkerNestedInput
+}
+
+export type TbWorkerUncheckedUpdateWithoutMaint_plan_assignmentsInput = {
+  worker_id?: Prisma.StringFieldUpdateOperationsInput | string
+  worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
+  dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workshop_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shift_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  use_yn?: Prisma.StringFieldUpdateOperationsInput | string
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  skills?: Prisma.TbWorkerSkillUncheckedUpdateManyWithoutWorkerNestedInput
+  wo_workers?: Prisma.TbWoWorkerUncheckedUpdateManyWithoutWorkerNestedInput
+  prod_results?: Prisma.TbProdResultUncheckedUpdateManyWithoutWorkerNestedInput
+  material_inputs?: Prisma.TbMaterialInputUncheckedUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutWorkerNestedInput
 }
 
@@ -1017,6 +1146,7 @@ export type TbWorkerCreateWithoutMaint_resultsInput = {
   wo_workers?: Prisma.TbWoWorkerCreateNestedManyWithoutWorkerInput
   prod_results?: Prisma.TbProdResultCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerUncheckedCreateWithoutMaint_resultsInput = {
@@ -1034,6 +1164,7 @@ export type TbWorkerUncheckedCreateWithoutMaint_resultsInput = {
   wo_workers?: Prisma.TbWoWorkerUncheckedCreateNestedManyWithoutWorkerInput
   prod_results?: Prisma.TbProdResultUncheckedCreateNestedManyWithoutWorkerInput
   material_inputs?: Prisma.TbMaterialInputUncheckedCreateNestedManyWithoutWorkerInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedCreateNestedManyWithoutAssigneeInput
 }
 
 export type TbWorkerCreateOrConnectWithoutMaint_resultsInput = {
@@ -1067,6 +1198,7 @@ export type TbWorkerUpdateWithoutMaint_resultsInput = {
   wo_workers?: Prisma.TbWoWorkerUpdateManyWithoutWorkerNestedInput
   prod_results?: Prisma.TbProdResultUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerUncheckedUpdateWithoutMaint_resultsInput = {
@@ -1084,6 +1216,7 @@ export type TbWorkerUncheckedUpdateWithoutMaint_resultsInput = {
   wo_workers?: Prisma.TbWoWorkerUncheckedUpdateManyWithoutWorkerNestedInput
   prod_results?: Prisma.TbProdResultUncheckedUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUncheckedUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerCreateManyWorkshopInput = {
@@ -1113,6 +1246,7 @@ export type TbWorkerUpdateWithoutWorkshopInput = {
   prod_results?: Prisma.TbProdResultUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerUncheckedUpdateWithoutWorkshopInput = {
@@ -1130,6 +1264,7 @@ export type TbWorkerUncheckedUpdateWithoutWorkshopInput = {
   prod_results?: Prisma.TbProdResultUncheckedUpdateManyWithoutWorkerNestedInput
   material_inputs?: Prisma.TbMaterialInputUncheckedUpdateManyWithoutWorkerNestedInput
   maint_results?: Prisma.TbMaintResultUncheckedUpdateManyWithoutWorkerNestedInput
+  maint_plan_assignments?: Prisma.TbMaintPlanUncheckedUpdateManyWithoutAssigneeNestedInput
 }
 
 export type TbWorkerUncheckedUpdateManyWithoutWorkshopInput = {
@@ -1155,6 +1290,7 @@ export type TbWorkerCountOutputType = {
   prod_results: number
   material_inputs: number
   maint_results: number
+  maint_plan_assignments: number
 }
 
 export type TbWorkerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1163,6 +1299,7 @@ export type TbWorkerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   prod_results?: boolean | TbWorkerCountOutputTypeCountProd_resultsArgs
   material_inputs?: boolean | TbWorkerCountOutputTypeCountMaterial_inputsArgs
   maint_results?: boolean | TbWorkerCountOutputTypeCountMaint_resultsArgs
+  maint_plan_assignments?: boolean | TbWorkerCountOutputTypeCountMaint_plan_assignmentsArgs
 }
 
 /**
@@ -1210,6 +1347,13 @@ export type TbWorkerCountOutputTypeCountMaint_resultsArgs<ExtArgs extends runtim
   where?: Prisma.TbMaintResultWhereInput
 }
 
+/**
+ * TbWorkerCountOutputType without action
+ */
+export type TbWorkerCountOutputTypeCountMaint_plan_assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TbMaintPlanWhereInput
+}
+
 
 export type TbWorkerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   worker_id?: boolean
@@ -1228,6 +1372,7 @@ export type TbWorkerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   prod_results?: boolean | Prisma.TbWorker$prod_resultsArgs<ExtArgs>
   material_inputs?: boolean | Prisma.TbWorker$material_inputsArgs<ExtArgs>
   maint_results?: boolean | Prisma.TbWorker$maint_resultsArgs<ExtArgs>
+  maint_plan_assignments?: boolean | Prisma.TbWorker$maint_plan_assignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.TbWorkerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tbWorker"]>
 
@@ -1280,6 +1425,7 @@ export type TbWorkerInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   prod_results?: boolean | Prisma.TbWorker$prod_resultsArgs<ExtArgs>
   material_inputs?: boolean | Prisma.TbWorker$material_inputsArgs<ExtArgs>
   maint_results?: boolean | Prisma.TbWorker$maint_resultsArgs<ExtArgs>
+  maint_plan_assignments?: boolean | Prisma.TbWorker$maint_plan_assignmentsArgs<ExtArgs>
   _count?: boolean | Prisma.TbWorkerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TbWorkerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1298,6 +1444,7 @@ export type $TbWorkerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     prod_results: Prisma.$TbProdResultPayload<ExtArgs>[]
     material_inputs: Prisma.$TbMaterialInputPayload<ExtArgs>[]
     maint_results: Prisma.$TbMaintResultPayload<ExtArgs>[]
+    maint_plan_assignments: Prisma.$TbMaintPlanPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     worker_id: string
@@ -1710,6 +1857,7 @@ export interface Prisma__TbWorkerClient<T, Null = never, ExtArgs extends runtime
   prod_results<T extends Prisma.TbWorker$prod_resultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbWorker$prod_resultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbProdResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   material_inputs<T extends Prisma.TbWorker$material_inputsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbWorker$material_inputsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMaterialInputPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   maint_results<T extends Prisma.TbWorker$maint_resultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbWorker$maint_resultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMaintResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  maint_plan_assignments<T extends Prisma.TbWorker$maint_plan_assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbWorker$maint_plan_assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMaintPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2286,6 +2434,30 @@ export type TbWorker$maint_resultsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.TbMaintResultScalarFieldEnum | Prisma.TbMaintResultScalarFieldEnum[]
+}
+
+/**
+ * TbWorker.maint_plan_assignments
+ */
+export type TbWorker$maint_plan_assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TbMaintPlan
+   */
+  select?: Prisma.TbMaintPlanSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TbMaintPlan
+   */
+  omit?: Prisma.TbMaintPlanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TbMaintPlanInclude<ExtArgs> | null
+  where?: Prisma.TbMaintPlanWhereInput
+  orderBy?: Prisma.TbMaintPlanOrderByWithRelationInput | Prisma.TbMaintPlanOrderByWithRelationInput[]
+  cursor?: Prisma.TbMaintPlanWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TbMaintPlanScalarFieldEnum | Prisma.TbMaintPlanScalarFieldEnum[]
 }
 
 /**

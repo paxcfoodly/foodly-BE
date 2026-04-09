@@ -248,6 +248,7 @@ export type TbCustomerWhereInput = {
   update_dt?: Prisma.DateTimeFilter<"TbCustomer"> | Date | string
   shipments?: Prisma.TbShipmentListRelationFilter
   incomings?: Prisma.TbIncomingListRelationFilter
+  demands?: Prisma.TbDemandListRelationFilter
 }
 
 export type TbCustomerOrderByWithRelationInput = {
@@ -266,6 +267,7 @@ export type TbCustomerOrderByWithRelationInput = {
   update_dt?: Prisma.SortOrder
   shipments?: Prisma.TbShipmentOrderByRelationAggregateInput
   incomings?: Prisma.TbIncomingOrderByRelationAggregateInput
+  demands?: Prisma.TbDemandOrderByRelationAggregateInput
 }
 
 export type TbCustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -287,6 +289,7 @@ export type TbCustomerWhereUniqueInput = Prisma.AtLeast<{
   update_dt?: Prisma.DateTimeFilter<"TbCustomer"> | Date | string
   shipments?: Prisma.TbShipmentListRelationFilter
   incomings?: Prisma.TbIncomingListRelationFilter
+  demands?: Prisma.TbDemandListRelationFilter
 }, "cust_cd">
 
 export type TbCustomerOrderByWithAggregationInput = {
@@ -343,6 +346,7 @@ export type TbCustomerCreateInput = {
   update_dt?: Date | string
   shipments?: Prisma.TbShipmentCreateNestedManyWithoutCustomerInput
   incomings?: Prisma.TbIncomingCreateNestedManyWithoutCustomerInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutCustomerInput
 }
 
 export type TbCustomerUncheckedCreateInput = {
@@ -361,6 +365,7 @@ export type TbCustomerUncheckedCreateInput = {
   update_dt?: Date | string
   shipments?: Prisma.TbShipmentUncheckedCreateNestedManyWithoutCustomerInput
   incomings?: Prisma.TbIncomingUncheckedCreateNestedManyWithoutCustomerInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type TbCustomerUpdateInput = {
@@ -379,6 +384,7 @@ export type TbCustomerUpdateInput = {
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shipments?: Prisma.TbShipmentUpdateManyWithoutCustomerNestedInput
   incomings?: Prisma.TbIncomingUpdateManyWithoutCustomerNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutCustomerNestedInput
 }
 
 export type TbCustomerUncheckedUpdateInput = {
@@ -397,6 +403,7 @@ export type TbCustomerUncheckedUpdateInput = {
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shipments?: Prisma.TbShipmentUncheckedUpdateManyWithoutCustomerNestedInput
   incomings?: Prisma.TbIncomingUncheckedUpdateManyWithoutCustomerNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type TbCustomerCreateManyInput = {
@@ -495,9 +502,30 @@ export type TbCustomerMinOrderByAggregateInput = {
   update_dt?: Prisma.SortOrder
 }
 
+export type TbCustomerNullableScalarRelationFilter = {
+  is?: Prisma.TbCustomerWhereInput | null
+  isNot?: Prisma.TbCustomerWhereInput | null
+}
+
 export type TbCustomerScalarRelationFilter = {
   is?: Prisma.TbCustomerWhereInput
   isNot?: Prisma.TbCustomerWhereInput
+}
+
+export type TbCustomerCreateNestedOneWithoutDemandsInput = {
+  create?: Prisma.XOR<Prisma.TbCustomerCreateWithoutDemandsInput, Prisma.TbCustomerUncheckedCreateWithoutDemandsInput>
+  connectOrCreate?: Prisma.TbCustomerCreateOrConnectWithoutDemandsInput
+  connect?: Prisma.TbCustomerWhereUniqueInput
+}
+
+export type TbCustomerUpdateOneWithoutDemandsNestedInput = {
+  create?: Prisma.XOR<Prisma.TbCustomerCreateWithoutDemandsInput, Prisma.TbCustomerUncheckedCreateWithoutDemandsInput>
+  connectOrCreate?: Prisma.TbCustomerCreateOrConnectWithoutDemandsInput
+  upsert?: Prisma.TbCustomerUpsertWithoutDemandsInput
+  disconnect?: Prisma.TbCustomerWhereInput | boolean
+  delete?: Prisma.TbCustomerWhereInput | boolean
+  connect?: Prisma.TbCustomerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TbCustomerUpdateToOneWithWhereWithoutDemandsInput, Prisma.TbCustomerUpdateWithoutDemandsInput>, Prisma.TbCustomerUncheckedUpdateWithoutDemandsInput>
 }
 
 export type TbCustomerCreateNestedOneWithoutShipmentsInput = {
@@ -528,6 +556,94 @@ export type TbCustomerUpdateOneRequiredWithoutIncomingsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TbCustomerUpdateToOneWithWhereWithoutIncomingsInput, Prisma.TbCustomerUpdateWithoutIncomingsInput>, Prisma.TbCustomerUncheckedUpdateWithoutIncomingsInput>
 }
 
+export type TbCustomerCreateWithoutDemandsInput = {
+  cust_cd: string
+  cust_nm: string
+  cust_type?: string | null
+  biz_no?: string | null
+  contact_nm?: string | null
+  tel?: string | null
+  email?: string | null
+  address?: string | null
+  use_yn?: string
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  shipments?: Prisma.TbShipmentCreateNestedManyWithoutCustomerInput
+  incomings?: Prisma.TbIncomingCreateNestedManyWithoutCustomerInput
+}
+
+export type TbCustomerUncheckedCreateWithoutDemandsInput = {
+  cust_cd: string
+  cust_nm: string
+  cust_type?: string | null
+  biz_no?: string | null
+  contact_nm?: string | null
+  tel?: string | null
+  email?: string | null
+  address?: string | null
+  use_yn?: string
+  create_by?: string | null
+  create_dt?: Date | string
+  update_by?: string | null
+  update_dt?: Date | string
+  shipments?: Prisma.TbShipmentUncheckedCreateNestedManyWithoutCustomerInput
+  incomings?: Prisma.TbIncomingUncheckedCreateNestedManyWithoutCustomerInput
+}
+
+export type TbCustomerCreateOrConnectWithoutDemandsInput = {
+  where: Prisma.TbCustomerWhereUniqueInput
+  create: Prisma.XOR<Prisma.TbCustomerCreateWithoutDemandsInput, Prisma.TbCustomerUncheckedCreateWithoutDemandsInput>
+}
+
+export type TbCustomerUpsertWithoutDemandsInput = {
+  update: Prisma.XOR<Prisma.TbCustomerUpdateWithoutDemandsInput, Prisma.TbCustomerUncheckedUpdateWithoutDemandsInput>
+  create: Prisma.XOR<Prisma.TbCustomerCreateWithoutDemandsInput, Prisma.TbCustomerUncheckedCreateWithoutDemandsInput>
+  where?: Prisma.TbCustomerWhereInput
+}
+
+export type TbCustomerUpdateToOneWithWhereWithoutDemandsInput = {
+  where?: Prisma.TbCustomerWhereInput
+  data: Prisma.XOR<Prisma.TbCustomerUpdateWithoutDemandsInput, Prisma.TbCustomerUncheckedUpdateWithoutDemandsInput>
+}
+
+export type TbCustomerUpdateWithoutDemandsInput = {
+  cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
+  cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  biz_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  use_yn?: Prisma.StringFieldUpdateOperationsInput | string
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shipments?: Prisma.TbShipmentUpdateManyWithoutCustomerNestedInput
+  incomings?: Prisma.TbIncomingUpdateManyWithoutCustomerNestedInput
+}
+
+export type TbCustomerUncheckedUpdateWithoutDemandsInput = {
+  cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
+  cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
+  cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  biz_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contact_nm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  use_yn?: Prisma.StringFieldUpdateOperationsInput | string
+  create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shipments?: Prisma.TbShipmentUncheckedUpdateManyWithoutCustomerNestedInput
+  incomings?: Prisma.TbIncomingUncheckedUpdateManyWithoutCustomerNestedInput
+}
+
 export type TbCustomerCreateWithoutShipmentsInput = {
   cust_cd: string
   cust_nm: string
@@ -543,6 +659,7 @@ export type TbCustomerCreateWithoutShipmentsInput = {
   update_by?: string | null
   update_dt?: Date | string
   incomings?: Prisma.TbIncomingCreateNestedManyWithoutCustomerInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutCustomerInput
 }
 
 export type TbCustomerUncheckedCreateWithoutShipmentsInput = {
@@ -560,6 +677,7 @@ export type TbCustomerUncheckedCreateWithoutShipmentsInput = {
   update_by?: string | null
   update_dt?: Date | string
   incomings?: Prisma.TbIncomingUncheckedCreateNestedManyWithoutCustomerInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type TbCustomerCreateOrConnectWithoutShipmentsInput = {
@@ -593,6 +711,7 @@ export type TbCustomerUpdateWithoutShipmentsInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   incomings?: Prisma.TbIncomingUpdateManyWithoutCustomerNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutCustomerNestedInput
 }
 
 export type TbCustomerUncheckedUpdateWithoutShipmentsInput = {
@@ -610,6 +729,7 @@ export type TbCustomerUncheckedUpdateWithoutShipmentsInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   incomings?: Prisma.TbIncomingUncheckedUpdateManyWithoutCustomerNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type TbCustomerCreateWithoutIncomingsInput = {
@@ -627,6 +747,7 @@ export type TbCustomerCreateWithoutIncomingsInput = {
   update_by?: string | null
   update_dt?: Date | string
   shipments?: Prisma.TbShipmentCreateNestedManyWithoutCustomerInput
+  demands?: Prisma.TbDemandCreateNestedManyWithoutCustomerInput
 }
 
 export type TbCustomerUncheckedCreateWithoutIncomingsInput = {
@@ -644,6 +765,7 @@ export type TbCustomerUncheckedCreateWithoutIncomingsInput = {
   update_by?: string | null
   update_dt?: Date | string
   shipments?: Prisma.TbShipmentUncheckedCreateNestedManyWithoutCustomerInput
+  demands?: Prisma.TbDemandUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type TbCustomerCreateOrConnectWithoutIncomingsInput = {
@@ -677,6 +799,7 @@ export type TbCustomerUpdateWithoutIncomingsInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shipments?: Prisma.TbShipmentUpdateManyWithoutCustomerNestedInput
+  demands?: Prisma.TbDemandUpdateManyWithoutCustomerNestedInput
 }
 
 export type TbCustomerUncheckedUpdateWithoutIncomingsInput = {
@@ -694,6 +817,7 @@ export type TbCustomerUncheckedUpdateWithoutIncomingsInput = {
   update_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shipments?: Prisma.TbShipmentUncheckedUpdateManyWithoutCustomerNestedInput
+  demands?: Prisma.TbDemandUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 
@@ -704,11 +828,13 @@ export type TbCustomerUncheckedUpdateWithoutIncomingsInput = {
 export type TbCustomerCountOutputType = {
   shipments: number
   incomings: number
+  demands: number
 }
 
 export type TbCustomerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shipments?: boolean | TbCustomerCountOutputTypeCountShipmentsArgs
   incomings?: boolean | TbCustomerCountOutputTypeCountIncomingsArgs
+  demands?: boolean | TbCustomerCountOutputTypeCountDemandsArgs
 }
 
 /**
@@ -735,6 +861,13 @@ export type TbCustomerCountOutputTypeCountIncomingsArgs<ExtArgs extends runtime.
   where?: Prisma.TbIncomingWhereInput
 }
 
+/**
+ * TbCustomerCountOutputType without action
+ */
+export type TbCustomerCountOutputTypeCountDemandsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TbDemandWhereInput
+}
+
 
 export type TbCustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   cust_cd?: boolean
@@ -752,6 +885,7 @@ export type TbCustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   update_dt?: boolean
   shipments?: boolean | Prisma.TbCustomer$shipmentsArgs<ExtArgs>
   incomings?: boolean | Prisma.TbCustomer$incomingsArgs<ExtArgs>
+  demands?: boolean | Prisma.TbCustomer$demandsArgs<ExtArgs>
   _count?: boolean | Prisma.TbCustomerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tbCustomer"]>
 
@@ -807,6 +941,7 @@ export type TbCustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type TbCustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shipments?: boolean | Prisma.TbCustomer$shipmentsArgs<ExtArgs>
   incomings?: boolean | Prisma.TbCustomer$incomingsArgs<ExtArgs>
+  demands?: boolean | Prisma.TbCustomer$demandsArgs<ExtArgs>
   _count?: boolean | Prisma.TbCustomerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TbCustomerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -817,6 +952,7 @@ export type $TbCustomerPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     shipments: Prisma.$TbShipmentPayload<ExtArgs>[]
     incomings: Prisma.$TbIncomingPayload<ExtArgs>[]
+    demands: Prisma.$TbDemandPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     cust_cd: string
@@ -1228,6 +1364,7 @@ export interface Prisma__TbCustomerClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   shipments<T extends Prisma.TbCustomer$shipmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbCustomer$shipmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbShipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   incomings<T extends Prisma.TbCustomer$incomingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbCustomer$incomingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbIncomingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  demands<T extends Prisma.TbCustomer$demandsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TbCustomer$demandsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbDemandPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1708,6 +1845,30 @@ export type TbCustomer$incomingsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.TbIncomingScalarFieldEnum | Prisma.TbIncomingScalarFieldEnum[]
+}
+
+/**
+ * TbCustomer.demands
+ */
+export type TbCustomer$demandsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TbDemand
+   */
+  select?: Prisma.TbDemandSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TbDemand
+   */
+  omit?: Prisma.TbDemandOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TbDemandInclude<ExtArgs> | null
+  where?: Prisma.TbDemandWhereInput
+  orderBy?: Prisma.TbDemandOrderByWithRelationInput | Prisma.TbDemandOrderByWithRelationInput[]
+  cursor?: Prisma.TbDemandWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TbDemandScalarFieldEnum | Prisma.TbDemandScalarFieldEnum[]
 }
 
 /**
