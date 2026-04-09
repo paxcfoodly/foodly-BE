@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { authenticate } from '../../../middlewares/auth';
-import { requirePermission } from '../../../middlewares/permission';
 import {
   getOeeSummaryHandler,
   getOeeDetailHandler,
@@ -11,7 +10,8 @@ import {
 const oeeRouter = Router();
 
 oeeRouter.use(authenticate);
-oeeRouter.use(requirePermission({ menuUrl: '/dashboard/equipment' }));
+// requirePermission removed — OEE data is used by both /dashboard/equipment and /reports/equipment.
+// Authentication alone is sufficient for read access (ASVS L1). See T-09-07.
 
 // Named routes must come before /:equipCd
 oeeRouter.get('/summary', getOeeSummaryHandler);
