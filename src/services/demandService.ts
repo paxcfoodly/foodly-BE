@@ -160,6 +160,10 @@ export async function deleteDemand(demandId: number) {
     throw new AppError('생산계획이 연결된 수요는 삭제할 수 없습니다.', 409);
   }
 
+  if (existing.status === 'CLOSED') {
+    throw new AppError('완료된 수요는 삭제할 수 없습니다.', 409);
+  }
+
   try {
     await prisma.tbDemand.delete({ where: { demand_id: demandId } });
     return { message: '수요가 삭제되었습니다.' };
