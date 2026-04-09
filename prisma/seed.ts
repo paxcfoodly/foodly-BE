@@ -386,7 +386,14 @@ async function main() {
   console.log(`✅ 채번 규칙: ${numberingRules.length}개`);
 
   // --- 초기 관리자 계정 ---
-  const hashedPassword = await bcrypt.hash('admin', 10);
+  const rawAdminPassword = process.env.SEED_ADMIN_PASSWORD;
+  if (!rawAdminPassword) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('SEED_ADMIN_PASSWORD env var is required in production');
+    }
+    console.warn('⚠️  SEED_ADMIN_PASSWORD not set — using default "admin" (dev only)');
+  }
+  const hashedPassword = await bcrypt.hash(rawAdminPassword ?? 'admin', 10);
   await prisma.tbUser.upsert({
     where: { login_id: 'admin' },
     update: { password: hashedPassword, user_nm: '시스템관리자' },
@@ -399,7 +406,7 @@ async function main() {
       create_by: 'SYSTEM',
     },
   });
-  console.log('✅ 초기 관리자 계정: admin/admin');
+  console.log('✅ 초기 관리자 계정 생성 완료');
 
   // --- 테스트 계정들 (역할별) ---
   const testPassword = await bcrypt.hash('test1234', 10);
