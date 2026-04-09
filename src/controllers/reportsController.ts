@@ -46,6 +46,113 @@ export async function getProductionDailyHandler(
   }
 }
 
+// ─── GET /v1/reports/quality/pareto ───
+
+export async function getQualityParetoHandler(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const { start, end } = req.query as { start?: string; end?: string };
+    if (!start || !end) {
+      res.status(400).json(errorResponse('start, end 쿼리 파라미터가 필요합니다.'));
+      return;
+    }
+    const result = await reportsService.getQualityPareto(start, end);
+    res.json(successResponse(result));
+  } catch (err) {
+    next(err);
+  }
+}
+
+// ─── GET /v1/reports/quality/by-process ───
+
+export async function getQualityByProcessHandler(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const { start, end } = req.query as { start?: string; end?: string };
+    if (!start || !end) {
+      res.status(400).json(errorResponse('start, end 쿼리 파라미터가 필요합니다.'));
+      return;
+    }
+    const result = await reportsService.getQualityByProcess(start, end);
+    res.json(successResponse(result));
+  } catch (err) {
+    next(err);
+  }
+}
+
+// ─── GET /v1/reports/quality/trend ───
+
+export async function getQualityTrendHandler(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const { start, end } = req.query as { start?: string; end?: string };
+    if (!start || !end) {
+      res.status(400).json(errorResponse('start, end 쿼리 파라미터가 필요합니다.'));
+      return;
+    }
+    const result = await reportsService.getQualityTrend(start, end);
+    res.json(successResponse(result));
+  } catch (err) {
+    next(err);
+  }
+}
+
+// ─── GET /v1/reports/quality/detail ───
+
+export async function getQualityDetailHandler(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const { start, end, defect_type_cd } = req.query as {
+      start?: string;
+      end?: string;
+      defect_type_cd?: string;
+    };
+    if (!start || !end) {
+      res.status(400).json(errorResponse('start, end 쿼리 파라미터가 필요합니다.'));
+      return;
+    }
+    const result = await reportsService.getQualityDetail(start, end, defect_type_cd);
+    res.json(successResponse(result));
+  } catch (err) {
+    next(err);
+  }
+}
+
+// ─── GET /v1/reports/inventory/summary ───
+
+export async function getInventorySummaryHandler(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const { wh_cd, item_cd, stagnant_only } = req.query as {
+      wh_cd?: string;
+      item_cd?: string;
+      stagnant_only?: string;
+    };
+    let result = await reportsService.getInventorySummary(wh_cd, item_cd);
+    if (stagnant_only === 'true') {
+      result = result.filter((r) => r.is_stagnant);
+    }
+    res.json(successResponse(result));
+  } catch (err) {
+    next(err);
+  }
+}
+
 // ─── GET /v1/reports/production/summary ───
 
 export async function getProductionSummaryHandler(

@@ -441,3 +441,408 @@ export async function getProductionSummary(
     };
   });
 }
+
+// ─── Interfaces for Quality & Inventory ───
+
+export interface QualityParetoRow {
+  defect_type_cd: string;
+  defect_type_nm: string;
+  total_qty: number;
+  cumulative_pct: number;
+}
+
+export interface QualityByProcessRow {
+  process_cd: string;
+  process_nm: string;
+  defect_qty: number;
+  total_qty: number;
+  defect_rate: number;
+}
+
+export interface QualityTrendRow {
+  date: string;
+  defect_qty: number;
+  total_qty: number;
+  defect_rate: number;
+}
+
+export interface QualityDetailRow {
+  defect_type_cd: string;
+  defect_type_nm: string;
+  defect_cause_cd: string;
+  defect_cause_nm: string;
+  process_cd: string;
+  process_nm: string;
+  defect_date: string;
+  defect_qty: number;
+}
+
+export interface InventorySummaryRow {
+  item_cd: string;
+  item_nm: string;
+  wh_cd: string;
+  wh_nm: string;
+  qty: number;
+  unit: string;
+  out_qty: number;
+  days_since_last_tx: number;
+  turnover_rate: number;
+  is_stagnant: boolean;
+}
+
+// ─── getQualityPareto ───
+
+export async function getQualityPareto(
+  start: string,
+  end: string,
+): Promise<QualityParetoRow[]> {
+  type RawRow = {
+    defect_type_cd: string | null;
+    defect_type_nm: string | null;
+    total_qty: number;
+  };
+
+  const rows = await prisma.$queryRaw<RawRow[]>`
+    SELECT d.defect_type_cd,
+           cc.code_nm AS defect_type_nm,
+           SUM(d.defect_qty)::FLOAT AS total_qty
+    FROM tb_defect d
+    LEFT JOIN tb_common_code cc ON cc.code_type = 'DEFECT_TYPE' AND cc.code = d.defect_type_cd
+    WHERE d.create_dt >= ${start}::date
+      AND d.create_dt < ${end}::date + INTERVAL '1 day'
+    GROUP BY d.defect_type_cd, cc.code_nm
+    ORDER BY total_qty DESC
+  `;
+
+  const grandTotal = rows.reduce((sum, r) => sum + Number(r.total_qty), 0);
+  let cumulative = 0;
+  return rows.map((row) => {
+    const total_qty = Number(row.total_qty);
+    cumulative += total_qty;
+    const cumulative_pct =
+      grandTotal > 0 ? Math.round((cumulative / grandTotal) * 1000) / 10 : 0;
+    return {
+      defect_type_cd: row.defect_type_cd ?? '',
+      defect_type_nm: row.defect_type_nm ?? row.defect_type_cd ?? '',
+      total_qty,
+      cumulative_pct,
+    };
+  });
+}
+
+// ─── getQualityByProcess ───
+
+export async function getQualityByProcess(
+  start: string,
+  end: string,
+): Promise<QualityByProcessRow[]> {
+  type RawRow = {
+    process_cd: string | null;
+    process_nm: string | null;
+    defect_qty: number;
+    total_qty: number;
+  };
+
+  const rows = await prisma.$queryRaw<RawRow[]>`
+    SELECT d.process_cd,
+           p.process_nm,
+           SUM(d.defect_qty)::FLOAT AS defect_qty,
+           COALESCE(SUM(pr.good_qty) + SUM(pr.defect_qty), 1)::FLOAT AS total_qty
+    FROM tb_defect d
+    LEFT JOIN tb_process p ON p.process_cd = d.process_cd
+    LEFT JOIN tb_prod_result pr ON pr.wo_id = d.wo_id
+    WHERE d.create_dt >= ${start}::date
+      AND d.create_dt < ${end}::date + INTERVAL '1 day'
+    GROUP BY d.process_cd, p.process_nm
+    ORDER BY defect_qty DESC
+  `;
+
+  return rows.map((row) => {
+    const defect_qty = Number(row.defect_qty);
+    const total_qty = Number(row.total_qty);
+    const defect_rate =
+      total_qty > 0 ? Math.round((defect_qty / total_qty) * 10000) / 100 : 0;
+    return {
+      process_cd: row.process_cd ?? '',
+      process_nm: row.process_nm ?? row.process_cd ?? '',
+      defect_qty,
+      total_qty,
+      defect_rate,
+    };
+  });
+}
+
+// ─── getQualityTrend ───
+
+export async function getQualityTrend(
+  start: string,
+  end: string,
+): Promise<QualityTrendRow[]> {
+  type RawRow = {
+    date: Date | string;
+    defect_qty: number;
+    total_qty: number;
+  };
+
+  const rows = await prisma.$queryRaw<RawRow[]>`
+    SELECT DATE(d.create_dt) AS date,
+           SUM(d.defect_qty)::FLOAT AS defect_qty,
+           (SELECT COALESCE(SUM(pr2.good_qty + pr2.defect_qty), 1)::FLOAT
+            FROM tb_prod_result pr2
+            WHERE DATE(pr2.work_start_dt) = DATE(d.create_dt)) AS total_qty
+    FROM tb_defect d
+    WHERE d.create_dt >= ${start}::date
+      AND d.create_dt < ${end}::date + INTERVAL '1 day'
+    GROUP BY DATE(d.create_dt)
+    ORDER BY date ASC
+  `;
+
+  return rows.map((row) => {
+    const defect_qty = Number(row.defect_qty);
+    const total_qty = Number(row.total_qty);
+    const defect_rate =
+      total_qty > 0 ? Math.round((defect_qty / total_qty) * 10000) / 100 : 0;
+    const dateVal = row.date;
+    const dateStr =
+      dateVal instanceof Date
+        ? dateVal.toISOString().substring(0, 10)
+        : String(dateVal).substring(0, 10);
+    return { date: dateStr, defect_qty, total_qty, defect_rate };
+  });
+}
+
+// ─── getQualityDetail ───
+
+export async function getQualityDetail(
+  start: string,
+  end: string,
+  defectTypeCd?: string,
+): Promise<QualityDetailRow[]> {
+  type RawRow = {
+    defect_type_cd: string | null;
+    defect_type_nm: string | null;
+    defect_cause_cd: string | null;
+    defect_cause_nm: string | null;
+    process_cd: string | null;
+    process_nm: string | null;
+    defect_date: Date | string;
+    defect_qty: number;
+  };
+
+  let rows: RawRow[];
+
+  if (defectTypeCd) {
+    rows = await prisma.$queryRaw<RawRow[]>`
+      SELECT d.defect_type_cd,
+             cc1.code_nm AS defect_type_nm,
+             d.defect_cause_cd,
+             cc2.code_nm AS defect_cause_nm,
+             d.process_cd,
+             p.process_nm,
+             DATE(d.create_dt) AS defect_date,
+             d.defect_qty::FLOAT
+      FROM tb_defect d
+      LEFT JOIN tb_common_code cc1 ON cc1.code_type = 'DEFECT_TYPE' AND cc1.code = d.defect_type_cd
+      LEFT JOIN tb_common_code cc2 ON cc2.code_type = 'DEFECT_CAUSE' AND cc2.code = d.defect_cause_cd
+      LEFT JOIN tb_process p ON p.process_cd = d.process_cd
+      WHERE d.create_dt >= ${start}::date
+        AND d.create_dt < ${end}::date + INTERVAL '1 day'
+        AND d.defect_type_cd = ${defectTypeCd}
+      ORDER BY d.defect_qty DESC
+    `;
+  } else {
+    rows = await prisma.$queryRaw<RawRow[]>`
+      SELECT d.defect_type_cd,
+             cc1.code_nm AS defect_type_nm,
+             d.defect_cause_cd,
+             cc2.code_nm AS defect_cause_nm,
+             d.process_cd,
+             p.process_nm,
+             DATE(d.create_dt) AS defect_date,
+             d.defect_qty::FLOAT
+      FROM tb_defect d
+      LEFT JOIN tb_common_code cc1 ON cc1.code_type = 'DEFECT_TYPE' AND cc1.code = d.defect_type_cd
+      LEFT JOIN tb_common_code cc2 ON cc2.code_type = 'DEFECT_CAUSE' AND cc2.code = d.defect_cause_cd
+      LEFT JOIN tb_process p ON p.process_cd = d.process_cd
+      WHERE d.create_dt >= ${start}::date
+        AND d.create_dt < ${end}::date + INTERVAL '1 day'
+      ORDER BY d.defect_qty DESC
+    `;
+  }
+
+  return rows.map((row) => {
+    const dateVal = row.defect_date;
+    const dateStr =
+      dateVal instanceof Date
+        ? dateVal.toISOString().substring(0, 10)
+        : String(dateVal).substring(0, 10);
+    return {
+      defect_type_cd: row.defect_type_cd ?? '',
+      defect_type_nm: row.defect_type_nm ?? row.defect_type_cd ?? '',
+      defect_cause_cd: row.defect_cause_cd ?? '',
+      defect_cause_nm: row.defect_cause_nm ?? row.defect_cause_cd ?? '',
+      process_cd: row.process_cd ?? '',
+      process_nm: row.process_nm ?? row.process_cd ?? '',
+      defect_date: dateStr,
+      defect_qty: Number(row.defect_qty),
+    };
+  });
+}
+
+// ─── getInventorySummary ───
+
+export async function getInventorySummary(
+  whCd?: string,
+  itemCd?: string,
+): Promise<InventorySummaryRow[]> {
+  type RawRow = {
+    item_cd: string;
+    item_nm: string;
+    wh_cd: string;
+    wh_nm: string;
+    qty: number;
+    unit: string | null;
+    out_qty: number;
+    days_since_last_tx: number | bigint | null;
+  };
+
+  let rows: RawRow[];
+
+  if (whCd && itemCd) {
+    rows = await prisma.$queryRaw<RawRow[]>`
+      SELECT inv.item_cd,
+             it.item_nm,
+             inv.wh_cd,
+             wh.wh_nm,
+             inv.qty::FLOAT AS qty,
+             it.unit,
+             COALESCE(out_sum.out_qty, 0)::FLOAT AS out_qty,
+             COALESCE(
+               CURRENT_DATE - MAX(tx_all.create_dt)::date,
+               999
+             ) AS days_since_last_tx
+      FROM tb_inventory inv
+      INNER JOIN tb_item it ON it.item_cd = inv.item_cd
+      INNER JOIN tb_warehouse wh ON wh.wh_cd = inv.wh_cd
+      LEFT JOIN (
+        SELECT tx.item_cd, SUM(tx.tx_qty)::FLOAT AS out_qty
+        FROM tb_inventory_tx tx
+        WHERE tx.tx_type = 'OUT'
+          AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
+        GROUP BY tx.item_cd
+      ) out_sum ON out_sum.item_cd = inv.item_cd
+      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
+      WHERE inv.qty > 0
+        AND inv.wh_cd = ${whCd}
+        AND inv.item_cd = ${itemCd}
+      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit, out_sum.out_qty
+      ORDER BY days_since_last_tx DESC
+    `;
+  } else if (whCd) {
+    rows = await prisma.$queryRaw<RawRow[]>`
+      SELECT inv.item_cd,
+             it.item_nm,
+             inv.wh_cd,
+             wh.wh_nm,
+             inv.qty::FLOAT AS qty,
+             it.unit,
+             COALESCE(out_sum.out_qty, 0)::FLOAT AS out_qty,
+             COALESCE(
+               CURRENT_DATE - MAX(tx_all.create_dt)::date,
+               999
+             ) AS days_since_last_tx
+      FROM tb_inventory inv
+      INNER JOIN tb_item it ON it.item_cd = inv.item_cd
+      INNER JOIN tb_warehouse wh ON wh.wh_cd = inv.wh_cd
+      LEFT JOIN (
+        SELECT tx.item_cd, SUM(tx.tx_qty)::FLOAT AS out_qty
+        FROM tb_inventory_tx tx
+        WHERE tx.tx_type = 'OUT'
+          AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
+        GROUP BY tx.item_cd
+      ) out_sum ON out_sum.item_cd = inv.item_cd
+      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
+      WHERE inv.qty > 0
+        AND inv.wh_cd = ${whCd}
+      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit, out_sum.out_qty
+      ORDER BY days_since_last_tx DESC
+    `;
+  } else if (itemCd) {
+    rows = await prisma.$queryRaw<RawRow[]>`
+      SELECT inv.item_cd,
+             it.item_nm,
+             inv.wh_cd,
+             wh.wh_nm,
+             inv.qty::FLOAT AS qty,
+             it.unit,
+             COALESCE(out_sum.out_qty, 0)::FLOAT AS out_qty,
+             COALESCE(
+               CURRENT_DATE - MAX(tx_all.create_dt)::date,
+               999
+             ) AS days_since_last_tx
+      FROM tb_inventory inv
+      INNER JOIN tb_item it ON it.item_cd = inv.item_cd
+      INNER JOIN tb_warehouse wh ON wh.wh_cd = inv.wh_cd
+      LEFT JOIN (
+        SELECT tx.item_cd, SUM(tx.tx_qty)::FLOAT AS out_qty
+        FROM tb_inventory_tx tx
+        WHERE tx.tx_type = 'OUT'
+          AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
+        GROUP BY tx.item_cd
+      ) out_sum ON out_sum.item_cd = inv.item_cd
+      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
+      WHERE inv.qty > 0
+        AND inv.item_cd = ${itemCd}
+      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit, out_sum.out_qty
+      ORDER BY days_since_last_tx DESC
+    `;
+  } else {
+    rows = await prisma.$queryRaw<RawRow[]>`
+      SELECT inv.item_cd,
+             it.item_nm,
+             inv.wh_cd,
+             wh.wh_nm,
+             inv.qty::FLOAT AS qty,
+             it.unit,
+             COALESCE(out_sum.out_qty, 0)::FLOAT AS out_qty,
+             COALESCE(
+               CURRENT_DATE - MAX(tx_all.create_dt)::date,
+               999
+             ) AS days_since_last_tx
+      FROM tb_inventory inv
+      INNER JOIN tb_item it ON it.item_cd = inv.item_cd
+      INNER JOIN tb_warehouse wh ON wh.wh_cd = inv.wh_cd
+      LEFT JOIN (
+        SELECT tx.item_cd, SUM(tx.tx_qty)::FLOAT AS out_qty
+        FROM tb_inventory_tx tx
+        WHERE tx.tx_type = 'OUT'
+          AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
+        GROUP BY tx.item_cd
+      ) out_sum ON out_sum.item_cd = inv.item_cd
+      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
+      WHERE inv.qty > 0
+      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit, out_sum.out_qty
+      ORDER BY days_since_last_tx DESC
+    `;
+  }
+
+  return rows.map((row) => {
+    const qty = Number(row.qty);
+    const out_qty = Number(row.out_qty);
+    const days_since_last_tx = Number(row.days_since_last_tx ?? 999);
+    const turnover_rate = Math.round((out_qty / (qty || 1)) * 1000) / 1000;
+    const is_stagnant = days_since_last_tx >= 90;
+    return {
+      item_cd: row.item_cd,
+      item_nm: row.item_nm,
+      wh_cd: row.wh_cd,
+      wh_nm: row.wh_nm,
+      qty,
+      unit: row.unit ?? '',
+      out_qty,
+      days_since_last_tx,
+      turnover_rate,
+      is_stagnant,
+    };
+  });
+}
