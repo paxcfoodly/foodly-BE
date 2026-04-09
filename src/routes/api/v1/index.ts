@@ -35,6 +35,7 @@ import equipStatusesRouter from './equipStatuses';
 import oeeRouter from './oee';
 import maintPlansRouter from './maintPlans';
 import maintResultsRouter from './maintResults';
+import reportsRouter from './reports';
 
 const v1Router = Router();
 
@@ -101,5 +102,6 @@ v1Router.use('/equip-statuses', equipStatusesRouter);
 v1Router.use('/oee', oeeRouter);
 v1Router.use('/maint-plans', maintPlansRouter);
 v1Router.use('/maint-results', maintResultsRouter);
+v1Router.use('/reports', reportsRouter);
 
 export default v1Router;
