@@ -36,6 +36,7 @@ import oeeRouter from './oee';
 import maintPlansRouter from './maintPlans';
 import maintResultsRouter from './maintResults';
 import reportsRouter from './reports';
+import demandsRouter from './demands';
 
 const v1Router = Router();
 
@@ -103,5 +104,6 @@ v1Router.use('/oee', oeeRouter);
 v1Router.use('/maint-plans', maintPlansRouter);
 v1Router.use('/maint-results', maintResultsRouter);
 v1Router.use('/reports', reportsRouter);
+v1Router.use('/demands', demandsRouter);
 
 export default v1Router;
