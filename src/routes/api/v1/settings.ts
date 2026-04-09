@@ -16,15 +16,15 @@ const settingsRouter = Router();
 settingsRouter.use(authenticate);
 
 // ─── Company Info ───
-settingsRouter.get('/company', requirePermission({ menuUrl: '/settings/system' }), getCompanyHandler);
-settingsRouter.put('/company', requirePermission({ menuUrl: '/settings/system' }), updateCompanyHandler);
+settingsRouter.get('/company', requirePermission({ menuUrl: '/system/config' }), getCompanyHandler);
+settingsRouter.put('/company', requirePermission({ menuUrl: '/system/config' }), updateCompanyHandler);
 
 // ─── Numbering Rules ───
-settingsRouter.get('/numberings', requirePermission({ menuUrl: '/settings/system' }), listNumberingsHandler);
-settingsRouter.put('/numberings/:numType', requirePermission({ menuUrl: '/settings/system' }), updateNumberingHandler);
+settingsRouter.get('/numberings', requirePermission({ menuUrl: '/system/config' }), listNumberingsHandler);
+settingsRouter.put('/numberings/:numType', requirePermission({ menuUrl: '/system/config' }), updateNumberingHandler);
 
 // ─── System Settings (key-value) ───
-settingsRouter.get('/', requirePermission({ menuUrl: '/settings/system' }), getSettingsHandler);
-settingsRouter.patch('/', requirePermission({ menuUrl: '/settings/system' }), batchUpsertSettingsHandler);
+settingsRouter.get('/', requirePermission({ menuUrl: '/system/config' }), getSettingsHandler);
+settingsRouter.patch('/', requirePermission({ menuUrl: '/system/config' }), batchUpsertSettingsHandler);
 
 export default settingsRouter;
