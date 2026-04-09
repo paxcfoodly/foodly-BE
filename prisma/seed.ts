@@ -426,6 +426,29 @@ async function main() {
   }
   console.log('✅ 테스트 계정: viewer01/prod_worker01/qc_mgr01/plant_mgr01 (비밀번호: test1234)');
 
+  // --- NOTI_TYPE 공통코드 ---
+  await prisma.tbCommonCodeGrp.upsert({
+    where: { group_cd: 'NOTI_TYPE' },
+    update: { group_nm: '알림유형' },
+    create: { group_cd: 'NOTI_TYPE', group_nm: '알림유형', create_by: 'SYSTEM' },
+  });
+  const notiTypes = [
+    { code: 'STOCK_LOW', code_nm: '재고부족' },
+    { code: 'MAINT_DUE', code_nm: '보전일도래' },
+    { code: 'DEFECT_FOUND', code_nm: '불량발생' },
+    { code: 'SHIP_SCHED', code_nm: '출하예정' },
+    { code: 'ACHIEVE_LOW', code_nm: '생산달성률저하' },
+  ];
+  for (let i = 0; i < notiTypes.length; i++) {
+    const nt = notiTypes[i];
+    await prisma.tbCommonCode.upsert({
+      where: { group_cd_code: { group_cd: 'NOTI_TYPE', code: nt.code } },
+      update: { code_nm: nt.code_nm, sort_order: i + 1 },
+      create: { group_cd: 'NOTI_TYPE', code: nt.code, code_nm: nt.code_nm, sort_order: i + 1, use_yn: 'Y', create_by: 'SYSTEM' },
+    });
+  }
+  console.log(`✅ NOTI_TYPE 공통코드: ${notiTypes.length}개`);
+
   console.log('\n🎉 Seed completed successfully!');
 }
 

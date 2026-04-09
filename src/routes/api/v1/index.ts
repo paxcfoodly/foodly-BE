@@ -37,6 +37,8 @@ import maintPlansRouter from './maintPlans';
 import maintResultsRouter from './maintResults';
 import reportsRouter from './reports';
 import demandsRouter from './demands';
+import settingsRouter from './settings';
+import notiRulesRouter from './notiRules';
 
 const v1Router = Router();
 
@@ -105,5 +107,7 @@ v1Router.use('/maint-plans', maintPlansRouter);
 v1Router.use('/maint-results', maintResultsRouter);
 v1Router.use('/reports', reportsRouter);
 v1Router.use('/demands', demandsRouter);
+v1Router.use('/settings', settingsRouter);
+v1Router.use('/noti-rules', notiRulesRouter);
 
 export default v1Router;
