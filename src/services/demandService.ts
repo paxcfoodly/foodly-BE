@@ -192,6 +192,9 @@ export async function createDraftPlanFromDemand(
     throw new AppError('plant_cd는 필수 항목입니다.', 400);
   }
 
+  // Generate plan number BEFORE the transaction (numberingService uses its own transaction)
+  const plan_no = await generateNumberWithDateReset('PROD_PLAN');
+
   const plan = await prisma.$transaction(async (tx) => {
     // 1. Fetch demand (lock via transaction)
     const demand = await tx.tbDemand.findUnique({ where: { demand_id: demandId } });
@@ -202,10 +205,7 @@ export async function createDraftPlanFromDemand(
       throw new AppError('이미 생산계획이 생성된 수요입니다.', 409);
     }
 
-    // 3. Generate plan number (outside tx — numberingService uses its own transaction)
-    const plan_no = await generateNumberWithDateReset('PROD_PLAN');
-
-    // 4. Create production plan
+    // 3. Create production plan
     const newPlan = await tx.tbProdPlan.create({
       data: {
         plan_no,
