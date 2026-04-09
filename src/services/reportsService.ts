@@ -544,13 +544,20 @@ export async function getQualityByProcess(
   };
 
   const rows = await prisma.$queryRaw<RawRow[]>`
+    WITH prod_totals AS (
+      SELECT wo_id,
+             SUM(good_qty)::FLOAT AS good_qty,
+             SUM(defect_qty)::FLOAT AS defect_qty
+      FROM tb_prod_result
+      GROUP BY wo_id
+    )
     SELECT d.process_cd,
            p.process_nm,
            SUM(d.defect_qty)::FLOAT AS defect_qty,
-           COALESCE(SUM(pr.good_qty) + SUM(pr.defect_qty), 1)::FLOAT AS total_qty
+           COALESCE(SUM(pt.good_qty + pt.defect_qty), 0)::FLOAT AS total_qty
     FROM tb_defect d
     LEFT JOIN tb_process p ON p.process_cd = d.process_cd
-    LEFT JOIN tb_prod_result pr ON pr.wo_id = d.wo_id
+    LEFT JOIN prod_totals pt ON pt.wo_id = d.wo_id
     WHERE d.create_dt >= ${start}::date
       AND d.create_dt < ${end}::date + INTERVAL '1 day'
     GROUP BY d.process_cd, p.process_nm
