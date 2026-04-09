@@ -106,6 +106,7 @@ export const ModelName = {
   TbNotiRule: 'TbNotiRule',
   TbBatchLog: 'TbBatchLog',
   TbNotice: 'TbNotice',
+  TbSysSetting: 'TbSysSetting',
   TbDataHistory: 'TbDataHistory'
 } as const
 
@@ -1026,6 +1027,21 @@ export const TbNoticeScalarFieldEnum = {
 } as const
 
 export type TbNoticeScalarFieldEnum = (typeof TbNoticeScalarFieldEnum)[keyof typeof TbNoticeScalarFieldEnum]
+
+
+export const TbSysSettingScalarFieldEnum = {
+  setting_key: 'setting_key',
+  setting_value: 'setting_value',
+  setting_group: 'setting_group',
+  setting_desc: 'setting_desc',
+  use_yn: 'use_yn',
+  create_by: 'create_by',
+  create_dt: 'create_dt',
+  update_by: 'update_by',
+  update_dt: 'update_dt'
+} as const
+
+export type TbSysSettingScalarFieldEnum = (typeof TbSysSettingScalarFieldEnum)[keyof typeof TbSysSettingScalarFieldEnum]
 
 
 export const TbDataHistoryScalarFieldEnum = {

@@ -439,6 +439,7 @@ export const ModelName = {
   TbNotiRule: 'TbNotiRule',
   TbBatchLog: 'TbBatchLog',
   TbNotice: 'TbNotice',
+  TbSysSetting: 'TbSysSetting',
   TbDataHistory: 'TbDataHistory'
 } as const
 
@@ -455,7 +456,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tbCompany" | "tbPlant" | "tbWorkshop" | "tbItem" | "tbBom" | "tbProcess" | "tbRouting" | "tbEquipment" | "tbEquipProcess" | "tbMold" | "tbWorker" | "tbWorkerSkill" | "tbCustomer" | "tbInspectStd" | "tbWarehouse" | "tbDemand" | "tbProdPlan" | "tbWorkOrder" | "tbWoProcess" | "tbWoWorker" | "tbProdResult" | "tbLot" | "tbLotHistory" | "tbMaterialInput" | "tbMaterialIssue" | "tbMaterialIssueDtl" | "tbInspectResult" | "tbInspectResultDtl" | "tbDefect" | "tbDefectDispose" | "tbEquipStatus" | "tbMaintPlan" | "tbMaintPlanDtl" | "tbMaintResult" | "tbMaintResultDtl" | "tbInventory" | "tbInventoryTx" | "tbInventoryAdjust" | "tbShipment" | "tbShipmentDtl" | "tbIncoming" | "tbIncomingDtl" | "tbUser" | "tbRole" | "tbMenu" | "tbRoleMenu" | "tbCommonCodeGrp" | "tbCommonCode" | "tbNumbering" | "tbFile" | "tbAuditLog" | "tbNotification" | "tbNotiRule" | "tbBatchLog" | "tbNotice" | "tbDataHistory"
+    modelProps: "tbCompany" | "tbPlant" | "tbWorkshop" | "tbItem" | "tbBom" | "tbProcess" | "tbRouting" | "tbEquipment" | "tbEquipProcess" | "tbMold" | "tbWorker" | "tbWorkerSkill" | "tbCustomer" | "tbInspectStd" | "tbWarehouse" | "tbDemand" | "tbProdPlan" | "tbWorkOrder" | "tbWoProcess" | "tbWoWorker" | "tbProdResult" | "tbLot" | "tbLotHistory" | "tbMaterialInput" | "tbMaterialIssue" | "tbMaterialIssueDtl" | "tbInspectResult" | "tbInspectResultDtl" | "tbDefect" | "tbDefectDispose" | "tbEquipStatus" | "tbMaintPlan" | "tbMaintPlanDtl" | "tbMaintResult" | "tbMaintResultDtl" | "tbInventory" | "tbInventoryTx" | "tbInventoryAdjust" | "tbShipment" | "tbShipmentDtl" | "tbIncoming" | "tbIncomingDtl" | "tbUser" | "tbRole" | "tbMenu" | "tbRoleMenu" | "tbCommonCodeGrp" | "tbCommonCode" | "tbNumbering" | "tbFile" | "tbAuditLog" | "tbNotification" | "tbNotiRule" | "tbBatchLog" | "tbNotice" | "tbSysSetting" | "tbDataHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -4529,6 +4530,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TbSysSetting: {
+      payload: Prisma.$TbSysSettingPayload<ExtArgs>
+      fields: Prisma.TbSysSettingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TbSysSettingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TbSysSettingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>
+        }
+        findFirst: {
+          args: Prisma.TbSysSettingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TbSysSettingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>
+        }
+        findMany: {
+          args: Prisma.TbSysSettingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>[]
+        }
+        create: {
+          args: Prisma.TbSysSettingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>
+        }
+        createMany: {
+          args: Prisma.TbSysSettingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TbSysSettingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>[]
+        }
+        delete: {
+          args: Prisma.TbSysSettingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>
+        }
+        update: {
+          args: Prisma.TbSysSettingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>
+        }
+        deleteMany: {
+          args: Prisma.TbSysSettingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TbSysSettingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TbSysSettingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>[]
+        }
+        upsert: {
+          args: Prisma.TbSysSettingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TbSysSettingPayload>
+        }
+        aggregate: {
+          args: Prisma.TbSysSettingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTbSysSetting>
+        }
+        groupBy: {
+          args: Prisma.TbSysSettingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TbSysSettingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TbSysSettingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TbSysSettingCountAggregateOutputType> | number
+        }
+      }
+    }
     TbDataHistory: {
       payload: Prisma.$TbDataHistoryPayload<ExtArgs>
       fields: Prisma.TbDataHistoryFieldRefs
@@ -5545,6 +5620,21 @@ export const TbNoticeScalarFieldEnum = {
 export type TbNoticeScalarFieldEnum = (typeof TbNoticeScalarFieldEnum)[keyof typeof TbNoticeScalarFieldEnum]
 
 
+export const TbSysSettingScalarFieldEnum = {
+  setting_key: 'setting_key',
+  setting_value: 'setting_value',
+  setting_group: 'setting_group',
+  setting_desc: 'setting_desc',
+  use_yn: 'use_yn',
+  create_by: 'create_by',
+  create_dt: 'create_dt',
+  update_by: 'update_by',
+  update_dt: 'update_dt'
+} as const
+
+export type TbSysSettingScalarFieldEnum = (typeof TbSysSettingScalarFieldEnum)[keyof typeof TbSysSettingScalarFieldEnum]
+
+
 export const TbDataHistoryScalarFieldEnum = {
   history_id: 'history_id',
   table_nm: 'table_nm',
@@ -5840,6 +5930,7 @@ export type GlobalOmitConfig = {
   tbNotiRule?: Prisma.TbNotiRuleOmit
   tbBatchLog?: Prisma.TbBatchLogOmit
   tbNotice?: Prisma.TbNoticeOmit
+  tbSysSetting?: Prisma.TbSysSettingOmit
   tbDataHistory?: Prisma.TbDataHistoryOmit
 }
 

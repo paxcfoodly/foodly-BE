@@ -1471,7 +1471,25 @@ model TbNotice {
 }
 
 // ────────────────────────────────────────
-// S14: TB_DATA_HISTORY — 데이터 변경이력
+// S14: TB_SYS_SETTING — 시스템 기본값 (key-value)
+// ────────────────────────────────────────
+model TbSysSetting {
+  setting_key   String  @id @db.VarChar(50)
+  setting_value String? @db.VarChar(200)
+  setting_group String? @db.VarChar(30)
+  setting_desc  String? @db.VarChar(200)
+  use_yn        String  @default("Y") @db.Char(1)
+
+  create_by String?  @db.VarChar(50)
+  create_dt DateTime @default(now())
+  update_by String?  @db.VarChar(50)
+  update_dt DateTime @updatedAt
+
+  @@map("tb_sys_setting")
+}
+
+// ────────────────────────────────────────
+// S15: TB_DATA_HISTORY — 데이터 변경이력
 // ────────────────────────────────────────
 model TbDataHistory {
   history_id    Int     @id @default(autoincrement())

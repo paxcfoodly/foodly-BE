@@ -315,6 +315,11 @@ export type TbBatchLog = Prisma.TbBatchLogModel
  */
 export type TbNotice = Prisma.TbNoticeModel
 /**
+ * Model TbSysSetting
+ * 
+ */
+export type TbSysSetting = Prisma.TbSysSettingModel
+/**
  * Model TbDataHistory
  * 
  */
