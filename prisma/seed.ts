@@ -1,6 +1,16 @@
 import prisma from '../src/config/database';
 import bcrypt from 'bcryptjs';
 
+// SEED_LEVEL controls how much data is seeded:
+//   l1 (default): system data only — codes, roles, menus, permissions, numbering, admin/test users
+//   l2: l1 + demo master data (company/plant/workshop/warehouse/item/customer/process/worker)
+//   l3: l2 + sample transaction data (TODO: future — demands/work-orders/results)
+// Production deployments must use l1. dev/UAT/demo environments use l2+.
+const SEED_LEVEL = (process.env.SEED_LEVEL ?? 'l1').toLowerCase();
+if (!['l1', 'l2', 'l3'].includes(SEED_LEVEL)) {
+  throw new Error(`Invalid SEED_LEVEL "${SEED_LEVEL}". Use l1, l2, or l3.`);
+}
+
 // ═══════════════════════════════════════════════════════════
 // 1. 공통코드 그룹 + 상세코드 (proposal 5-5)
 // ═══════════════════════════════════════════════════════════
@@ -183,9 +193,9 @@ const menus: MenuSeed[] = [
   { menu_id: 202, parent_menu_id: 2, menu_nm: 'BOM관리', menu_url: '/master/bom', sort_order: 2, depth: 2 },
   { menu_id: 203, parent_menu_id: 2, menu_nm: '공정관리', menu_url: '/master/process', sort_order: 3, depth: 2 },
   { menu_id: 204, parent_menu_id: 2, menu_nm: '설비관리', menu_url: '/master/equipment', sort_order: 4, depth: 2 },
-  { menu_id: 205, parent_menu_id: 2, menu_nm: '작업장/라인 관리', menu_url: '/master/workshop', sort_order: 5, depth: 2 },
+  { menu_id: 205, parent_menu_id: 2, menu_nm: '작업장/라인 관리', menu_url: '/master/workplace', sort_order: 5, depth: 2 },
   { menu_id: 206, parent_menu_id: 2, menu_nm: '작업자관리', menu_url: '/master/worker', sort_order: 6, depth: 2 },
-  { menu_id: 207, parent_menu_id: 2, menu_nm: '거래처관리', menu_url: '/master/partner', sort_order: 7, depth: 2 },
+  { menu_id: 207, parent_menu_id: 2, menu_nm: '거래처관리', menu_url: '/master/vendor', sort_order: 7, depth: 2 },
   { menu_id: 208, parent_menu_id: 2, menu_nm: '검사기준관리', menu_url: '/master/inspection', sort_order: 8, depth: 2 },
 
   // 3. 생산계획
@@ -214,9 +224,9 @@ const menus: MenuSeed[] = [
 
   // 7. 설비보전
   { menu_id: 7, parent_menu_id: null, menu_nm: '설비보전', menu_url: null, sort_order: 7, depth: 1 },
-  { menu_id: 701, parent_menu_id: 7, menu_nm: '설비가동관리', menu_url: '/maint/operation', sort_order: 1, depth: 2 },
-  { menu_id: 702, parent_menu_id: 7, menu_nm: '예방보전', menu_url: '/maint/preventive', sort_order: 2, depth: 2 },
-  { menu_id: 703, parent_menu_id: 7, menu_nm: '금형관리', menu_url: '/maint/mold', sort_order: 3, depth: 2 },
+  { menu_id: 701, parent_menu_id: 7, menu_nm: '설비가동관리', menu_url: '/equipment/operation', sort_order: 1, depth: 2 },
+  { menu_id: 702, parent_menu_id: 7, menu_nm: '예방보전', menu_url: '/equipment/preventive', sort_order: 2, depth: 2 },
+  { menu_id: 703, parent_menu_id: 7, menu_nm: '금형관리', menu_url: '/equipment/mold', sort_order: 3, depth: 2 },
 
   // 8. 자재/재고
   { menu_id: 8, parent_menu_id: null, menu_nm: '자재/재고', menu_url: null, sort_order: 8, depth: 1 },
@@ -239,12 +249,12 @@ const menus: MenuSeed[] = [
 
   // 11. 시스템관리
   { menu_id: 11, parent_menu_id: null, menu_nm: '시스템관리', menu_url: null, sort_order: 11, depth: 1 },
-  { menu_id: 1101, parent_menu_id: 11, menu_nm: '사용자관리', menu_url: '/system/user', sort_order: 1, depth: 2 },
-  { menu_id: 1102, parent_menu_id: 11, menu_nm: '권한관리', menu_url: '/system/role', sort_order: 2, depth: 2 },
-  { menu_id: 1103, parent_menu_id: 11, menu_nm: '공통코드관리', menu_url: '/system/code', sort_order: 3, depth: 2 },
-  { menu_id: 1104, parent_menu_id: 11, menu_nm: '알림관리', menu_url: '/system/notification', sort_order: 4, depth: 2 },
-  { menu_id: 1105, parent_menu_id: 11, menu_nm: '시스템 설정', menu_url: '/system/config', sort_order: 5, depth: 2 },
-  { menu_id: 1106, parent_menu_id: 11, menu_nm: '로그관리', menu_url: '/system/log', sort_order: 6, depth: 2 },
+  { menu_id: 1101, parent_menu_id: 11, menu_nm: '사용자관리', menu_url: '/system/users', sort_order: 1, depth: 2 },
+  { menu_id: 1102, parent_menu_id: 11, menu_nm: '권한관리', menu_url: '/system/roles', sort_order: 2, depth: 2 },
+  { menu_id: 1103, parent_menu_id: 11, menu_nm: '공통코드관리', menu_url: '/system/codes', sort_order: 3, depth: 2 },
+  { menu_id: 1104, parent_menu_id: 11, menu_nm: '알림관리', menu_url: '/system/notifications', sort_order: 4, depth: 2 },
+  { menu_id: 1105, parent_menu_id: 11, menu_nm: '시스템 설정', menu_url: '/system/settings', sort_order: 5, depth: 2 },
+  { menu_id: 1106, parent_menu_id: 11, menu_nm: '로그관리', menu_url: '/system/logs', sort_order: 6, depth: 2 },
   { menu_id: 1107, parent_menu_id: 11, menu_nm: '공지사항', menu_url: '/system/notice', sort_order: 7, depth: 2 },
 ];
 
@@ -305,6 +315,77 @@ const numberingRules = [
   { num_type: 'ISSUE', prefix: 'IS', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'INCOMING', prefix: 'IC', date_format: 'YYYYMMDD', seq_length: 3, last_seq: 0 },
   { num_type: 'DEMAND', prefix: 'DM', date_format: 'YYMMDD', seq_length: 4, last_seq: 0 },
+];
+
+// ═══════════════════════════════════════════════════════════
+// L2: Demo master data (company/plant/workshop/warehouse/item/
+//     customer/process/worker) — only seeded when SEED_LEVEL ≥ l2
+// ═══════════════════════════════════════════════════════════
+const demoCompany = {
+  company_cd: 'FOODLY01',
+  company_nm: '주식회사 푸들리',
+  biz_no: '123-45-67890',
+  ceo_nm: '홍길동',
+  address: '서울특별시 강남구 테헤란로 123',
+  tel: '02-1234-5678',
+};
+
+const demoPlants = [
+  { plant_cd: 'PLANT01', company_cd: 'FOODLY01', plant_nm: '본사 공장', address: '경기도 수원시 권선구 산업단지 45' },
+];
+
+const demoWorkshops = [
+  { workshop_cd: 'WS01', plant_cd: 'PLANT01', workshop_nm: '가공동', workshop_type: '동', sort_order: 1 },
+  { workshop_cd: 'WS02', plant_cd: 'PLANT01', workshop_nm: '조립동', workshop_type: '동', sort_order: 2 },
+];
+
+const demoWarehouses = [
+  { wh_cd: 'WH01', wh_nm: '원자재 창고', wh_type: 'RAW_WH', plant_cd: 'PLANT01' },
+  { wh_cd: 'WH02', wh_nm: '완제품 창고', wh_type: 'FIN_WH', plant_cd: 'PLANT01' },
+];
+
+const demoItems = [
+  { item_cd: 'RM001', item_nm: '원자재 A', item_type: 'RAW', unit_cd: 'KG', spec: '상온 보관', safety_stock: 100 },
+  { item_cd: 'RM002', item_nm: '원자재 B', item_type: 'RAW', unit_cd: 'KG', spec: '냉장 보관', safety_stock: 50 },
+  { item_cd: 'SEMI001', item_nm: '반제품 1차가공품', item_type: 'SEMI', unit_cd: 'EA', safety_stock: 30 },
+  { item_cd: 'FIN001', item_nm: '완제품 식품 A', item_type: 'FIN', unit_cd: 'BOX', safety_stock: 20 },
+];
+
+const demoCustomers = [
+  { cust_cd: 'CUST01', cust_nm: '대형마트A', cust_type: 'CUSTOMER', biz_no: '999-88-77777', contact_nm: '김구매', tel: '02-9999-8888' },
+  { cust_cd: 'SUP01', cust_nm: '원료공급사B', cust_type: 'SUPPLIER', biz_no: '111-22-33333', contact_nm: '박영업', tel: '031-111-2222' },
+];
+
+const demoProcesses = [
+  { process_cd: 'PROC01', process_nm: '원료투입', process_type: 'MACHINING', std_time: 30, workshop_cd: 'WS01' },
+  { process_cd: 'PROC02', process_nm: '1차가공', process_type: 'MACHINING', std_time: 60, workshop_cd: 'WS01' },
+  { process_cd: 'PROC03', process_nm: '조립/충전', process_type: 'ASSY', std_time: 45, workshop_cd: 'WS02' },
+  { process_cd: 'PROC04', process_nm: '포장', process_type: 'PKG', std_time: 20, workshop_cd: 'WS02' },
+];
+
+const demoWorkers = [
+  { worker_id: 'W0001', worker_nm: '김작업', workshop_cd: 'WS01', shift_cd: 'A_SHIFT' },
+  { worker_id: 'W0002', worker_nm: '이작업', workshop_cd: 'WS01', shift_cd: 'A_SHIFT' },
+  { worker_id: 'W0003', worker_nm: '박작업', workshop_cd: 'WS02', shift_cd: 'B_SHIFT' },
+  { worker_id: 'W0004', worker_nm: '최작업', workshop_cd: 'WS02', shift_cd: 'A_SHIFT' },
+  { worker_id: 'W0005', worker_nm: '정작업', workshop_cd: 'WS01', shift_cd: 'C_SHIFT' },
+];
+
+// Worker × Process skill matrix. Used by /work-order/assignment to
+// show green (skilled) / orange (no skill) / red (conflict) Tags.
+const demoWorkerSkills: { worker_id: string; process_cd: string; skill_level: number }[] = [
+  // W0001 — 1차 가공 전문
+  { worker_id: 'W0001', process_cd: 'PROC01', skill_level: 3 },
+  { worker_id: 'W0001', process_cd: 'PROC02', skill_level: 3 },
+  // W0002 — 가공 + 조립
+  { worker_id: 'W0002', process_cd: 'PROC02', skill_level: 2 },
+  { worker_id: 'W0002', process_cd: 'PROC03', skill_level: 2 },
+  // W0003 — 조립/포장
+  { worker_id: 'W0003', process_cd: 'PROC03', skill_level: 3 },
+  { worker_id: 'W0003', process_cd: 'PROC04', skill_level: 2 },
+  // W0004 — 포장만
+  { worker_id: 'W0004', process_cd: 'PROC04', skill_level: 3 },
+  // W0005 — 스킬 미보유 (UAT용 orange Tag)
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -455,6 +536,98 @@ async function main() {
     });
   }
   console.log(`✅ NOTI_TYPE 공통코드: ${notiTypes.length}개`);
+
+  // ─────────────────────────────────────────────────────────
+  // L2: Demo master data — only when SEED_LEVEL >= l2
+  // ─────────────────────────────────────────────────────────
+  if (SEED_LEVEL === 'l2' || SEED_LEVEL === 'l3') {
+    console.log(`\n📦 Seeding L2 demo master data (SEED_LEVEL=${SEED_LEVEL})...`);
+
+    await prisma.tbCompany.upsert({
+      where: { company_cd: demoCompany.company_cd },
+      update: { ...demoCompany },
+      create: { ...demoCompany, create_by: 'SYSTEM' },
+    });
+    console.log(`✅ 회사: ${demoCompany.company_nm}`);
+
+    for (const p of demoPlants) {
+      await prisma.tbPlant.upsert({
+        where: { plant_cd: p.plant_cd },
+        update: { plant_nm: p.plant_nm, address: p.address },
+        create: { ...p, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 플랜트: ${demoPlants.length}개`);
+
+    for (const w of demoWorkshops) {
+      await prisma.tbWorkshop.upsert({
+        where: { workshop_cd: w.workshop_cd },
+        update: { workshop_nm: w.workshop_nm, workshop_type: w.workshop_type, sort_order: w.sort_order },
+        create: { ...w, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 작업장: ${demoWorkshops.length}개`);
+
+    for (const wh of demoWarehouses) {
+      await prisma.tbWarehouse.upsert({
+        where: { wh_cd: wh.wh_cd },
+        update: { wh_nm: wh.wh_nm, wh_type: wh.wh_type, plant_cd: wh.plant_cd },
+        create: { ...wh, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 창고: ${demoWarehouses.length}개`);
+
+    for (const it of demoItems) {
+      await prisma.tbItem.upsert({
+        where: { item_cd: it.item_cd },
+        update: { item_nm: it.item_nm, item_type: it.item_type, unit_cd: it.unit_cd, spec: it.spec, safety_stock: it.safety_stock },
+        create: { ...it, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 품목: ${demoItems.length}개`);
+
+    for (const c of demoCustomers) {
+      await prisma.tbCustomer.upsert({
+        where: { cust_cd: c.cust_cd },
+        update: { cust_nm: c.cust_nm, cust_type: c.cust_type, biz_no: c.biz_no, contact_nm: c.contact_nm, tel: c.tel },
+        create: { ...c, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 거래처: ${demoCustomers.length}개`);
+
+    for (const pc of demoProcesses) {
+      await prisma.tbProcess.upsert({
+        where: { process_cd: pc.process_cd },
+        update: { process_nm: pc.process_nm, process_type: pc.process_type, std_time: pc.std_time, workshop_cd: pc.workshop_cd },
+        create: { ...pc, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 공정: ${demoProcesses.length}개`);
+
+    for (const wk of demoWorkers) {
+      await prisma.tbWorker.upsert({
+        where: { worker_id: wk.worker_id },
+        update: { worker_nm: wk.worker_nm, workshop_cd: wk.workshop_cd, shift_cd: wk.shift_cd },
+        create: { ...wk, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 작업자: ${demoWorkers.length}명`);
+
+    for (const sk of demoWorkerSkills) {
+      await prisma.tbWorkerSkill.upsert({
+        where: { worker_id_process_cd: { worker_id: sk.worker_id, process_cd: sk.process_cd } },
+        update: { skill_level: sk.skill_level },
+        create: { ...sk, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 작업자 스킬 매핑: ${demoWorkerSkills.length}건 (W0005는 미보유 — orange Tag UAT용)`);
+
+    if (SEED_LEVEL === 'l3') {
+      console.log('ℹ️  L3 (sample transactions) 미구현 — 추후 추가 예정');
+    }
+  } else {
+    console.log('\nℹ️  SEED_LEVEL=l1 — 시스템 데이터만 시드 (마스터 데모 데이터 생략)');
+  }
 
   console.log('\n🎉 Seed completed successfully!');
 }
