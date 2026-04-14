@@ -12,7 +12,7 @@ const notiRulesRouter = Router();
 
 // All routes require authentication
 notiRulesRouter.use(authenticate);
-notiRulesRouter.use(requirePermission({ menuUrl: '/system/notification' }));
+notiRulesRouter.use(requirePermission({ menuUrl: '/system/notifications' }));
 
 // List noti rules
 notiRulesRouter.get('/', listNotiRulesHandler);
