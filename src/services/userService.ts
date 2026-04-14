@@ -3,7 +3,7 @@ import prisma from '../config/database';
 import { AppError } from '../middlewares/errorHandler';
 
 const SALT_ROUNDS = 10;
-const DEFAULT_PASSWORD = 'foodly1234!';
+const DEFAULT_PASSWORD = process.env.DEFAULT_USER_PASSWORD || 'foodly1234!';
 
 export interface UserListParams {
   page: number;
