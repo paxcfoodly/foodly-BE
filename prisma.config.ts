@@ -10,6 +10,9 @@ export default defineConfig({
     seed: "node --import tsx prisma/seed.ts",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // Prefer DIRECT_URL for migrate/introspect so commands bypass any
+    // connection pooler (e.g. Supabase pgbouncer on port 6543). Falls
+    // back to DATABASE_URL when DIRECT_URL is not set (local dev).
+    url: process.env["DIRECT_URL"] || process.env["DATABASE_URL"],
   },
 });
