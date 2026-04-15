@@ -240,12 +240,12 @@ const menus: MenuSeed[] = [
   { menu_id: 902, parent_menu_id: 9, menu_nm: '출하처리', menu_url: '/shipment/process', sort_order: 2, depth: 2 },
 
   // 10. 리포트
-  { menu_id: 10, parent_menu_id: null, menu_nm: '리포트', menu_url: null, sort_order: 10, depth: 1 },
-  { menu_id: 1001, parent_menu_id: 10, menu_nm: '생산 리포트', menu_url: '/report/production', sort_order: 1, depth: 2 },
-  { menu_id: 1002, parent_menu_id: 10, menu_nm: '품질 리포트', menu_url: '/report/quality', sort_order: 2, depth: 2 },
-  { menu_id: 1003, parent_menu_id: 10, menu_nm: '설비 리포트', menu_url: '/report/equipment', sort_order: 3, depth: 2 },
-  { menu_id: 1004, parent_menu_id: 10, menu_nm: '재고 리포트', menu_url: '/report/inventory', sort_order: 4, depth: 2 },
-  { menu_id: 1005, parent_menu_id: 10, menu_nm: '종합 KPI', menu_url: '/report/kpi', sort_order: 5, depth: 2 },
+  { menu_id: 10, parent_menu_id: null, menu_nm: '리포트', menu_url: '/reports', sort_order: 10, depth: 1 },
+  { menu_id: 1001, parent_menu_id: 10, menu_nm: '생산 리포트', menu_url: '/reports/production', sort_order: 1, depth: 2 },
+  { menu_id: 1002, parent_menu_id: 10, menu_nm: '품질 리포트', menu_url: '/reports/quality', sort_order: 2, depth: 2 },
+  { menu_id: 1003, parent_menu_id: 10, menu_nm: '설비 리포트', menu_url: '/reports/equipment', sort_order: 3, depth: 2 },
+  { menu_id: 1004, parent_menu_id: 10, menu_nm: '재고 리포트', menu_url: '/reports/inventory', sort_order: 4, depth: 2 },
+  { menu_id: 1005, parent_menu_id: 10, menu_nm: '종합 KPI', menu_url: '/reports/kpi', sort_order: 5, depth: 2 },
 
   // 11. 시스템관리
   { menu_id: 11, parent_menu_id: null, menu_nm: '시스템관리', menu_url: null, sort_order: 11, depth: 1 },
@@ -369,6 +369,23 @@ const demoWorkers = [
   { worker_id: 'W0003', worker_nm: '박작업', workshop_cd: 'WS02', shift_cd: 'B_SHIFT' },
   { worker_id: 'W0004', worker_nm: '최작업', workshop_cd: 'WS02', shift_cd: 'A_SHIFT' },
   { worker_id: 'W0005', worker_nm: '정작업', workshop_cd: 'WS01', shift_cd: 'C_SHIFT' },
+];
+
+const demoEquipment = [
+  { equip_cd: 'EQ001', equip_nm: '1호 사출기', equip_type: 'INJECTION', maker: '삼성정밀기계', model_nm: 'SPM-200', workshop_cd: 'WS01' },
+  { equip_cd: 'EQ002', equip_nm: '2호 사출기', equip_type: 'INJECTION', maker: '삼성정밀기계', model_nm: 'SPM-200', workshop_cd: 'WS01' },
+  { equip_cd: 'EQ003', equip_nm: 'CNC 가공기', equip_type: 'CNC', maker: '두산공작기계', model_nm: 'DMC-1000', workshop_cd: 'WS01' },
+  { equip_cd: 'EQ004', equip_nm: '조립 컨베이어', equip_type: 'PRESS', maker: '한라정공', model_nm: 'CV-150', workshop_cd: 'WS02' },
+  { equip_cd: 'EQ005', equip_nm: '포장기', equip_type: 'PACKAGING', maker: '대한포장기계', model_nm: 'PKG-50', workshop_cd: 'WS02' },
+];
+
+// Inspection standards — populates the 검사항목 dropdown on the SPC
+// page (process inspection / variable data with LSL/USL/target).
+const demoInspectStds = [
+  { item_cd: 'FIN001', process_cd: 'PROC02', inspect_type: 'PROCESS', inspect_item_nm: '제품 무게', measure_type: '계량', lsl: 195, target_val: 200, usl: 205, unit: 'g', sampling_std: 'AQL 1.0' },
+  { item_cd: 'FIN001', process_cd: 'PROC02', inspect_type: 'PROCESS', inspect_item_nm: '제품 길이', measure_type: '계량', lsl: 99.5, target_val: 100, usl: 100.5, unit: 'mm', sampling_std: 'AQL 1.0' },
+  { item_cd: 'FIN001', process_cd: 'PROC04', inspect_type: 'SHIPPING', inspect_item_nm: '외관 검사', measure_type: '계수', sampling_std: 'AQL 2.5' },
+  { item_cd: 'SEMI001', process_cd: 'PROC02', inspect_type: 'PROCESS', inspect_item_nm: '두께', measure_type: '계량', lsl: 9.8, target_val: 10, usl: 10.2, unit: 'mm', sampling_std: 'AQL 1.5' },
 ];
 
 // Worker × Process skill matrix. Used by /work-order/assignment to
@@ -612,6 +629,30 @@ async function main() {
       });
     }
     console.log(`✅ 작업자: ${demoWorkers.length}명`);
+
+    for (const eq of demoEquipment) {
+      await prisma.tbEquipment.upsert({
+        where: { equip_cd: eq.equip_cd },
+        update: { equip_nm: eq.equip_nm, equip_type: eq.equip_type, maker: eq.maker, model_nm: eq.model_nm, workshop_cd: eq.workshop_cd },
+        create: { ...eq, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 설비: ${demoEquipment.length}대`);
+
+    // Inspection standards have an auto-increment PK with no unique
+    // composite, so guard against duplicates by item+name lookup.
+    let stdAdded = 0;
+    for (const std of demoInspectStds) {
+      const existing = await prisma.tbInspectStd.findFirst({
+        where: { item_cd: std.item_cd, inspect_item_nm: std.inspect_item_nm },
+        select: { inspect_std_id: true },
+      });
+      if (!existing) {
+        await prisma.tbInspectStd.create({ data: { ...std, create_by: 'SYSTEM' } });
+        stdAdded++;
+      }
+    }
+    console.log(`✅ 검사기준: ${demoInspectStds.length}건 정의 (신규 ${stdAdded}건)`);
 
     for (const sk of demoWorkerSkills) {
       await prisma.tbWorkerSkill.upsert({
