@@ -406,6 +406,219 @@ const demoWorkerSkills: { worker_id: string; process_cd: string; skill_level: nu
 ];
 
 // ═══════════════════════════════════════════════════════════
+// L3 — Sample transactions (생산계획 → 작업지시 → 실적 → 불량 → 재고)
+// Rows are tagged with create_by='L3_SEED' so the block is idempotent:
+// each run wipes and regenerates the same shape of data.
+// ═══════════════════════════════════════════════════════════
+async function seedL3(): Promise<void> {
+  const L3_MARK = 'L3_SEED';
+
+  // Date helper (today at local midnight → N days ago)
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const daysAgo = (n: number): Date => {
+    const d = new Date(today);
+    d.setDate(d.getDate() - n);
+    return d;
+  };
+
+  // Wipe prior L3 rows in FK-safe order
+  await prisma.tbInventoryTx.deleteMany({ where: { create_by: L3_MARK } });
+  await prisma.tbInventory.deleteMany({ where: { create_by: L3_MARK } });
+  await prisma.tbDefect.deleteMany({ where: { create_by: L3_MARK } });
+  await prisma.tbProdResult.deleteMany({ where: { create_by: L3_MARK } });
+  await prisma.tbWoWorker.deleteMany({ where: { create_by: L3_MARK } });
+  await prisma.tbWoProcess.deleteMany({ where: { create_by: L3_MARK } });
+  await prisma.tbLot.deleteMany({ where: { create_by: L3_MARK } });
+  await prisma.tbWorkOrder.deleteMany({ where: { create_by: L3_MARK } });
+  await prisma.tbProdPlan.deleteMany({ where: { create_by: L3_MARK } });
+
+  // --- 생산계획 8건 ---
+  const planItems = ['FIN001', 'FIN001', 'FIN001', 'FIN001', 'FIN001', 'SEMI001', 'SEMI001', 'SEMI001'];
+  const planStatuses = ['COMPLETE', 'COMPLETE', 'COMPLETE', 'COMPLETE', 'COMPLETE', 'PROGRESS', 'PROGRESS', 'PLAN'];
+  const plans = [];
+  for (let i = 0; i < planItems.length; i++) {
+    plans.push(await prisma.tbProdPlan.create({
+      data: {
+        plan_no: `L3-PP-${String(i + 1).padStart(4, '0')}`,
+        plant_cd: 'PLANT01',
+        item_cd: planItems[i],
+        plan_qty: 1000 + i * 100,
+        due_date: daysAgo(13 - i * 2),
+        priority: 5,
+        status: planStatuses[i],
+        create_by: L3_MARK,
+      },
+    }));
+  }
+
+  // --- 작업지시 8건 (각 plan에 1:1) ---
+  const wos = [];
+  for (let i = 0; i < plans.length; i++) {
+    const plan = plans[i];
+    const orderQty = Number(plan.plan_qty);
+    const status = planStatuses[i];
+    const goodQty = status === 'COMPLETE' ? orderQty * 0.95 : status === 'PROGRESS' ? orderQty * 0.5 : 0;
+    const defectQty = status === 'COMPLETE' ? orderQty * 0.05 : status === 'PROGRESS' ? orderQty * 0.02 : 0;
+    wos.push(await prisma.tbWorkOrder.create({
+      data: {
+        wo_no: `L3-WO-${String(i + 1).padStart(4, '0')}`,
+        plan_id: plan.plan_id,
+        item_cd: plan.item_cd,
+        order_qty: orderQty,
+        good_qty: goodQty,
+        defect_qty: defectQty,
+        status: status === 'PLAN' ? 'WAIT' : status,
+        create_by: L3_MARK,
+      },
+    }));
+  }
+
+  // --- 작업지시 공정 (WO당 2공정) ---
+  const processMap = ['PROC02', 'PROC04'];
+  const equipMap = ['EQ001', 'EQ003', 'EQ004', 'EQ005'];
+  for (let i = 0; i < wos.length; i++) {
+    for (let j = 0; j < processMap.length; j++) {
+      await prisma.tbWoProcess.create({
+        data: {
+          wo_id: wos[i].wo_id,
+          process_cd: processMap[j],
+          seq_no: j + 1,
+          equip_cd: equipMap[(i + j) % equipMap.length],
+          status: wos[i].status === 'COMPLETE' ? 'COMPLETE' : j === 0 ? 'COMPLETE' : 'WAIT',
+          create_by: L3_MARK,
+        },
+      });
+    }
+  }
+
+  // --- 작업자 배정 (W0005는 스킬 미보유로 제외) ---
+  const workers = ['W0001', 'W0002', 'W0003', 'W0004'];
+  let woWorkerCount = 0;
+  for (let i = 0; i < wos.length; i++) {
+    const count = 1 + (i % 2);
+    for (let j = 0; j < count; j++) {
+      await prisma.tbWoWorker.create({
+        data: {
+          wo_id: wos[i].wo_id,
+          worker_id: workers[(i + j) % workers.length],
+          create_by: L3_MARK,
+        },
+      });
+      woWorkerCount++;
+    }
+  }
+
+  // --- LOT (완료/진행 WO별 1건) ---
+  const lotEligibleWos = wos.filter((w) => Number(w.good_qty) > 0);
+  const lots = [];
+  for (let i = 0; i < lotEligibleWos.length; i++) {
+    const wo = lotEligibleWos[i];
+    lots.push(await prisma.tbLot.create({
+      data: {
+        lot_no: `L3-LOT-${String(i + 1).padStart(4, '0')}`,
+        item_cd: wo.item_cd,
+        lot_qty: Number(wo.good_qty),
+        lot_status: 'ACTIVE',
+        create_type: 'PRODUCTION',
+        wo_id: wo.wo_id,
+        wh_cd: 'WH02',
+        create_by: L3_MARK,
+      },
+    }));
+  }
+
+  // --- 생산실적 (일별 1~3건, 지난 14일, 최대 30건) ---
+  let resultCount = 0;
+  outer: for (let day = 13; day >= 0; day--) {
+    const perDay = 1 + (day % 3);
+    for (let r = 0; r < perDay; r++) {
+      const woIdx = (day + r) % lotEligibleWos.length;
+      const wo = lotEligibleWos[woIdx];
+      const start = daysAgo(day);
+      start.setHours(8 + r * 2, 0, 0, 0);
+      const end = new Date(start);
+      end.setHours(start.getHours() + 2);
+      await prisma.tbProdResult.create({
+        data: {
+          wo_id: wo.wo_id,
+          equip_cd: equipMap[woIdx % equipMap.length],
+          worker_id: workers[woIdx % workers.length],
+          good_qty: 50 + r * 10,
+          defect_qty: 2 + (r % 3),
+          work_start_dt: start,
+          work_end_dt: end,
+          create_by: L3_MARK,
+          create_dt: start,
+        },
+      });
+      resultCount++;
+      if (resultCount >= 30) break outer;
+    }
+  }
+
+  // --- 불량 (15건, 4 type × 4 cause 조합) ---
+  const defectTypes = ['APPEARANCE', 'DIMENSION', 'FUNCTION', 'PACKAGE'];
+  const defectCauses = ['MATERIAL', 'MACHINE', 'MAN', 'METHOD'];
+  for (let i = 0; i < 15; i++) {
+    const wo = lotEligibleWos[i % lotEligibleWos.length];
+    const dt = daysAgo(i % 14);
+    dt.setHours(9 + (i % 8), 0, 0, 0);
+    await prisma.tbDefect.create({
+      data: {
+        defect_no: `L3-DF-${String(i + 1).padStart(4, '0')}`,
+        wo_id: wo.wo_id,
+        item_cd: wo.item_cd,
+        defect_type_cd: defectTypes[i % defectTypes.length],
+        defect_cause_cd: defectCauses[i % defectCauses.length],
+        defect_qty: 1 + (i % 5),
+        process_cd: processMap[i % processMap.length],
+        status: 'REGISTERED',
+        create_by: L3_MARK,
+        create_dt: dt,
+      },
+    });
+  }
+
+  // --- 재고 스냅샷 ---
+  const invRows = [
+    { item_cd: 'RM001', wh_cd: 'WH01', qty: 5000 },
+    { item_cd: 'RM002', wh_cd: 'WH01', qty: 3000 },
+    { item_cd: 'SEMI001', wh_cd: 'WH01', qty: 800 },
+    { item_cd: 'SEMI001', wh_cd: 'WH02', qty: 1200 },
+    { item_cd: 'FIN001', wh_cd: 'WH02', qty: 2500 },
+  ];
+  for (const r of invRows) {
+    await prisma.tbInventory.create({
+      data: { ...r, available_qty: r.qty, create_by: L3_MARK },
+    });
+  }
+
+  // --- 재고 트랜잭션 (40건, 지난 60일, IN/OUT 혼합) ---
+  const txItems = ['RM001', 'RM002', 'SEMI001', 'FIN001'];
+  for (let i = 0; i < 40; i++) {
+    const item_cd = txItems[i % txItems.length];
+    const tx_type = i % 3 === 0 ? 'OUT' : 'IN';
+    const dt = daysAgo(Math.floor((i / 40) * 60));
+    dt.setHours(10 + (i % 8), 0, 0, 0);
+    const qty = 50 + i * 3;
+    await prisma.tbInventoryTx.create({
+      data: {
+        item_cd,
+        tx_type,
+        tx_qty: qty,
+        before_qty: 1000,
+        after_qty: tx_type === 'IN' ? 1000 + qty : 1000 - qty,
+        create_by: L3_MARK,
+        create_dt: dt,
+      },
+    });
+  }
+
+  console.log(`✅ L3 트랜잭션: 계획 ${plans.length} / 작업지시 ${wos.length} / 공정 ${wos.length * 2} / 배정 ${woWorkerCount} / LOT ${lots.length} / 실적 ${resultCount} / 불량 15 / 재고 ${invRows.length} / 재고TX 40`);
+}
+
+// ═══════════════════════════════════════════════════════════
 // Seed runner
 // ═══════════════════════════════════════════════════════════
 async function main() {
@@ -664,7 +877,8 @@ async function main() {
     console.log(`✅ 작업자 스킬 매핑: ${demoWorkerSkills.length}건 (W0005는 미보유 — orange Tag UAT용)`);
 
     if (SEED_LEVEL === 'l3') {
-      console.log('ℹ️  L3 (sample transactions) 미구현 — 추후 추가 예정');
+      console.log('\n📦 Seeding L3 sample transactions (last 14 days)...');
+      await seedL3();
     }
   } else {
     console.log('\nℹ️  SEED_LEVEL=l1 — 시스템 데이터만 시드 (마스터 데모 데이터 생략)');
