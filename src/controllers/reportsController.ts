@@ -63,7 +63,11 @@ export async function getQualityParetoHandler(
   next: NextFunction,
 ): Promise<void> {
   try {
-    const { start, end } = req.query as { start?: string; end?: string };
+    const { start, end, defect_type_cd } = req.query as {
+      start?: string;
+      end?: string;
+      defect_type_cd?: string;
+    };
     if (!start || !end) {
       res.status(400).json(errorResponse('start, end 쿼리 파라미터가 필요합니다.'));
       return;
@@ -72,7 +76,7 @@ export async function getQualityParetoHandler(
       res.status(400).json(errorResponse('start, end는 YYYY-MM-DD 형식이어야 합니다.'));
       return;
     }
-    const result = await reportsService.getQualityPareto(start, end);
+    const result = await reportsService.getQualityPareto(start, end, defect_type_cd);
     res.json(successResponse(result));
   } catch (err) {
     next(err);
@@ -87,7 +91,11 @@ export async function getQualityByProcessHandler(
   next: NextFunction,
 ): Promise<void> {
   try {
-    const { start, end } = req.query as { start?: string; end?: string };
+    const { start, end, defect_type_cd } = req.query as {
+      start?: string;
+      end?: string;
+      defect_type_cd?: string;
+    };
     if (!start || !end) {
       res.status(400).json(errorResponse('start, end 쿼리 파라미터가 필요합니다.'));
       return;
@@ -96,7 +104,7 @@ export async function getQualityByProcessHandler(
       res.status(400).json(errorResponse('start, end는 YYYY-MM-DD 형식이어야 합니다.'));
       return;
     }
-    const result = await reportsService.getQualityByProcess(start, end);
+    const result = await reportsService.getQualityByProcess(start, end, defect_type_cd);
     res.json(successResponse(result));
   } catch (err) {
     next(err);
@@ -111,7 +119,11 @@ export async function getQualityTrendHandler(
   next: NextFunction,
 ): Promise<void> {
   try {
-    const { start, end } = req.query as { start?: string; end?: string };
+    const { start, end, defect_type_cd } = req.query as {
+      start?: string;
+      end?: string;
+      defect_type_cd?: string;
+    };
     if (!start || !end) {
       res.status(400).json(errorResponse('start, end 쿼리 파라미터가 필요합니다.'));
       return;
@@ -120,7 +132,7 @@ export async function getQualityTrendHandler(
       res.status(400).json(errorResponse('start, end는 YYYY-MM-DD 형식이어야 합니다.'));
       return;
     }
-    const result = await reportsService.getQualityTrend(start, end);
+    const result = await reportsService.getQualityTrend(start, end, defect_type_cd);
     res.json(successResponse(result));
   } catch (err) {
     next(err);

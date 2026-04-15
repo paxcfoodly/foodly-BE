@@ -495,6 +495,7 @@ export interface InventorySummaryRow {
 export async function getQualityPareto(
   start: string,
   end: string,
+  defectTypeCd?: string,
 ): Promise<QualityParetoRow[]> {
   type RawRow = {
     defect_type_cd: string | null;
@@ -502,17 +503,30 @@ export async function getQualityPareto(
     total_qty: number;
   };
 
-  const rows = await prisma.$queryRaw<RawRow[]>`
-    SELECT d.defect_type_cd,
-           cc.code_nm AS defect_type_nm,
-           SUM(d.defect_qty)::FLOAT AS total_qty
-    FROM tb_defect d
-    LEFT JOIN tb_common_code cc ON cc.group_cd = 'DEFECT_TYPE' AND cc.code = d.defect_type_cd
-    WHERE d.create_dt >= ${start}::date
-      AND d.create_dt < ${end}::date + INTERVAL '1 day'
-    GROUP BY d.defect_type_cd, cc.code_nm
-    ORDER BY total_qty DESC
-  `;
+  const rows = defectTypeCd
+    ? await prisma.$queryRaw<RawRow[]>`
+        SELECT d.defect_type_cd,
+               cc.code_nm AS defect_type_nm,
+               SUM(d.defect_qty)::FLOAT AS total_qty
+        FROM tb_defect d
+        LEFT JOIN tb_common_code cc ON cc.group_cd = 'DEFECT_TYPE' AND cc.code = d.defect_type_cd
+        WHERE d.create_dt >= ${start}::date
+          AND d.create_dt < ${end}::date + INTERVAL '1 day'
+          AND d.defect_type_cd = ${defectTypeCd}
+        GROUP BY d.defect_type_cd, cc.code_nm
+        ORDER BY total_qty DESC
+      `
+    : await prisma.$queryRaw<RawRow[]>`
+        SELECT d.defect_type_cd,
+               cc.code_nm AS defect_type_nm,
+               SUM(d.defect_qty)::FLOAT AS total_qty
+        FROM tb_defect d
+        LEFT JOIN tb_common_code cc ON cc.group_cd = 'DEFECT_TYPE' AND cc.code = d.defect_type_cd
+        WHERE d.create_dt >= ${start}::date
+          AND d.create_dt < ${end}::date + INTERVAL '1 day'
+        GROUP BY d.defect_type_cd, cc.code_nm
+        ORDER BY total_qty DESC
+      `;
 
   const grandTotal = rows.reduce((sum, r) => sum + Number(r.total_qty), 0);
   let cumulative = 0;
@@ -535,6 +549,7 @@ export async function getQualityPareto(
 export async function getQualityByProcess(
   start: string,
   end: string,
+  defectTypeCd?: string,
 ): Promise<QualityByProcessRow[]> {
   type RawRow = {
     process_cd: string | null;
@@ -543,26 +558,48 @@ export async function getQualityByProcess(
     total_qty: number;
   };
 
-  const rows = await prisma.$queryRaw<RawRow[]>`
-    WITH prod_totals AS (
-      SELECT wo_id,
-             SUM(good_qty)::FLOAT AS good_qty,
-             SUM(defect_qty)::FLOAT AS defect_qty
-      FROM tb_prod_result
-      GROUP BY wo_id
-    )
-    SELECT d.process_cd,
-           p.process_nm,
-           SUM(d.defect_qty)::FLOAT AS defect_qty,
-           COALESCE(SUM(pt.good_qty + pt.defect_qty), 0)::FLOAT AS total_qty
-    FROM tb_defect d
-    LEFT JOIN tb_process p ON p.process_cd = d.process_cd
-    LEFT JOIN prod_totals pt ON pt.wo_id = d.wo_id
-    WHERE d.create_dt >= ${start}::date
-      AND d.create_dt < ${end}::date + INTERVAL '1 day'
-    GROUP BY d.process_cd, p.process_nm
-    ORDER BY defect_qty DESC
-  `;
+  const rows = defectTypeCd
+    ? await prisma.$queryRaw<RawRow[]>`
+        WITH prod_totals AS (
+          SELECT wo_id,
+                 SUM(good_qty)::FLOAT AS good_qty,
+                 SUM(defect_qty)::FLOAT AS defect_qty
+          FROM tb_prod_result
+          GROUP BY wo_id
+        )
+        SELECT d.process_cd,
+               p.process_nm,
+               SUM(d.defect_qty)::FLOAT AS defect_qty,
+               COALESCE(SUM(pt.good_qty + pt.defect_qty), 0)::FLOAT AS total_qty
+        FROM tb_defect d
+        LEFT JOIN tb_process p ON p.process_cd = d.process_cd
+        LEFT JOIN prod_totals pt ON pt.wo_id = d.wo_id
+        WHERE d.create_dt >= ${start}::date
+          AND d.create_dt < ${end}::date + INTERVAL '1 day'
+          AND d.defect_type_cd = ${defectTypeCd}
+        GROUP BY d.process_cd, p.process_nm
+        ORDER BY defect_qty DESC
+      `
+    : await prisma.$queryRaw<RawRow[]>`
+        WITH prod_totals AS (
+          SELECT wo_id,
+                 SUM(good_qty)::FLOAT AS good_qty,
+                 SUM(defect_qty)::FLOAT AS defect_qty
+          FROM tb_prod_result
+          GROUP BY wo_id
+        )
+        SELECT d.process_cd,
+               p.process_nm,
+               SUM(d.defect_qty)::FLOAT AS defect_qty,
+               COALESCE(SUM(pt.good_qty + pt.defect_qty), 0)::FLOAT AS total_qty
+        FROM tb_defect d
+        LEFT JOIN tb_process p ON p.process_cd = d.process_cd
+        LEFT JOIN prod_totals pt ON pt.wo_id = d.wo_id
+        WHERE d.create_dt >= ${start}::date
+          AND d.create_dt < ${end}::date + INTERVAL '1 day'
+        GROUP BY d.process_cd, p.process_nm
+        ORDER BY defect_qty DESC
+      `;
 
   return rows.map((row) => {
     const defect_qty = Number(row.defect_qty);
@@ -584,6 +621,7 @@ export async function getQualityByProcess(
 export async function getQualityTrend(
   start: string,
   end: string,
+  defectTypeCd?: string,
 ): Promise<QualityTrendRow[]> {
   type RawRow = {
     date: Date | string;
@@ -591,15 +629,41 @@ export async function getQualityTrend(
     total_qty: number;
   };
 
-  const rows = await prisma.$queryRaw<RawRow[]>`
-    WITH defect_daily AS (
-      SELECT DATE(create_dt) AS date,
-             SUM(defect_qty)::FLOAT AS defect_qty
-      FROM tb_defect
-      WHERE create_dt >= ${start}::date
-        AND create_dt < ${end}::date + INTERVAL '1 day'
-      GROUP BY DATE(create_dt)
-    ),
+  const rows = defectTypeCd
+    ? await prisma.$queryRaw<RawRow[]>`
+        WITH defect_daily AS (
+          SELECT DATE(create_dt) AS date,
+                 SUM(defect_qty)::FLOAT AS defect_qty
+          FROM tb_defect
+          WHERE create_dt >= ${start}::date
+            AND create_dt < ${end}::date + INTERVAL '1 day'
+            AND defect_type_cd = ${defectTypeCd}
+          GROUP BY DATE(create_dt)
+        ),
+        prod_daily AS (
+          SELECT DATE(work_start_dt) AS date,
+                 SUM(good_qty + defect_qty)::FLOAT AS total_qty
+          FROM tb_prod_result
+          WHERE work_start_dt >= ${start}::date
+            AND work_start_dt < ${end}::date + INTERVAL '1 day'
+          GROUP BY DATE(work_start_dt)
+        )
+        SELECT d.date,
+               d.defect_qty,
+               COALESCE(p.total_qty, 1)::FLOAT AS total_qty
+        FROM defect_daily d
+        LEFT JOIN prod_daily p ON p.date = d.date
+        ORDER BY d.date ASC
+      `
+    : await prisma.$queryRaw<RawRow[]>`
+        WITH defect_daily AS (
+          SELECT DATE(create_dt) AS date,
+                 SUM(defect_qty)::FLOAT AS defect_qty
+          FROM tb_defect
+          WHERE create_dt >= ${start}::date
+            AND create_dt < ${end}::date + INTERVAL '1 day'
+          GROUP BY DATE(create_dt)
+        ),
     prod_daily AS (
       SELECT DATE(work_start_dt) AS date,
              SUM(good_qty + defect_qty)::FLOAT AS total_qty
