@@ -14,5 +14,11 @@ export default defineConfig({
     // connection pooler (e.g. Supabase pgbouncer on port 6543). Falls
     // back to DATABASE_URL when DIRECT_URL is not set (local dev).
     url: process.env["DIRECT_URL"] || process.env["DATABASE_URL"],
+    // Optional: local Postgres DB used as a transient shadow database
+    // for `prisma migrate dev/diff`. Supabase Free tier doesn't permit
+    // creating a shadow DB on the same instance, so devs running
+    // migrate commands point this at a local empty DB. Safe to leave
+    // unset in production / runtime — only migrate commands need it.
+    shadowDatabaseUrl: process.env["SHADOW_DATABASE_URL"],
   },
 });
