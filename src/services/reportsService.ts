@@ -507,7 +507,7 @@ export async function getQualityPareto(
            cc.code_nm AS defect_type_nm,
            SUM(d.defect_qty)::FLOAT AS total_qty
     FROM tb_defect d
-    LEFT JOIN tb_common_code cc ON cc.code_type = 'DEFECT_TYPE' AND cc.code = d.defect_type_cd
+    LEFT JOIN tb_common_code cc ON cc.group_cd = 'DEFECT_TYPE' AND cc.code = d.defect_type_cd
     WHERE d.create_dt >= ${start}::date
       AND d.create_dt < ${end}::date + INTERVAL '1 day'
     GROUP BY d.defect_type_cd, cc.code_nm
@@ -592,16 +592,28 @@ export async function getQualityTrend(
   };
 
   const rows = await prisma.$queryRaw<RawRow[]>`
-    SELECT DATE(d.create_dt) AS date,
-           SUM(d.defect_qty)::FLOAT AS defect_qty,
-           (SELECT COALESCE(SUM(pr2.good_qty + pr2.defect_qty), 1)::FLOAT
-            FROM tb_prod_result pr2
-            WHERE DATE(pr2.work_start_dt) = DATE(d.create_dt)) AS total_qty
-    FROM tb_defect d
-    WHERE d.create_dt >= ${start}::date
-      AND d.create_dt < ${end}::date + INTERVAL '1 day'
-    GROUP BY DATE(d.create_dt)
-    ORDER BY date ASC
+    WITH defect_daily AS (
+      SELECT DATE(create_dt) AS date,
+             SUM(defect_qty)::FLOAT AS defect_qty
+      FROM tb_defect
+      WHERE create_dt >= ${start}::date
+        AND create_dt < ${end}::date + INTERVAL '1 day'
+      GROUP BY DATE(create_dt)
+    ),
+    prod_daily AS (
+      SELECT DATE(work_start_dt) AS date,
+             SUM(good_qty + defect_qty)::FLOAT AS total_qty
+      FROM tb_prod_result
+      WHERE work_start_dt >= ${start}::date
+        AND work_start_dt < ${end}::date + INTERVAL '1 day'
+      GROUP BY DATE(work_start_dt)
+    )
+    SELECT d.date,
+           d.defect_qty,
+           COALESCE(p.total_qty, 1)::FLOAT AS total_qty
+    FROM defect_daily d
+    LEFT JOIN prod_daily p ON p.date = d.date
+    ORDER BY d.date ASC
   `;
 
   return rows.map((row) => {
@@ -649,8 +661,8 @@ export async function getQualityDetail(
              DATE(d.create_dt) AS defect_date,
              d.defect_qty::FLOAT
       FROM tb_defect d
-      LEFT JOIN tb_common_code cc1 ON cc1.code_type = 'DEFECT_TYPE' AND cc1.code = d.defect_type_cd
-      LEFT JOIN tb_common_code cc2 ON cc2.code_type = 'DEFECT_CAUSE' AND cc2.code = d.defect_cause_cd
+      LEFT JOIN tb_common_code cc1 ON cc1.group_cd = 'DEFECT_TYPE' AND cc1.code = d.defect_type_cd
+      LEFT JOIN tb_common_code cc2 ON cc2.group_cd = 'DEFECT_CAUSE' AND cc2.code = d.defect_cause_cd
       LEFT JOIN tb_process p ON p.process_cd = d.process_cd
       WHERE d.create_dt >= ${start}::date
         AND d.create_dt < ${end}::date + INTERVAL '1 day'
@@ -668,8 +680,8 @@ export async function getQualityDetail(
              DATE(d.create_dt) AS defect_date,
              d.defect_qty::FLOAT
       FROM tb_defect d
-      LEFT JOIN tb_common_code cc1 ON cc1.code_type = 'DEFECT_TYPE' AND cc1.code = d.defect_type_cd
-      LEFT JOIN tb_common_code cc2 ON cc2.code_type = 'DEFECT_CAUSE' AND cc2.code = d.defect_cause_cd
+      LEFT JOIN tb_common_code cc1 ON cc1.group_cd = 'DEFECT_TYPE' AND cc1.code = d.defect_type_cd
+      LEFT JOIN tb_common_code cc2 ON cc2.group_cd = 'DEFECT_CAUSE' AND cc2.code = d.defect_cause_cd
       LEFT JOIN tb_process p ON p.process_cd = d.process_cd
       WHERE d.create_dt >= ${start}::date
         AND d.create_dt < ${end}::date + INTERVAL '1 day'
@@ -722,7 +734,7 @@ export async function getInventorySummary(
              inv.wh_cd,
              wh.wh_nm,
              inv.qty::FLOAT AS qty,
-             it.unit,
+             it.unit_cd AS unit,
              COALESCE(out_sum.out_qty, 0)::FLOAT AS out_qty,
              COALESCE(
                CURRENT_DATE - MAX(tx_all.create_dt)::date,
@@ -742,7 +754,7 @@ export async function getInventorySummary(
       WHERE inv.qty > 0
         AND inv.wh_cd = ${whCd}
         AND inv.item_cd = ${itemCd}
-      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit, out_sum.out_qty
+      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
       ORDER BY days_since_last_tx DESC
     `;
   } else if (whCd) {
@@ -752,7 +764,7 @@ export async function getInventorySummary(
              inv.wh_cd,
              wh.wh_nm,
              inv.qty::FLOAT AS qty,
-             it.unit,
+             it.unit_cd AS unit,
              COALESCE(out_sum.out_qty, 0)::FLOAT AS out_qty,
              COALESCE(
                CURRENT_DATE - MAX(tx_all.create_dt)::date,
@@ -771,7 +783,7 @@ export async function getInventorySummary(
       LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
       WHERE inv.qty > 0
         AND inv.wh_cd = ${whCd}
-      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit, out_sum.out_qty
+      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
       ORDER BY days_since_last_tx DESC
     `;
   } else if (itemCd) {
@@ -781,7 +793,7 @@ export async function getInventorySummary(
              inv.wh_cd,
              wh.wh_nm,
              inv.qty::FLOAT AS qty,
-             it.unit,
+             it.unit_cd AS unit,
              COALESCE(out_sum.out_qty, 0)::FLOAT AS out_qty,
              COALESCE(
                CURRENT_DATE - MAX(tx_all.create_dt)::date,
@@ -800,7 +812,7 @@ export async function getInventorySummary(
       LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
       WHERE inv.qty > 0
         AND inv.item_cd = ${itemCd}
-      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit, out_sum.out_qty
+      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
       ORDER BY days_since_last_tx DESC
     `;
   } else {
@@ -810,7 +822,7 @@ export async function getInventorySummary(
              inv.wh_cd,
              wh.wh_nm,
              inv.qty::FLOAT AS qty,
-             it.unit,
+             it.unit_cd AS unit,
              COALESCE(out_sum.out_qty, 0)::FLOAT AS out_qty,
              COALESCE(
                CURRENT_DATE - MAX(tx_all.create_dt)::date,
@@ -828,7 +840,7 @@ export async function getInventorySummary(
       ) out_sum ON out_sum.item_cd = inv.item_cd
       LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
       WHERE inv.qty > 0
-      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit, out_sum.out_qty
+      GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
       ORDER BY days_since_last_tx DESC
     `;
   }
