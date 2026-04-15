@@ -146,6 +146,13 @@ export async function listMaintResults(req: Request) {
   const where = parseFilters(req, ALLOWED_FILTER_FIELDS) as Record<string, any>;
   const orderBy = parseSort(req, ALLOWED_SORT_FIELDS);
 
+  // maint_plan_id (int) — accepted as plain query param since parseFilters defaults to string contains
+  const { maint_plan_id } = req.query as Record<string, string>;
+  if (maint_plan_id) {
+    const pid = Number(maint_plan_id);
+    if (Number.isFinite(pid)) where.maint_plan_id = pid;
+  }
+
   // Date range filter
   const { work_dt_from, work_dt_to } = req.query as Record<string, string>;
   if (work_dt_from || work_dt_to) {
