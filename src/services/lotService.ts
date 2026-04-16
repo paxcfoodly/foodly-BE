@@ -25,7 +25,7 @@ const lotSelect = {
   create_dt: true,
   update_by: true,
   update_dt: true,
-  item: { select: { item_nm: true, item_type: true, unit: true } },
+  item: { select: { item_nm: true, item_type: true, unit_cd: true } },
   work_order: { select: { wo_no: true } },
   warehouse: { select: { wh_nm: true } },
   parent_lot: { select: { lot_no: true, item_cd: true } },
