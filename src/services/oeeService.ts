@@ -171,41 +171,46 @@ export async function getOeeTrend(
 
   const start = new Date(startDate);
   const end = new Date(endDate);
-  const results: Array<{ date: string; availability: number; oee: number }> = [];
 
-  const current = new Date(start);
-  while (current <= end) {
-    const dayStr = current.toISOString().substring(0, 10);
-    const dayEnd = new Date(current);
+  // 날짜 범위 펼치기
+  const days: Array<{ dayStr: string; dayStart: Date; dayEnd: Date }> = [];
+  const cursor = new Date(start);
+  while (cursor <= end) {
+    const dayStr = cursor.toISOString().substring(0, 10);
+    const dayStart = new Date(cursor);
+    const dayEnd = new Date(cursor);
     dayEnd.setHours(23, 59, 59, 999);
-
-    if (equipCd) {
-      const oeeData = await calculateOee(equipCd, current.toISOString(), dayEnd.toISOString());
-      results.push({ date: dayStr, availability: oeeData.availability, oee: oeeData.oee });
-    } else {
-      // Average across all active equipment
-      const equipments = await prisma.tbEquipment.findMany({
-        where: { use_yn: 'Y' },
-        select: { equip_cd: true },
-      });
-      if (equipments.length > 0) {
-        const dayResults = await Promise.all(
-          equipments.map((e) => calculateOee(e.equip_cd, current.toISOString(), dayEnd.toISOString())),
-        );
-        const avgAvail = dayResults.reduce((s, r) => s + r.availability, 0) / dayResults.length;
-        const avgOee = dayResults.reduce((s, r) => s + r.oee, 0) / dayResults.length;
-        results.push({
-          date: dayStr,
-          availability: Math.round(avgAvail * 100) / 100,
-          oee: Math.round(avgOee * 100) / 100,
-        });
-      } else {
-        results.push({ date: dayStr, availability: 0, oee: 0 });
-      }
-    }
-
-    current.setDate(current.getDate() + 1);
+    days.push({ dayStr, dayStart, dayEnd });
+    cursor.setDate(cursor.getDate() + 1);
   }
+
+  // equipCd 미지정이면 active 설비 목록을 한 번만 조회 (기존엔 매일 반복 조회)
+  const equipments = equipCd
+    ? null
+    : await prisma.tbEquipment.findMany({ where: { use_yn: 'Y' }, select: { equip_cd: true } });
+
+  // 날짜별 OEE 계산을 병렬 실행 (기존엔 날짜 단위 sequential await 로 N일치 누적)
+  const results = await Promise.all(
+    days.map(async ({ dayStr, dayStart, dayEnd }) => {
+      if (equipCd) {
+        const oeeData = await calculateOee(equipCd, dayStart.toISOString(), dayEnd.toISOString());
+        return { date: dayStr, availability: oeeData.availability, oee: oeeData.oee };
+      }
+      if (!equipments || equipments.length === 0) {
+        return { date: dayStr, availability: 0, oee: 0 };
+      }
+      const dayResults = await Promise.all(
+        equipments.map((e) => calculateOee(e.equip_cd, dayStart.toISOString(), dayEnd.toISOString())),
+      );
+      const avgAvail = dayResults.reduce((s, r) => s + r.availability, 0) / dayResults.length;
+      const avgOee = dayResults.reduce((s, r) => s + r.oee, 0) / dayResults.length;
+      return {
+        date: dayStr,
+        availability: Math.round(avgAvail * 100) / 100,
+        oee: Math.round(avgOee * 100) / 100,
+      };
+    }),
+  );
 
   return results;
 }
