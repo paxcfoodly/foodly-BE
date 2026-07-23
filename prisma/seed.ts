@@ -164,6 +164,7 @@ const roles = [
   { role_cd: 'MAINT_WORKER', role_nm: '설비보전작업자', role_desc: '설비보전 실무자' },
   { role_cd: 'MAT_MGR', role_nm: '자재관리자', role_desc: '자재/창고 관리자' },
   { role_cd: 'VIEWER', role_nm: '조회전용', role_desc: '조회 전용 (임원, 타부서)' },
+  { role_cd: 'MES_USER', role_nm: '통합실무자', role_desc: 'MES 전체 실무 사용 — 시스템관리 제외 전 메뉴 CRUD' },
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -277,25 +278,25 @@ function perm(spec: string): Perm {
 // proposal 3-3 permission matrix by top-level menu_id
 const permMatrix: Record<number, Record<string, string>> = {
   // 대시보드/리포트 — all R
-  1:  { SYS_ADMIN: 'R', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R' },
+  1:  { SYS_ADMIN: 'R', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R', MES_USER: 'R' },
   // 기준정보
-  2:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'RU', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R' },
+  2:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'RU', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R', MES_USER: 'CRUD' },
   // 생산계획
-  3:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'CRUD', PROD_MGR: 'CRUD', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R' },
+  3:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'CRUD', PROD_MGR: 'CRUD', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R', MES_USER: 'CRUD' },
   // 작업지시
-  4:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'CRUD', PROD_MGR: 'CRUD', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R' },
+  4:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'CRUD', PROD_MGR: 'CRUD', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R', MES_USER: 'CRUD' },
   // 생산실적
-  5:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'CRU', PROD_WORKER: 'CRU', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R' },
+  5:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'CRU', PROD_WORKER: 'CRU', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R', MES_USER: 'CRUD' },
   // 품질관리 (includes 불량관리 under same top menu)
-  6:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: '', QC_MGR: 'CRUD', QC_INSPECTOR: 'CRUD', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R' },
+  6:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: '', QC_MGR: 'CRUD', QC_INSPECTOR: 'CRUD', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R', MES_USER: 'CRUD' },
   // 설비보전
-  7:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'CRUD', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R' },
+  7:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'CRUD', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R', MES_USER: 'CRUD' },
   // 자재/재고
-  8:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: 'CR', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'CRUD', VIEWER: 'R' },
+  8:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: 'CR', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'CRUD', VIEWER: 'R', MES_USER: 'CRUD' },
   // 출하관리 (mapped as 재고/출하 in proposal)
-  9:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: '', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'CRUD', VIEWER: 'R' },
+  9:  { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: '', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'CRUD', VIEWER: 'R', MES_USER: 'CRUD' },
   // 리포트
-  10: { SYS_ADMIN: 'R', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R' },
+  10: { SYS_ADMIN: 'R', PLANT_MGR: 'R', PROD_MGR: 'R', PROD_WORKER: 'R', QC_MGR: 'R', QC_INSPECTOR: 'R', MAINT_MGR: 'R', MAINT_WORKER: 'R', MAT_MGR: 'R', VIEWER: 'R', MES_USER: 'R' },
   // 시스템관리
   11: { SYS_ADMIN: 'CRUD', PLANT_MGR: 'R', PROD_MGR: '', PROD_WORKER: '', QC_MGR: '', QC_INSPECTOR: '', MAINT_MGR: '', MAINT_WORKER: '', MAT_MGR: '', VIEWER: '' },
 };

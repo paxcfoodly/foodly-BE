@@ -43,10 +43,10 @@ shipmentsRouter.patch('/:shipId/confirm', requirePermission({ menuUrl: '/shipmen
 shipmentsRouter.patch('/:shipId/cancel-request', requirePermission({ menuUrl: '/shipment/order' }), cancelRequestHandler);
 
 // Cancel approve (CANCEL_REQ -> CANCELLED) — admin only per D-05
-shipmentsRouter.patch('/:shipId/cancel-approve', requireRole('SYS_ADMIN', 'PROD_MGR'), approveCancelHandler);
+shipmentsRouter.patch('/:shipId/cancel-approve', requireRole('SYS_ADMIN', 'PROD_MGR', 'MES_USER'), approveCancelHandler);
 
 // Cancel reject (CANCEL_REQ -> SHIPPED) — admin only per D-05
-shipmentsRouter.patch('/:shipId/cancel-reject', requireRole('SYS_ADMIN', 'PROD_MGR'), rejectCancelHandler);
+shipmentsRouter.patch('/:shipId/cancel-reject', requireRole('SYS_ADMIN', 'PROD_MGR', 'MES_USER'), rejectCancelHandler);
 
 // PDF download (stub — implemented in Plan 03)
 shipmentsRouter.get('/:shipId/pdf', requirePermission({ menuUrl: '/shipment/order' }), downloadPdfHandler);
