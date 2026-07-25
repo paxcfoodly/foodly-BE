@@ -35,6 +35,7 @@ export type TbProcessSumAggregateOutputType = {
 }
 
 export type TbProcessMinAggregateOutputType = {
+  company_cd: string | null
   process_cd: string | null
   process_nm: string | null
   process_type: string | null
@@ -48,6 +49,7 @@ export type TbProcessMinAggregateOutputType = {
 }
 
 export type TbProcessMaxAggregateOutputType = {
+  company_cd: string | null
   process_cd: string | null
   process_nm: string | null
   process_type: string | null
@@ -61,6 +63,7 @@ export type TbProcessMaxAggregateOutputType = {
 }
 
 export type TbProcessCountAggregateOutputType = {
+  company_cd: number
   process_cd: number
   process_nm: number
   process_type: number
@@ -84,6 +87,7 @@ export type TbProcessSumAggregateInputType = {
 }
 
 export type TbProcessMinAggregateInputType = {
+  company_cd?: true
   process_cd?: true
   process_nm?: true
   process_type?: true
@@ -97,6 +101,7 @@ export type TbProcessMinAggregateInputType = {
 }
 
 export type TbProcessMaxAggregateInputType = {
+  company_cd?: true
   process_cd?: true
   process_nm?: true
   process_type?: true
@@ -110,6 +115,7 @@ export type TbProcessMaxAggregateInputType = {
 }
 
 export type TbProcessCountAggregateInputType = {
+  company_cd?: true
   process_cd?: true
   process_nm?: true
   process_type?: true
@@ -210,6 +216,7 @@ export type TbProcessGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 export type TbProcessGroupByOutputType = {
+  company_cd: string
   process_cd: string
   process_nm: string
   process_type: string | null
@@ -246,6 +253,7 @@ export type TbProcessWhereInput = {
   AND?: Prisma.TbProcessWhereInput | Prisma.TbProcessWhereInput[]
   OR?: Prisma.TbProcessWhereInput[]
   NOT?: Prisma.TbProcessWhereInput | Prisma.TbProcessWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProcess"> | string
   process_cd?: Prisma.StringFilter<"TbProcess"> | string
   process_nm?: Prisma.StringFilter<"TbProcess"> | string
   process_type?: Prisma.StringNullableFilter<"TbProcess"> | string | null
@@ -268,6 +276,7 @@ export type TbProcessWhereInput = {
 }
 
 export type TbProcessOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   process_nm?: Prisma.SortOrder
   process_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -294,6 +303,7 @@ export type TbProcessWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbProcessWhereInput | Prisma.TbProcessWhereInput[]
   OR?: Prisma.TbProcessWhereInput[]
   NOT?: Prisma.TbProcessWhereInput | Prisma.TbProcessWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProcess"> | string
   process_nm?: Prisma.StringFilter<"TbProcess"> | string
   process_type?: Prisma.StringNullableFilter<"TbProcess"> | string | null
   std_time?: Prisma.DecimalNullableFilter<"TbProcess"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -315,6 +325,7 @@ export type TbProcessWhereUniqueInput = Prisma.AtLeast<{
 }, "process_cd">
 
 export type TbProcessOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   process_nm?: Prisma.SortOrder
   process_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -336,6 +347,7 @@ export type TbProcessScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbProcessScalarWhereWithAggregatesInput | Prisma.TbProcessScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbProcessScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbProcessScalarWhereWithAggregatesInput | Prisma.TbProcessScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbProcess"> | string
   process_cd?: Prisma.StringWithAggregatesFilter<"TbProcess"> | string
   process_nm?: Prisma.StringWithAggregatesFilter<"TbProcess"> | string
   process_type?: Prisma.StringNullableWithAggregatesFilter<"TbProcess"> | string | null
@@ -349,6 +361,7 @@ export type TbProcessScalarWhereWithAggregatesInput = {
 }
 
 export type TbProcessCreateInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -370,6 +383,7 @@ export type TbProcessCreateInput = {
 }
 
 export type TbProcessUncheckedCreateInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -391,6 +405,7 @@ export type TbProcessUncheckedCreateInput = {
 }
 
 export type TbProcessUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -412,6 +427,7 @@ export type TbProcessUpdateInput = {
 }
 
 export type TbProcessUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -433,6 +449,7 @@ export type TbProcessUncheckedUpdateInput = {
 }
 
 export type TbProcessCreateManyInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -446,6 +463,7 @@ export type TbProcessCreateManyInput = {
 }
 
 export type TbProcessUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -458,6 +476,7 @@ export type TbProcessUpdateManyMutationInput = {
 }
 
 export type TbProcessUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -486,6 +505,7 @@ export type TbProcessNullableScalarRelationFilter = {
 }
 
 export type TbProcessCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   process_nm?: Prisma.SortOrder
   process_type?: Prisma.SortOrder
@@ -503,6 +523,7 @@ export type TbProcessAvgOrderByAggregateInput = {
 }
 
 export type TbProcessMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   process_nm?: Prisma.SortOrder
   process_type?: Prisma.SortOrder
@@ -516,6 +537,7 @@ export type TbProcessMaxOrderByAggregateInput = {
 }
 
 export type TbProcessMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   process_nm?: Prisma.SortOrder
   process_type?: Prisma.SortOrder
@@ -700,6 +722,7 @@ export type TbProcessUpdateOneWithoutDefectsNestedInput = {
 }
 
 export type TbProcessCreateWithoutWorkshopInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -720,6 +743,7 @@ export type TbProcessCreateWithoutWorkshopInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutWorkshopInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -769,6 +793,7 @@ export type TbProcessScalarWhereInput = {
   AND?: Prisma.TbProcessScalarWhereInput | Prisma.TbProcessScalarWhereInput[]
   OR?: Prisma.TbProcessScalarWhereInput[]
   NOT?: Prisma.TbProcessScalarWhereInput | Prisma.TbProcessScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProcess"> | string
   process_cd?: Prisma.StringFilter<"TbProcess"> | string
   process_nm?: Prisma.StringFilter<"TbProcess"> | string
   process_type?: Prisma.StringNullableFilter<"TbProcess"> | string | null
@@ -782,6 +807,7 @@ export type TbProcessScalarWhereInput = {
 }
 
 export type TbProcessCreateWithoutBomsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -802,6 +828,7 @@ export type TbProcessCreateWithoutBomsInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutBomsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -838,6 +865,7 @@ export type TbProcessUpdateToOneWithWhereWithoutBomsInput = {
 }
 
 export type TbProcessUpdateWithoutBomsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -858,6 +886,7 @@ export type TbProcessUpdateWithoutBomsInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutBomsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -878,6 +907,7 @@ export type TbProcessUncheckedUpdateWithoutBomsInput = {
 }
 
 export type TbProcessCreateWithoutRoutingsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -898,6 +928,7 @@ export type TbProcessCreateWithoutRoutingsInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutRoutingsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -934,6 +965,7 @@ export type TbProcessUpdateToOneWithWhereWithoutRoutingsInput = {
 }
 
 export type TbProcessUpdateWithoutRoutingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -954,6 +986,7 @@ export type TbProcessUpdateWithoutRoutingsInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutRoutingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -974,6 +1007,7 @@ export type TbProcessUncheckedUpdateWithoutRoutingsInput = {
 }
 
 export type TbProcessCreateWithoutEquip_mappingsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -994,6 +1028,7 @@ export type TbProcessCreateWithoutEquip_mappingsInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutEquip_mappingsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1030,6 +1065,7 @@ export type TbProcessUpdateToOneWithWhereWithoutEquip_mappingsInput = {
 }
 
 export type TbProcessUpdateWithoutEquip_mappingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1050,6 +1086,7 @@ export type TbProcessUpdateWithoutEquip_mappingsInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutEquip_mappingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1070,6 +1107,7 @@ export type TbProcessUncheckedUpdateWithoutEquip_mappingsInput = {
 }
 
 export type TbProcessCreateWithoutWorker_skillsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1090,6 +1128,7 @@ export type TbProcessCreateWithoutWorker_skillsInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutWorker_skillsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1126,6 +1165,7 @@ export type TbProcessUpdateToOneWithWhereWithoutWorker_skillsInput = {
 }
 
 export type TbProcessUpdateWithoutWorker_skillsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1146,6 +1186,7 @@ export type TbProcessUpdateWithoutWorker_skillsInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutWorker_skillsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1166,6 +1207,7 @@ export type TbProcessUncheckedUpdateWithoutWorker_skillsInput = {
 }
 
 export type TbProcessCreateWithoutInspect_stdsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1186,6 +1228,7 @@ export type TbProcessCreateWithoutInspect_stdsInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutInspect_stdsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1222,6 +1265,7 @@ export type TbProcessUpdateToOneWithWhereWithoutInspect_stdsInput = {
 }
 
 export type TbProcessUpdateWithoutInspect_stdsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1242,6 +1286,7 @@ export type TbProcessUpdateWithoutInspect_stdsInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutInspect_stdsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1262,6 +1307,7 @@ export type TbProcessUncheckedUpdateWithoutInspect_stdsInput = {
 }
 
 export type TbProcessCreateWithoutWo_processesInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1282,6 +1328,7 @@ export type TbProcessCreateWithoutWo_processesInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutWo_processesInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1318,6 +1365,7 @@ export type TbProcessUpdateToOneWithWhereWithoutWo_processesInput = {
 }
 
 export type TbProcessUpdateWithoutWo_processesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1338,6 +1386,7 @@ export type TbProcessUpdateWithoutWo_processesInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutWo_processesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1358,6 +1407,7 @@ export type TbProcessUncheckedUpdateWithoutWo_processesInput = {
 }
 
 export type TbProcessCreateWithoutInspect_resultsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1378,6 +1428,7 @@ export type TbProcessCreateWithoutInspect_resultsInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutInspect_resultsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1414,6 +1465,7 @@ export type TbProcessUpdateToOneWithWhereWithoutInspect_resultsInput = {
 }
 
 export type TbProcessUpdateWithoutInspect_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1434,6 +1486,7 @@ export type TbProcessUpdateWithoutInspect_resultsInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutInspect_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1454,6 +1507,7 @@ export type TbProcessUncheckedUpdateWithoutInspect_resultsInput = {
 }
 
 export type TbProcessCreateWithoutDefectsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1474,6 +1528,7 @@ export type TbProcessCreateWithoutDefectsInput = {
 }
 
 export type TbProcessUncheckedCreateWithoutDefectsInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1510,6 +1565,7 @@ export type TbProcessUpdateToOneWithWhereWithoutDefectsInput = {
 }
 
 export type TbProcessUpdateWithoutDefectsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1530,6 +1586,7 @@ export type TbProcessUpdateWithoutDefectsInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutDefectsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1550,6 +1607,7 @@ export type TbProcessUncheckedUpdateWithoutDefectsInput = {
 }
 
 export type TbProcessCreateManyWorkshopInput = {
+  company_cd?: string
   process_cd: string
   process_nm: string
   process_type?: string | null
@@ -1562,6 +1620,7 @@ export type TbProcessCreateManyWorkshopInput = {
 }
 
 export type TbProcessUpdateWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1582,6 +1641,7 @@ export type TbProcessUpdateWithoutWorkshopInput = {
 }
 
 export type TbProcessUncheckedUpdateWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1602,6 +1662,7 @@ export type TbProcessUncheckedUpdateWithoutWorkshopInput = {
 }
 
 export type TbProcessUncheckedUpdateManyWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_nm?: Prisma.StringFieldUpdateOperationsInput | string
   process_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1708,6 +1769,7 @@ export type TbProcessCountOutputTypeCountDefectsArgs<ExtArgs extends runtime.Typ
 
 
 export type TbProcessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   process_cd?: boolean
   process_nm?: boolean
   process_type?: boolean
@@ -1731,6 +1793,7 @@ export type TbProcessSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 }, ExtArgs["result"]["tbProcess"]>
 
 export type TbProcessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   process_cd?: boolean
   process_nm?: boolean
   process_type?: boolean
@@ -1745,6 +1808,7 @@ export type TbProcessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["tbProcess"]>
 
 export type TbProcessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   process_cd?: boolean
   process_nm?: boolean
   process_type?: boolean
@@ -1759,6 +1823,7 @@ export type TbProcessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["tbProcess"]>
 
 export type TbProcessSelectScalar = {
+  company_cd?: boolean
   process_cd?: boolean
   process_nm?: boolean
   process_type?: boolean
@@ -1771,7 +1836,7 @@ export type TbProcessSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbProcessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"process_cd" | "process_nm" | "process_type" | "std_time" | "workshop_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbProcess"]>
+export type TbProcessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "process_cd" | "process_nm" | "process_type" | "std_time" | "workshop_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbProcess"]>
 export type TbProcessInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workshop?: boolean | Prisma.TbProcess$workshopArgs<ExtArgs>
   routings?: boolean | Prisma.TbProcess$routingsArgs<ExtArgs>
@@ -1805,6 +1870,7 @@ export type $TbProcessPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     defects: Prisma.$TbDefectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     process_cd: string
     process_nm: string
     process_type: string | null
@@ -1898,8 +1964,8 @@ export interface TbProcessDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * // Get first 10 TbProcesses
    * const tbProcesses = await prisma.tbProcess.findMany({ take: 10 })
    * 
-   * // Only select the `process_cd`
-   * const tbProcessWithProcess_cdOnly = await prisma.tbProcess.findMany({ select: { process_cd: true } })
+   * // Only select the `company_cd`
+   * const tbProcessWithCompany_cdOnly = await prisma.tbProcess.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbProcessFindManyArgs>(args?: Prisma.SelectSubset<T, TbProcessFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbProcessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1943,9 +2009,9 @@ export interface TbProcessDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Create many TbProcesses and only return the `process_cd`
-   * const tbProcessWithProcess_cdOnly = await prisma.tbProcess.createManyAndReturn({
-   *   select: { process_cd: true },
+   * // Create many TbProcesses and only return the `company_cd`
+   * const tbProcessWithCompany_cdOnly = await prisma.tbProcess.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -2034,9 +2100,9 @@ export interface TbProcessDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Update zero or more TbProcesses and only return the `process_cd`
-   * const tbProcessWithProcess_cdOnly = await prisma.tbProcess.updateManyAndReturn({
-   *   select: { process_cd: true },
+   * // Update zero or more TbProcesses and only return the `company_cd`
+   * const tbProcessWithCompany_cdOnly = await prisma.tbProcess.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -2247,6 +2313,7 @@ export interface Prisma__TbProcessClient<T, Null = never, ExtArgs extends runtim
  * Fields of the TbProcess model
  */
 export interface TbProcessFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbProcess", 'String'>
   readonly process_cd: Prisma.FieldRef<"TbProcess", 'String'>
   readonly process_nm: Prisma.FieldRef<"TbProcess", 'String'>
   readonly process_type: Prisma.FieldRef<"TbProcess", 'String'>

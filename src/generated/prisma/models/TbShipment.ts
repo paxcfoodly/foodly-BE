@@ -35,6 +35,7 @@ export type TbShipmentSumAggregateOutputType = {
 }
 
 export type TbShipmentMinAggregateOutputType = {
+  company_cd: string | null
   ship_id: number | null
   ship_no: string | null
   cust_cd: string | null
@@ -52,6 +53,7 @@ export type TbShipmentMinAggregateOutputType = {
 }
 
 export type TbShipmentMaxAggregateOutputType = {
+  company_cd: string | null
   ship_id: number | null
   ship_no: string | null
   cust_cd: string | null
@@ -69,6 +71,7 @@ export type TbShipmentMaxAggregateOutputType = {
 }
 
 export type TbShipmentCountAggregateOutputType = {
+  company_cd: number
   ship_id: number
   ship_no: number
   cust_cd: number
@@ -96,6 +99,7 @@ export type TbShipmentSumAggregateInputType = {
 }
 
 export type TbShipmentMinAggregateInputType = {
+  company_cd?: true
   ship_id?: true
   ship_no?: true
   cust_cd?: true
@@ -113,6 +117,7 @@ export type TbShipmentMinAggregateInputType = {
 }
 
 export type TbShipmentMaxAggregateInputType = {
+  company_cd?: true
   ship_id?: true
   ship_no?: true
   cust_cd?: true
@@ -130,6 +135,7 @@ export type TbShipmentMaxAggregateInputType = {
 }
 
 export type TbShipmentCountAggregateInputType = {
+  company_cd?: true
   ship_id?: true
   ship_no?: true
   cust_cd?: true
@@ -234,6 +240,7 @@ export type TbShipmentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbShipmentGroupByOutputType = {
+  company_cd: string
   ship_id: number
   ship_no: string
   cust_cd: string
@@ -274,6 +281,7 @@ export type TbShipmentWhereInput = {
   AND?: Prisma.TbShipmentWhereInput | Prisma.TbShipmentWhereInput[]
   OR?: Prisma.TbShipmentWhereInput[]
   NOT?: Prisma.TbShipmentWhereInput | Prisma.TbShipmentWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbShipment"> | string
   ship_id?: Prisma.IntFilter<"TbShipment"> | number
   ship_no?: Prisma.StringFilter<"TbShipment"> | string
   cust_cd?: Prisma.StringFilter<"TbShipment"> | string
@@ -293,6 +301,7 @@ export type TbShipmentWhereInput = {
 }
 
 export type TbShipmentOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   ship_id?: Prisma.SortOrder
   ship_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -313,10 +322,12 @@ export type TbShipmentOrderByWithRelationInput = {
 
 export type TbShipmentWhereUniqueInput = Prisma.AtLeast<{
   ship_id?: number
-  ship_no?: string
+  company_cd_ship_no?: Prisma.TbShipmentCompany_cdShip_noCompoundUniqueInput
   AND?: Prisma.TbShipmentWhereInput | Prisma.TbShipmentWhereInput[]
   OR?: Prisma.TbShipmentWhereInput[]
   NOT?: Prisma.TbShipmentWhereInput | Prisma.TbShipmentWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbShipment"> | string
+  ship_no?: Prisma.StringFilter<"TbShipment"> | string
   cust_cd?: Prisma.StringFilter<"TbShipment"> | string
   status?: Prisma.StringFilter<"TbShipment"> | string
   plan_dt?: Prisma.DateTimeNullableFilter<"TbShipment"> | Date | string | null
@@ -331,9 +342,10 @@ export type TbShipmentWhereUniqueInput = Prisma.AtLeast<{
   update_dt?: Prisma.DateTimeFilter<"TbShipment"> | Date | string
   customer?: Prisma.XOR<Prisma.TbCustomerScalarRelationFilter, Prisma.TbCustomerWhereInput>
   details?: Prisma.TbShipmentDtlListRelationFilter
-}, "ship_id" | "ship_no">
+}, "ship_id" | "company_cd_ship_no">
 
 export type TbShipmentOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   ship_id?: Prisma.SortOrder
   ship_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -359,6 +371,7 @@ export type TbShipmentScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbShipmentScalarWhereWithAggregatesInput | Prisma.TbShipmentScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbShipmentScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbShipmentScalarWhereWithAggregatesInput | Prisma.TbShipmentScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbShipment"> | string
   ship_id?: Prisma.IntWithAggregatesFilter<"TbShipment"> | number
   ship_no?: Prisma.StringWithAggregatesFilter<"TbShipment"> | string
   cust_cd?: Prisma.StringWithAggregatesFilter<"TbShipment"> | string
@@ -376,6 +389,7 @@ export type TbShipmentScalarWhereWithAggregatesInput = {
 }
 
 export type TbShipmentCreateInput = {
+  company_cd?: string
   ship_no: string
   status?: string
   plan_dt?: Date | string | null
@@ -393,6 +407,7 @@ export type TbShipmentCreateInput = {
 }
 
 export type TbShipmentUncheckedCreateInput = {
+  company_cd?: string
   ship_id?: number
   ship_no: string
   cust_cd: string
@@ -411,6 +426,7 @@ export type TbShipmentUncheckedCreateInput = {
 }
 
 export type TbShipmentUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   plan_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -428,6 +444,7 @@ export type TbShipmentUpdateInput = {
 }
 
 export type TbShipmentUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_id?: Prisma.IntFieldUpdateOperationsInput | number
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -446,6 +463,7 @@ export type TbShipmentUncheckedUpdateInput = {
 }
 
 export type TbShipmentCreateManyInput = {
+  company_cd?: string
   ship_id?: number
   ship_no: string
   cust_cd: string
@@ -463,6 +481,7 @@ export type TbShipmentCreateManyInput = {
 }
 
 export type TbShipmentUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   plan_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -478,6 +497,7 @@ export type TbShipmentUpdateManyMutationInput = {
 }
 
 export type TbShipmentUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_id?: Prisma.IntFieldUpdateOperationsInput | number
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -504,7 +524,13 @@ export type TbShipmentOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type TbShipmentCompany_cdShip_noCompoundUniqueInput = {
+  company_cd: string
+  ship_no: string
+}
+
 export type TbShipmentCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   ship_id?: Prisma.SortOrder
   ship_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -526,6 +552,7 @@ export type TbShipmentAvgOrderByAggregateInput = {
 }
 
 export type TbShipmentMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   ship_id?: Prisma.SortOrder
   ship_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -543,6 +570,7 @@ export type TbShipmentMaxOrderByAggregateInput = {
 }
 
 export type TbShipmentMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   ship_id?: Prisma.SortOrder
   ship_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -625,6 +653,7 @@ export type TbShipmentUpdateOneRequiredWithoutDetailsNestedInput = {
 }
 
 export type TbShipmentCreateWithoutCustomerInput = {
+  company_cd?: string
   ship_no: string
   status?: string
   plan_dt?: Date | string | null
@@ -641,6 +670,7 @@ export type TbShipmentCreateWithoutCustomerInput = {
 }
 
 export type TbShipmentUncheckedCreateWithoutCustomerInput = {
+  company_cd?: string
   ship_id?: number
   ship_no: string
   status?: string
@@ -687,6 +717,7 @@ export type TbShipmentScalarWhereInput = {
   AND?: Prisma.TbShipmentScalarWhereInput | Prisma.TbShipmentScalarWhereInput[]
   OR?: Prisma.TbShipmentScalarWhereInput[]
   NOT?: Prisma.TbShipmentScalarWhereInput | Prisma.TbShipmentScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbShipment"> | string
   ship_id?: Prisma.IntFilter<"TbShipment"> | number
   ship_no?: Prisma.StringFilter<"TbShipment"> | string
   cust_cd?: Prisma.StringFilter<"TbShipment"> | string
@@ -704,6 +735,7 @@ export type TbShipmentScalarWhereInput = {
 }
 
 export type TbShipmentCreateWithoutDetailsInput = {
+  company_cd?: string
   ship_no: string
   status?: string
   plan_dt?: Date | string | null
@@ -720,6 +752,7 @@ export type TbShipmentCreateWithoutDetailsInput = {
 }
 
 export type TbShipmentUncheckedCreateWithoutDetailsInput = {
+  company_cd?: string
   ship_id?: number
   ship_no: string
   cust_cd: string
@@ -753,6 +786,7 @@ export type TbShipmentUpdateToOneWithWhereWithoutDetailsInput = {
 }
 
 export type TbShipmentUpdateWithoutDetailsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   plan_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -769,6 +803,7 @@ export type TbShipmentUpdateWithoutDetailsInput = {
 }
 
 export type TbShipmentUncheckedUpdateWithoutDetailsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_id?: Prisma.IntFieldUpdateOperationsInput | number
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -786,6 +821,7 @@ export type TbShipmentUncheckedUpdateWithoutDetailsInput = {
 }
 
 export type TbShipmentCreateManyCustomerInput = {
+  company_cd?: string
   ship_id?: number
   ship_no: string
   status?: string
@@ -802,6 +838,7 @@ export type TbShipmentCreateManyCustomerInput = {
 }
 
 export type TbShipmentUpdateWithoutCustomerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   plan_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -818,6 +855,7 @@ export type TbShipmentUpdateWithoutCustomerInput = {
 }
 
 export type TbShipmentUncheckedUpdateWithoutCustomerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_id?: Prisma.IntFieldUpdateOperationsInput | number
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -835,6 +873,7 @@ export type TbShipmentUncheckedUpdateWithoutCustomerInput = {
 }
 
 export type TbShipmentUncheckedUpdateManyWithoutCustomerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   ship_id?: Prisma.IntFieldUpdateOperationsInput | number
   ship_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -882,6 +921,7 @@ export type TbShipmentCountOutputTypeCountDetailsArgs<ExtArgs extends runtime.Ty
 
 
 export type TbShipmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   ship_id?: boolean
   ship_no?: boolean
   cust_cd?: boolean
@@ -902,6 +942,7 @@ export type TbShipmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbShipment"]>
 
 export type TbShipmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   ship_id?: boolean
   ship_no?: boolean
   cust_cd?: boolean
@@ -920,6 +961,7 @@ export type TbShipmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbShipment"]>
 
 export type TbShipmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   ship_id?: boolean
   ship_no?: boolean
   cust_cd?: boolean
@@ -938,6 +980,7 @@ export type TbShipmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbShipment"]>
 
 export type TbShipmentSelectScalar = {
+  company_cd?: boolean
   ship_id?: boolean
   ship_no?: boolean
   cust_cd?: boolean
@@ -954,7 +997,7 @@ export type TbShipmentSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbShipmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ship_id" | "ship_no" | "cust_cd" | "status" | "plan_dt" | "actual_ship_dt" | "cancel_reason" | "cancel_by" | "cancel_dt" | "remark" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbShipment"]>
+export type TbShipmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "ship_id" | "ship_no" | "cust_cd" | "status" | "plan_dt" | "actual_ship_dt" | "cancel_reason" | "cancel_by" | "cancel_dt" | "remark" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbShipment"]>
 export type TbShipmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.TbCustomerDefaultArgs<ExtArgs>
   details?: boolean | Prisma.TbShipment$detailsArgs<ExtArgs>
@@ -974,6 +1017,7 @@ export type $TbShipmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     details: Prisma.$TbShipmentDtlPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     ship_id: number
     ship_no: string
     cust_cd: string
@@ -1071,8 +1115,8 @@ export interface TbShipmentDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbShipments
    * const tbShipments = await prisma.tbShipment.findMany({ take: 10 })
    * 
-   * // Only select the `ship_id`
-   * const tbShipmentWithShip_idOnly = await prisma.tbShipment.findMany({ select: { ship_id: true } })
+   * // Only select the `company_cd`
+   * const tbShipmentWithCompany_cdOnly = await prisma.tbShipment.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbShipmentFindManyArgs>(args?: Prisma.SelectSubset<T, TbShipmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbShipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1116,9 +1160,9 @@ export interface TbShipmentDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbShipments and only return the `ship_id`
-   * const tbShipmentWithShip_idOnly = await prisma.tbShipment.createManyAndReturn({
-   *   select: { ship_id: true },
+   * // Create many TbShipments and only return the `company_cd`
+   * const tbShipmentWithCompany_cdOnly = await prisma.tbShipment.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1207,9 +1251,9 @@ export interface TbShipmentDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbShipments and only return the `ship_id`
-   * const tbShipmentWithShip_idOnly = await prisma.tbShipment.updateManyAndReturn({
-   *   select: { ship_id: true },
+   * // Update zero or more TbShipments and only return the `company_cd`
+   * const tbShipmentWithCompany_cdOnly = await prisma.tbShipment.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1413,6 +1457,7 @@ export interface Prisma__TbShipmentClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbShipment model
  */
 export interface TbShipmentFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbShipment", 'String'>
   readonly ship_id: Prisma.FieldRef<"TbShipment", 'Int'>
   readonly ship_no: Prisma.FieldRef<"TbShipment", 'String'>
   readonly cust_cd: Prisma.FieldRef<"TbShipment", 'String'>

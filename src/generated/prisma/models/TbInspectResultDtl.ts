@@ -41,6 +41,7 @@ export type TbInspectResultDtlSumAggregateOutputType = {
 }
 
 export type TbInspectResultDtlMinAggregateOutputType = {
+  company_cd: string | null
   inspect_dtl_id: number | null
   inspect_id: number | null
   inspect_std_id: number | null
@@ -53,6 +54,7 @@ export type TbInspectResultDtlMinAggregateOutputType = {
 }
 
 export type TbInspectResultDtlMaxAggregateOutputType = {
+  company_cd: string | null
   inspect_dtl_id: number | null
   inspect_id: number | null
   inspect_std_id: number | null
@@ -65,6 +67,7 @@ export type TbInspectResultDtlMaxAggregateOutputType = {
 }
 
 export type TbInspectResultDtlCountAggregateOutputType = {
+  company_cd: number
   inspect_dtl_id: number
   inspect_id: number
   inspect_std_id: number
@@ -93,6 +96,7 @@ export type TbInspectResultDtlSumAggregateInputType = {
 }
 
 export type TbInspectResultDtlMinAggregateInputType = {
+  company_cd?: true
   inspect_dtl_id?: true
   inspect_id?: true
   inspect_std_id?: true
@@ -105,6 +109,7 @@ export type TbInspectResultDtlMinAggregateInputType = {
 }
 
 export type TbInspectResultDtlMaxAggregateInputType = {
+  company_cd?: true
   inspect_dtl_id?: true
   inspect_id?: true
   inspect_std_id?: true
@@ -117,6 +122,7 @@ export type TbInspectResultDtlMaxAggregateInputType = {
 }
 
 export type TbInspectResultDtlCountAggregateInputType = {
+  company_cd?: true
   inspect_dtl_id?: true
   inspect_id?: true
   inspect_std_id?: true
@@ -216,6 +222,7 @@ export type TbInspectResultDtlGroupByArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 export type TbInspectResultDtlGroupByOutputType = {
+  company_cd: string
   inspect_dtl_id: number
   inspect_id: number
   inspect_std_id: number | null
@@ -251,6 +258,7 @@ export type TbInspectResultDtlWhereInput = {
   AND?: Prisma.TbInspectResultDtlWhereInput | Prisma.TbInspectResultDtlWhereInput[]
   OR?: Prisma.TbInspectResultDtlWhereInput[]
   NOT?: Prisma.TbInspectResultDtlWhereInput | Prisma.TbInspectResultDtlWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInspectResultDtl"> | string
   inspect_dtl_id?: Prisma.IntFilter<"TbInspectResultDtl"> | number
   inspect_id?: Prisma.IntFilter<"TbInspectResultDtl"> | number
   inspect_std_id?: Prisma.IntNullableFilter<"TbInspectResultDtl"> | number | null
@@ -265,6 +273,7 @@ export type TbInspectResultDtlWhereInput = {
 }
 
 export type TbInspectResultDtlOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   inspect_dtl_id?: Prisma.SortOrder
   inspect_id?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -283,6 +292,7 @@ export type TbInspectResultDtlWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbInspectResultDtlWhereInput | Prisma.TbInspectResultDtlWhereInput[]
   OR?: Prisma.TbInspectResultDtlWhereInput[]
   NOT?: Prisma.TbInspectResultDtlWhereInput | Prisma.TbInspectResultDtlWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInspectResultDtl"> | string
   inspect_id?: Prisma.IntFilter<"TbInspectResultDtl"> | number
   inspect_std_id?: Prisma.IntNullableFilter<"TbInspectResultDtl"> | number | null
   measure_value?: Prisma.DecimalNullableFilter<"TbInspectResultDtl"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -296,6 +306,7 @@ export type TbInspectResultDtlWhereUniqueInput = Prisma.AtLeast<{
 }, "inspect_dtl_id">
 
 export type TbInspectResultDtlOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   inspect_dtl_id?: Prisma.SortOrder
   inspect_id?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -316,6 +327,7 @@ export type TbInspectResultDtlScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbInspectResultDtlScalarWhereWithAggregatesInput | Prisma.TbInspectResultDtlScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbInspectResultDtlScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbInspectResultDtlScalarWhereWithAggregatesInput | Prisma.TbInspectResultDtlScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbInspectResultDtl"> | string
   inspect_dtl_id?: Prisma.IntWithAggregatesFilter<"TbInspectResultDtl"> | number
   inspect_id?: Prisma.IntWithAggregatesFilter<"TbInspectResultDtl"> | number
   inspect_std_id?: Prisma.IntNullableWithAggregatesFilter<"TbInspectResultDtl"> | number | null
@@ -328,6 +340,7 @@ export type TbInspectResultDtlScalarWhereWithAggregatesInput = {
 }
 
 export type TbInspectResultDtlCreateInput = {
+  company_cd?: string
   measure_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   judge?: string | null
   create_by?: string | null
@@ -339,6 +352,7 @@ export type TbInspectResultDtlCreateInput = {
 }
 
 export type TbInspectResultDtlUncheckedCreateInput = {
+  company_cd?: string
   inspect_dtl_id?: number
   inspect_id: number
   inspect_std_id?: number | null
@@ -351,6 +365,7 @@ export type TbInspectResultDtlUncheckedCreateInput = {
 }
 
 export type TbInspectResultDtlUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   measure_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   judge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -362,6 +377,7 @@ export type TbInspectResultDtlUpdateInput = {
 }
 
 export type TbInspectResultDtlUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   inspect_id?: Prisma.IntFieldUpdateOperationsInput | number
   inspect_std_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -374,6 +390,7 @@ export type TbInspectResultDtlUncheckedUpdateInput = {
 }
 
 export type TbInspectResultDtlCreateManyInput = {
+  company_cd?: string
   inspect_dtl_id?: number
   inspect_id: number
   inspect_std_id?: number | null
@@ -386,6 +403,7 @@ export type TbInspectResultDtlCreateManyInput = {
 }
 
 export type TbInspectResultDtlUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   measure_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   judge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -395,6 +413,7 @@ export type TbInspectResultDtlUpdateManyMutationInput = {
 }
 
 export type TbInspectResultDtlUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   inspect_id?: Prisma.IntFieldUpdateOperationsInput | number
   inspect_std_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -417,6 +436,7 @@ export type TbInspectResultDtlOrderByRelationAggregateInput = {
 }
 
 export type TbInspectResultDtlCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   inspect_dtl_id?: Prisma.SortOrder
   inspect_id?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrder
@@ -436,6 +456,7 @@ export type TbInspectResultDtlAvgOrderByAggregateInput = {
 }
 
 export type TbInspectResultDtlMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   inspect_dtl_id?: Prisma.SortOrder
   inspect_id?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrder
@@ -448,6 +469,7 @@ export type TbInspectResultDtlMaxOrderByAggregateInput = {
 }
 
 export type TbInspectResultDtlMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   inspect_dtl_id?: Prisma.SortOrder
   inspect_id?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrder
@@ -551,6 +573,7 @@ export type TbInspectResultDtlUncheckedUpdateManyWithoutInspect_resultNestedInpu
 }
 
 export type TbInspectResultDtlCreateWithoutInspect_stdInput = {
+  company_cd?: string
   measure_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   judge?: string | null
   create_by?: string | null
@@ -561,6 +584,7 @@ export type TbInspectResultDtlCreateWithoutInspect_stdInput = {
 }
 
 export type TbInspectResultDtlUncheckedCreateWithoutInspect_stdInput = {
+  company_cd?: string
   inspect_dtl_id?: number
   inspect_id: number
   measure_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -601,6 +625,7 @@ export type TbInspectResultDtlScalarWhereInput = {
   AND?: Prisma.TbInspectResultDtlScalarWhereInput | Prisma.TbInspectResultDtlScalarWhereInput[]
   OR?: Prisma.TbInspectResultDtlScalarWhereInput[]
   NOT?: Prisma.TbInspectResultDtlScalarWhereInput | Prisma.TbInspectResultDtlScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInspectResultDtl"> | string
   inspect_dtl_id?: Prisma.IntFilter<"TbInspectResultDtl"> | number
   inspect_id?: Prisma.IntFilter<"TbInspectResultDtl"> | number
   inspect_std_id?: Prisma.IntNullableFilter<"TbInspectResultDtl"> | number | null
@@ -613,6 +638,7 @@ export type TbInspectResultDtlScalarWhereInput = {
 }
 
 export type TbInspectResultDtlCreateWithoutInspect_resultInput = {
+  company_cd?: string
   measure_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   judge?: string | null
   create_by?: string | null
@@ -623,6 +649,7 @@ export type TbInspectResultDtlCreateWithoutInspect_resultInput = {
 }
 
 export type TbInspectResultDtlUncheckedCreateWithoutInspect_resultInput = {
+  company_cd?: string
   inspect_dtl_id?: number
   inspect_std_id?: number | null
   measure_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -660,6 +687,7 @@ export type TbInspectResultDtlUpdateManyWithWhereWithoutInspect_resultInput = {
 }
 
 export type TbInspectResultDtlCreateManyInspect_stdInput = {
+  company_cd?: string
   inspect_dtl_id?: number
   inspect_id: number
   measure_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -671,6 +699,7 @@ export type TbInspectResultDtlCreateManyInspect_stdInput = {
 }
 
 export type TbInspectResultDtlUpdateWithoutInspect_stdInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   measure_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   judge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -681,6 +710,7 @@ export type TbInspectResultDtlUpdateWithoutInspect_stdInput = {
 }
 
 export type TbInspectResultDtlUncheckedUpdateWithoutInspect_stdInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   inspect_id?: Prisma.IntFieldUpdateOperationsInput | number
   measure_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -692,6 +722,7 @@ export type TbInspectResultDtlUncheckedUpdateWithoutInspect_stdInput = {
 }
 
 export type TbInspectResultDtlUncheckedUpdateManyWithoutInspect_stdInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   inspect_id?: Prisma.IntFieldUpdateOperationsInput | number
   measure_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -703,6 +734,7 @@ export type TbInspectResultDtlUncheckedUpdateManyWithoutInspect_stdInput = {
 }
 
 export type TbInspectResultDtlCreateManyInspect_resultInput = {
+  company_cd?: string
   inspect_dtl_id?: number
   inspect_std_id?: number | null
   measure_value?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -714,6 +746,7 @@ export type TbInspectResultDtlCreateManyInspect_resultInput = {
 }
 
 export type TbInspectResultDtlUpdateWithoutInspect_resultInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   measure_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   judge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -724,6 +757,7 @@ export type TbInspectResultDtlUpdateWithoutInspect_resultInput = {
 }
 
 export type TbInspectResultDtlUncheckedUpdateWithoutInspect_resultInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   inspect_std_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   measure_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -735,6 +769,7 @@ export type TbInspectResultDtlUncheckedUpdateWithoutInspect_resultInput = {
 }
 
 export type TbInspectResultDtlUncheckedUpdateManyWithoutInspect_resultInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   inspect_std_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   measure_value?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -748,6 +783,7 @@ export type TbInspectResultDtlUncheckedUpdateManyWithoutInspect_resultInput = {
 
 
 export type TbInspectResultDtlSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   inspect_dtl_id?: boolean
   inspect_id?: boolean
   inspect_std_id?: boolean
@@ -762,6 +798,7 @@ export type TbInspectResultDtlSelect<ExtArgs extends runtime.Types.Extensions.In
 }, ExtArgs["result"]["tbInspectResultDtl"]>
 
 export type TbInspectResultDtlSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   inspect_dtl_id?: boolean
   inspect_id?: boolean
   inspect_std_id?: boolean
@@ -776,6 +813,7 @@ export type TbInspectResultDtlSelectCreateManyAndReturn<ExtArgs extends runtime.
 }, ExtArgs["result"]["tbInspectResultDtl"]>
 
 export type TbInspectResultDtlSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   inspect_dtl_id?: boolean
   inspect_id?: boolean
   inspect_std_id?: boolean
@@ -790,6 +828,7 @@ export type TbInspectResultDtlSelectUpdateManyAndReturn<ExtArgs extends runtime.
 }, ExtArgs["result"]["tbInspectResultDtl"]>
 
 export type TbInspectResultDtlSelectScalar = {
+  company_cd?: boolean
   inspect_dtl_id?: boolean
   inspect_id?: boolean
   inspect_std_id?: boolean
@@ -801,7 +840,7 @@ export type TbInspectResultDtlSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbInspectResultDtlOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"inspect_dtl_id" | "inspect_id" | "inspect_std_id" | "measure_value" | "judge" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbInspectResultDtl"]>
+export type TbInspectResultDtlOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "inspect_dtl_id" | "inspect_id" | "inspect_std_id" | "measure_value" | "judge" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbInspectResultDtl"]>
 export type TbInspectResultDtlInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   inspect_result?: boolean | Prisma.TbInspectResultDefaultArgs<ExtArgs>
   inspect_std?: boolean | Prisma.TbInspectResultDtl$inspect_stdArgs<ExtArgs>
@@ -822,6 +861,7 @@ export type $TbInspectResultDtlPayload<ExtArgs extends runtime.Types.Extensions.
     inspect_std: Prisma.$TbInspectStdPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     inspect_dtl_id: number
     inspect_id: number
     inspect_std_id: number | null
@@ -914,8 +954,8 @@ export interface TbInspectResultDtlDelegate<ExtArgs extends runtime.Types.Extens
    * // Get first 10 TbInspectResultDtls
    * const tbInspectResultDtls = await prisma.tbInspectResultDtl.findMany({ take: 10 })
    * 
-   * // Only select the `inspect_dtl_id`
-   * const tbInspectResultDtlWithInspect_dtl_idOnly = await prisma.tbInspectResultDtl.findMany({ select: { inspect_dtl_id: true } })
+   * // Only select the `company_cd`
+   * const tbInspectResultDtlWithCompany_cdOnly = await prisma.tbInspectResultDtl.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbInspectResultDtlFindManyArgs>(args?: Prisma.SelectSubset<T, TbInspectResultDtlFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbInspectResultDtlPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -959,9 +999,9 @@ export interface TbInspectResultDtlDelegate<ExtArgs extends runtime.Types.Extens
    *   ]
    * })
    * 
-   * // Create many TbInspectResultDtls and only return the `inspect_dtl_id`
-   * const tbInspectResultDtlWithInspect_dtl_idOnly = await prisma.tbInspectResultDtl.createManyAndReturn({
-   *   select: { inspect_dtl_id: true },
+   * // Create many TbInspectResultDtls and only return the `company_cd`
+   * const tbInspectResultDtlWithCompany_cdOnly = await prisma.tbInspectResultDtl.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1050,9 +1090,9 @@ export interface TbInspectResultDtlDelegate<ExtArgs extends runtime.Types.Extens
    *   ]
    * })
    * 
-   * // Update zero or more TbInspectResultDtls and only return the `inspect_dtl_id`
-   * const tbInspectResultDtlWithInspect_dtl_idOnly = await prisma.tbInspectResultDtl.updateManyAndReturn({
-   *   select: { inspect_dtl_id: true },
+   * // Update zero or more TbInspectResultDtls and only return the `company_cd`
+   * const tbInspectResultDtlWithCompany_cdOnly = await prisma.tbInspectResultDtl.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1256,6 +1296,7 @@ export interface Prisma__TbInspectResultDtlClient<T, Null = never, ExtArgs exten
  * Fields of the TbInspectResultDtl model
  */
 export interface TbInspectResultDtlFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbInspectResultDtl", 'String'>
   readonly inspect_dtl_id: Prisma.FieldRef<"TbInspectResultDtl", 'Int'>
   readonly inspect_id: Prisma.FieldRef<"TbInspectResultDtl", 'Int'>
   readonly inspect_std_id: Prisma.FieldRef<"TbInspectResultDtl", 'Int'>

@@ -35,6 +35,7 @@ export type TbWoWorkerSumAggregateOutputType = {
 }
 
 export type TbWoWorkerMinAggregateOutputType = {
+  company_cd: string | null
   wo_id: number | null
   worker_id: string | null
   assign_dt: Date | null
@@ -45,6 +46,7 @@ export type TbWoWorkerMinAggregateOutputType = {
 }
 
 export type TbWoWorkerMaxAggregateOutputType = {
+  company_cd: string | null
   wo_id: number | null
   worker_id: string | null
   assign_dt: Date | null
@@ -55,6 +57,7 @@ export type TbWoWorkerMaxAggregateOutputType = {
 }
 
 export type TbWoWorkerCountAggregateOutputType = {
+  company_cd: number
   wo_id: number
   worker_id: number
   assign_dt: number
@@ -75,6 +78,7 @@ export type TbWoWorkerSumAggregateInputType = {
 }
 
 export type TbWoWorkerMinAggregateInputType = {
+  company_cd?: true
   wo_id?: true
   worker_id?: true
   assign_dt?: true
@@ -85,6 +89,7 @@ export type TbWoWorkerMinAggregateInputType = {
 }
 
 export type TbWoWorkerMaxAggregateInputType = {
+  company_cd?: true
   wo_id?: true
   worker_id?: true
   assign_dt?: true
@@ -95,6 +100,7 @@ export type TbWoWorkerMaxAggregateInputType = {
 }
 
 export type TbWoWorkerCountAggregateInputType = {
+  company_cd?: true
   wo_id?: true
   worker_id?: true
   assign_dt?: true
@@ -192,6 +198,7 @@ export type TbWoWorkerGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbWoWorkerGroupByOutputType = {
+  company_cd: string
   wo_id: number
   worker_id: string
   assign_dt: Date
@@ -225,6 +232,7 @@ export type TbWoWorkerWhereInput = {
   AND?: Prisma.TbWoWorkerWhereInput | Prisma.TbWoWorkerWhereInput[]
   OR?: Prisma.TbWoWorkerWhereInput[]
   NOT?: Prisma.TbWoWorkerWhereInput | Prisma.TbWoWorkerWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWoWorker"> | string
   wo_id?: Prisma.IntFilter<"TbWoWorker"> | number
   worker_id?: Prisma.StringFilter<"TbWoWorker"> | string
   assign_dt?: Prisma.DateTimeFilter<"TbWoWorker"> | Date | string
@@ -237,6 +245,7 @@ export type TbWoWorkerWhereInput = {
 }
 
 export type TbWoWorkerOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   assign_dt?: Prisma.SortOrder
@@ -253,6 +262,7 @@ export type TbWoWorkerWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbWoWorkerWhereInput | Prisma.TbWoWorkerWhereInput[]
   OR?: Prisma.TbWoWorkerWhereInput[]
   NOT?: Prisma.TbWoWorkerWhereInput | Prisma.TbWoWorkerWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWoWorker"> | string
   wo_id?: Prisma.IntFilter<"TbWoWorker"> | number
   worker_id?: Prisma.StringFilter<"TbWoWorker"> | string
   assign_dt?: Prisma.DateTimeFilter<"TbWoWorker"> | Date | string
@@ -265,6 +275,7 @@ export type TbWoWorkerWhereUniqueInput = Prisma.AtLeast<{
 }, "wo_id_worker_id">
 
 export type TbWoWorkerOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   assign_dt?: Prisma.SortOrder
@@ -283,6 +294,7 @@ export type TbWoWorkerScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbWoWorkerScalarWhereWithAggregatesInput | Prisma.TbWoWorkerScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbWoWorkerScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbWoWorkerScalarWhereWithAggregatesInput | Prisma.TbWoWorkerScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbWoWorker"> | string
   wo_id?: Prisma.IntWithAggregatesFilter<"TbWoWorker"> | number
   worker_id?: Prisma.StringWithAggregatesFilter<"TbWoWorker"> | string
   assign_dt?: Prisma.DateTimeWithAggregatesFilter<"TbWoWorker"> | Date | string
@@ -293,6 +305,7 @@ export type TbWoWorkerScalarWhereWithAggregatesInput = {
 }
 
 export type TbWoWorkerCreateInput = {
+  company_cd?: string
   assign_dt?: Date | string
   create_by?: string | null
   create_dt?: Date | string
@@ -303,6 +316,7 @@ export type TbWoWorkerCreateInput = {
 }
 
 export type TbWoWorkerUncheckedCreateInput = {
+  company_cd?: string
   wo_id: number
   worker_id: string
   assign_dt?: Date | string
@@ -313,6 +327,7 @@ export type TbWoWorkerUncheckedCreateInput = {
 }
 
 export type TbWoWorkerUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -323,6 +338,7 @@ export type TbWoWorkerUpdateInput = {
 }
 
 export type TbWoWorkerUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -333,6 +349,7 @@ export type TbWoWorkerUncheckedUpdateInput = {
 }
 
 export type TbWoWorkerCreateManyInput = {
+  company_cd?: string
   wo_id: number
   worker_id: string
   assign_dt?: Date | string
@@ -343,6 +360,7 @@ export type TbWoWorkerCreateManyInput = {
 }
 
 export type TbWoWorkerUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -351,6 +369,7 @@ export type TbWoWorkerUpdateManyMutationInput = {
 }
 
 export type TbWoWorkerUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -376,6 +395,7 @@ export type TbWoWorkerWo_idWorker_idCompoundUniqueInput = {
 }
 
 export type TbWoWorkerCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   assign_dt?: Prisma.SortOrder
@@ -390,6 +410,7 @@ export type TbWoWorkerAvgOrderByAggregateInput = {
 }
 
 export type TbWoWorkerMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   assign_dt?: Prisma.SortOrder
@@ -400,6 +421,7 @@ export type TbWoWorkerMaxOrderByAggregateInput = {
 }
 
 export type TbWoWorkerMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   assign_dt?: Prisma.SortOrder
@@ -498,6 +520,7 @@ export type TbWoWorkerUncheckedUpdateManyWithoutWork_orderNestedInput = {
 }
 
 export type TbWoWorkerCreateWithoutWorkerInput = {
+  company_cd?: string
   assign_dt?: Date | string
   create_by?: string | null
   create_dt?: Date | string
@@ -507,6 +530,7 @@ export type TbWoWorkerCreateWithoutWorkerInput = {
 }
 
 export type TbWoWorkerUncheckedCreateWithoutWorkerInput = {
+  company_cd?: string
   wo_id: number
   assign_dt?: Date | string
   create_by?: string | null
@@ -545,6 +569,7 @@ export type TbWoWorkerScalarWhereInput = {
   AND?: Prisma.TbWoWorkerScalarWhereInput | Prisma.TbWoWorkerScalarWhereInput[]
   OR?: Prisma.TbWoWorkerScalarWhereInput[]
   NOT?: Prisma.TbWoWorkerScalarWhereInput | Prisma.TbWoWorkerScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWoWorker"> | string
   wo_id?: Prisma.IntFilter<"TbWoWorker"> | number
   worker_id?: Prisma.StringFilter<"TbWoWorker"> | string
   assign_dt?: Prisma.DateTimeFilter<"TbWoWorker"> | Date | string
@@ -555,6 +580,7 @@ export type TbWoWorkerScalarWhereInput = {
 }
 
 export type TbWoWorkerCreateWithoutWork_orderInput = {
+  company_cd?: string
   assign_dt?: Date | string
   create_by?: string | null
   create_dt?: Date | string
@@ -564,6 +590,7 @@ export type TbWoWorkerCreateWithoutWork_orderInput = {
 }
 
 export type TbWoWorkerUncheckedCreateWithoutWork_orderInput = {
+  company_cd?: string
   worker_id: string
   assign_dt?: Date | string
   create_by?: string | null
@@ -599,6 +626,7 @@ export type TbWoWorkerUpdateManyWithWhereWithoutWork_orderInput = {
 }
 
 export type TbWoWorkerCreateManyWorkerInput = {
+  company_cd?: string
   wo_id: number
   assign_dt?: Date | string
   create_by?: string | null
@@ -608,6 +636,7 @@ export type TbWoWorkerCreateManyWorkerInput = {
 }
 
 export type TbWoWorkerUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -617,6 +646,7 @@ export type TbWoWorkerUpdateWithoutWorkerInput = {
 }
 
 export type TbWoWorkerUncheckedUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -626,6 +656,7 @@ export type TbWoWorkerUncheckedUpdateWithoutWorkerInput = {
 }
 
 export type TbWoWorkerUncheckedUpdateManyWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -635,6 +666,7 @@ export type TbWoWorkerUncheckedUpdateManyWithoutWorkerInput = {
 }
 
 export type TbWoWorkerCreateManyWork_orderInput = {
+  company_cd?: string
   worker_id: string
   assign_dt?: Date | string
   create_by?: string | null
@@ -644,6 +676,7 @@ export type TbWoWorkerCreateManyWork_orderInput = {
 }
 
 export type TbWoWorkerUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -653,6 +686,7 @@ export type TbWoWorkerUpdateWithoutWork_orderInput = {
 }
 
 export type TbWoWorkerUncheckedUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -662,6 +696,7 @@ export type TbWoWorkerUncheckedUpdateWithoutWork_orderInput = {
 }
 
 export type TbWoWorkerUncheckedUpdateManyWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   assign_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -673,6 +708,7 @@ export type TbWoWorkerUncheckedUpdateManyWithoutWork_orderInput = {
 
 
 export type TbWoWorkerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_id?: boolean
   worker_id?: boolean
   assign_dt?: boolean
@@ -685,6 +721,7 @@ export type TbWoWorkerSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbWoWorker"]>
 
 export type TbWoWorkerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_id?: boolean
   worker_id?: boolean
   assign_dt?: boolean
@@ -697,6 +734,7 @@ export type TbWoWorkerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbWoWorker"]>
 
 export type TbWoWorkerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_id?: boolean
   worker_id?: boolean
   assign_dt?: boolean
@@ -709,6 +747,7 @@ export type TbWoWorkerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbWoWorker"]>
 
 export type TbWoWorkerSelectScalar = {
+  company_cd?: boolean
   wo_id?: boolean
   worker_id?: boolean
   assign_dt?: boolean
@@ -718,7 +757,7 @@ export type TbWoWorkerSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbWoWorkerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"wo_id" | "worker_id" | "assign_dt" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWoWorker"]>
+export type TbWoWorkerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "wo_id" | "worker_id" | "assign_dt" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWoWorker"]>
 export type TbWoWorkerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   work_order?: boolean | Prisma.TbWorkOrderDefaultArgs<ExtArgs>
   worker?: boolean | Prisma.TbWorkerDefaultArgs<ExtArgs>
@@ -739,6 +778,7 @@ export type $TbWoWorkerPayload<ExtArgs extends runtime.Types.Extensions.Internal
     worker: Prisma.$TbWorkerPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     wo_id: number
     worker_id: string
     assign_dt: Date
@@ -829,8 +869,8 @@ export interface TbWoWorkerDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbWoWorkers
    * const tbWoWorkers = await prisma.tbWoWorker.findMany({ take: 10 })
    * 
-   * // Only select the `wo_id`
-   * const tbWoWorkerWithWo_idOnly = await prisma.tbWoWorker.findMany({ select: { wo_id: true } })
+   * // Only select the `company_cd`
+   * const tbWoWorkerWithCompany_cdOnly = await prisma.tbWoWorker.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbWoWorkerFindManyArgs>(args?: Prisma.SelectSubset<T, TbWoWorkerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbWoWorkerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -874,9 +914,9 @@ export interface TbWoWorkerDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbWoWorkers and only return the `wo_id`
-   * const tbWoWorkerWithWo_idOnly = await prisma.tbWoWorker.createManyAndReturn({
-   *   select: { wo_id: true },
+   * // Create many TbWoWorkers and only return the `company_cd`
+   * const tbWoWorkerWithCompany_cdOnly = await prisma.tbWoWorker.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -965,9 +1005,9 @@ export interface TbWoWorkerDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbWoWorkers and only return the `wo_id`
-   * const tbWoWorkerWithWo_idOnly = await prisma.tbWoWorker.updateManyAndReturn({
-   *   select: { wo_id: true },
+   * // Update zero or more TbWoWorkers and only return the `company_cd`
+   * const tbWoWorkerWithCompany_cdOnly = await prisma.tbWoWorker.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1171,6 +1211,7 @@ export interface Prisma__TbWoWorkerClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbWoWorker model
  */
 export interface TbWoWorkerFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbWoWorker", 'String'>
   readonly wo_id: Prisma.FieldRef<"TbWoWorker", 'Int'>
   readonly worker_id: Prisma.FieldRef<"TbWoWorker", 'String'>
   readonly assign_dt: Prisma.FieldRef<"TbWoWorker", 'DateTime'>

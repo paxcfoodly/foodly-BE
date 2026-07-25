@@ -41,6 +41,7 @@ export type TbProdResultSumAggregateOutputType = {
 }
 
 export type TbProdResultMinAggregateOutputType = {
+  company_cd: string | null
   result_id: number | null
   wo_id: number | null
   lot_no: string | null
@@ -57,6 +58,7 @@ export type TbProdResultMinAggregateOutputType = {
 }
 
 export type TbProdResultMaxAggregateOutputType = {
+  company_cd: string | null
   result_id: number | null
   wo_id: number | null
   lot_no: string | null
@@ -73,6 +75,7 @@ export type TbProdResultMaxAggregateOutputType = {
 }
 
 export type TbProdResultCountAggregateOutputType = {
+  company_cd: number
   result_id: number
   wo_id: number
   lot_no: number
@@ -105,6 +108,7 @@ export type TbProdResultSumAggregateInputType = {
 }
 
 export type TbProdResultMinAggregateInputType = {
+  company_cd?: true
   result_id?: true
   wo_id?: true
   lot_no?: true
@@ -121,6 +125,7 @@ export type TbProdResultMinAggregateInputType = {
 }
 
 export type TbProdResultMaxAggregateInputType = {
+  company_cd?: true
   result_id?: true
   wo_id?: true
   lot_no?: true
@@ -137,6 +142,7 @@ export type TbProdResultMaxAggregateInputType = {
 }
 
 export type TbProdResultCountAggregateInputType = {
+  company_cd?: true
   result_id?: true
   wo_id?: true
   lot_no?: true
@@ -240,6 +246,7 @@ export type TbProdResultGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 export type TbProdResultGroupByOutputType = {
+  company_cd: string
   result_id: number
   wo_id: number
   lot_no: string | null
@@ -279,6 +286,7 @@ export type TbProdResultWhereInput = {
   AND?: Prisma.TbProdResultWhereInput | Prisma.TbProdResultWhereInput[]
   OR?: Prisma.TbProdResultWhereInput[]
   NOT?: Prisma.TbProdResultWhereInput | Prisma.TbProdResultWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProdResult"> | string
   result_id?: Prisma.IntFilter<"TbProdResult"> | number
   wo_id?: Prisma.IntFilter<"TbProdResult"> | number
   lot_no?: Prisma.StringNullableFilter<"TbProdResult"> | string | null
@@ -299,6 +307,7 @@ export type TbProdResultWhereInput = {
 }
 
 export type TbProdResultOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   result_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -323,6 +332,7 @@ export type TbProdResultWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbProdResultWhereInput | Prisma.TbProdResultWhereInput[]
   OR?: Prisma.TbProdResultWhereInput[]
   NOT?: Prisma.TbProdResultWhereInput | Prisma.TbProdResultWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProdResult"> | string
   wo_id?: Prisma.IntFilter<"TbProdResult"> | number
   lot_no?: Prisma.StringNullableFilter<"TbProdResult"> | string | null
   equip_cd?: Prisma.StringNullableFilter<"TbProdResult"> | string | null
@@ -342,6 +352,7 @@ export type TbProdResultWhereUniqueInput = Prisma.AtLeast<{
 }, "result_id">
 
 export type TbProdResultOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   result_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -366,6 +377,7 @@ export type TbProdResultScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbProdResultScalarWhereWithAggregatesInput | Prisma.TbProdResultScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbProdResultScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbProdResultScalarWhereWithAggregatesInput | Prisma.TbProdResultScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbProdResult"> | string
   result_id?: Prisma.IntWithAggregatesFilter<"TbProdResult"> | number
   wo_id?: Prisma.IntWithAggregatesFilter<"TbProdResult"> | number
   lot_no?: Prisma.StringNullableWithAggregatesFilter<"TbProdResult"> | string | null
@@ -382,6 +394,7 @@ export type TbProdResultScalarWhereWithAggregatesInput = {
 }
 
 export type TbProdResultCreateInput = {
+  company_cd?: string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Date | string | null
@@ -397,6 +410,7 @@ export type TbProdResultCreateInput = {
 }
 
 export type TbProdResultUncheckedCreateInput = {
+  company_cd?: string
   result_id?: number
   wo_id: number
   lot_no?: string | null
@@ -413,6 +427,7 @@ export type TbProdResultUncheckedCreateInput = {
 }
 
 export type TbProdResultUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -428,6 +443,7 @@ export type TbProdResultUpdateInput = {
 }
 
 export type TbProdResultUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -444,6 +460,7 @@ export type TbProdResultUncheckedUpdateInput = {
 }
 
 export type TbProdResultCreateManyInput = {
+  company_cd?: string
   result_id?: number
   wo_id: number
   lot_no?: string | null
@@ -460,6 +477,7 @@ export type TbProdResultCreateManyInput = {
 }
 
 export type TbProdResultUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -471,6 +489,7 @@ export type TbProdResultUpdateManyMutationInput = {
 }
 
 export type TbProdResultUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -497,6 +516,7 @@ export type TbProdResultOrderByRelationAggregateInput = {
 }
 
 export type TbProdResultCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   result_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
@@ -520,6 +540,7 @@ export type TbProdResultAvgOrderByAggregateInput = {
 }
 
 export type TbProdResultMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   result_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
@@ -536,6 +557,7 @@ export type TbProdResultMaxOrderByAggregateInput = {
 }
 
 export type TbProdResultMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   result_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
@@ -727,6 +749,7 @@ export type TbProdResultUncheckedUpdateManyWithoutLotNestedInput = {
 }
 
 export type TbProdResultCreateWithoutEquipmentInput = {
+  company_cd?: string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Date | string | null
@@ -741,6 +764,7 @@ export type TbProdResultCreateWithoutEquipmentInput = {
 }
 
 export type TbProdResultUncheckedCreateWithoutEquipmentInput = {
+  company_cd?: string
   result_id?: number
   wo_id: number
   lot_no?: string | null
@@ -785,6 +809,7 @@ export type TbProdResultScalarWhereInput = {
   AND?: Prisma.TbProdResultScalarWhereInput | Prisma.TbProdResultScalarWhereInput[]
   OR?: Prisma.TbProdResultScalarWhereInput[]
   NOT?: Prisma.TbProdResultScalarWhereInput | Prisma.TbProdResultScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProdResult"> | string
   result_id?: Prisma.IntFilter<"TbProdResult"> | number
   wo_id?: Prisma.IntFilter<"TbProdResult"> | number
   lot_no?: Prisma.StringNullableFilter<"TbProdResult"> | string | null
@@ -801,6 +826,7 @@ export type TbProdResultScalarWhereInput = {
 }
 
 export type TbProdResultCreateWithoutWorkerInput = {
+  company_cd?: string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Date | string | null
@@ -815,6 +841,7 @@ export type TbProdResultCreateWithoutWorkerInput = {
 }
 
 export type TbProdResultUncheckedCreateWithoutWorkerInput = {
+  company_cd?: string
   result_id?: number
   wo_id: number
   lot_no?: string | null
@@ -856,6 +883,7 @@ export type TbProdResultUpdateManyWithWhereWithoutWorkerInput = {
 }
 
 export type TbProdResultCreateWithoutWork_orderInput = {
+  company_cd?: string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Date | string | null
@@ -870,6 +898,7 @@ export type TbProdResultCreateWithoutWork_orderInput = {
 }
 
 export type TbProdResultUncheckedCreateWithoutWork_orderInput = {
+  company_cd?: string
   result_id?: number
   lot_no?: string | null
   equip_cd?: string | null
@@ -911,6 +940,7 @@ export type TbProdResultUpdateManyWithWhereWithoutWork_orderInput = {
 }
 
 export type TbProdResultCreateWithoutLotInput = {
+  company_cd?: string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Date | string | null
@@ -925,6 +955,7 @@ export type TbProdResultCreateWithoutLotInput = {
 }
 
 export type TbProdResultUncheckedCreateWithoutLotInput = {
+  company_cd?: string
   result_id?: number
   wo_id: number
   equip_cd?: string | null
@@ -966,6 +997,7 @@ export type TbProdResultUpdateManyWithWhereWithoutLotInput = {
 }
 
 export type TbProdResultCreateManyEquipmentInput = {
+  company_cd?: string
   result_id?: number
   wo_id: number
   lot_no?: string | null
@@ -981,6 +1013,7 @@ export type TbProdResultCreateManyEquipmentInput = {
 }
 
 export type TbProdResultUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -995,6 +1028,7 @@ export type TbProdResultUpdateWithoutEquipmentInput = {
 }
 
 export type TbProdResultUncheckedUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1010,6 +1044,7 @@ export type TbProdResultUncheckedUpdateWithoutEquipmentInput = {
 }
 
 export type TbProdResultUncheckedUpdateManyWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1025,6 +1060,7 @@ export type TbProdResultUncheckedUpdateManyWithoutEquipmentInput = {
 }
 
 export type TbProdResultCreateManyWorkerInput = {
+  company_cd?: string
   result_id?: number
   wo_id: number
   lot_no?: string | null
@@ -1040,6 +1076,7 @@ export type TbProdResultCreateManyWorkerInput = {
 }
 
 export type TbProdResultUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1054,6 +1091,7 @@ export type TbProdResultUpdateWithoutWorkerInput = {
 }
 
 export type TbProdResultUncheckedUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1069,6 +1107,7 @@ export type TbProdResultUncheckedUpdateWithoutWorkerInput = {
 }
 
 export type TbProdResultUncheckedUpdateManyWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1084,6 +1123,7 @@ export type TbProdResultUncheckedUpdateManyWithoutWorkerInput = {
 }
 
 export type TbProdResultCreateManyWork_orderInput = {
+  company_cd?: string
   result_id?: number
   lot_no?: string | null
   equip_cd?: string | null
@@ -1099,6 +1139,7 @@ export type TbProdResultCreateManyWork_orderInput = {
 }
 
 export type TbProdResultUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1113,6 +1154,7 @@ export type TbProdResultUpdateWithoutWork_orderInput = {
 }
 
 export type TbProdResultUncheckedUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   equip_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1128,6 +1170,7 @@ export type TbProdResultUncheckedUpdateWithoutWork_orderInput = {
 }
 
 export type TbProdResultUncheckedUpdateManyWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   equip_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1143,6 +1186,7 @@ export type TbProdResultUncheckedUpdateManyWithoutWork_orderInput = {
 }
 
 export type TbProdResultCreateManyLotInput = {
+  company_cd?: string
   result_id?: number
   wo_id: number
   equip_cd?: string | null
@@ -1158,6 +1202,7 @@ export type TbProdResultCreateManyLotInput = {
 }
 
 export type TbProdResultUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   defect_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   work_start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1172,6 +1217,7 @@ export type TbProdResultUpdateWithoutLotInput = {
 }
 
 export type TbProdResultUncheckedUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1187,6 +1233,7 @@ export type TbProdResultUncheckedUpdateWithoutLotInput = {
 }
 
 export type TbProdResultUncheckedUpdateManyWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   result_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1204,6 +1251,7 @@ export type TbProdResultUncheckedUpdateManyWithoutLotInput = {
 
 
 export type TbProdResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   result_id?: boolean
   wo_id?: boolean
   lot_no?: boolean
@@ -1224,6 +1272,7 @@ export type TbProdResultSelect<ExtArgs extends runtime.Types.Extensions.Internal
 }, ExtArgs["result"]["tbProdResult"]>
 
 export type TbProdResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   result_id?: boolean
   wo_id?: boolean
   lot_no?: boolean
@@ -1244,6 +1293,7 @@ export type TbProdResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 }, ExtArgs["result"]["tbProdResult"]>
 
 export type TbProdResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   result_id?: boolean
   wo_id?: boolean
   lot_no?: boolean
@@ -1264,6 +1314,7 @@ export type TbProdResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 }, ExtArgs["result"]["tbProdResult"]>
 
 export type TbProdResultSelectScalar = {
+  company_cd?: boolean
   result_id?: boolean
   wo_id?: boolean
   lot_no?: boolean
@@ -1279,7 +1330,7 @@ export type TbProdResultSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbProdResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"result_id" | "wo_id" | "lot_no" | "equip_cd" | "worker_id" | "good_qty" | "defect_qty" | "work_start_dt" | "work_end_dt" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbProdResult"]>
+export type TbProdResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "result_id" | "wo_id" | "lot_no" | "equip_cd" | "worker_id" | "good_qty" | "defect_qty" | "work_start_dt" | "work_end_dt" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbProdResult"]>
 export type TbProdResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   work_order?: boolean | Prisma.TbWorkOrderDefaultArgs<ExtArgs>
   lot?: boolean | Prisma.TbProdResult$lotArgs<ExtArgs>
@@ -1308,6 +1359,7 @@ export type $TbProdResultPayload<ExtArgs extends runtime.Types.Extensions.Intern
     worker: Prisma.$TbWorkerPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     result_id: number
     wo_id: number
     lot_no: string | null
@@ -1404,8 +1456,8 @@ export interface TbProdResultDelegate<ExtArgs extends runtime.Types.Extensions.I
    * // Get first 10 TbProdResults
    * const tbProdResults = await prisma.tbProdResult.findMany({ take: 10 })
    * 
-   * // Only select the `result_id`
-   * const tbProdResultWithResult_idOnly = await prisma.tbProdResult.findMany({ select: { result_id: true } })
+   * // Only select the `company_cd`
+   * const tbProdResultWithCompany_cdOnly = await prisma.tbProdResult.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbProdResultFindManyArgs>(args?: Prisma.SelectSubset<T, TbProdResultFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbProdResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1449,9 +1501,9 @@ export interface TbProdResultDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   ]
    * })
    * 
-   * // Create many TbProdResults and only return the `result_id`
-   * const tbProdResultWithResult_idOnly = await prisma.tbProdResult.createManyAndReturn({
-   *   select: { result_id: true },
+   * // Create many TbProdResults and only return the `company_cd`
+   * const tbProdResultWithCompany_cdOnly = await prisma.tbProdResult.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1540,9 +1592,9 @@ export interface TbProdResultDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   ]
    * })
    * 
-   * // Update zero or more TbProdResults and only return the `result_id`
-   * const tbProdResultWithResult_idOnly = await prisma.tbProdResult.updateManyAndReturn({
-   *   select: { result_id: true },
+   * // Update zero or more TbProdResults and only return the `company_cd`
+   * const tbProdResultWithCompany_cdOnly = await prisma.tbProdResult.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1748,6 +1800,7 @@ export interface Prisma__TbProdResultClient<T, Null = never, ExtArgs extends run
  * Fields of the TbProdResult model
  */
 export interface TbProdResultFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbProdResult", 'String'>
   readonly result_id: Prisma.FieldRef<"TbProdResult", 'Int'>
   readonly wo_id: Prisma.FieldRef<"TbProdResult", 'Int'>
   readonly lot_no: Prisma.FieldRef<"TbProdResult", 'String'>

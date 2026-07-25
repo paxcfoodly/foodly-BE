@@ -35,6 +35,7 @@ export type TbIncomingSumAggregateOutputType = {
 }
 
 export type TbIncomingMinAggregateOutputType = {
+  company_cd: string | null
   incoming_id: number | null
   incoming_no: string | null
   cust_cd: string | null
@@ -46,6 +47,7 @@ export type TbIncomingMinAggregateOutputType = {
 }
 
 export type TbIncomingMaxAggregateOutputType = {
+  company_cd: string | null
   incoming_id: number | null
   incoming_no: string | null
   cust_cd: string | null
@@ -57,6 +59,7 @@ export type TbIncomingMaxAggregateOutputType = {
 }
 
 export type TbIncomingCountAggregateOutputType = {
+  company_cd: number
   incoming_id: number
   incoming_no: number
   cust_cd: number
@@ -78,6 +81,7 @@ export type TbIncomingSumAggregateInputType = {
 }
 
 export type TbIncomingMinAggregateInputType = {
+  company_cd?: true
   incoming_id?: true
   incoming_no?: true
   cust_cd?: true
@@ -89,6 +93,7 @@ export type TbIncomingMinAggregateInputType = {
 }
 
 export type TbIncomingMaxAggregateInputType = {
+  company_cd?: true
   incoming_id?: true
   incoming_no?: true
   cust_cd?: true
@@ -100,6 +105,7 @@ export type TbIncomingMaxAggregateInputType = {
 }
 
 export type TbIncomingCountAggregateInputType = {
+  company_cd?: true
   incoming_id?: true
   incoming_no?: true
   cust_cd?: true
@@ -198,6 +204,7 @@ export type TbIncomingGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbIncomingGroupByOutputType = {
+  company_cd: string
   incoming_id: number
   incoming_no: string
   cust_cd: string
@@ -232,6 +239,7 @@ export type TbIncomingWhereInput = {
   AND?: Prisma.TbIncomingWhereInput | Prisma.TbIncomingWhereInput[]
   OR?: Prisma.TbIncomingWhereInput[]
   NOT?: Prisma.TbIncomingWhereInput | Prisma.TbIncomingWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbIncoming"> | string
   incoming_id?: Prisma.IntFilter<"TbIncoming"> | number
   incoming_no?: Prisma.StringFilter<"TbIncoming"> | string
   cust_cd?: Prisma.StringFilter<"TbIncoming"> | string
@@ -245,6 +253,7 @@ export type TbIncomingWhereInput = {
 }
 
 export type TbIncomingOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   incoming_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -259,10 +268,12 @@ export type TbIncomingOrderByWithRelationInput = {
 
 export type TbIncomingWhereUniqueInput = Prisma.AtLeast<{
   incoming_id?: number
-  incoming_no?: string
+  company_cd_incoming_no?: Prisma.TbIncomingCompany_cdIncoming_noCompoundUniqueInput
   AND?: Prisma.TbIncomingWhereInput | Prisma.TbIncomingWhereInput[]
   OR?: Prisma.TbIncomingWhereInput[]
   NOT?: Prisma.TbIncomingWhereInput | Prisma.TbIncomingWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbIncoming"> | string
+  incoming_no?: Prisma.StringFilter<"TbIncoming"> | string
   cust_cd?: Prisma.StringFilter<"TbIncoming"> | string
   status?: Prisma.StringFilter<"TbIncoming"> | string
   create_by?: Prisma.StringNullableFilter<"TbIncoming"> | string | null
@@ -271,9 +282,10 @@ export type TbIncomingWhereUniqueInput = Prisma.AtLeast<{
   update_dt?: Prisma.DateTimeFilter<"TbIncoming"> | Date | string
   customer?: Prisma.XOR<Prisma.TbCustomerScalarRelationFilter, Prisma.TbCustomerWhereInput>
   details?: Prisma.TbIncomingDtlListRelationFilter
-}, "incoming_id" | "incoming_no">
+}, "incoming_id" | "company_cd_incoming_no">
 
 export type TbIncomingOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   incoming_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -293,6 +305,7 @@ export type TbIncomingScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbIncomingScalarWhereWithAggregatesInput | Prisma.TbIncomingScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbIncomingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbIncomingScalarWhereWithAggregatesInput | Prisma.TbIncomingScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbIncoming"> | string
   incoming_id?: Prisma.IntWithAggregatesFilter<"TbIncoming"> | number
   incoming_no?: Prisma.StringWithAggregatesFilter<"TbIncoming"> | string
   cust_cd?: Prisma.StringWithAggregatesFilter<"TbIncoming"> | string
@@ -304,6 +317,7 @@ export type TbIncomingScalarWhereWithAggregatesInput = {
 }
 
 export type TbIncomingCreateInput = {
+  company_cd?: string
   incoming_no: string
   status?: string
   create_by?: string | null
@@ -315,6 +329,7 @@ export type TbIncomingCreateInput = {
 }
 
 export type TbIncomingUncheckedCreateInput = {
+  company_cd?: string
   incoming_id?: number
   incoming_no: string
   cust_cd: string
@@ -327,6 +342,7 @@ export type TbIncomingUncheckedCreateInput = {
 }
 
 export type TbIncomingUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -338,6 +354,7 @@ export type TbIncomingUpdateInput = {
 }
 
 export type TbIncomingUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -350,6 +367,7 @@ export type TbIncomingUncheckedUpdateInput = {
 }
 
 export type TbIncomingCreateManyInput = {
+  company_cd?: string
   incoming_id?: number
   incoming_no: string
   cust_cd: string
@@ -361,6 +379,7 @@ export type TbIncomingCreateManyInput = {
 }
 
 export type TbIncomingUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -370,6 +389,7 @@ export type TbIncomingUpdateManyMutationInput = {
 }
 
 export type TbIncomingUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -390,7 +410,13 @@ export type TbIncomingOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type TbIncomingCompany_cdIncoming_noCompoundUniqueInput = {
+  company_cd: string
+  incoming_no: string
+}
+
 export type TbIncomingCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   incoming_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -406,6 +432,7 @@ export type TbIncomingAvgOrderByAggregateInput = {
 }
 
 export type TbIncomingMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   incoming_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -417,6 +444,7 @@ export type TbIncomingMaxOrderByAggregateInput = {
 }
 
 export type TbIncomingMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   incoming_no?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
@@ -493,6 +521,7 @@ export type TbIncomingUpdateOneRequiredWithoutDetailsNestedInput = {
 }
 
 export type TbIncomingCreateWithoutCustomerInput = {
+  company_cd?: string
   incoming_no: string
   status?: string
   create_by?: string | null
@@ -503,6 +532,7 @@ export type TbIncomingCreateWithoutCustomerInput = {
 }
 
 export type TbIncomingUncheckedCreateWithoutCustomerInput = {
+  company_cd?: string
   incoming_id?: number
   incoming_no: string
   status?: string
@@ -543,6 +573,7 @@ export type TbIncomingScalarWhereInput = {
   AND?: Prisma.TbIncomingScalarWhereInput | Prisma.TbIncomingScalarWhereInput[]
   OR?: Prisma.TbIncomingScalarWhereInput[]
   NOT?: Prisma.TbIncomingScalarWhereInput | Prisma.TbIncomingScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbIncoming"> | string
   incoming_id?: Prisma.IntFilter<"TbIncoming"> | number
   incoming_no?: Prisma.StringFilter<"TbIncoming"> | string
   cust_cd?: Prisma.StringFilter<"TbIncoming"> | string
@@ -554,6 +585,7 @@ export type TbIncomingScalarWhereInput = {
 }
 
 export type TbIncomingCreateWithoutDetailsInput = {
+  company_cd?: string
   incoming_no: string
   status?: string
   create_by?: string | null
@@ -564,6 +596,7 @@ export type TbIncomingCreateWithoutDetailsInput = {
 }
 
 export type TbIncomingUncheckedCreateWithoutDetailsInput = {
+  company_cd?: string
   incoming_id?: number
   incoming_no: string
   cust_cd: string
@@ -591,6 +624,7 @@ export type TbIncomingUpdateToOneWithWhereWithoutDetailsInput = {
 }
 
 export type TbIncomingUpdateWithoutDetailsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -601,6 +635,7 @@ export type TbIncomingUpdateWithoutDetailsInput = {
 }
 
 export type TbIncomingUncheckedUpdateWithoutDetailsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -612,6 +647,7 @@ export type TbIncomingUncheckedUpdateWithoutDetailsInput = {
 }
 
 export type TbIncomingCreateManyCustomerInput = {
+  company_cd?: string
   incoming_id?: number
   incoming_no: string
   status?: string
@@ -622,6 +658,7 @@ export type TbIncomingCreateManyCustomerInput = {
 }
 
 export type TbIncomingUpdateWithoutCustomerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -632,6 +669,7 @@ export type TbIncomingUpdateWithoutCustomerInput = {
 }
 
 export type TbIncomingUncheckedUpdateWithoutCustomerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -643,6 +681,7 @@ export type TbIncomingUncheckedUpdateWithoutCustomerInput = {
 }
 
 export type TbIncomingUncheckedUpdateManyWithoutCustomerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -684,6 +723,7 @@ export type TbIncomingCountOutputTypeCountDetailsArgs<ExtArgs extends runtime.Ty
 
 
 export type TbIncomingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   incoming_id?: boolean
   incoming_no?: boolean
   cust_cd?: boolean
@@ -698,6 +738,7 @@ export type TbIncomingSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbIncoming"]>
 
 export type TbIncomingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   incoming_id?: boolean
   incoming_no?: boolean
   cust_cd?: boolean
@@ -710,6 +751,7 @@ export type TbIncomingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbIncoming"]>
 
 export type TbIncomingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   incoming_id?: boolean
   incoming_no?: boolean
   cust_cd?: boolean
@@ -722,6 +764,7 @@ export type TbIncomingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbIncoming"]>
 
 export type TbIncomingSelectScalar = {
+  company_cd?: boolean
   incoming_id?: boolean
   incoming_no?: boolean
   cust_cd?: boolean
@@ -732,7 +775,7 @@ export type TbIncomingSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbIncomingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"incoming_id" | "incoming_no" | "cust_cd" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbIncoming"]>
+export type TbIncomingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "incoming_id" | "incoming_no" | "cust_cd" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbIncoming"]>
 export type TbIncomingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.TbCustomerDefaultArgs<ExtArgs>
   details?: boolean | Prisma.TbIncoming$detailsArgs<ExtArgs>
@@ -752,6 +795,7 @@ export type $TbIncomingPayload<ExtArgs extends runtime.Types.Extensions.Internal
     details: Prisma.$TbIncomingDtlPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     incoming_id: number
     incoming_no: string
     cust_cd: string
@@ -843,8 +887,8 @@ export interface TbIncomingDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbIncomings
    * const tbIncomings = await prisma.tbIncoming.findMany({ take: 10 })
    * 
-   * // Only select the `incoming_id`
-   * const tbIncomingWithIncoming_idOnly = await prisma.tbIncoming.findMany({ select: { incoming_id: true } })
+   * // Only select the `company_cd`
+   * const tbIncomingWithCompany_cdOnly = await prisma.tbIncoming.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbIncomingFindManyArgs>(args?: Prisma.SelectSubset<T, TbIncomingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbIncomingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -888,9 +932,9 @@ export interface TbIncomingDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbIncomings and only return the `incoming_id`
-   * const tbIncomingWithIncoming_idOnly = await prisma.tbIncoming.createManyAndReturn({
-   *   select: { incoming_id: true },
+   * // Create many TbIncomings and only return the `company_cd`
+   * const tbIncomingWithCompany_cdOnly = await prisma.tbIncoming.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -979,9 +1023,9 @@ export interface TbIncomingDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbIncomings and only return the `incoming_id`
-   * const tbIncomingWithIncoming_idOnly = await prisma.tbIncoming.updateManyAndReturn({
-   *   select: { incoming_id: true },
+   * // Update zero or more TbIncomings and only return the `company_cd`
+   * const tbIncomingWithCompany_cdOnly = await prisma.tbIncoming.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1185,6 +1229,7 @@ export interface Prisma__TbIncomingClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbIncoming model
  */
 export interface TbIncomingFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbIncoming", 'String'>
   readonly incoming_id: Prisma.FieldRef<"TbIncoming", 'Int'>
   readonly incoming_no: Prisma.FieldRef<"TbIncoming", 'String'>
   readonly cust_cd: Prisma.FieldRef<"TbIncoming", 'String'>

@@ -35,6 +35,7 @@ export type TbNotiRuleSumAggregateOutputType = {
 }
 
 export type TbNotiRuleMinAggregateOutputType = {
+  company_cd: string | null
   rule_id: number | null
   event_type: string | null
   target_role_cd: string | null
@@ -48,6 +49,7 @@ export type TbNotiRuleMinAggregateOutputType = {
 }
 
 export type TbNotiRuleMaxAggregateOutputType = {
+  company_cd: string | null
   rule_id: number | null
   event_type: string | null
   target_role_cd: string | null
@@ -61,6 +63,7 @@ export type TbNotiRuleMaxAggregateOutputType = {
 }
 
 export type TbNotiRuleCountAggregateOutputType = {
+  company_cd: number
   rule_id: number
   event_type: number
   target_role_cd: number
@@ -84,6 +87,7 @@ export type TbNotiRuleSumAggregateInputType = {
 }
 
 export type TbNotiRuleMinAggregateInputType = {
+  company_cd?: true
   rule_id?: true
   event_type?: true
   target_role_cd?: true
@@ -97,6 +101,7 @@ export type TbNotiRuleMinAggregateInputType = {
 }
 
 export type TbNotiRuleMaxAggregateInputType = {
+  company_cd?: true
   rule_id?: true
   event_type?: true
   target_role_cd?: true
@@ -110,6 +115,7 @@ export type TbNotiRuleMaxAggregateInputType = {
 }
 
 export type TbNotiRuleCountAggregateInputType = {
+  company_cd?: true
   rule_id?: true
   event_type?: true
   target_role_cd?: true
@@ -210,6 +216,7 @@ export type TbNotiRuleGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbNotiRuleGroupByOutputType = {
+  company_cd: string
   rule_id: number
   event_type: string
   target_role_cd: string | null
@@ -246,6 +253,7 @@ export type TbNotiRuleWhereInput = {
   AND?: Prisma.TbNotiRuleWhereInput | Prisma.TbNotiRuleWhereInput[]
   OR?: Prisma.TbNotiRuleWhereInput[]
   NOT?: Prisma.TbNotiRuleWhereInput | Prisma.TbNotiRuleWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbNotiRule"> | string
   rule_id?: Prisma.IntFilter<"TbNotiRule"> | number
   event_type?: Prisma.StringFilter<"TbNotiRule"> | string
   target_role_cd?: Prisma.StringNullableFilter<"TbNotiRule"> | string | null
@@ -260,6 +268,7 @@ export type TbNotiRuleWhereInput = {
 }
 
 export type TbNotiRuleOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   rule_id?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
   target_role_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -278,6 +287,7 @@ export type TbNotiRuleWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbNotiRuleWhereInput | Prisma.TbNotiRuleWhereInput[]
   OR?: Prisma.TbNotiRuleWhereInput[]
   NOT?: Prisma.TbNotiRuleWhereInput | Prisma.TbNotiRuleWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbNotiRule"> | string
   event_type?: Prisma.StringFilter<"TbNotiRule"> | string
   target_role_cd?: Prisma.StringNullableFilter<"TbNotiRule"> | string | null
   channel?: Prisma.StringNullableFilter<"TbNotiRule"> | string | null
@@ -291,6 +301,7 @@ export type TbNotiRuleWhereUniqueInput = Prisma.AtLeast<{
 }, "rule_id">
 
 export type TbNotiRuleOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   rule_id?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
   target_role_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -312,6 +323,7 @@ export type TbNotiRuleScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbNotiRuleScalarWhereWithAggregatesInput | Prisma.TbNotiRuleScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbNotiRuleScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbNotiRuleScalarWhereWithAggregatesInput | Prisma.TbNotiRuleScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbNotiRule"> | string
   rule_id?: Prisma.IntWithAggregatesFilter<"TbNotiRule"> | number
   event_type?: Prisma.StringWithAggregatesFilter<"TbNotiRule"> | string
   target_role_cd?: Prisma.StringNullableWithAggregatesFilter<"TbNotiRule"> | string | null
@@ -325,6 +337,7 @@ export type TbNotiRuleScalarWhereWithAggregatesInput = {
 }
 
 export type TbNotiRuleCreateInput = {
+  company_cd?: string
   event_type: string
   channel?: string | null
   template_id?: string | null
@@ -337,6 +350,7 @@ export type TbNotiRuleCreateInput = {
 }
 
 export type TbNotiRuleUncheckedCreateInput = {
+  company_cd?: string
   rule_id?: number
   event_type: string
   target_role_cd?: string | null
@@ -350,6 +364,7 @@ export type TbNotiRuleUncheckedCreateInput = {
 }
 
 export type TbNotiRuleUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   template_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -362,6 +377,7 @@ export type TbNotiRuleUpdateInput = {
 }
 
 export type TbNotiRuleUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   rule_id?: Prisma.IntFieldUpdateOperationsInput | number
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   target_role_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -375,6 +391,7 @@ export type TbNotiRuleUncheckedUpdateInput = {
 }
 
 export type TbNotiRuleCreateManyInput = {
+  company_cd?: string
   rule_id?: number
   event_type: string
   target_role_cd?: string | null
@@ -388,6 +405,7 @@ export type TbNotiRuleCreateManyInput = {
 }
 
 export type TbNotiRuleUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   template_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -399,6 +417,7 @@ export type TbNotiRuleUpdateManyMutationInput = {
 }
 
 export type TbNotiRuleUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   rule_id?: Prisma.IntFieldUpdateOperationsInput | number
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   target_role_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -422,6 +441,7 @@ export type TbNotiRuleOrderByRelationAggregateInput = {
 }
 
 export type TbNotiRuleCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   rule_id?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
   target_role_cd?: Prisma.SortOrder
@@ -439,6 +459,7 @@ export type TbNotiRuleAvgOrderByAggregateInput = {
 }
 
 export type TbNotiRuleMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   rule_id?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
   target_role_cd?: Prisma.SortOrder
@@ -452,6 +473,7 @@ export type TbNotiRuleMaxOrderByAggregateInput = {
 }
 
 export type TbNotiRuleMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   rule_id?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
   target_role_cd?: Prisma.SortOrder
@@ -511,6 +533,7 @@ export type TbNotiRuleUncheckedUpdateManyWithoutTarget_roleNestedInput = {
 }
 
 export type TbNotiRuleCreateWithoutTarget_roleInput = {
+  company_cd?: string
   event_type: string
   channel?: string | null
   template_id?: string | null
@@ -522,6 +545,7 @@ export type TbNotiRuleCreateWithoutTarget_roleInput = {
 }
 
 export type TbNotiRuleUncheckedCreateWithoutTarget_roleInput = {
+  company_cd?: string
   rule_id?: number
   event_type: string
   channel?: string | null
@@ -563,6 +587,7 @@ export type TbNotiRuleScalarWhereInput = {
   AND?: Prisma.TbNotiRuleScalarWhereInput | Prisma.TbNotiRuleScalarWhereInput[]
   OR?: Prisma.TbNotiRuleScalarWhereInput[]
   NOT?: Prisma.TbNotiRuleScalarWhereInput | Prisma.TbNotiRuleScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbNotiRule"> | string
   rule_id?: Prisma.IntFilter<"TbNotiRule"> | number
   event_type?: Prisma.StringFilter<"TbNotiRule"> | string
   target_role_cd?: Prisma.StringNullableFilter<"TbNotiRule"> | string | null
@@ -576,6 +601,7 @@ export type TbNotiRuleScalarWhereInput = {
 }
 
 export type TbNotiRuleCreateManyTarget_roleInput = {
+  company_cd?: string
   rule_id?: number
   event_type: string
   channel?: string | null
@@ -588,6 +614,7 @@ export type TbNotiRuleCreateManyTarget_roleInput = {
 }
 
 export type TbNotiRuleUpdateWithoutTarget_roleInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   template_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -599,6 +626,7 @@ export type TbNotiRuleUpdateWithoutTarget_roleInput = {
 }
 
 export type TbNotiRuleUncheckedUpdateWithoutTarget_roleInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   rule_id?: Prisma.IntFieldUpdateOperationsInput | number
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -611,6 +639,7 @@ export type TbNotiRuleUncheckedUpdateWithoutTarget_roleInput = {
 }
 
 export type TbNotiRuleUncheckedUpdateManyWithoutTarget_roleInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   rule_id?: Prisma.IntFieldUpdateOperationsInput | number
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -625,6 +654,7 @@ export type TbNotiRuleUncheckedUpdateManyWithoutTarget_roleInput = {
 
 
 export type TbNotiRuleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   rule_id?: boolean
   event_type?: boolean
   target_role_cd?: boolean
@@ -639,6 +669,7 @@ export type TbNotiRuleSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbNotiRule"]>
 
 export type TbNotiRuleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   rule_id?: boolean
   event_type?: boolean
   target_role_cd?: boolean
@@ -653,6 +684,7 @@ export type TbNotiRuleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbNotiRule"]>
 
 export type TbNotiRuleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   rule_id?: boolean
   event_type?: boolean
   target_role_cd?: boolean
@@ -667,6 +699,7 @@ export type TbNotiRuleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbNotiRule"]>
 
 export type TbNotiRuleSelectScalar = {
+  company_cd?: boolean
   rule_id?: boolean
   event_type?: boolean
   target_role_cd?: boolean
@@ -679,7 +712,7 @@ export type TbNotiRuleSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbNotiRuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"rule_id" | "event_type" | "target_role_cd" | "channel" | "template_id" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbNotiRule"]>
+export type TbNotiRuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "rule_id" | "event_type" | "target_role_cd" | "channel" | "template_id" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbNotiRule"]>
 export type TbNotiRuleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   target_role?: boolean | Prisma.TbNotiRule$target_roleArgs<ExtArgs>
 }
@@ -696,6 +729,7 @@ export type $TbNotiRulePayload<ExtArgs extends runtime.Types.Extensions.Internal
     target_role: Prisma.$TbRolePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     rule_id: number
     event_type: string
     target_role_cd: string | null
@@ -789,8 +823,8 @@ export interface TbNotiRuleDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbNotiRules
    * const tbNotiRules = await prisma.tbNotiRule.findMany({ take: 10 })
    * 
-   * // Only select the `rule_id`
-   * const tbNotiRuleWithRule_idOnly = await prisma.tbNotiRule.findMany({ select: { rule_id: true } })
+   * // Only select the `company_cd`
+   * const tbNotiRuleWithCompany_cdOnly = await prisma.tbNotiRule.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbNotiRuleFindManyArgs>(args?: Prisma.SelectSubset<T, TbNotiRuleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbNotiRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -834,9 +868,9 @@ export interface TbNotiRuleDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbNotiRules and only return the `rule_id`
-   * const tbNotiRuleWithRule_idOnly = await prisma.tbNotiRule.createManyAndReturn({
-   *   select: { rule_id: true },
+   * // Create many TbNotiRules and only return the `company_cd`
+   * const tbNotiRuleWithCompany_cdOnly = await prisma.tbNotiRule.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -925,9 +959,9 @@ export interface TbNotiRuleDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbNotiRules and only return the `rule_id`
-   * const tbNotiRuleWithRule_idOnly = await prisma.tbNotiRule.updateManyAndReturn({
-   *   select: { rule_id: true },
+   * // Update zero or more TbNotiRules and only return the `company_cd`
+   * const tbNotiRuleWithCompany_cdOnly = await prisma.tbNotiRule.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1130,6 +1164,7 @@ export interface Prisma__TbNotiRuleClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbNotiRule model
  */
 export interface TbNotiRuleFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbNotiRule", 'String'>
   readonly rule_id: Prisma.FieldRef<"TbNotiRule", 'Int'>
   readonly event_type: Prisma.FieldRef<"TbNotiRule", 'String'>
   readonly target_role_cd: Prisma.FieldRef<"TbNotiRule", 'String'>

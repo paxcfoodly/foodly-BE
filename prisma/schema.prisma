@@ -65,6 +65,7 @@ model TbPlant {
 // M03: TB_WORKSHOP — 작업장/라인 (자기참조)
 // ════════════════════════════════════════════════════════════
 model TbWorkshop {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   workshop_cd   String  @id @db.VarChar(20)
   plant_cd      String  @db.VarChar(20)
   parent_cd     String? @db.VarChar(20) // 자기참조 FK
@@ -88,6 +89,7 @@ model TbWorkshop {
 
   @@index([plant_cd])
   @@index([parent_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_workshop")
 }
 
@@ -95,6 +97,7 @@ model TbWorkshop {
 // M04: TB_ITEM — 품목 마스터
 // ════════════════════════════════════════════════════════════
 model TbItem {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   item_cd      String   @id @db.VarChar(30)
   item_nm      String   @db.VarChar(200)
   item_type    String   @db.VarChar(10) // RAW, SEMI, FIN
@@ -131,6 +134,7 @@ model TbItem {
   demands           TbDemand[]
 
   @@index([item_type])
+  @@index([company_cd, create_dt])
   @@map("tb_item")
 }
 
@@ -138,6 +142,7 @@ model TbItem {
 // M05: TB_BOM — BOM (Bill of Materials)
 // ════════════════════════════════════════════════════════════
 model TbBom {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   bom_id         Int      @id @default(autoincrement())
   parent_item_cd String   @db.VarChar(30)
   child_item_cd  String   @db.VarChar(30)
@@ -161,6 +166,7 @@ model TbBom {
 
   @@index([parent_item_cd])
   @@index([child_item_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_bom")
 }
 
@@ -168,6 +174,7 @@ model TbBom {
 // M06: TB_PROCESS — 공정 마스터
 // ════════════════════════════════════════════════════════════
 model TbProcess {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   process_cd   String   @id @db.VarChar(20)
   process_nm   String   @db.VarChar(100)
   process_type String?  @db.VarChar(20) // MACHINING, ASSY, INSP, PKG
@@ -192,6 +199,7 @@ model TbProcess {
   defects         TbDefect[]
 
   @@index([workshop_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_process")
 }
 
@@ -199,6 +207,7 @@ model TbProcess {
 // M07: TB_ROUTING — 라우팅 (품목별 공정순서)
 // ════════════════════════════════════════════════════════════
 model TbRouting {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   routing_id Int      @id @default(autoincrement())
   item_cd    String   @db.VarChar(30)
   process_cd String   @db.VarChar(20)
@@ -219,6 +228,7 @@ model TbRouting {
   @@unique([item_cd, seq_no]) // 동일 품목 동일 순서 중복 불가
   @@index([item_cd])
   @@index([process_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_routing")
 }
 
@@ -226,6 +236,7 @@ model TbRouting {
 // M08: TB_EQUIPMENT — 설비 마스터
 // ════════════════════════════════════════════════════════════
 model TbEquipment {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   equip_cd     String    @id @db.VarChar(20)
   equip_nm     String    @db.VarChar(100)
   equip_type   String?   @db.VarChar(20) // CNC, PRESS, INJECTION, PACKAGING
@@ -251,6 +262,7 @@ model TbEquipment {
 
   @@index([workshop_cd])
   @@index([equip_type])
+  @@index([company_cd, create_dt])
   @@map("tb_equipment")
 }
 
@@ -258,6 +270,7 @@ model TbEquipment {
 // M09: TB_EQUIP_PROCESS — 설비-공정 매핑 (복합 PK)
 // ════════════════════════════════════════════════════════════
 model TbEquipProcess {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   equip_cd   String @db.VarChar(20)
   process_cd String @db.VarChar(20)
   priority   Int    @default(1)
@@ -272,6 +285,7 @@ model TbEquipProcess {
   process   TbProcess   @relation(fields: [process_cd], references: [process_cd])
 
   @@id([equip_cd, process_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_equip_process")
 }
 
@@ -279,6 +293,7 @@ model TbEquipProcess {
 // M10: TB_MOLD — 금형 마스터
 // ════════════════════════════════════════════════════════════
 model TbMold {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   mold_cd        String  @id @db.VarChar(20)
   mold_nm        String  @db.VarChar(100)
   item_cd        String? @db.VarChar(30) // 적용품목
@@ -295,6 +310,7 @@ model TbMold {
   item TbItem? @relation(fields: [item_cd], references: [item_cd])
 
   @@index([item_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_mold")
 }
 
@@ -302,6 +318,7 @@ model TbMold {
 // M11: TB_WORKER — 작업자 마스터
 // ════════════════════════════════════════════════════════════
 model TbWorker {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   worker_id   String  @id @db.VarChar(20) // 사번
   worker_nm   String  @db.VarChar(50)
   dept_cd     String? @db.VarChar(20)
@@ -324,6 +341,7 @@ model TbWorker {
   maint_plan_assignments TbMaintPlan[] @relation("MaintPlanAssignee")
 
   @@index([workshop_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_worker")
 }
 
@@ -331,6 +349,7 @@ model TbWorker {
 // M12: TB_WORKER_SKILL — 작업자 스킬 매핑 (복합 PK)
 // ════════════════════════════════════════════════════════════
 model TbWorkerSkill {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   worker_id   String @db.VarChar(20)
   process_cd  String @db.VarChar(20)
   skill_level Int?   @default(1)
@@ -345,6 +364,7 @@ model TbWorkerSkill {
   process TbProcess @relation(fields: [process_cd], references: [process_cd])
 
   @@id([worker_id, process_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_worker_skill")
 }
 
@@ -352,6 +372,7 @@ model TbWorkerSkill {
 // M13: TB_CUSTOMER — 거래처
 // ════════════════════════════════════════════════════════════
 model TbCustomer {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   cust_cd    String  @id @db.VarChar(20)
   cust_nm    String  @db.VarChar(100)
   cust_type  String? @db.VarChar(20) // 고객/공급사
@@ -372,6 +393,7 @@ model TbCustomer {
   incomings TbIncoming[]
   demands   TbDemand[]
 
+  @@index([company_cd, create_dt])
   @@map("tb_customer")
 }
 
@@ -379,6 +401,7 @@ model TbCustomer {
 // M14: TB_INSPECT_STD — 검사기준
 // ════════════════════════════════════════════════════════════
 model TbInspectStd {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   inspect_std_id  Int      @id @default(autoincrement())
   item_cd         String?  @db.VarChar(30)
   process_cd      String?  @db.VarChar(20)
@@ -404,6 +427,7 @@ model TbInspectStd {
 
   @@index([item_cd])
   @@index([process_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_inspect_std")
 }
 
@@ -411,6 +435,7 @@ model TbInspectStd {
 // M15: TB_WAREHOUSE — 창고 마스터
 // ════════════════════════════════════════════════════════════
 model TbWarehouse {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   wh_cd    String  @id @db.VarChar(20)
   wh_nm    String  @db.VarChar(100)
   wh_type  String? @db.VarChar(20) // 원자재/완제품/부자재 등
@@ -428,6 +453,7 @@ model TbWarehouse {
   inventories TbInventory[]
 
   @@index([plant_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_warehouse")
 }
 
@@ -439,8 +465,9 @@ model TbWarehouse {
 // T00: TB_DEMAND — 수주(수요)
 // ────────────────────────────────────────
 model TbDemand {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   demand_id  Int       @id @default(autoincrement())
-  demand_no  String    @unique @db.VarChar(30)
+  demand_no  String @db.VarChar(30)
   cust_cd    String?   @db.VarChar(20)
   item_cd    String    @db.VarChar(30)
   demand_qty Decimal   @db.Decimal(15, 3)
@@ -461,6 +488,8 @@ model TbDemand {
   @@index([item_cd])
   @@index([cust_cd])
   @@index([status])
+  @@unique([company_cd, demand_no])
+  @@index([company_cd, create_dt])
   @@map("tb_demand")
 }
 
@@ -468,8 +497,9 @@ model TbDemand {
 // T01: TB_PROD_PLAN — 생산계획
 // ────────────────────────────────────────
 model TbProdPlan {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   plan_id   Int       @id @default(autoincrement())
-  plan_no   String    @unique @db.VarChar(30)
+  plan_no   String @db.VarChar(30)
   plant_cd  String    @db.VarChar(20)
   item_cd   String    @db.VarChar(30)
   plan_qty  Decimal   @db.Decimal(15, 3)
@@ -493,6 +523,8 @@ model TbProdPlan {
   @@index([item_cd])
   @@index([status])
   @@index([due_date])
+  @@unique([company_cd, plan_no])
+  @@index([company_cd, create_dt])
   @@map("tb_prod_plan")
 }
 
@@ -500,8 +532,9 @@ model TbProdPlan {
 // T02: TB_WORK_ORDER — 작업지시
 // ────────────────────────────────────────
 model TbWorkOrder {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   wo_id      Int      @id @default(autoincrement())
-  wo_no      String   @unique @db.VarChar(30)
+  wo_no      String @db.VarChar(30)
   plan_id    Int?
   item_cd    String   @db.VarChar(30)
   order_qty  Decimal  @db.Decimal(15, 3)
@@ -530,6 +563,8 @@ model TbWorkOrder {
   @@index([plan_id])
   @@index([item_cd])
   @@index([status])
+  @@unique([company_cd, wo_no])
+  @@index([company_cd, create_dt])
   @@map("tb_work_order")
 }
 
@@ -537,6 +572,7 @@ model TbWorkOrder {
 // T03: TB_WO_PROCESS — 작업지시 공정
 // ────────────────────────────────────────
 model TbWoProcess {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   wo_process_id Int     @id @default(autoincrement())
   wo_id         Int
   process_cd    String  @db.VarChar(20)
@@ -556,6 +592,7 @@ model TbWoProcess {
 
   @@index([wo_id])
   @@index([process_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_wo_process")
 }
 
@@ -563,6 +600,7 @@ model TbWoProcess {
 // T04: TB_WO_WORKER — 작업지시 배정 (복합PK)
 // ────────────────────────────────────────
 model TbWoWorker {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   wo_id     Int
   worker_id String   @db.VarChar(20)
   assign_dt DateTime @default(now())
@@ -577,6 +615,7 @@ model TbWoWorker {
   worker     TbWorker    @relation(fields: [worker_id], references: [worker_id])
 
   @@id([wo_id, worker_id])
+  @@index([company_cd, create_dt])
   @@map("tb_wo_worker")
 }
 
@@ -584,6 +623,7 @@ model TbWoWorker {
 // T05: TB_PROD_RESULT — 생산실적
 // ────────────────────────────────────────
 model TbProdResult {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   result_id     Int       @id @default(autoincrement())
   wo_id         Int
   lot_no        String?   @db.VarChar(50)
@@ -609,6 +649,7 @@ model TbProdResult {
   @@index([lot_no])
   @@index([equip_cd])
   @@index([worker_id])
+  @@index([company_cd, create_dt])
   @@map("tb_prod_result")
 }
 
@@ -616,6 +657,7 @@ model TbProdResult {
 // T06: TB_LOT — LOT 마스터
 // ────────────────────────────────────────
 model TbLot {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   lot_no        String  @id @db.VarChar(50)
   item_cd       String  @db.VarChar(30)
   lot_qty       Decimal @db.Decimal(15, 3)
@@ -652,6 +694,7 @@ model TbLot {
   @@index([wo_id])
   @@index([wh_cd])
   @@index([lot_status])
+  @@index([company_cd, create_dt])
   @@map("tb_lot")
 }
 
@@ -659,6 +702,7 @@ model TbLot {
 // T07: TB_LOT_HISTORY — LOT 이력
 // ────────────────────────────────────────
 model TbLotHistory {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   lot_hist_id  Int      @id @default(autoincrement())
   lot_no       String   @db.VarChar(50)
   event_type   String   @db.VarChar(20) // CREATE, SPLIT, MERGE, MOVE, CONSUME, ADJUST
@@ -673,6 +717,7 @@ model TbLotHistory {
 
   @@index([lot_no])
   @@index([create_dt])
+  @@index([company_cd, create_dt])
   @@map("tb_lot_history")
 }
 
@@ -680,6 +725,7 @@ model TbLotHistory {
 // T08: TB_MATERIAL_INPUT — 자재투입
 // ────────────────────────────────────────
 model TbMaterialInput {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   input_id  Int     @id @default(autoincrement())
   wo_id     Int
   item_cd   String  @db.VarChar(30)
@@ -700,6 +746,7 @@ model TbMaterialInput {
 
   @@index([wo_id])
   @@index([item_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_material_input")
 }
 
@@ -707,8 +754,9 @@ model TbMaterialInput {
 // T09: TB_MATERIAL_ISSUE — 자재불출
 // ────────────────────────────────────────
 model TbMaterialIssue {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   issue_id Int    @id @default(autoincrement())
-  issue_no String @unique @db.VarChar(30)
+  issue_no String @db.VarChar(30)
   wo_id    Int?
   status   String @default("REQUESTED") @db.VarChar(20)
 
@@ -722,6 +770,8 @@ model TbMaterialIssue {
   details    TbMaterialIssueDtl[]
 
   @@index([wo_id])
+  @@unique([company_cd, issue_no])
+  @@index([company_cd, create_dt])
   @@map("tb_material_issue")
 }
 
@@ -729,6 +779,7 @@ model TbMaterialIssue {
 // T10: TB_MATERIAL_ISSUE_DTL — 자재불출 상세
 // ────────────────────────────────────────
 model TbMaterialIssueDtl {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   issue_dtl_id Int     @id @default(autoincrement())
   issue_id     Int
   item_cd      String  @db.VarChar(30)
@@ -748,6 +799,7 @@ model TbMaterialIssueDtl {
 
   @@index([issue_id])
   @@index([item_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_material_issue_dtl")
 }
 
@@ -755,8 +807,9 @@ model TbMaterialIssueDtl {
 // T11: TB_INSPECT_RESULT — 검사결과
 // ────────────────────────────────────────
 model TbInspectResult {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   inspect_id   Int     @id @default(autoincrement())
-  inspect_no   String  @unique @db.VarChar(30)
+  inspect_no   String @db.VarChar(30)
   inspect_type String? @db.VarChar(20) // INCOMING, PROCESS, SHIPPING
   item_cd      String? @db.VarChar(30)
   lot_no       String? @db.VarChar(50)
@@ -782,6 +835,8 @@ model TbInspectResult {
   @@index([inspect_type])
   @@index([wo_id])
   @@index([process_cd])
+  @@unique([company_cd, inspect_no])
+  @@index([company_cd, create_dt])
   @@map("tb_inspect_result")
 }
 
@@ -789,6 +844,7 @@ model TbInspectResult {
 // T12: TB_INSPECT_RESULT_DTL — 검사결과 상세
 // ────────────────────────────────────────
 model TbInspectResultDtl {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   inspect_dtl_id Int      @id @default(autoincrement())
   inspect_id     Int
   inspect_std_id Int?
@@ -806,6 +862,7 @@ model TbInspectResultDtl {
 
   @@index([inspect_id])
   @@index([inspect_std_id])
+  @@index([company_cd, create_dt])
   @@map("tb_inspect_result_dtl")
 }
 
@@ -813,8 +870,9 @@ model TbInspectResultDtl {
 // T13: TB_DEFECT — 불량
 // ────────────────────────────────────────
 model TbDefect {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   defect_id       Int     @id @default(autoincrement())
-  defect_no       String  @unique @db.VarChar(30)
+  defect_no       String @db.VarChar(30)
   wo_id           Int?
   item_cd         String? @db.VarChar(30)
   lot_no          String? @db.VarChar(50)
@@ -843,6 +901,8 @@ model TbDefect {
   @@index([defect_type_cd])
   @@index([status])
   @@index([process_cd])
+  @@unique([company_cd, defect_no])
+  @@index([company_cd, create_dt])
   @@map("tb_defect")
 }
 
@@ -850,6 +910,7 @@ model TbDefect {
 // T14: TB_DEFECT_DISPOSE — 불량처리
 // ────────────────────────────────────────
 model TbDefectDispose {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   dispose_id   Int     @id @default(autoincrement())
   defect_id    Int
   dispose_type String? @db.VarChar(20) // REWORK, SCRAP, CONCESSION
@@ -867,6 +928,7 @@ model TbDefectDispose {
   defect TbDefect @relation(fields: [defect_id], references: [defect_id])
 
   @@index([defect_id])
+  @@index([company_cd, create_dt])
   @@map("tb_defect_dispose")
 }
 
@@ -874,6 +936,7 @@ model TbDefectDispose {
 // T15: TB_EQUIP_STATUS — 설비상태
 // ────────────────────────────────────────
 model TbEquipStatus {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   status_id      Int       @id @default(autoincrement())
   equip_cd       String    @db.VarChar(20)
   status_type    String    @db.VarChar(20) // RUN, IDLE, DOWN, SETUP
@@ -893,6 +956,7 @@ model TbEquipStatus {
 
   @@index([equip_cd])
   @@index([start_dt])
+  @@index([company_cd, create_dt])
   @@map("tb_equip_status")
 }
 
@@ -900,6 +964,7 @@ model TbEquipStatus {
 // T16: TB_MAINT_PLAN — 보전계획
 // ────────────────────────────────────────
 model TbMaintPlan {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   maint_plan_id  Int       @id @default(autoincrement())
   equip_cd       String    @db.VarChar(20)
   plan_nm        String?   @db.VarChar(100)
@@ -923,6 +988,7 @@ model TbMaintPlan {
   @@index([equip_cd])
   @@index([next_plan_date])
   @@index([assignee_id])
+  @@index([company_cd, create_dt])
   @@map("tb_maint_plan")
 }
 
@@ -930,6 +996,7 @@ model TbMaintPlan {
 // T16-DTL: TB_MAINT_PLAN_DTL — 보전계획 체크리스트
 // ────────────────────────────────────────
 model TbMaintPlanDtl {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   plan_dtl_id   Int    @id @default(autoincrement())
   maint_plan_id Int
   item_no       Int
@@ -945,6 +1012,7 @@ model TbMaintPlanDtl {
   result_dtls TbMaintResultDtl[]
 
   @@index([maint_plan_id])
+  @@index([company_cd, create_dt])
   @@map("tb_maint_plan_dtl")
 }
 
@@ -952,6 +1020,7 @@ model TbMaintPlanDtl {
 // T17: TB_MAINT_RESULT — 보전실적
 // ────────────────────────────────────────
 model TbMaintResult {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   maint_result_id Int       @id @default(autoincrement())
   equip_cd        String    @db.VarChar(20)
   maint_no        String?   @db.VarChar(30)
@@ -977,6 +1046,7 @@ model TbMaintResult {
   @@index([equip_cd])
   @@index([worker_id])
   @@index([maint_plan_id])
+  @@index([company_cd, create_dt])
   @@map("tb_maint_result")
 }
 
@@ -984,6 +1054,7 @@ model TbMaintResult {
 // T17-DTL: TB_MAINT_RESULT_DTL — 보전실적 체크리스트
 // ────────────────────────────────────────
 model TbMaintResultDtl {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   result_dtl_id   Int    @id @default(autoincrement())
   maint_result_id Int
   plan_dtl_id     Int?
@@ -1000,6 +1071,7 @@ model TbMaintResultDtl {
   plan_dtl     TbMaintPlanDtl? @relation(fields: [plan_dtl_id], references: [plan_dtl_id])
 
   @@index([maint_result_id])
+  @@index([company_cd, create_dt])
   @@map("tb_maint_result_dtl")
 }
 
@@ -1007,6 +1079,7 @@ model TbMaintResultDtl {
 // T18: TB_INVENTORY — 재고
 // ────────────────────────────────────────
 model TbInventory {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   inventory_id  Int     @id @default(autoincrement())
   item_cd       String  @db.VarChar(30)
   lot_no        String? @db.VarChar(50)
@@ -1025,9 +1098,10 @@ model TbInventory {
   lot       TbLot?     @relation(fields: [lot_no], references: [lot_no])
   warehouse TbWarehouse @relation(fields: [wh_cd], references: [wh_cd])
 
-  @@unique([item_cd, lot_no, wh_cd])
+  @@unique([company_cd, item_cd, lot_no, wh_cd])
   @@index([item_cd])
   @@index([wh_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_inventory")
 }
 
@@ -1035,6 +1109,7 @@ model TbInventory {
 // T19: TB_INVENTORY_TX — 재고 트랜잭션
 // ────────────────────────────────────────
 model TbInventoryTx {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   tx_id      Int     @id @default(autoincrement())
   item_cd    String  @db.VarChar(30)
   lot_no     String? @db.VarChar(50)
@@ -1053,6 +1128,7 @@ model TbInventoryTx {
   @@index([item_cd])
   @@index([lot_no])
   @@index([create_dt])
+  @@index([company_cd, create_dt])
   @@map("tb_inventory_tx")
 }
 
@@ -1060,6 +1136,7 @@ model TbInventoryTx {
 // T20: TB_INVENTORY_ADJUST — 재고조정
 // ────────────────────────────────────────
 model TbInventoryAdjust {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   adjust_id     Int     @id @default(autoincrement())
   item_cd       String  @db.VarChar(30)
   lot_no        String? @db.VarChar(50)
@@ -1076,6 +1153,7 @@ model TbInventoryAdjust {
   lot  TbLot? @relation(fields: [lot_no], references: [lot_no])
 
   @@index([item_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_inventory_adjust")
 }
 
@@ -1083,8 +1161,9 @@ model TbInventoryAdjust {
 // T21: TB_SHIPMENT — 출하
 // ────────────────────────────────────────
 model TbShipment {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   ship_id Int    @id @default(autoincrement())
-  ship_no String @unique @db.VarChar(30)
+  ship_no String @db.VarChar(30)
   cust_cd String @db.VarChar(20)
   status  String @default("PLAN") @db.VarChar(20)
   plan_dt        DateTime?
@@ -1104,6 +1183,8 @@ model TbShipment {
   details  TbShipmentDtl[]
 
   @@index([cust_cd])
+  @@unique([company_cd, ship_no])
+  @@index([company_cd, create_dt])
   @@map("tb_shipment")
 }
 
@@ -1111,6 +1192,7 @@ model TbShipment {
 // T22: TB_SHIPMENT_DTL — 출하 상세
 // ────────────────────────────────────────
 model TbShipmentDtl {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   ship_dtl_id Int     @id @default(autoincrement())
   ship_id     Int
   item_cd     String  @db.VarChar(30)
@@ -1130,6 +1212,7 @@ model TbShipmentDtl {
 
   @@index([ship_id])
   @@index([item_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_shipment_dtl")
 }
 
@@ -1137,8 +1220,9 @@ model TbShipmentDtl {
 // T23: TB_INCOMING — 입고
 // ────────────────────────────────────────
 model TbIncoming {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   incoming_id Int    @id @default(autoincrement())
-  incoming_no String @unique @db.VarChar(30)
+  incoming_no String @db.VarChar(30)
   cust_cd     String @db.VarChar(20)
   status      String @default("PLAN") @db.VarChar(20)
 
@@ -1152,6 +1236,8 @@ model TbIncoming {
   details  TbIncomingDtl[]
 
   @@index([cust_cd])
+  @@unique([company_cd, incoming_no])
+  @@index([company_cd, create_dt])
   @@map("tb_incoming")
 }
 
@@ -1159,6 +1245,7 @@ model TbIncoming {
 // T24: TB_INCOMING_DTL — 입고 상세
 // ────────────────────────────────────────
 model TbIncomingDtl {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   incoming_dtl_id Int     @id @default(autoincrement())
   incoming_id     Int
   item_cd         String  @db.VarChar(30)
@@ -1178,6 +1265,7 @@ model TbIncomingDtl {
 
   @@index([incoming_id])
   @@index([item_cd])
+  @@index([company_cd, create_dt])
   @@map("tb_incoming_dtl")
 }
 
@@ -1331,7 +1419,8 @@ model TbCommonCode {
 // S07: TB_NUMBERING — 채번 규칙
 // ────────────────────────────────────────
 model TbNumbering {
-  num_type    String @id @db.VarChar(30)
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
+  num_type    String @db.VarChar(30)
   prefix      String @db.VarChar(10)
   date_format String @default("YYMMDD") @db.VarChar(10)
   seq_length  Int    @default(4)
@@ -1342,6 +1431,8 @@ model TbNumbering {
   update_by String?  @db.VarChar(50)
   update_dt DateTime @updatedAt
 
+  @@id([company_cd, num_type])
+  @@index([company_cd, create_dt])
   @@map("tb_numbering")
 }
 
@@ -1349,6 +1440,7 @@ model TbNumbering {
 // S08: TB_FILE — 파일 첨부
 // ────────────────────────────────────────
 model TbFile {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   file_id     Int    @id @default(autoincrement())
   original_nm String @db.VarChar(200)
   stored_nm   String @db.VarChar(200)
@@ -1362,6 +1454,7 @@ model TbFile {
   create_dt DateTime @default(now())
 
   @@index([ref_table, ref_id])
+  @@index([company_cd, create_dt])
   @@map("tb_file")
 }
 
@@ -1369,6 +1462,7 @@ model TbFile {
 // S09: TB_AUDIT_LOG — 감사 로그
 // ────────────────────────────────────────
 model TbAuditLog {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   log_id       Int     @id @default(autoincrement())
   user_id      Int?
   action       String  @db.VarChar(20) // CREATE, UPDATE, DELETE, LOGIN, LOGOUT
@@ -1386,6 +1480,7 @@ model TbAuditLog {
   @@index([user_id])
   @@index([target_table])
   @@index([create_dt])
+  @@index([company_cd, create_dt])
   @@map("tb_audit_log")
 }
 
@@ -1393,6 +1488,7 @@ model TbAuditLog {
 // S10: TB_NOTIFICATION — 알림
 // ────────────────────────────────────────
 model TbNotification {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   noti_id        Int     @id @default(autoincrement())
   noti_type      String? @db.VarChar(20)
   noti_title     String  @db.VarChar(200)
@@ -1409,6 +1505,7 @@ model TbNotification {
 
   @@index([target_user_id])
   @@index([read_yn])
+  @@index([company_cd, create_dt])
   @@map("tb_notification")
 }
 
@@ -1416,6 +1513,7 @@ model TbNotification {
 // S11: TB_NOTI_RULE — 알림 규칙
 // ────────────────────────────────────────
 model TbNotiRule {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   rule_id        Int     @id @default(autoincrement())
   event_type     String  @db.VarChar(50) // WO_CREATED, DEFECT_FOUND, etc.
   target_role_cd String? @db.VarChar(20)
@@ -1432,6 +1530,7 @@ model TbNotiRule {
   target_role TbRole? @relation(fields: [target_role_cd], references: [role_cd])
 
   @@index([event_type])
+  @@index([company_cd, create_dt])
   @@map("tb_noti_rule")
 }
 
@@ -1439,6 +1538,7 @@ model TbNotiRule {
 // S12: TB_BATCH_LOG — 배치 실행 이력
 // ────────────────────────────────────────
 model TbBatchLog {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   batch_log_id Int       @id @default(autoincrement())
   batch_nm     String    @db.VarChar(100)
   start_dt     DateTime?
@@ -1450,6 +1550,7 @@ model TbBatchLog {
 
   @@index([batch_nm])
   @@index([start_dt])
+  @@index([company_cd, create_dt])
   @@map("tb_batch_log")
 }
 
@@ -1457,6 +1558,7 @@ model TbBatchLog {
 // S13: TB_NOTICE — 공지사항
 // ────────────────────────────────────────
 model TbNotice {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   notice_id Int     @id @default(autoincrement())
   title     String  @db.VarChar(200)
   content   String? @db.Text
@@ -1467,6 +1569,7 @@ model TbNotice {
   update_by String?  @db.VarChar(50)
   update_dt DateTime @updatedAt
 
+  @@index([company_cd, create_dt])
   @@map("tb_notice")
 }
 
@@ -1474,6 +1577,7 @@ model TbNotice {
 // S14: TB_SYS_SETTING — 시스템 기본값 (key-value)
 // ────────────────────────────────────────
 model TbSysSetting {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   setting_key   String  @id @db.VarChar(50)
   setting_value String? @db.VarChar(200)
   setting_group String? @db.VarChar(30)
@@ -1485,6 +1589,7 @@ model TbSysSetting {
   update_by String?  @db.VarChar(50)
   update_dt DateTime @updatedAt
 
+  @@index([company_cd, create_dt])
   @@map("tb_sys_setting")
 }
 
@@ -1492,6 +1597,7 @@ model TbSysSetting {
 // S15: TB_DATA_HISTORY — 데이터 변경이력
 // ────────────────────────────────────────
 model TbDataHistory {
+  company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
   history_id    Int     @id @default(autoincrement())
   table_nm      String  @db.VarChar(50)
   record_id     String  @db.VarChar(50)
@@ -1505,5 +1611,6 @@ model TbDataHistory {
 
   @@index([table_nm, record_id])
   @@index([change_dt])
+  @@index([company_cd])
   @@map("tb_data_history")
 }

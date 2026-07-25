@@ -39,6 +39,7 @@ export type TbMaterialInputSumAggregateOutputType = {
 }
 
 export type TbMaterialInputMinAggregateOutputType = {
+  company_cd: string | null
   input_id: number | null
   wo_id: number | null
   item_cd: string | null
@@ -52,6 +53,7 @@ export type TbMaterialInputMinAggregateOutputType = {
 }
 
 export type TbMaterialInputMaxAggregateOutputType = {
+  company_cd: string | null
   input_id: number | null
   wo_id: number | null
   item_cd: string | null
@@ -65,6 +67,7 @@ export type TbMaterialInputMaxAggregateOutputType = {
 }
 
 export type TbMaterialInputCountAggregateOutputType = {
+  company_cd: number
   input_id: number
   wo_id: number
   item_cd: number
@@ -92,6 +95,7 @@ export type TbMaterialInputSumAggregateInputType = {
 }
 
 export type TbMaterialInputMinAggregateInputType = {
+  company_cd?: true
   input_id?: true
   wo_id?: true
   item_cd?: true
@@ -105,6 +109,7 @@ export type TbMaterialInputMinAggregateInputType = {
 }
 
 export type TbMaterialInputMaxAggregateInputType = {
+  company_cd?: true
   input_id?: true
   wo_id?: true
   item_cd?: true
@@ -118,6 +123,7 @@ export type TbMaterialInputMaxAggregateInputType = {
 }
 
 export type TbMaterialInputCountAggregateInputType = {
+  company_cd?: true
   input_id?: true
   wo_id?: true
   item_cd?: true
@@ -218,6 +224,7 @@ export type TbMaterialInputGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 export type TbMaterialInputGroupByOutputType = {
+  company_cd: string
   input_id: number
   wo_id: number
   item_cd: string
@@ -254,6 +261,7 @@ export type TbMaterialInputWhereInput = {
   AND?: Prisma.TbMaterialInputWhereInput | Prisma.TbMaterialInputWhereInput[]
   OR?: Prisma.TbMaterialInputWhereInput[]
   NOT?: Prisma.TbMaterialInputWhereInput | Prisma.TbMaterialInputWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaterialInput"> | string
   input_id?: Prisma.IntFilter<"TbMaterialInput"> | number
   wo_id?: Prisma.IntFilter<"TbMaterialInput"> | number
   item_cd?: Prisma.StringFilter<"TbMaterialInput"> | string
@@ -271,6 +279,7 @@ export type TbMaterialInputWhereInput = {
 }
 
 export type TbMaterialInputOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   input_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -292,6 +301,7 @@ export type TbMaterialInputWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbMaterialInputWhereInput | Prisma.TbMaterialInputWhereInput[]
   OR?: Prisma.TbMaterialInputWhereInput[]
   NOT?: Prisma.TbMaterialInputWhereInput | Prisma.TbMaterialInputWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaterialInput"> | string
   wo_id?: Prisma.IntFilter<"TbMaterialInput"> | number
   item_cd?: Prisma.StringFilter<"TbMaterialInput"> | string
   lot_no?: Prisma.StringNullableFilter<"TbMaterialInput"> | string | null
@@ -308,6 +318,7 @@ export type TbMaterialInputWhereUniqueInput = Prisma.AtLeast<{
 }, "input_id">
 
 export type TbMaterialInputOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   input_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -329,6 +340,7 @@ export type TbMaterialInputScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbMaterialInputScalarWhereWithAggregatesInput | Prisma.TbMaterialInputScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbMaterialInputScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbMaterialInputScalarWhereWithAggregatesInput | Prisma.TbMaterialInputScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbMaterialInput"> | string
   input_id?: Prisma.IntWithAggregatesFilter<"TbMaterialInput"> | number
   wo_id?: Prisma.IntWithAggregatesFilter<"TbMaterialInput"> | number
   item_cd?: Prisma.StringWithAggregatesFilter<"TbMaterialInput"> | string
@@ -342,6 +354,7 @@ export type TbMaterialInputScalarWhereWithAggregatesInput = {
 }
 
 export type TbMaterialInputCreateInput = {
+  company_cd?: string
   input_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: string | null
   create_dt?: Date | string
@@ -354,6 +367,7 @@ export type TbMaterialInputCreateInput = {
 }
 
 export type TbMaterialInputUncheckedCreateInput = {
+  company_cd?: string
   input_id?: number
   wo_id: number
   item_cd: string
@@ -367,6 +381,7 @@ export type TbMaterialInputUncheckedCreateInput = {
 }
 
 export type TbMaterialInputUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -379,6 +394,7 @@ export type TbMaterialInputUpdateInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -392,6 +408,7 @@ export type TbMaterialInputUncheckedUpdateInput = {
 }
 
 export type TbMaterialInputCreateManyInput = {
+  company_cd?: string
   input_id?: number
   wo_id: number
   item_cd: string
@@ -405,6 +422,7 @@ export type TbMaterialInputCreateManyInput = {
 }
 
 export type TbMaterialInputUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -413,6 +431,7 @@ export type TbMaterialInputUpdateManyMutationInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -436,6 +455,7 @@ export type TbMaterialInputOrderByRelationAggregateInput = {
 }
 
 export type TbMaterialInputCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   input_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -455,6 +475,7 @@ export type TbMaterialInputAvgOrderByAggregateInput = {
 }
 
 export type TbMaterialInputMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   input_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -468,6 +489,7 @@ export type TbMaterialInputMaxOrderByAggregateInput = {
 }
 
 export type TbMaterialInputMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   input_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -655,6 +677,7 @@ export type TbMaterialInputUncheckedUpdateManyWithoutLotNestedInput = {
 }
 
 export type TbMaterialInputCreateWithoutItemInput = {
+  company_cd?: string
   input_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: string | null
   create_dt?: Date | string
@@ -666,6 +689,7 @@ export type TbMaterialInputCreateWithoutItemInput = {
 }
 
 export type TbMaterialInputUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   input_id?: number
   wo_id: number
   lot_no?: string | null
@@ -707,6 +731,7 @@ export type TbMaterialInputScalarWhereInput = {
   AND?: Prisma.TbMaterialInputScalarWhereInput | Prisma.TbMaterialInputScalarWhereInput[]
   OR?: Prisma.TbMaterialInputScalarWhereInput[]
   NOT?: Prisma.TbMaterialInputScalarWhereInput | Prisma.TbMaterialInputScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaterialInput"> | string
   input_id?: Prisma.IntFilter<"TbMaterialInput"> | number
   wo_id?: Prisma.IntFilter<"TbMaterialInput"> | number
   item_cd?: Prisma.StringFilter<"TbMaterialInput"> | string
@@ -720,6 +745,7 @@ export type TbMaterialInputScalarWhereInput = {
 }
 
 export type TbMaterialInputCreateWithoutWorkerInput = {
+  company_cd?: string
   input_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: string | null
   create_dt?: Date | string
@@ -731,6 +757,7 @@ export type TbMaterialInputCreateWithoutWorkerInput = {
 }
 
 export type TbMaterialInputUncheckedCreateWithoutWorkerInput = {
+  company_cd?: string
   input_id?: number
   wo_id: number
   item_cd: string
@@ -769,6 +796,7 @@ export type TbMaterialInputUpdateManyWithWhereWithoutWorkerInput = {
 }
 
 export type TbMaterialInputCreateWithoutWork_orderInput = {
+  company_cd?: string
   input_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: string | null
   create_dt?: Date | string
@@ -780,6 +808,7 @@ export type TbMaterialInputCreateWithoutWork_orderInput = {
 }
 
 export type TbMaterialInputUncheckedCreateWithoutWork_orderInput = {
+  company_cd?: string
   input_id?: number
   item_cd: string
   lot_no?: string | null
@@ -818,6 +847,7 @@ export type TbMaterialInputUpdateManyWithWhereWithoutWork_orderInput = {
 }
 
 export type TbMaterialInputCreateWithoutLotInput = {
+  company_cd?: string
   input_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: string | null
   create_dt?: Date | string
@@ -829,6 +859,7 @@ export type TbMaterialInputCreateWithoutLotInput = {
 }
 
 export type TbMaterialInputUncheckedCreateWithoutLotInput = {
+  company_cd?: string
   input_id?: number
   wo_id: number
   item_cd: string
@@ -867,6 +898,7 @@ export type TbMaterialInputUpdateManyWithWhereWithoutLotInput = {
 }
 
 export type TbMaterialInputCreateManyItemInput = {
+  company_cd?: string
   input_id?: number
   wo_id: number
   lot_no?: string | null
@@ -879,6 +911,7 @@ export type TbMaterialInputCreateManyItemInput = {
 }
 
 export type TbMaterialInputUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -890,6 +923,7 @@ export type TbMaterialInputUpdateWithoutItemInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -902,6 +936,7 @@ export type TbMaterialInputUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -914,6 +949,7 @@ export type TbMaterialInputUncheckedUpdateManyWithoutItemInput = {
 }
 
 export type TbMaterialInputCreateManyWorkerInput = {
+  company_cd?: string
   input_id?: number
   wo_id: number
   item_cd: string
@@ -926,6 +962,7 @@ export type TbMaterialInputCreateManyWorkerInput = {
 }
 
 export type TbMaterialInputUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -937,6 +974,7 @@ export type TbMaterialInputUpdateWithoutWorkerInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -949,6 +987,7 @@ export type TbMaterialInputUncheckedUpdateWithoutWorkerInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateManyWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -961,6 +1000,7 @@ export type TbMaterialInputUncheckedUpdateManyWithoutWorkerInput = {
 }
 
 export type TbMaterialInputCreateManyWork_orderInput = {
+  company_cd?: string
   input_id?: number
   item_cd: string
   lot_no?: string | null
@@ -973,6 +1013,7 @@ export type TbMaterialInputCreateManyWork_orderInput = {
 }
 
 export type TbMaterialInputUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -984,6 +1025,7 @@ export type TbMaterialInputUpdateWithoutWork_orderInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -996,6 +1038,7 @@ export type TbMaterialInputUncheckedUpdateWithoutWork_orderInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateManyWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1008,6 +1051,7 @@ export type TbMaterialInputUncheckedUpdateManyWithoutWork_orderInput = {
 }
 
 export type TbMaterialInputCreateManyLotInput = {
+  company_cd?: string
   input_id?: number
   wo_id: number
   item_cd: string
@@ -1020,6 +1064,7 @@ export type TbMaterialInputCreateManyLotInput = {
 }
 
 export type TbMaterialInputUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1031,6 +1076,7 @@ export type TbMaterialInputUpdateWithoutLotInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1043,6 +1089,7 @@ export type TbMaterialInputUncheckedUpdateWithoutLotInput = {
 }
 
 export type TbMaterialInputUncheckedUpdateManyWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   input_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1057,6 +1104,7 @@ export type TbMaterialInputUncheckedUpdateManyWithoutLotInput = {
 
 
 export type TbMaterialInputSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   input_id?: boolean
   wo_id?: boolean
   item_cd?: boolean
@@ -1074,6 +1122,7 @@ export type TbMaterialInputSelect<ExtArgs extends runtime.Types.Extensions.Inter
 }, ExtArgs["result"]["tbMaterialInput"]>
 
 export type TbMaterialInputSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   input_id?: boolean
   wo_id?: boolean
   item_cd?: boolean
@@ -1091,6 +1140,7 @@ export type TbMaterialInputSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
 }, ExtArgs["result"]["tbMaterialInput"]>
 
 export type TbMaterialInputSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   input_id?: boolean
   wo_id?: boolean
   item_cd?: boolean
@@ -1108,6 +1158,7 @@ export type TbMaterialInputSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
 }, ExtArgs["result"]["tbMaterialInput"]>
 
 export type TbMaterialInputSelectScalar = {
+  company_cd?: boolean
   input_id?: boolean
   wo_id?: boolean
   item_cd?: boolean
@@ -1120,7 +1171,7 @@ export type TbMaterialInputSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbMaterialInputOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"input_id" | "wo_id" | "item_cd" | "lot_no" | "input_qty" | "worker_id" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMaterialInput"]>
+export type TbMaterialInputOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "input_id" | "wo_id" | "item_cd" | "lot_no" | "input_qty" | "worker_id" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMaterialInput"]>
 export type TbMaterialInputInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   work_order?: boolean | Prisma.TbWorkOrderDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
@@ -1149,6 +1200,7 @@ export type $TbMaterialInputPayload<ExtArgs extends runtime.Types.Extensions.Int
     worker: Prisma.$TbWorkerPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     input_id: number
     wo_id: number
     item_cd: string
@@ -1242,8 +1294,8 @@ export interface TbMaterialInputDelegate<ExtArgs extends runtime.Types.Extension
    * // Get first 10 TbMaterialInputs
    * const tbMaterialInputs = await prisma.tbMaterialInput.findMany({ take: 10 })
    * 
-   * // Only select the `input_id`
-   * const tbMaterialInputWithInput_idOnly = await prisma.tbMaterialInput.findMany({ select: { input_id: true } })
+   * // Only select the `company_cd`
+   * const tbMaterialInputWithCompany_cdOnly = await prisma.tbMaterialInput.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbMaterialInputFindManyArgs>(args?: Prisma.SelectSubset<T, TbMaterialInputFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMaterialInputPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1287,9 +1339,9 @@ export interface TbMaterialInputDelegate<ExtArgs extends runtime.Types.Extension
    *   ]
    * })
    * 
-   * // Create many TbMaterialInputs and only return the `input_id`
-   * const tbMaterialInputWithInput_idOnly = await prisma.tbMaterialInput.createManyAndReturn({
-   *   select: { input_id: true },
+   * // Create many TbMaterialInputs and only return the `company_cd`
+   * const tbMaterialInputWithCompany_cdOnly = await prisma.tbMaterialInput.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1378,9 +1430,9 @@ export interface TbMaterialInputDelegate<ExtArgs extends runtime.Types.Extension
    *   ]
    * })
    * 
-   * // Update zero or more TbMaterialInputs and only return the `input_id`
-   * const tbMaterialInputWithInput_idOnly = await prisma.tbMaterialInput.updateManyAndReturn({
-   *   select: { input_id: true },
+   * // Update zero or more TbMaterialInputs and only return the `company_cd`
+   * const tbMaterialInputWithCompany_cdOnly = await prisma.tbMaterialInput.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1586,6 +1638,7 @@ export interface Prisma__TbMaterialInputClient<T, Null = never, ExtArgs extends 
  * Fields of the TbMaterialInput model
  */
 export interface TbMaterialInputFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbMaterialInput", 'String'>
   readonly input_id: Prisma.FieldRef<"TbMaterialInput", 'Int'>
   readonly wo_id: Prisma.FieldRef<"TbMaterialInput", 'Int'>
   readonly item_cd: Prisma.FieldRef<"TbMaterialInput", 'String'>

@@ -37,6 +37,7 @@ export type TbEquipStatusSumAggregateOutputType = {
 }
 
 export type TbEquipStatusMinAggregateOutputType = {
+  company_cd: string | null
   status_id: number | null
   equip_cd: string | null
   status_type: string | null
@@ -52,6 +53,7 @@ export type TbEquipStatusMinAggregateOutputType = {
 }
 
 export type TbEquipStatusMaxAggregateOutputType = {
+  company_cd: string | null
   status_id: number | null
   equip_cd: string | null
   status_type: string | null
@@ -67,6 +69,7 @@ export type TbEquipStatusMaxAggregateOutputType = {
 }
 
 export type TbEquipStatusCountAggregateOutputType = {
+  company_cd: number
   status_id: number
   equip_cd: number
   status_type: number
@@ -94,6 +97,7 @@ export type TbEquipStatusSumAggregateInputType = {
 }
 
 export type TbEquipStatusMinAggregateInputType = {
+  company_cd?: true
   status_id?: true
   equip_cd?: true
   status_type?: true
@@ -109,6 +113,7 @@ export type TbEquipStatusMinAggregateInputType = {
 }
 
 export type TbEquipStatusMaxAggregateInputType = {
+  company_cd?: true
   status_id?: true
   equip_cd?: true
   status_type?: true
@@ -124,6 +129,7 @@ export type TbEquipStatusMaxAggregateInputType = {
 }
 
 export type TbEquipStatusCountAggregateInputType = {
+  company_cd?: true
   status_id?: true
   equip_cd?: true
   status_type?: true
@@ -226,6 +232,7 @@ export type TbEquipStatusGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type TbEquipStatusGroupByOutputType = {
+  company_cd: string
   status_id: number
   equip_cd: string
   status_type: string
@@ -264,6 +271,7 @@ export type TbEquipStatusWhereInput = {
   AND?: Prisma.TbEquipStatusWhereInput | Prisma.TbEquipStatusWhereInput[]
   OR?: Prisma.TbEquipStatusWhereInput[]
   NOT?: Prisma.TbEquipStatusWhereInput | Prisma.TbEquipStatusWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipStatus"> | string
   status_id?: Prisma.IntFilter<"TbEquipStatus"> | number
   equip_cd?: Prisma.StringFilter<"TbEquipStatus"> | string
   status_type?: Prisma.StringFilter<"TbEquipStatus"> | string
@@ -280,6 +288,7 @@ export type TbEquipStatusWhereInput = {
 }
 
 export type TbEquipStatusOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   status_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   status_type?: Prisma.SortOrder
@@ -300,6 +309,7 @@ export type TbEquipStatusWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbEquipStatusWhereInput | Prisma.TbEquipStatusWhereInput[]
   OR?: Prisma.TbEquipStatusWhereInput[]
   NOT?: Prisma.TbEquipStatusWhereInput | Prisma.TbEquipStatusWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipStatus"> | string
   equip_cd?: Prisma.StringFilter<"TbEquipStatus"> | string
   status_type?: Prisma.StringFilter<"TbEquipStatus"> | string
   down_reason_cd?: Prisma.StringNullableFilter<"TbEquipStatus"> | string | null
@@ -315,6 +325,7 @@ export type TbEquipStatusWhereUniqueInput = Prisma.AtLeast<{
 }, "status_id">
 
 export type TbEquipStatusOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   status_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   status_type?: Prisma.SortOrder
@@ -338,6 +349,7 @@ export type TbEquipStatusScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbEquipStatusScalarWhereWithAggregatesInput | Prisma.TbEquipStatusScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbEquipStatusScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbEquipStatusScalarWhereWithAggregatesInput | Prisma.TbEquipStatusScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbEquipStatus"> | string
   status_id?: Prisma.IntWithAggregatesFilter<"TbEquipStatus"> | number
   equip_cd?: Prisma.StringWithAggregatesFilter<"TbEquipStatus"> | string
   status_type?: Prisma.StringWithAggregatesFilter<"TbEquipStatus"> | string
@@ -353,6 +365,7 @@ export type TbEquipStatusScalarWhereWithAggregatesInput = {
 }
 
 export type TbEquipStatusCreateInput = {
+  company_cd?: string
   status_type: string
   down_reason_cd?: string | null
   start_dt?: Date | string | null
@@ -367,6 +380,7 @@ export type TbEquipStatusCreateInput = {
 }
 
 export type TbEquipStatusUncheckedCreateInput = {
+  company_cd?: string
   status_id?: number
   equip_cd: string
   status_type: string
@@ -382,6 +396,7 @@ export type TbEquipStatusUncheckedCreateInput = {
 }
 
 export type TbEquipStatusUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_type?: Prisma.StringFieldUpdateOperationsInput | string
   down_reason_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -396,6 +411,7 @@ export type TbEquipStatusUpdateInput = {
 }
 
 export type TbEquipStatusUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -411,6 +427,7 @@ export type TbEquipStatusUncheckedUpdateInput = {
 }
 
 export type TbEquipStatusCreateManyInput = {
+  company_cd?: string
   status_id?: number
   equip_cd: string
   status_type: string
@@ -426,6 +443,7 @@ export type TbEquipStatusCreateManyInput = {
 }
 
 export type TbEquipStatusUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_type?: Prisma.StringFieldUpdateOperationsInput | string
   down_reason_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -439,6 +457,7 @@ export type TbEquipStatusUpdateManyMutationInput = {
 }
 
 export type TbEquipStatusUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -464,6 +483,7 @@ export type TbEquipStatusOrderByRelationAggregateInput = {
 }
 
 export type TbEquipStatusCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   status_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   status_type?: Prisma.SortOrder
@@ -484,6 +504,7 @@ export type TbEquipStatusAvgOrderByAggregateInput = {
 }
 
 export type TbEquipStatusMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   status_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   status_type?: Prisma.SortOrder
@@ -499,6 +520,7 @@ export type TbEquipStatusMaxOrderByAggregateInput = {
 }
 
 export type TbEquipStatusMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   status_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   status_type?: Prisma.SortOrder
@@ -561,6 +583,7 @@ export type TbEquipStatusUncheckedUpdateManyWithoutEquipmentNestedInput = {
 }
 
 export type TbEquipStatusCreateWithoutEquipmentInput = {
+  company_cd?: string
   status_type: string
   down_reason_cd?: string | null
   start_dt?: Date | string | null
@@ -574,6 +597,7 @@ export type TbEquipStatusCreateWithoutEquipmentInput = {
 }
 
 export type TbEquipStatusUncheckedCreateWithoutEquipmentInput = {
+  company_cd?: string
   status_id?: number
   status_type: string
   down_reason_cd?: string | null
@@ -617,6 +641,7 @@ export type TbEquipStatusScalarWhereInput = {
   AND?: Prisma.TbEquipStatusScalarWhereInput | Prisma.TbEquipStatusScalarWhereInput[]
   OR?: Prisma.TbEquipStatusScalarWhereInput[]
   NOT?: Prisma.TbEquipStatusScalarWhereInput | Prisma.TbEquipStatusScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipStatus"> | string
   status_id?: Prisma.IntFilter<"TbEquipStatus"> | number
   equip_cd?: Prisma.StringFilter<"TbEquipStatus"> | string
   status_type?: Prisma.StringFilter<"TbEquipStatus"> | string
@@ -632,6 +657,7 @@ export type TbEquipStatusScalarWhereInput = {
 }
 
 export type TbEquipStatusCreateManyEquipmentInput = {
+  company_cd?: string
   status_id?: number
   status_type: string
   down_reason_cd?: string | null
@@ -646,6 +672,7 @@ export type TbEquipStatusCreateManyEquipmentInput = {
 }
 
 export type TbEquipStatusUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_type?: Prisma.StringFieldUpdateOperationsInput | string
   down_reason_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -659,6 +686,7 @@ export type TbEquipStatusUpdateWithoutEquipmentInput = {
 }
 
 export type TbEquipStatusUncheckedUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_id?: Prisma.IntFieldUpdateOperationsInput | number
   status_type?: Prisma.StringFieldUpdateOperationsInput | string
   down_reason_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -673,6 +701,7 @@ export type TbEquipStatusUncheckedUpdateWithoutEquipmentInput = {
 }
 
 export type TbEquipStatusUncheckedUpdateManyWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   status_id?: Prisma.IntFieldUpdateOperationsInput | number
   status_type?: Prisma.StringFieldUpdateOperationsInput | string
   down_reason_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -689,6 +718,7 @@ export type TbEquipStatusUncheckedUpdateManyWithoutEquipmentInput = {
 
 
 export type TbEquipStatusSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   status_id?: boolean
   equip_cd?: boolean
   status_type?: boolean
@@ -705,6 +735,7 @@ export type TbEquipStatusSelect<ExtArgs extends runtime.Types.Extensions.Interna
 }, ExtArgs["result"]["tbEquipStatus"]>
 
 export type TbEquipStatusSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   status_id?: boolean
   equip_cd?: boolean
   status_type?: boolean
@@ -721,6 +752,7 @@ export type TbEquipStatusSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbEquipStatus"]>
 
 export type TbEquipStatusSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   status_id?: boolean
   equip_cd?: boolean
   status_type?: boolean
@@ -737,6 +769,7 @@ export type TbEquipStatusSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbEquipStatus"]>
 
 export type TbEquipStatusSelectScalar = {
+  company_cd?: boolean
   status_id?: boolean
   equip_cd?: boolean
   status_type?: boolean
@@ -751,7 +784,7 @@ export type TbEquipStatusSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbEquipStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"status_id" | "equip_cd" | "status_type" | "down_reason_cd" | "start_dt" | "end_dt" | "duration" | "memo" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbEquipStatus"]>
+export type TbEquipStatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "status_id" | "equip_cd" | "status_type" | "down_reason_cd" | "start_dt" | "end_dt" | "duration" | "memo" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbEquipStatus"]>
 export type TbEquipStatusInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
 }
@@ -768,6 +801,7 @@ export type $TbEquipStatusPayload<ExtArgs extends runtime.Types.Extensions.Inter
     equipment: Prisma.$TbEquipmentPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     status_id: number
     equip_cd: string
     status_type: string
@@ -863,8 +897,8 @@ export interface TbEquipStatusDelegate<ExtArgs extends runtime.Types.Extensions.
    * // Get first 10 TbEquipStatuses
    * const tbEquipStatuses = await prisma.tbEquipStatus.findMany({ take: 10 })
    * 
-   * // Only select the `status_id`
-   * const tbEquipStatusWithStatus_idOnly = await prisma.tbEquipStatus.findMany({ select: { status_id: true } })
+   * // Only select the `company_cd`
+   * const tbEquipStatusWithCompany_cdOnly = await prisma.tbEquipStatus.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbEquipStatusFindManyArgs>(args?: Prisma.SelectSubset<T, TbEquipStatusFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbEquipStatusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -908,9 +942,9 @@ export interface TbEquipStatusDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Create many TbEquipStatuses and only return the `status_id`
-   * const tbEquipStatusWithStatus_idOnly = await prisma.tbEquipStatus.createManyAndReturn({
-   *   select: { status_id: true },
+   * // Create many TbEquipStatuses and only return the `company_cd`
+   * const tbEquipStatusWithCompany_cdOnly = await prisma.tbEquipStatus.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -999,9 +1033,9 @@ export interface TbEquipStatusDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Update zero or more TbEquipStatuses and only return the `status_id`
-   * const tbEquipStatusWithStatus_idOnly = await prisma.tbEquipStatus.updateManyAndReturn({
-   *   select: { status_id: true },
+   * // Update zero or more TbEquipStatuses and only return the `company_cd`
+   * const tbEquipStatusWithCompany_cdOnly = await prisma.tbEquipStatus.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1204,6 +1238,7 @@ export interface Prisma__TbEquipStatusClient<T, Null = never, ExtArgs extends ru
  * Fields of the TbEquipStatus model
  */
 export interface TbEquipStatusFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbEquipStatus", 'String'>
   readonly status_id: Prisma.FieldRef<"TbEquipStatus", 'Int'>
   readonly equip_cd: Prisma.FieldRef<"TbEquipStatus", 'String'>
   readonly status_type: Prisma.FieldRef<"TbEquipStatus", 'String'>

@@ -37,6 +37,7 @@ export type TbMoldSumAggregateOutputType = {
 }
 
 export type TbMoldMinAggregateOutputType = {
+  company_cd: string | null
   mold_cd: string | null
   mold_nm: string | null
   item_cd: string | null
@@ -50,6 +51,7 @@ export type TbMoldMinAggregateOutputType = {
 }
 
 export type TbMoldMaxAggregateOutputType = {
+  company_cd: string | null
   mold_cd: string | null
   mold_nm: string | null
   item_cd: string | null
@@ -63,6 +65,7 @@ export type TbMoldMaxAggregateOutputType = {
 }
 
 export type TbMoldCountAggregateOutputType = {
+  company_cd: number
   mold_cd: number
   mold_nm: number
   item_cd: number
@@ -88,6 +91,7 @@ export type TbMoldSumAggregateInputType = {
 }
 
 export type TbMoldMinAggregateInputType = {
+  company_cd?: true
   mold_cd?: true
   mold_nm?: true
   item_cd?: true
@@ -101,6 +105,7 @@ export type TbMoldMinAggregateInputType = {
 }
 
 export type TbMoldMaxAggregateInputType = {
+  company_cd?: true
   mold_cd?: true
   mold_nm?: true
   item_cd?: true
@@ -114,6 +119,7 @@ export type TbMoldMaxAggregateInputType = {
 }
 
 export type TbMoldCountAggregateInputType = {
+  company_cd?: true
   mold_cd?: true
   mold_nm?: true
   item_cd?: true
@@ -214,6 +220,7 @@ export type TbMoldGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type TbMoldGroupByOutputType = {
+  company_cd: string
   mold_cd: string
   mold_nm: string
   item_cd: string | null
@@ -250,6 +257,7 @@ export type TbMoldWhereInput = {
   AND?: Prisma.TbMoldWhereInput | Prisma.TbMoldWhereInput[]
   OR?: Prisma.TbMoldWhereInput[]
   NOT?: Prisma.TbMoldWhereInput | Prisma.TbMoldWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMold"> | string
   mold_cd?: Prisma.StringFilter<"TbMold"> | string
   mold_nm?: Prisma.StringFilter<"TbMold"> | string
   item_cd?: Prisma.StringNullableFilter<"TbMold"> | string | null
@@ -264,6 +272,7 @@ export type TbMoldWhereInput = {
 }
 
 export type TbMoldOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   mold_cd?: Prisma.SortOrder
   mold_nm?: Prisma.SortOrder
   item_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -282,6 +291,7 @@ export type TbMoldWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbMoldWhereInput | Prisma.TbMoldWhereInput[]
   OR?: Prisma.TbMoldWhereInput[]
   NOT?: Prisma.TbMoldWhereInput | Prisma.TbMoldWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMold"> | string
   mold_nm?: Prisma.StringFilter<"TbMold"> | string
   item_cd?: Prisma.StringNullableFilter<"TbMold"> | string | null
   warranty_shots?: Prisma.IntNullableFilter<"TbMold"> | number | null
@@ -295,6 +305,7 @@ export type TbMoldWhereUniqueInput = Prisma.AtLeast<{
 }, "mold_cd">
 
 export type TbMoldOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   mold_cd?: Prisma.SortOrder
   mold_nm?: Prisma.SortOrder
   item_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -316,6 +327,7 @@ export type TbMoldScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbMoldScalarWhereWithAggregatesInput | Prisma.TbMoldScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbMoldScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbMoldScalarWhereWithAggregatesInput | Prisma.TbMoldScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbMold"> | string
   mold_cd?: Prisma.StringWithAggregatesFilter<"TbMold"> | string
   mold_nm?: Prisma.StringWithAggregatesFilter<"TbMold"> | string
   item_cd?: Prisma.StringNullableWithAggregatesFilter<"TbMold"> | string | null
@@ -329,6 +341,7 @@ export type TbMoldScalarWhereWithAggregatesInput = {
 }
 
 export type TbMoldCreateInput = {
+  company_cd?: string
   mold_cd: string
   mold_nm: string
   warranty_shots?: number | null
@@ -342,6 +355,7 @@ export type TbMoldCreateInput = {
 }
 
 export type TbMoldUncheckedCreateInput = {
+  company_cd?: string
   mold_cd: string
   mold_nm: string
   item_cd?: string | null
@@ -355,6 +369,7 @@ export type TbMoldUncheckedCreateInput = {
 }
 
 export type TbMoldUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_nm?: Prisma.StringFieldUpdateOperationsInput | string
   warranty_shots?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -368,6 +383,7 @@ export type TbMoldUpdateInput = {
 }
 
 export type TbMoldUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -381,6 +397,7 @@ export type TbMoldUncheckedUpdateInput = {
 }
 
 export type TbMoldCreateManyInput = {
+  company_cd?: string
   mold_cd: string
   mold_nm: string
   item_cd?: string | null
@@ -394,6 +411,7 @@ export type TbMoldCreateManyInput = {
 }
 
 export type TbMoldUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_nm?: Prisma.StringFieldUpdateOperationsInput | string
   warranty_shots?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -406,6 +424,7 @@ export type TbMoldUpdateManyMutationInput = {
 }
 
 export type TbMoldUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -429,6 +448,7 @@ export type TbMoldOrderByRelationAggregateInput = {
 }
 
 export type TbMoldCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   mold_cd?: Prisma.SortOrder
   mold_nm?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -447,6 +467,7 @@ export type TbMoldAvgOrderByAggregateInput = {
 }
 
 export type TbMoldMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   mold_cd?: Prisma.SortOrder
   mold_nm?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -460,6 +481,7 @@ export type TbMoldMaxOrderByAggregateInput = {
 }
 
 export type TbMoldMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   mold_cd?: Prisma.SortOrder
   mold_nm?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -528,6 +550,7 @@ export type NullableIntFieldUpdateOperationsInput = {
 }
 
 export type TbMoldCreateWithoutItemInput = {
+  company_cd?: string
   mold_cd: string
   mold_nm: string
   warranty_shots?: number | null
@@ -540,6 +563,7 @@ export type TbMoldCreateWithoutItemInput = {
 }
 
 export type TbMoldUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   mold_cd: string
   mold_nm: string
   warranty_shots?: number | null
@@ -581,6 +605,7 @@ export type TbMoldScalarWhereInput = {
   AND?: Prisma.TbMoldScalarWhereInput | Prisma.TbMoldScalarWhereInput[]
   OR?: Prisma.TbMoldScalarWhereInput[]
   NOT?: Prisma.TbMoldScalarWhereInput | Prisma.TbMoldScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMold"> | string
   mold_cd?: Prisma.StringFilter<"TbMold"> | string
   mold_nm?: Prisma.StringFilter<"TbMold"> | string
   item_cd?: Prisma.StringNullableFilter<"TbMold"> | string | null
@@ -594,6 +619,7 @@ export type TbMoldScalarWhereInput = {
 }
 
 export type TbMoldCreateManyItemInput = {
+  company_cd?: string
   mold_cd: string
   mold_nm: string
   warranty_shots?: number | null
@@ -606,6 +632,7 @@ export type TbMoldCreateManyItemInput = {
 }
 
 export type TbMoldUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_nm?: Prisma.StringFieldUpdateOperationsInput | string
   warranty_shots?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -618,6 +645,7 @@ export type TbMoldUpdateWithoutItemInput = {
 }
 
 export type TbMoldUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_nm?: Prisma.StringFieldUpdateOperationsInput | string
   warranty_shots?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -630,6 +658,7 @@ export type TbMoldUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbMoldUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_cd?: Prisma.StringFieldUpdateOperationsInput | string
   mold_nm?: Prisma.StringFieldUpdateOperationsInput | string
   warranty_shots?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -644,6 +673,7 @@ export type TbMoldUncheckedUpdateManyWithoutItemInput = {
 
 
 export type TbMoldSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   mold_cd?: boolean
   mold_nm?: boolean
   item_cd?: boolean
@@ -658,6 +688,7 @@ export type TbMoldSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 }, ExtArgs["result"]["tbMold"]>
 
 export type TbMoldSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   mold_cd?: boolean
   mold_nm?: boolean
   item_cd?: boolean
@@ -672,6 +703,7 @@ export type TbMoldSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 }, ExtArgs["result"]["tbMold"]>
 
 export type TbMoldSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   mold_cd?: boolean
   mold_nm?: boolean
   item_cd?: boolean
@@ -686,6 +718,7 @@ export type TbMoldSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 }, ExtArgs["result"]["tbMold"]>
 
 export type TbMoldSelectScalar = {
+  company_cd?: boolean
   mold_cd?: boolean
   mold_nm?: boolean
   item_cd?: boolean
@@ -698,7 +731,7 @@ export type TbMoldSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbMoldOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"mold_cd" | "mold_nm" | "item_cd" | "warranty_shots" | "current_shots" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMold"]>
+export type TbMoldOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "mold_cd" | "mold_nm" | "item_cd" | "warranty_shots" | "current_shots" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMold"]>
 export type TbMoldInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.TbMold$itemArgs<ExtArgs>
 }
@@ -715,6 +748,7 @@ export type $TbMoldPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     item: Prisma.$TbItemPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     mold_cd: string
     mold_nm: string
     item_cd: string | null
@@ -808,8 +842,8 @@ export interface TbMoldDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * // Get first 10 TbMolds
    * const tbMolds = await prisma.tbMold.findMany({ take: 10 })
    * 
-   * // Only select the `mold_cd`
-   * const tbMoldWithMold_cdOnly = await prisma.tbMold.findMany({ select: { mold_cd: true } })
+   * // Only select the `company_cd`
+   * const tbMoldWithCompany_cdOnly = await prisma.tbMold.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbMoldFindManyArgs>(args?: Prisma.SelectSubset<T, TbMoldFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMoldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -853,9 +887,9 @@ export interface TbMoldDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Create many TbMolds and only return the `mold_cd`
-   * const tbMoldWithMold_cdOnly = await prisma.tbMold.createManyAndReturn({
-   *   select: { mold_cd: true },
+   * // Create many TbMolds and only return the `company_cd`
+   * const tbMoldWithCompany_cdOnly = await prisma.tbMold.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -944,9 +978,9 @@ export interface TbMoldDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Update zero or more TbMolds and only return the `mold_cd`
-   * const tbMoldWithMold_cdOnly = await prisma.tbMold.updateManyAndReturn({
-   *   select: { mold_cd: true },
+   * // Update zero or more TbMolds and only return the `company_cd`
+   * const tbMoldWithCompany_cdOnly = await prisma.tbMold.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1149,6 +1183,7 @@ export interface Prisma__TbMoldClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the TbMold model
  */
 export interface TbMoldFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbMold", 'String'>
   readonly mold_cd: Prisma.FieldRef<"TbMold", 'String'>
   readonly mold_nm: Prisma.FieldRef<"TbMold", 'String'>
   readonly item_cd: Prisma.FieldRef<"TbMold", 'String'>

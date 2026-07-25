@@ -37,6 +37,7 @@ export type TbLotHistorySumAggregateOutputType = {
 }
 
 export type TbLotHistoryMinAggregateOutputType = {
+  company_cd: string | null
   lot_hist_id: number | null
   lot_no: string | null
   event_type: string | null
@@ -47,6 +48,7 @@ export type TbLotHistoryMinAggregateOutputType = {
 }
 
 export type TbLotHistoryMaxAggregateOutputType = {
+  company_cd: string | null
   lot_hist_id: number | null
   lot_no: string | null
   event_type: string | null
@@ -57,6 +59,7 @@ export type TbLotHistoryMaxAggregateOutputType = {
 }
 
 export type TbLotHistoryCountAggregateOutputType = {
+  company_cd: number
   lot_hist_id: number
   lot_no: number
   event_type: number
@@ -79,6 +82,7 @@ export type TbLotHistorySumAggregateInputType = {
 }
 
 export type TbLotHistoryMinAggregateInputType = {
+  company_cd?: true
   lot_hist_id?: true
   lot_no?: true
   event_type?: true
@@ -89,6 +93,7 @@ export type TbLotHistoryMinAggregateInputType = {
 }
 
 export type TbLotHistoryMaxAggregateInputType = {
+  company_cd?: true
   lot_hist_id?: true
   lot_no?: true
   event_type?: true
@@ -99,6 +104,7 @@ export type TbLotHistoryMaxAggregateInputType = {
 }
 
 export type TbLotHistoryCountAggregateInputType = {
+  company_cd?: true
   lot_hist_id?: true
   lot_no?: true
   event_type?: true
@@ -196,6 +202,7 @@ export type TbLotHistoryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 export type TbLotHistoryGroupByOutputType = {
+  company_cd: string
   lot_hist_id: number
   lot_no: string
   event_type: string
@@ -229,6 +236,7 @@ export type TbLotHistoryWhereInput = {
   AND?: Prisma.TbLotHistoryWhereInput | Prisma.TbLotHistoryWhereInput[]
   OR?: Prisma.TbLotHistoryWhereInput[]
   NOT?: Prisma.TbLotHistoryWhereInput | Prisma.TbLotHistoryWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbLotHistory"> | string
   lot_hist_id?: Prisma.IntFilter<"TbLotHistory"> | number
   lot_no?: Prisma.StringFilter<"TbLotHistory"> | string
   event_type?: Prisma.StringFilter<"TbLotHistory"> | string
@@ -240,6 +248,7 @@ export type TbLotHistoryWhereInput = {
 }
 
 export type TbLotHistoryOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   lot_hist_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
@@ -255,6 +264,7 @@ export type TbLotHistoryWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbLotHistoryWhereInput | Prisma.TbLotHistoryWhereInput[]
   OR?: Prisma.TbLotHistoryWhereInput[]
   NOT?: Prisma.TbLotHistoryWhereInput | Prisma.TbLotHistoryWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbLotHistory"> | string
   lot_no?: Prisma.StringFilter<"TbLotHistory"> | string
   event_type?: Prisma.StringFilter<"TbLotHistory"> | string
   event_detail?: Prisma.StringNullableFilter<"TbLotHistory"> | string | null
@@ -265,6 +275,7 @@ export type TbLotHistoryWhereUniqueInput = Prisma.AtLeast<{
 }, "lot_hist_id">
 
 export type TbLotHistoryOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   lot_hist_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
@@ -283,6 +294,7 @@ export type TbLotHistoryScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbLotHistoryScalarWhereWithAggregatesInput | Prisma.TbLotHistoryScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbLotHistoryScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbLotHistoryScalarWhereWithAggregatesInput | Prisma.TbLotHistoryScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbLotHistory"> | string
   lot_hist_id?: Prisma.IntWithAggregatesFilter<"TbLotHistory"> | number
   lot_no?: Prisma.StringWithAggregatesFilter<"TbLotHistory"> | string
   event_type?: Prisma.StringWithAggregatesFilter<"TbLotHistory"> | string
@@ -293,6 +305,7 @@ export type TbLotHistoryScalarWhereWithAggregatesInput = {
 }
 
 export type TbLotHistoryCreateInput = {
+  company_cd?: string
   event_type: string
   event_detail?: string | null
   qty?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -302,6 +315,7 @@ export type TbLotHistoryCreateInput = {
 }
 
 export type TbLotHistoryUncheckedCreateInput = {
+  company_cd?: string
   lot_hist_id?: number
   lot_no: string
   event_type: string
@@ -312,6 +326,7 @@ export type TbLotHistoryUncheckedCreateInput = {
 }
 
 export type TbLotHistoryUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   event_detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qty?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -321,6 +336,7 @@ export type TbLotHistoryUpdateInput = {
 }
 
 export type TbLotHistoryUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_hist_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -331,6 +347,7 @@ export type TbLotHistoryUncheckedUpdateInput = {
 }
 
 export type TbLotHistoryCreateManyInput = {
+  company_cd?: string
   lot_hist_id?: number
   lot_no: string
   event_type: string
@@ -341,6 +358,7 @@ export type TbLotHistoryCreateManyInput = {
 }
 
 export type TbLotHistoryUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   event_detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qty?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -349,6 +367,7 @@ export type TbLotHistoryUpdateManyMutationInput = {
 }
 
 export type TbLotHistoryUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_hist_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -369,6 +388,7 @@ export type TbLotHistoryOrderByRelationAggregateInput = {
 }
 
 export type TbLotHistoryCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   lot_hist_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
@@ -384,6 +404,7 @@ export type TbLotHistoryAvgOrderByAggregateInput = {
 }
 
 export type TbLotHistoryMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   lot_hist_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
@@ -394,6 +415,7 @@ export type TbLotHistoryMaxOrderByAggregateInput = {
 }
 
 export type TbLotHistoryMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   lot_hist_id?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   event_type?: Prisma.SortOrder
@@ -451,6 +473,7 @@ export type TbLotHistoryUncheckedUpdateManyWithoutLotNestedInput = {
 }
 
 export type TbLotHistoryCreateWithoutLotInput = {
+  company_cd?: string
   event_type: string
   event_detail?: string | null
   qty?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -459,6 +482,7 @@ export type TbLotHistoryCreateWithoutLotInput = {
 }
 
 export type TbLotHistoryUncheckedCreateWithoutLotInput = {
+  company_cd?: string
   lot_hist_id?: number
   event_type: string
   event_detail?: string | null
@@ -497,6 +521,7 @@ export type TbLotHistoryScalarWhereInput = {
   AND?: Prisma.TbLotHistoryScalarWhereInput | Prisma.TbLotHistoryScalarWhereInput[]
   OR?: Prisma.TbLotHistoryScalarWhereInput[]
   NOT?: Prisma.TbLotHistoryScalarWhereInput | Prisma.TbLotHistoryScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbLotHistory"> | string
   lot_hist_id?: Prisma.IntFilter<"TbLotHistory"> | number
   lot_no?: Prisma.StringFilter<"TbLotHistory"> | string
   event_type?: Prisma.StringFilter<"TbLotHistory"> | string
@@ -507,6 +532,7 @@ export type TbLotHistoryScalarWhereInput = {
 }
 
 export type TbLotHistoryCreateManyLotInput = {
+  company_cd?: string
   lot_hist_id?: number
   event_type: string
   event_detail?: string | null
@@ -516,6 +542,7 @@ export type TbLotHistoryCreateManyLotInput = {
 }
 
 export type TbLotHistoryUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   event_detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qty?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -524,6 +551,7 @@ export type TbLotHistoryUpdateWithoutLotInput = {
 }
 
 export type TbLotHistoryUncheckedUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_hist_id?: Prisma.IntFieldUpdateOperationsInput | number
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   event_detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -533,6 +561,7 @@ export type TbLotHistoryUncheckedUpdateWithoutLotInput = {
 }
 
 export type TbLotHistoryUncheckedUpdateManyWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_hist_id?: Prisma.IntFieldUpdateOperationsInput | number
   event_type?: Prisma.StringFieldUpdateOperationsInput | string
   event_detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -544,6 +573,7 @@ export type TbLotHistoryUncheckedUpdateManyWithoutLotInput = {
 
 
 export type TbLotHistorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   lot_hist_id?: boolean
   lot_no?: boolean
   event_type?: boolean
@@ -555,6 +585,7 @@ export type TbLotHistorySelect<ExtArgs extends runtime.Types.Extensions.Internal
 }, ExtArgs["result"]["tbLotHistory"]>
 
 export type TbLotHistorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   lot_hist_id?: boolean
   lot_no?: boolean
   event_type?: boolean
@@ -566,6 +597,7 @@ export type TbLotHistorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 }, ExtArgs["result"]["tbLotHistory"]>
 
 export type TbLotHistorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   lot_hist_id?: boolean
   lot_no?: boolean
   event_type?: boolean
@@ -577,6 +609,7 @@ export type TbLotHistorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 }, ExtArgs["result"]["tbLotHistory"]>
 
 export type TbLotHistorySelectScalar = {
+  company_cd?: boolean
   lot_hist_id?: boolean
   lot_no?: boolean
   event_type?: boolean
@@ -586,7 +619,7 @@ export type TbLotHistorySelectScalar = {
   create_dt?: boolean
 }
 
-export type TbLotHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"lot_hist_id" | "lot_no" | "event_type" | "event_detail" | "qty" | "create_by" | "create_dt", ExtArgs["result"]["tbLotHistory"]>
+export type TbLotHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "lot_hist_id" | "lot_no" | "event_type" | "event_detail" | "qty" | "create_by" | "create_dt", ExtArgs["result"]["tbLotHistory"]>
 export type TbLotHistoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   lot?: boolean | Prisma.TbLotDefaultArgs<ExtArgs>
 }
@@ -603,6 +636,7 @@ export type $TbLotHistoryPayload<ExtArgs extends runtime.Types.Extensions.Intern
     lot: Prisma.$TbLotPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     lot_hist_id: number
     lot_no: string
     event_type: string
@@ -693,8 +727,8 @@ export interface TbLotHistoryDelegate<ExtArgs extends runtime.Types.Extensions.I
    * // Get first 10 TbLotHistories
    * const tbLotHistories = await prisma.tbLotHistory.findMany({ take: 10 })
    * 
-   * // Only select the `lot_hist_id`
-   * const tbLotHistoryWithLot_hist_idOnly = await prisma.tbLotHistory.findMany({ select: { lot_hist_id: true } })
+   * // Only select the `company_cd`
+   * const tbLotHistoryWithCompany_cdOnly = await prisma.tbLotHistory.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbLotHistoryFindManyArgs>(args?: Prisma.SelectSubset<T, TbLotHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbLotHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -738,9 +772,9 @@ export interface TbLotHistoryDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   ]
    * })
    * 
-   * // Create many TbLotHistories and only return the `lot_hist_id`
-   * const tbLotHistoryWithLot_hist_idOnly = await prisma.tbLotHistory.createManyAndReturn({
-   *   select: { lot_hist_id: true },
+   * // Create many TbLotHistories and only return the `company_cd`
+   * const tbLotHistoryWithCompany_cdOnly = await prisma.tbLotHistory.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -829,9 +863,9 @@ export interface TbLotHistoryDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   ]
    * })
    * 
-   * // Update zero or more TbLotHistories and only return the `lot_hist_id`
-   * const tbLotHistoryWithLot_hist_idOnly = await prisma.tbLotHistory.updateManyAndReturn({
-   *   select: { lot_hist_id: true },
+   * // Update zero or more TbLotHistories and only return the `company_cd`
+   * const tbLotHistoryWithCompany_cdOnly = await prisma.tbLotHistory.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1034,6 +1068,7 @@ export interface Prisma__TbLotHistoryClient<T, Null = never, ExtArgs extends run
  * Fields of the TbLotHistory model
  */
 export interface TbLotHistoryFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbLotHistory", 'String'>
   readonly lot_hist_id: Prisma.FieldRef<"TbLotHistory", 'Int'>
   readonly lot_no: Prisma.FieldRef<"TbLotHistory", 'String'>
   readonly event_type: Prisma.FieldRef<"TbLotHistory", 'String'>

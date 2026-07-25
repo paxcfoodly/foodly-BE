@@ -41,6 +41,7 @@ export type TbInspectStdSumAggregateOutputType = {
 }
 
 export type TbInspectStdMinAggregateOutputType = {
+  company_cd: string | null
   inspect_std_id: number | null
   item_cd: string | null
   process_cd: string | null
@@ -60,6 +61,7 @@ export type TbInspectStdMinAggregateOutputType = {
 }
 
 export type TbInspectStdMaxAggregateOutputType = {
+  company_cd: string | null
   inspect_std_id: number | null
   item_cd: string | null
   process_cd: string | null
@@ -79,6 +81,7 @@ export type TbInspectStdMaxAggregateOutputType = {
 }
 
 export type TbInspectStdCountAggregateOutputType = {
+  company_cd: number
   inspect_std_id: number
   item_cd: number
   process_cd: number
@@ -114,6 +117,7 @@ export type TbInspectStdSumAggregateInputType = {
 }
 
 export type TbInspectStdMinAggregateInputType = {
+  company_cd?: true
   inspect_std_id?: true
   item_cd?: true
   process_cd?: true
@@ -133,6 +137,7 @@ export type TbInspectStdMinAggregateInputType = {
 }
 
 export type TbInspectStdMaxAggregateInputType = {
+  company_cd?: true
   inspect_std_id?: true
   item_cd?: true
   process_cd?: true
@@ -152,6 +157,7 @@ export type TbInspectStdMaxAggregateInputType = {
 }
 
 export type TbInspectStdCountAggregateInputType = {
+  company_cd?: true
   inspect_std_id?: true
   item_cd?: true
   process_cd?: true
@@ -258,6 +264,7 @@ export type TbInspectStdGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 export type TbInspectStdGroupByOutputType = {
+  company_cd: string
   inspect_std_id: number
   item_cd: string | null
   process_cd: string | null
@@ -300,6 +307,7 @@ export type TbInspectStdWhereInput = {
   AND?: Prisma.TbInspectStdWhereInput | Prisma.TbInspectStdWhereInput[]
   OR?: Prisma.TbInspectStdWhereInput[]
   NOT?: Prisma.TbInspectStdWhereInput | Prisma.TbInspectStdWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInspectStd"> | string
   inspect_std_id?: Prisma.IntFilter<"TbInspectStd"> | number
   item_cd?: Prisma.StringNullableFilter<"TbInspectStd"> | string | null
   process_cd?: Prisma.StringNullableFilter<"TbInspectStd"> | string | null
@@ -322,6 +330,7 @@ export type TbInspectStdWhereInput = {
 }
 
 export type TbInspectStdOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrderInput | Prisma.SortOrder
   process_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -348,6 +357,7 @@ export type TbInspectStdWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbInspectStdWhereInput | Prisma.TbInspectStdWhereInput[]
   OR?: Prisma.TbInspectStdWhereInput[]
   NOT?: Prisma.TbInspectStdWhereInput | Prisma.TbInspectStdWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInspectStd"> | string
   item_cd?: Prisma.StringNullableFilter<"TbInspectStd"> | string | null
   process_cd?: Prisma.StringNullableFilter<"TbInspectStd"> | string | null
   inspect_type?: Prisma.StringNullableFilter<"TbInspectStd"> | string | null
@@ -369,6 +379,7 @@ export type TbInspectStdWhereUniqueInput = Prisma.AtLeast<{
 }, "inspect_std_id">
 
 export type TbInspectStdOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrderInput | Prisma.SortOrder
   process_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -396,6 +407,7 @@ export type TbInspectStdScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbInspectStdScalarWhereWithAggregatesInput | Prisma.TbInspectStdScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbInspectStdScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbInspectStdScalarWhereWithAggregatesInput | Prisma.TbInspectStdScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbInspectStd"> | string
   inspect_std_id?: Prisma.IntWithAggregatesFilter<"TbInspectStd"> | number
   item_cd?: Prisma.StringNullableWithAggregatesFilter<"TbInspectStd"> | string | null
   process_cd?: Prisma.StringNullableWithAggregatesFilter<"TbInspectStd"> | string | null
@@ -415,6 +427,7 @@ export type TbInspectStdScalarWhereWithAggregatesInput = {
 }
 
 export type TbInspectStdCreateInput = {
+  company_cd?: string
   inspect_type?: string | null
   inspect_item_nm: string
   measure_type?: string | null
@@ -434,6 +447,7 @@ export type TbInspectStdCreateInput = {
 }
 
 export type TbInspectStdUncheckedCreateInput = {
+  company_cd?: string
   inspect_std_id?: number
   item_cd?: string | null
   process_cd?: string | null
@@ -454,6 +468,7 @@ export type TbInspectStdUncheckedCreateInput = {
 }
 
 export type TbInspectStdUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   measure_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -473,6 +488,7 @@ export type TbInspectStdUpdateInput = {
 }
 
 export type TbInspectStdUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_std_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   process_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -493,6 +509,7 @@ export type TbInspectStdUncheckedUpdateInput = {
 }
 
 export type TbInspectStdCreateManyInput = {
+  company_cd?: string
   inspect_std_id?: number
   item_cd?: string | null
   process_cd?: string | null
@@ -512,6 +529,7 @@ export type TbInspectStdCreateManyInput = {
 }
 
 export type TbInspectStdUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   measure_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -528,6 +546,7 @@ export type TbInspectStdUpdateManyMutationInput = {
 }
 
 export type TbInspectStdUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_std_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   process_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -557,6 +576,7 @@ export type TbInspectStdOrderByRelationAggregateInput = {
 }
 
 export type TbInspectStdCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -583,6 +603,7 @@ export type TbInspectStdAvgOrderByAggregateInput = {
 }
 
 export type TbInspectStdMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -602,6 +623,7 @@ export type TbInspectStdMaxOrderByAggregateInput = {
 }
 
 export type TbInspectStdMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   inspect_std_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -733,6 +755,7 @@ export type TbInspectStdUpdateOneWithoutInspect_result_dtlsNestedInput = {
 }
 
 export type TbInspectStdCreateWithoutItemInput = {
+  company_cd?: string
   inspect_type?: string | null
   inspect_item_nm: string
   measure_type?: string | null
@@ -751,6 +774,7 @@ export type TbInspectStdCreateWithoutItemInput = {
 }
 
 export type TbInspectStdUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   inspect_std_id?: number
   process_cd?: string | null
   inspect_type?: string | null
@@ -799,6 +823,7 @@ export type TbInspectStdScalarWhereInput = {
   AND?: Prisma.TbInspectStdScalarWhereInput | Prisma.TbInspectStdScalarWhereInput[]
   OR?: Prisma.TbInspectStdScalarWhereInput[]
   NOT?: Prisma.TbInspectStdScalarWhereInput | Prisma.TbInspectStdScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInspectStd"> | string
   inspect_std_id?: Prisma.IntFilter<"TbInspectStd"> | number
   item_cd?: Prisma.StringNullableFilter<"TbInspectStd"> | string | null
   process_cd?: Prisma.StringNullableFilter<"TbInspectStd"> | string | null
@@ -818,6 +843,7 @@ export type TbInspectStdScalarWhereInput = {
 }
 
 export type TbInspectStdCreateWithoutProcessInput = {
+  company_cd?: string
   inspect_type?: string | null
   inspect_item_nm: string
   measure_type?: string | null
@@ -836,6 +862,7 @@ export type TbInspectStdCreateWithoutProcessInput = {
 }
 
 export type TbInspectStdUncheckedCreateWithoutProcessInput = {
+  company_cd?: string
   inspect_std_id?: number
   item_cd?: string | null
   inspect_type?: string | null
@@ -881,6 +908,7 @@ export type TbInspectStdUpdateManyWithWhereWithoutProcessInput = {
 }
 
 export type TbInspectStdCreateWithoutInspect_result_dtlsInput = {
+  company_cd?: string
   inspect_type?: string | null
   inspect_item_nm: string
   measure_type?: string | null
@@ -899,6 +927,7 @@ export type TbInspectStdCreateWithoutInspect_result_dtlsInput = {
 }
 
 export type TbInspectStdUncheckedCreateWithoutInspect_result_dtlsInput = {
+  company_cd?: string
   inspect_std_id?: number
   item_cd?: string | null
   process_cd?: string | null
@@ -934,6 +963,7 @@ export type TbInspectStdUpdateToOneWithWhereWithoutInspect_result_dtlsInput = {
 }
 
 export type TbInspectStdUpdateWithoutInspect_result_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   measure_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -952,6 +982,7 @@ export type TbInspectStdUpdateWithoutInspect_result_dtlsInput = {
 }
 
 export type TbInspectStdUncheckedUpdateWithoutInspect_result_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_std_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   process_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -971,6 +1002,7 @@ export type TbInspectStdUncheckedUpdateWithoutInspect_result_dtlsInput = {
 }
 
 export type TbInspectStdCreateManyItemInput = {
+  company_cd?: string
   inspect_std_id?: number
   process_cd?: string | null
   inspect_type?: string | null
@@ -989,6 +1021,7 @@ export type TbInspectStdCreateManyItemInput = {
 }
 
 export type TbInspectStdUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   measure_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1007,6 +1040,7 @@ export type TbInspectStdUpdateWithoutItemInput = {
 }
 
 export type TbInspectStdUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_std_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1026,6 +1060,7 @@ export type TbInspectStdUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbInspectStdUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_std_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1044,6 +1079,7 @@ export type TbInspectStdUncheckedUpdateManyWithoutItemInput = {
 }
 
 export type TbInspectStdCreateManyProcessInput = {
+  company_cd?: string
   inspect_std_id?: number
   item_cd?: string | null
   inspect_type?: string | null
@@ -1062,6 +1098,7 @@ export type TbInspectStdCreateManyProcessInput = {
 }
 
 export type TbInspectStdUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   measure_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1080,6 +1117,7 @@ export type TbInspectStdUpdateWithoutProcessInput = {
 }
 
 export type TbInspectStdUncheckedUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_std_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1099,6 +1137,7 @@ export type TbInspectStdUncheckedUpdateWithoutProcessInput = {
 }
 
 export type TbInspectStdUncheckedUpdateManyWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   inspect_std_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inspect_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1148,6 +1187,7 @@ export type TbInspectStdCountOutputTypeCountInspect_result_dtlsArgs<ExtArgs exte
 
 
 export type TbInspectStdSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   inspect_std_id?: boolean
   item_cd?: boolean
   process_cd?: boolean
@@ -1171,6 +1211,7 @@ export type TbInspectStdSelect<ExtArgs extends runtime.Types.Extensions.Internal
 }, ExtArgs["result"]["tbInspectStd"]>
 
 export type TbInspectStdSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   inspect_std_id?: boolean
   item_cd?: boolean
   process_cd?: boolean
@@ -1192,6 +1233,7 @@ export type TbInspectStdSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 }, ExtArgs["result"]["tbInspectStd"]>
 
 export type TbInspectStdSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   inspect_std_id?: boolean
   item_cd?: boolean
   process_cd?: boolean
@@ -1213,6 +1255,7 @@ export type TbInspectStdSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 }, ExtArgs["result"]["tbInspectStd"]>
 
 export type TbInspectStdSelectScalar = {
+  company_cd?: boolean
   inspect_std_id?: boolean
   item_cd?: boolean
   process_cd?: boolean
@@ -1231,7 +1274,7 @@ export type TbInspectStdSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbInspectStdOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"inspect_std_id" | "item_cd" | "process_cd" | "inspect_type" | "inspect_item_nm" | "measure_type" | "lsl" | "target_val" | "usl" | "unit" | "sampling_std" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbInspectStd"]>
+export type TbInspectStdOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "inspect_std_id" | "item_cd" | "process_cd" | "inspect_type" | "inspect_item_nm" | "measure_type" | "lsl" | "target_val" | "usl" | "unit" | "sampling_std" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbInspectStd"]>
 export type TbInspectStdInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.TbInspectStd$itemArgs<ExtArgs>
   process?: boolean | Prisma.TbInspectStd$processArgs<ExtArgs>
@@ -1255,6 +1298,7 @@ export type $TbInspectStdPayload<ExtArgs extends runtime.Types.Extensions.Intern
     inspect_result_dtls: Prisma.$TbInspectResultDtlPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     inspect_std_id: number
     item_cd: string | null
     process_cd: string | null
@@ -1354,8 +1398,8 @@ export interface TbInspectStdDelegate<ExtArgs extends runtime.Types.Extensions.I
    * // Get first 10 TbInspectStds
    * const tbInspectStds = await prisma.tbInspectStd.findMany({ take: 10 })
    * 
-   * // Only select the `inspect_std_id`
-   * const tbInspectStdWithInspect_std_idOnly = await prisma.tbInspectStd.findMany({ select: { inspect_std_id: true } })
+   * // Only select the `company_cd`
+   * const tbInspectStdWithCompany_cdOnly = await prisma.tbInspectStd.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbInspectStdFindManyArgs>(args?: Prisma.SelectSubset<T, TbInspectStdFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbInspectStdPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1399,9 +1443,9 @@ export interface TbInspectStdDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   ]
    * })
    * 
-   * // Create many TbInspectStds and only return the `inspect_std_id`
-   * const tbInspectStdWithInspect_std_idOnly = await prisma.tbInspectStd.createManyAndReturn({
-   *   select: { inspect_std_id: true },
+   * // Create many TbInspectStds and only return the `company_cd`
+   * const tbInspectStdWithCompany_cdOnly = await prisma.tbInspectStd.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1490,9 +1534,9 @@ export interface TbInspectStdDelegate<ExtArgs extends runtime.Types.Extensions.I
    *   ]
    * })
    * 
-   * // Update zero or more TbInspectStds and only return the `inspect_std_id`
-   * const tbInspectStdWithInspect_std_idOnly = await prisma.tbInspectStd.updateManyAndReturn({
-   *   select: { inspect_std_id: true },
+   * // Update zero or more TbInspectStds and only return the `company_cd`
+   * const tbInspectStdWithCompany_cdOnly = await prisma.tbInspectStd.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1697,6 +1741,7 @@ export interface Prisma__TbInspectStdClient<T, Null = never, ExtArgs extends run
  * Fields of the TbInspectStd model
  */
 export interface TbInspectStdFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbInspectStd", 'String'>
   readonly inspect_std_id: Prisma.FieldRef<"TbInspectStd", 'Int'>
   readonly item_cd: Prisma.FieldRef<"TbInspectStd", 'String'>
   readonly process_cd: Prisma.FieldRef<"TbInspectStd", 'String'>

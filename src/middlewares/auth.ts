@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyAccessToken, JwtPayload } from '../utils/jwt';
 import { errorResponse } from '../types/apiResponse';
+import { tenantContext } from './tenantContext';
 
 // Extend Express Request to include user info
 declare global {
@@ -28,7 +29,8 @@ export function authenticate(req: Request, res: Response, next: NextFunction): v
   try {
     const payload = verifyAccessToken(token);
     req.user = payload;
-    next();
+    // 모든 인증 라우트에 테넌트 컨텍스트 장착 (멀티테넌시 자동 필터의 진입점)
+    tenantContext(req, res, next);
   } catch (err: any) {
     if (err.name === 'TokenExpiredError') {
       res.status(401).json(errorResponse('토큰이 만료되었습니다.'));

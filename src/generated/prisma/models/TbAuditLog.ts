@@ -37,6 +37,7 @@ export type TbAuditLogSumAggregateOutputType = {
 }
 
 export type TbAuditLogMinAggregateOutputType = {
+  company_cd: string | null
   log_id: number | null
   user_id: number | null
   action: string | null
@@ -47,6 +48,7 @@ export type TbAuditLogMinAggregateOutputType = {
 }
 
 export type TbAuditLogMaxAggregateOutputType = {
+  company_cd: string | null
   log_id: number | null
   user_id: number | null
   action: string | null
@@ -57,6 +59,7 @@ export type TbAuditLogMaxAggregateOutputType = {
 }
 
 export type TbAuditLogCountAggregateOutputType = {
+  company_cd: number
   log_id: number
   user_id: number
   action: number
@@ -81,6 +84,7 @@ export type TbAuditLogSumAggregateInputType = {
 }
 
 export type TbAuditLogMinAggregateInputType = {
+  company_cd?: true
   log_id?: true
   user_id?: true
   action?: true
@@ -91,6 +95,7 @@ export type TbAuditLogMinAggregateInputType = {
 }
 
 export type TbAuditLogMaxAggregateInputType = {
+  company_cd?: true
   log_id?: true
   user_id?: true
   action?: true
@@ -101,6 +106,7 @@ export type TbAuditLogMaxAggregateInputType = {
 }
 
 export type TbAuditLogCountAggregateInputType = {
+  company_cd?: true
   log_id?: true
   user_id?: true
   action?: true
@@ -200,6 +206,7 @@ export type TbAuditLogGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbAuditLogGroupByOutputType = {
+  company_cd: string
   log_id: number
   user_id: number | null
   action: string
@@ -235,6 +242,7 @@ export type TbAuditLogWhereInput = {
   AND?: Prisma.TbAuditLogWhereInput | Prisma.TbAuditLogWhereInput[]
   OR?: Prisma.TbAuditLogWhereInput[]
   NOT?: Prisma.TbAuditLogWhereInput | Prisma.TbAuditLogWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbAuditLog"> | string
   log_id?: Prisma.IntFilter<"TbAuditLog"> | number
   user_id?: Prisma.IntNullableFilter<"TbAuditLog"> | number | null
   action?: Prisma.StringFilter<"TbAuditLog"> | string
@@ -248,6 +256,7 @@ export type TbAuditLogWhereInput = {
 }
 
 export type TbAuditLogOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   log_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
   action?: Prisma.SortOrder
@@ -265,6 +274,7 @@ export type TbAuditLogWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbAuditLogWhereInput | Prisma.TbAuditLogWhereInput[]
   OR?: Prisma.TbAuditLogWhereInput[]
   NOT?: Prisma.TbAuditLogWhereInput | Prisma.TbAuditLogWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbAuditLog"> | string
   user_id?: Prisma.IntNullableFilter<"TbAuditLog"> | number | null
   action?: Prisma.StringFilter<"TbAuditLog"> | string
   target_table?: Prisma.StringNullableFilter<"TbAuditLog"> | string | null
@@ -277,6 +287,7 @@ export type TbAuditLogWhereUniqueInput = Prisma.AtLeast<{
 }, "log_id">
 
 export type TbAuditLogOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   log_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
   action?: Prisma.SortOrder
@@ -297,6 +308,7 @@ export type TbAuditLogScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbAuditLogScalarWhereWithAggregatesInput | Prisma.TbAuditLogScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbAuditLogScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbAuditLogScalarWhereWithAggregatesInput | Prisma.TbAuditLogScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbAuditLog"> | string
   log_id?: Prisma.IntWithAggregatesFilter<"TbAuditLog"> | number
   user_id?: Prisma.IntNullableWithAggregatesFilter<"TbAuditLog"> | number | null
   action?: Prisma.StringWithAggregatesFilter<"TbAuditLog"> | string
@@ -309,6 +321,7 @@ export type TbAuditLogScalarWhereWithAggregatesInput = {
 }
 
 export type TbAuditLogCreateInput = {
+  company_cd?: string
   action: string
   target_table?: string | null
   record_id?: string | null
@@ -320,6 +333,7 @@ export type TbAuditLogCreateInput = {
 }
 
 export type TbAuditLogUncheckedCreateInput = {
+  company_cd?: string
   log_id?: number
   user_id?: number | null
   action: string
@@ -332,6 +346,7 @@ export type TbAuditLogUncheckedCreateInput = {
 }
 
 export type TbAuditLogUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   target_table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -343,6 +358,7 @@ export type TbAuditLogUpdateInput = {
 }
 
 export type TbAuditLogUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   log_id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
@@ -355,6 +371,7 @@ export type TbAuditLogUncheckedUpdateInput = {
 }
 
 export type TbAuditLogCreateManyInput = {
+  company_cd?: string
   log_id?: number
   user_id?: number | null
   action: string
@@ -367,6 +384,7 @@ export type TbAuditLogCreateManyInput = {
 }
 
 export type TbAuditLogUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   target_table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -377,6 +395,7 @@ export type TbAuditLogUpdateManyMutationInput = {
 }
 
 export type TbAuditLogUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   log_id?: Prisma.IntFieldUpdateOperationsInput | number
   user_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
@@ -399,6 +418,7 @@ export type TbAuditLogOrderByRelationAggregateInput = {
 }
 
 export type TbAuditLogCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   log_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   action?: Prisma.SortOrder
@@ -416,6 +436,7 @@ export type TbAuditLogAvgOrderByAggregateInput = {
 }
 
 export type TbAuditLogMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   log_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   action?: Prisma.SortOrder
@@ -426,6 +447,7 @@ export type TbAuditLogMaxOrderByAggregateInput = {
 }
 
 export type TbAuditLogMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   log_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   action?: Prisma.SortOrder
@@ -483,6 +505,7 @@ export type TbAuditLogUncheckedUpdateManyWithoutUserNestedInput = {
 }
 
 export type TbAuditLogCreateWithoutUserInput = {
+  company_cd?: string
   action: string
   target_table?: string | null
   record_id?: string | null
@@ -493,6 +516,7 @@ export type TbAuditLogCreateWithoutUserInput = {
 }
 
 export type TbAuditLogUncheckedCreateWithoutUserInput = {
+  company_cd?: string
   log_id?: number
   action: string
   target_table?: string | null
@@ -533,6 +557,7 @@ export type TbAuditLogScalarWhereInput = {
   AND?: Prisma.TbAuditLogScalarWhereInput | Prisma.TbAuditLogScalarWhereInput[]
   OR?: Prisma.TbAuditLogScalarWhereInput[]
   NOT?: Prisma.TbAuditLogScalarWhereInput | Prisma.TbAuditLogScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbAuditLog"> | string
   log_id?: Prisma.IntFilter<"TbAuditLog"> | number
   user_id?: Prisma.IntNullableFilter<"TbAuditLog"> | number | null
   action?: Prisma.StringFilter<"TbAuditLog"> | string
@@ -545,6 +570,7 @@ export type TbAuditLogScalarWhereInput = {
 }
 
 export type TbAuditLogCreateManyUserInput = {
+  company_cd?: string
   log_id?: number
   action: string
   target_table?: string | null
@@ -556,6 +582,7 @@ export type TbAuditLogCreateManyUserInput = {
 }
 
 export type TbAuditLogUpdateWithoutUserInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   target_table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   record_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -566,6 +593,7 @@ export type TbAuditLogUpdateWithoutUserInput = {
 }
 
 export type TbAuditLogUncheckedUpdateWithoutUserInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   log_id?: Prisma.IntFieldUpdateOperationsInput | number
   action?: Prisma.StringFieldUpdateOperationsInput | string
   target_table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -577,6 +605,7 @@ export type TbAuditLogUncheckedUpdateWithoutUserInput = {
 }
 
 export type TbAuditLogUncheckedUpdateManyWithoutUserInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   log_id?: Prisma.IntFieldUpdateOperationsInput | number
   action?: Prisma.StringFieldUpdateOperationsInput | string
   target_table?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -590,6 +619,7 @@ export type TbAuditLogUncheckedUpdateManyWithoutUserInput = {
 
 
 export type TbAuditLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   log_id?: boolean
   user_id?: boolean
   action?: boolean
@@ -603,6 +633,7 @@ export type TbAuditLogSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbAuditLog"]>
 
 export type TbAuditLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   log_id?: boolean
   user_id?: boolean
   action?: boolean
@@ -616,6 +647,7 @@ export type TbAuditLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbAuditLog"]>
 
 export type TbAuditLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   log_id?: boolean
   user_id?: boolean
   action?: boolean
@@ -629,6 +661,7 @@ export type TbAuditLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbAuditLog"]>
 
 export type TbAuditLogSelectScalar = {
+  company_cd?: boolean
   log_id?: boolean
   user_id?: boolean
   action?: boolean
@@ -640,7 +673,7 @@ export type TbAuditLogSelectScalar = {
   create_dt?: boolean
 }
 
-export type TbAuditLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"log_id" | "user_id" | "action" | "target_table" | "record_id" | "before_data" | "after_data" | "ip_address" | "create_dt", ExtArgs["result"]["tbAuditLog"]>
+export type TbAuditLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "log_id" | "user_id" | "action" | "target_table" | "record_id" | "before_data" | "after_data" | "ip_address" | "create_dt", ExtArgs["result"]["tbAuditLog"]>
 export type TbAuditLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.TbAuditLog$userArgs<ExtArgs>
 }
@@ -657,6 +690,7 @@ export type $TbAuditLogPayload<ExtArgs extends runtime.Types.Extensions.Internal
     user: Prisma.$TbUserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     log_id: number
     user_id: number | null
     action: string
@@ -749,8 +783,8 @@ export interface TbAuditLogDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbAuditLogs
    * const tbAuditLogs = await prisma.tbAuditLog.findMany({ take: 10 })
    * 
-   * // Only select the `log_id`
-   * const tbAuditLogWithLog_idOnly = await prisma.tbAuditLog.findMany({ select: { log_id: true } })
+   * // Only select the `company_cd`
+   * const tbAuditLogWithCompany_cdOnly = await prisma.tbAuditLog.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbAuditLogFindManyArgs>(args?: Prisma.SelectSubset<T, TbAuditLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbAuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -794,9 +828,9 @@ export interface TbAuditLogDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbAuditLogs and only return the `log_id`
-   * const tbAuditLogWithLog_idOnly = await prisma.tbAuditLog.createManyAndReturn({
-   *   select: { log_id: true },
+   * // Create many TbAuditLogs and only return the `company_cd`
+   * const tbAuditLogWithCompany_cdOnly = await prisma.tbAuditLog.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -885,9 +919,9 @@ export interface TbAuditLogDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbAuditLogs and only return the `log_id`
-   * const tbAuditLogWithLog_idOnly = await prisma.tbAuditLog.updateManyAndReturn({
-   *   select: { log_id: true },
+   * // Update zero or more TbAuditLogs and only return the `company_cd`
+   * const tbAuditLogWithCompany_cdOnly = await prisma.tbAuditLog.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1090,6 +1124,7 @@ export interface Prisma__TbAuditLogClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbAuditLog model
  */
 export interface TbAuditLogFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbAuditLog", 'String'>
   readonly log_id: Prisma.FieldRef<"TbAuditLog", 'Int'>
   readonly user_id: Prisma.FieldRef<"TbAuditLog", 'Int'>
   readonly action: Prisma.FieldRef<"TbAuditLog", 'String'>

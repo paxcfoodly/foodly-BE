@@ -39,6 +39,7 @@ export type TbMaintResultSumAggregateOutputType = {
 }
 
 export type TbMaintResultMinAggregateOutputType = {
+  company_cd: string | null
   maint_result_id: number | null
   equip_cd: string | null
   maint_no: string | null
@@ -55,6 +56,7 @@ export type TbMaintResultMinAggregateOutputType = {
 }
 
 export type TbMaintResultMaxAggregateOutputType = {
+  company_cd: string | null
   maint_result_id: number | null
   equip_cd: string | null
   maint_no: string | null
@@ -71,6 +73,7 @@ export type TbMaintResultMaxAggregateOutputType = {
 }
 
 export type TbMaintResultCountAggregateOutputType = {
+  company_cd: number
   maint_result_id: number
   equip_cd: number
   maint_no: number
@@ -102,6 +105,7 @@ export type TbMaintResultSumAggregateInputType = {
 }
 
 export type TbMaintResultMinAggregateInputType = {
+  company_cd?: true
   maint_result_id?: true
   equip_cd?: true
   maint_no?: true
@@ -118,6 +122,7 @@ export type TbMaintResultMinAggregateInputType = {
 }
 
 export type TbMaintResultMaxAggregateInputType = {
+  company_cd?: true
   maint_result_id?: true
   equip_cd?: true
   maint_no?: true
@@ -134,6 +139,7 @@ export type TbMaintResultMaxAggregateInputType = {
 }
 
 export type TbMaintResultCountAggregateInputType = {
+  company_cd?: true
   maint_result_id?: true
   equip_cd?: true
   maint_no?: true
@@ -238,6 +244,7 @@ export type TbMaintResultGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type TbMaintResultGroupByOutputType = {
+  company_cd: string
   maint_result_id: number
   equip_cd: string
   maint_no: string | null
@@ -278,6 +285,7 @@ export type TbMaintResultWhereInput = {
   AND?: Prisma.TbMaintResultWhereInput | Prisma.TbMaintResultWhereInput[]
   OR?: Prisma.TbMaintResultWhereInput[]
   NOT?: Prisma.TbMaintResultWhereInput | Prisma.TbMaintResultWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaintResult"> | string
   maint_result_id?: Prisma.IntFilter<"TbMaintResult"> | number
   equip_cd?: Prisma.StringFilter<"TbMaintResult"> | string
   maint_no?: Prisma.StringNullableFilter<"TbMaintResult"> | string | null
@@ -299,6 +307,7 @@ export type TbMaintResultWhereInput = {
 }
 
 export type TbMaintResultOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   maint_result_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   maint_no?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -324,6 +333,7 @@ export type TbMaintResultWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbMaintResultWhereInput | Prisma.TbMaintResultWhereInput[]
   OR?: Prisma.TbMaintResultWhereInput[]
   NOT?: Prisma.TbMaintResultWhereInput | Prisma.TbMaintResultWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaintResult"> | string
   equip_cd?: Prisma.StringFilter<"TbMaintResult"> | string
   maint_no?: Prisma.StringNullableFilter<"TbMaintResult"> | string | null
   maint_plan_id?: Prisma.IntNullableFilter<"TbMaintResult"> | number | null
@@ -344,6 +354,7 @@ export type TbMaintResultWhereUniqueInput = Prisma.AtLeast<{
 }, "maint_result_id">
 
 export type TbMaintResultOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   maint_result_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   maint_no?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -369,6 +380,7 @@ export type TbMaintResultScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbMaintResultScalarWhereWithAggregatesInput | Prisma.TbMaintResultScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbMaintResultScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbMaintResultScalarWhereWithAggregatesInput | Prisma.TbMaintResultScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbMaintResult"> | string
   maint_result_id?: Prisma.IntWithAggregatesFilter<"TbMaintResult"> | number
   equip_cd?: Prisma.StringWithAggregatesFilter<"TbMaintResult"> | string
   maint_no?: Prisma.StringNullableWithAggregatesFilter<"TbMaintResult"> | string | null
@@ -386,6 +398,7 @@ export type TbMaintResultScalarWhereWithAggregatesInput = {
 }
 
 export type TbMaintResultCreateInput = {
+  company_cd?: string
   maint_no?: string | null
   maint_type_cd?: string | null
   work_dt?: Date | string | null
@@ -403,6 +416,7 @@ export type TbMaintResultCreateInput = {
 }
 
 export type TbMaintResultUncheckedCreateInput = {
+  company_cd?: string
   maint_result_id?: number
   equip_cd: string
   maint_no?: string | null
@@ -421,6 +435,7 @@ export type TbMaintResultUncheckedCreateInput = {
 }
 
 export type TbMaintResultUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   work_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -438,6 +453,7 @@ export type TbMaintResultUpdateInput = {
 }
 
 export type TbMaintResultUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -456,6 +472,7 @@ export type TbMaintResultUncheckedUpdateInput = {
 }
 
 export type TbMaintResultCreateManyInput = {
+  company_cd?: string
   maint_result_id?: number
   equip_cd: string
   maint_no?: string | null
@@ -473,6 +490,7 @@ export type TbMaintResultCreateManyInput = {
 }
 
 export type TbMaintResultUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   work_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -486,6 +504,7 @@ export type TbMaintResultUpdateManyMutationInput = {
 }
 
 export type TbMaintResultUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -513,6 +532,7 @@ export type TbMaintResultOrderByRelationAggregateInput = {
 }
 
 export type TbMaintResultCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   maint_result_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   maint_no?: Prisma.SortOrder
@@ -536,6 +556,7 @@ export type TbMaintResultAvgOrderByAggregateInput = {
 }
 
 export type TbMaintResultMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   maint_result_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   maint_no?: Prisma.SortOrder
@@ -552,6 +573,7 @@ export type TbMaintResultMaxOrderByAggregateInput = {
 }
 
 export type TbMaintResultMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   maint_result_id?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   maint_no?: Prisma.SortOrder
@@ -719,6 +741,7 @@ export type TbMaintResultUpdateOneRequiredWithoutResult_dtlsNestedInput = {
 }
 
 export type TbMaintResultCreateWithoutEquipmentInput = {
+  company_cd?: string
   maint_no?: string | null
   maint_type_cd?: string | null
   work_dt?: Date | string | null
@@ -735,6 +758,7 @@ export type TbMaintResultCreateWithoutEquipmentInput = {
 }
 
 export type TbMaintResultUncheckedCreateWithoutEquipmentInput = {
+  company_cd?: string
   maint_result_id?: number
   maint_no?: string | null
   maint_plan_id?: number | null
@@ -781,6 +805,7 @@ export type TbMaintResultScalarWhereInput = {
   AND?: Prisma.TbMaintResultScalarWhereInput | Prisma.TbMaintResultScalarWhereInput[]
   OR?: Prisma.TbMaintResultScalarWhereInput[]
   NOT?: Prisma.TbMaintResultScalarWhereInput | Prisma.TbMaintResultScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaintResult"> | string
   maint_result_id?: Prisma.IntFilter<"TbMaintResult"> | number
   equip_cd?: Prisma.StringFilter<"TbMaintResult"> | string
   maint_no?: Prisma.StringNullableFilter<"TbMaintResult"> | string | null
@@ -798,6 +823,7 @@ export type TbMaintResultScalarWhereInput = {
 }
 
 export type TbMaintResultCreateWithoutWorkerInput = {
+  company_cd?: string
   maint_no?: string | null
   maint_type_cd?: string | null
   work_dt?: Date | string | null
@@ -814,6 +840,7 @@ export type TbMaintResultCreateWithoutWorkerInput = {
 }
 
 export type TbMaintResultUncheckedCreateWithoutWorkerInput = {
+  company_cd?: string
   maint_result_id?: number
   equip_cd: string
   maint_no?: string | null
@@ -857,6 +884,7 @@ export type TbMaintResultUpdateManyWithWhereWithoutWorkerInput = {
 }
 
 export type TbMaintResultCreateWithoutMaint_planInput = {
+  company_cd?: string
   maint_no?: string | null
   maint_type_cd?: string | null
   work_dt?: Date | string | null
@@ -873,6 +901,7 @@ export type TbMaintResultCreateWithoutMaint_planInput = {
 }
 
 export type TbMaintResultUncheckedCreateWithoutMaint_planInput = {
+  company_cd?: string
   maint_result_id?: number
   equip_cd: string
   maint_no?: string | null
@@ -916,6 +945,7 @@ export type TbMaintResultUpdateManyWithWhereWithoutMaint_planInput = {
 }
 
 export type TbMaintResultCreateWithoutResult_dtlsInput = {
+  company_cd?: string
   maint_no?: string | null
   maint_type_cd?: string | null
   work_dt?: Date | string | null
@@ -932,6 +962,7 @@ export type TbMaintResultCreateWithoutResult_dtlsInput = {
 }
 
 export type TbMaintResultUncheckedCreateWithoutResult_dtlsInput = {
+  company_cd?: string
   maint_result_id?: number
   equip_cd: string
   maint_no?: string | null
@@ -965,6 +996,7 @@ export type TbMaintResultUpdateToOneWithWhereWithoutResult_dtlsInput = {
 }
 
 export type TbMaintResultUpdateWithoutResult_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   work_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -981,6 +1013,7 @@ export type TbMaintResultUpdateWithoutResult_dtlsInput = {
 }
 
 export type TbMaintResultUncheckedUpdateWithoutResult_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -998,6 +1031,7 @@ export type TbMaintResultUncheckedUpdateWithoutResult_dtlsInput = {
 }
 
 export type TbMaintResultCreateManyEquipmentInput = {
+  company_cd?: string
   maint_result_id?: number
   maint_no?: string | null
   maint_plan_id?: number | null
@@ -1014,6 +1048,7 @@ export type TbMaintResultCreateManyEquipmentInput = {
 }
 
 export type TbMaintResultUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   work_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1030,6 +1065,7 @@ export type TbMaintResultUpdateWithoutEquipmentInput = {
 }
 
 export type TbMaintResultUncheckedUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1047,6 +1083,7 @@ export type TbMaintResultUncheckedUpdateWithoutEquipmentInput = {
 }
 
 export type TbMaintResultUncheckedUpdateManyWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1063,6 +1100,7 @@ export type TbMaintResultUncheckedUpdateManyWithoutEquipmentInput = {
 }
 
 export type TbMaintResultCreateManyWorkerInput = {
+  company_cd?: string
   maint_result_id?: number
   equip_cd: string
   maint_no?: string | null
@@ -1079,6 +1117,7 @@ export type TbMaintResultCreateManyWorkerInput = {
 }
 
 export type TbMaintResultUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   work_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1095,6 +1134,7 @@ export type TbMaintResultUpdateWithoutWorkerInput = {
 }
 
 export type TbMaintResultUncheckedUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1112,6 +1152,7 @@ export type TbMaintResultUncheckedUpdateWithoutWorkerInput = {
 }
 
 export type TbMaintResultUncheckedUpdateManyWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1128,6 +1169,7 @@ export type TbMaintResultUncheckedUpdateManyWithoutWorkerInput = {
 }
 
 export type TbMaintResultCreateManyMaint_planInput = {
+  company_cd?: string
   maint_result_id?: number
   equip_cd: string
   maint_no?: string | null
@@ -1144,6 +1186,7 @@ export type TbMaintResultCreateManyMaint_planInput = {
 }
 
 export type TbMaintResultUpdateWithoutMaint_planInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   maint_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   work_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1160,6 +1203,7 @@ export type TbMaintResultUpdateWithoutMaint_planInput = {
 }
 
 export type TbMaintResultUncheckedUpdateWithoutMaint_planInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1177,6 +1221,7 @@ export type TbMaintResultUncheckedUpdateWithoutMaint_planInput = {
 }
 
 export type TbMaintResultUncheckedUpdateManyWithoutMaint_planInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_result_id?: Prisma.IntFieldUpdateOperationsInput | number
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   maint_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1224,6 +1269,7 @@ export type TbMaintResultCountOutputTypeCountResult_dtlsArgs<ExtArgs extends run
 
 
 export type TbMaintResultSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   maint_result_id?: boolean
   equip_cd?: boolean
   maint_no?: boolean
@@ -1246,6 +1292,7 @@ export type TbMaintResultSelect<ExtArgs extends runtime.Types.Extensions.Interna
 }, ExtArgs["result"]["tbMaintResult"]>
 
 export type TbMaintResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   maint_result_id?: boolean
   equip_cd?: boolean
   maint_no?: boolean
@@ -1266,6 +1313,7 @@ export type TbMaintResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbMaintResult"]>
 
 export type TbMaintResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   maint_result_id?: boolean
   equip_cd?: boolean
   maint_no?: boolean
@@ -1286,6 +1334,7 @@ export type TbMaintResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbMaintResult"]>
 
 export type TbMaintResultSelectScalar = {
+  company_cd?: boolean
   maint_result_id?: boolean
   equip_cd?: boolean
   maint_no?: boolean
@@ -1302,7 +1351,7 @@ export type TbMaintResultSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbMaintResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"maint_result_id" | "equip_cd" | "maint_no" | "maint_plan_id" | "maint_type_cd" | "work_dt" | "worker_id" | "cost" | "memo" | "replaced_parts" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMaintResult"]>
+export type TbMaintResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "maint_result_id" | "equip_cd" | "maint_no" | "maint_plan_id" | "maint_type_cd" | "work_dt" | "worker_id" | "cost" | "memo" | "replaced_parts" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMaintResult"]>
 export type TbMaintResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
   worker?: boolean | Prisma.TbMaintResult$workerArgs<ExtArgs>
@@ -1330,6 +1379,7 @@ export type $TbMaintResultPayload<ExtArgs extends runtime.Types.Extensions.Inter
     result_dtls: Prisma.$TbMaintResultDtlPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     maint_result_id: number
     equip_cd: string
     maint_no: string | null
@@ -1427,8 +1477,8 @@ export interface TbMaintResultDelegate<ExtArgs extends runtime.Types.Extensions.
    * // Get first 10 TbMaintResults
    * const tbMaintResults = await prisma.tbMaintResult.findMany({ take: 10 })
    * 
-   * // Only select the `maint_result_id`
-   * const tbMaintResultWithMaint_result_idOnly = await prisma.tbMaintResult.findMany({ select: { maint_result_id: true } })
+   * // Only select the `company_cd`
+   * const tbMaintResultWithCompany_cdOnly = await prisma.tbMaintResult.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbMaintResultFindManyArgs>(args?: Prisma.SelectSubset<T, TbMaintResultFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMaintResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1472,9 +1522,9 @@ export interface TbMaintResultDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Create many TbMaintResults and only return the `maint_result_id`
-   * const tbMaintResultWithMaint_result_idOnly = await prisma.tbMaintResult.createManyAndReturn({
-   *   select: { maint_result_id: true },
+   * // Create many TbMaintResults and only return the `company_cd`
+   * const tbMaintResultWithCompany_cdOnly = await prisma.tbMaintResult.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1563,9 +1613,9 @@ export interface TbMaintResultDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Update zero or more TbMaintResults and only return the `maint_result_id`
-   * const tbMaintResultWithMaint_result_idOnly = await prisma.tbMaintResult.updateManyAndReturn({
-   *   select: { maint_result_id: true },
+   * // Update zero or more TbMaintResults and only return the `company_cd`
+   * const tbMaintResultWithCompany_cdOnly = await prisma.tbMaintResult.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1771,6 +1821,7 @@ export interface Prisma__TbMaintResultClient<T, Null = never, ExtArgs extends ru
  * Fields of the TbMaintResult model
  */
 export interface TbMaintResultFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbMaintResult", 'String'>
   readonly maint_result_id: Prisma.FieldRef<"TbMaintResult", 'Int'>
   readonly equip_cd: Prisma.FieldRef<"TbMaintResult", 'String'>
   readonly maint_no: Prisma.FieldRef<"TbMaintResult", 'String'>

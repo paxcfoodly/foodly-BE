@@ -37,6 +37,7 @@ export type TbNumberingSumAggregateOutputType = {
 }
 
 export type TbNumberingMinAggregateOutputType = {
+  company_cd: string | null
   num_type: string | null
   prefix: string | null
   date_format: string | null
@@ -49,6 +50,7 @@ export type TbNumberingMinAggregateOutputType = {
 }
 
 export type TbNumberingMaxAggregateOutputType = {
+  company_cd: string | null
   num_type: string | null
   prefix: string | null
   date_format: string | null
@@ -61,6 +63,7 @@ export type TbNumberingMaxAggregateOutputType = {
 }
 
 export type TbNumberingCountAggregateOutputType = {
+  company_cd: number
   num_type: number
   prefix: number
   date_format: number
@@ -85,6 +88,7 @@ export type TbNumberingSumAggregateInputType = {
 }
 
 export type TbNumberingMinAggregateInputType = {
+  company_cd?: true
   num_type?: true
   prefix?: true
   date_format?: true
@@ -97,6 +101,7 @@ export type TbNumberingMinAggregateInputType = {
 }
 
 export type TbNumberingMaxAggregateInputType = {
+  company_cd?: true
   num_type?: true
   prefix?: true
   date_format?: true
@@ -109,6 +114,7 @@ export type TbNumberingMaxAggregateInputType = {
 }
 
 export type TbNumberingCountAggregateInputType = {
+  company_cd?: true
   num_type?: true
   prefix?: true
   date_format?: true
@@ -208,6 +214,7 @@ export type TbNumberingGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type TbNumberingGroupByOutputType = {
+  company_cd: string
   num_type: string
   prefix: string
   date_format: string
@@ -243,6 +250,7 @@ export type TbNumberingWhereInput = {
   AND?: Prisma.TbNumberingWhereInput | Prisma.TbNumberingWhereInput[]
   OR?: Prisma.TbNumberingWhereInput[]
   NOT?: Prisma.TbNumberingWhereInput | Prisma.TbNumberingWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbNumbering"> | string
   num_type?: Prisma.StringFilter<"TbNumbering"> | string
   prefix?: Prisma.StringFilter<"TbNumbering"> | string
   date_format?: Prisma.StringFilter<"TbNumbering"> | string
@@ -255,6 +263,7 @@ export type TbNumberingWhereInput = {
 }
 
 export type TbNumberingOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   num_type?: Prisma.SortOrder
   prefix?: Prisma.SortOrder
   date_format?: Prisma.SortOrder
@@ -267,10 +276,12 @@ export type TbNumberingOrderByWithRelationInput = {
 }
 
 export type TbNumberingWhereUniqueInput = Prisma.AtLeast<{
-  num_type?: string
+  company_cd_num_type?: Prisma.TbNumberingCompany_cdNum_typeCompoundUniqueInput
   AND?: Prisma.TbNumberingWhereInput | Prisma.TbNumberingWhereInput[]
   OR?: Prisma.TbNumberingWhereInput[]
   NOT?: Prisma.TbNumberingWhereInput | Prisma.TbNumberingWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbNumbering"> | string
+  num_type?: Prisma.StringFilter<"TbNumbering"> | string
   prefix?: Prisma.StringFilter<"TbNumbering"> | string
   date_format?: Prisma.StringFilter<"TbNumbering"> | string
   seq_length?: Prisma.IntFilter<"TbNumbering"> | number
@@ -279,9 +290,10 @@ export type TbNumberingWhereUniqueInput = Prisma.AtLeast<{
   create_dt?: Prisma.DateTimeFilter<"TbNumbering"> | Date | string
   update_by?: Prisma.StringNullableFilter<"TbNumbering"> | string | null
   update_dt?: Prisma.DateTimeFilter<"TbNumbering"> | Date | string
-}, "num_type">
+}, "company_cd_num_type">
 
 export type TbNumberingOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   num_type?: Prisma.SortOrder
   prefix?: Prisma.SortOrder
   date_format?: Prisma.SortOrder
@@ -302,6 +314,7 @@ export type TbNumberingScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbNumberingScalarWhereWithAggregatesInput | Prisma.TbNumberingScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbNumberingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbNumberingScalarWhereWithAggregatesInput | Prisma.TbNumberingScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbNumbering"> | string
   num_type?: Prisma.StringWithAggregatesFilter<"TbNumbering"> | string
   prefix?: Prisma.StringWithAggregatesFilter<"TbNumbering"> | string
   date_format?: Prisma.StringWithAggregatesFilter<"TbNumbering"> | string
@@ -314,6 +327,7 @@ export type TbNumberingScalarWhereWithAggregatesInput = {
 }
 
 export type TbNumberingCreateInput = {
+  company_cd?: string
   num_type: string
   prefix: string
   date_format?: string
@@ -326,6 +340,7 @@ export type TbNumberingCreateInput = {
 }
 
 export type TbNumberingUncheckedCreateInput = {
+  company_cd?: string
   num_type: string
   prefix: string
   date_format?: string
@@ -338,6 +353,7 @@ export type TbNumberingUncheckedCreateInput = {
 }
 
 export type TbNumberingUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   num_type?: Prisma.StringFieldUpdateOperationsInput | string
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   date_format?: Prisma.StringFieldUpdateOperationsInput | string
@@ -350,6 +366,7 @@ export type TbNumberingUpdateInput = {
 }
 
 export type TbNumberingUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   num_type?: Prisma.StringFieldUpdateOperationsInput | string
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   date_format?: Prisma.StringFieldUpdateOperationsInput | string
@@ -362,6 +379,7 @@ export type TbNumberingUncheckedUpdateInput = {
 }
 
 export type TbNumberingCreateManyInput = {
+  company_cd?: string
   num_type: string
   prefix: string
   date_format?: string
@@ -374,6 +392,7 @@ export type TbNumberingCreateManyInput = {
 }
 
 export type TbNumberingUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   num_type?: Prisma.StringFieldUpdateOperationsInput | string
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   date_format?: Prisma.StringFieldUpdateOperationsInput | string
@@ -386,6 +405,7 @@ export type TbNumberingUpdateManyMutationInput = {
 }
 
 export type TbNumberingUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   num_type?: Prisma.StringFieldUpdateOperationsInput | string
   prefix?: Prisma.StringFieldUpdateOperationsInput | string
   date_format?: Prisma.StringFieldUpdateOperationsInput | string
@@ -397,7 +417,13 @@ export type TbNumberingUncheckedUpdateManyInput = {
   update_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type TbNumberingCompany_cdNum_typeCompoundUniqueInput = {
+  company_cd: string
+  num_type: string
+}
+
 export type TbNumberingCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   num_type?: Prisma.SortOrder
   prefix?: Prisma.SortOrder
   date_format?: Prisma.SortOrder
@@ -415,6 +441,7 @@ export type TbNumberingAvgOrderByAggregateInput = {
 }
 
 export type TbNumberingMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   num_type?: Prisma.SortOrder
   prefix?: Prisma.SortOrder
   date_format?: Prisma.SortOrder
@@ -427,6 +454,7 @@ export type TbNumberingMaxOrderByAggregateInput = {
 }
 
 export type TbNumberingMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   num_type?: Prisma.SortOrder
   prefix?: Prisma.SortOrder
   date_format?: Prisma.SortOrder
@@ -446,6 +474,7 @@ export type TbNumberingSumOrderByAggregateInput = {
 
 
 export type TbNumberingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   num_type?: boolean
   prefix?: boolean
   date_format?: boolean
@@ -458,6 +487,7 @@ export type TbNumberingSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 }, ExtArgs["result"]["tbNumbering"]>
 
 export type TbNumberingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   num_type?: boolean
   prefix?: boolean
   date_format?: boolean
@@ -470,6 +500,7 @@ export type TbNumberingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbNumbering"]>
 
 export type TbNumberingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   num_type?: boolean
   prefix?: boolean
   date_format?: boolean
@@ -482,6 +513,7 @@ export type TbNumberingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbNumbering"]>
 
 export type TbNumberingSelectScalar = {
+  company_cd?: boolean
   num_type?: boolean
   prefix?: boolean
   date_format?: boolean
@@ -493,12 +525,13 @@ export type TbNumberingSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbNumberingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"num_type" | "prefix" | "date_format" | "seq_length" | "last_seq" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbNumbering"]>
+export type TbNumberingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "num_type" | "prefix" | "date_format" | "seq_length" | "last_seq" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbNumbering"]>
 
 export type $TbNumberingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TbNumbering"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     num_type: string
     prefix: string
     date_format: string
@@ -591,8 +624,8 @@ export interface TbNumberingDelegate<ExtArgs extends runtime.Types.Extensions.In
    * // Get first 10 TbNumberings
    * const tbNumberings = await prisma.tbNumbering.findMany({ take: 10 })
    * 
-   * // Only select the `num_type`
-   * const tbNumberingWithNum_typeOnly = await prisma.tbNumbering.findMany({ select: { num_type: true } })
+   * // Only select the `company_cd`
+   * const tbNumberingWithCompany_cdOnly = await prisma.tbNumbering.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbNumberingFindManyArgs>(args?: Prisma.SelectSubset<T, TbNumberingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbNumberingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -636,9 +669,9 @@ export interface TbNumberingDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Create many TbNumberings and only return the `num_type`
-   * const tbNumberingWithNum_typeOnly = await prisma.tbNumbering.createManyAndReturn({
-   *   select: { num_type: true },
+   * // Create many TbNumberings and only return the `company_cd`
+   * const tbNumberingWithCompany_cdOnly = await prisma.tbNumbering.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -727,9 +760,9 @@ export interface TbNumberingDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Update zero or more TbNumberings and only return the `num_type`
-   * const tbNumberingWithNum_typeOnly = await prisma.tbNumbering.updateManyAndReturn({
-   *   select: { num_type: true },
+   * // Update zero or more TbNumberings and only return the `company_cd`
+   * const tbNumberingWithCompany_cdOnly = await prisma.tbNumbering.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -931,6 +964,7 @@ export interface Prisma__TbNumberingClient<T, Null = never, ExtArgs extends runt
  * Fields of the TbNumbering model
  */
 export interface TbNumberingFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbNumbering", 'String'>
   readonly num_type: Prisma.FieldRef<"TbNumbering", 'String'>
   readonly prefix: Prisma.FieldRef<"TbNumbering", 'String'>
   readonly date_format: Prisma.FieldRef<"TbNumbering", 'String'>

@@ -35,6 +35,7 @@ export type TbWorkshopSumAggregateOutputType = {
 }
 
 export type TbWorkshopMinAggregateOutputType = {
+  company_cd: string | null
   workshop_cd: string | null
   plant_cd: string | null
   parent_cd: string | null
@@ -49,6 +50,7 @@ export type TbWorkshopMinAggregateOutputType = {
 }
 
 export type TbWorkshopMaxAggregateOutputType = {
+  company_cd: string | null
   workshop_cd: string | null
   plant_cd: string | null
   parent_cd: string | null
@@ -63,6 +65,7 @@ export type TbWorkshopMaxAggregateOutputType = {
 }
 
 export type TbWorkshopCountAggregateOutputType = {
+  company_cd: number
   workshop_cd: number
   plant_cd: number
   parent_cd: number
@@ -87,6 +90,7 @@ export type TbWorkshopSumAggregateInputType = {
 }
 
 export type TbWorkshopMinAggregateInputType = {
+  company_cd?: true
   workshop_cd?: true
   plant_cd?: true
   parent_cd?: true
@@ -101,6 +105,7 @@ export type TbWorkshopMinAggregateInputType = {
 }
 
 export type TbWorkshopMaxAggregateInputType = {
+  company_cd?: true
   workshop_cd?: true
   plant_cd?: true
   parent_cd?: true
@@ -115,6 +120,7 @@ export type TbWorkshopMaxAggregateInputType = {
 }
 
 export type TbWorkshopCountAggregateInputType = {
+  company_cd?: true
   workshop_cd?: true
   plant_cd?: true
   parent_cd?: true
@@ -216,6 +222,7 @@ export type TbWorkshopGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbWorkshopGroupByOutputType = {
+  company_cd: string
   workshop_cd: string
   plant_cd: string
   parent_cd: string | null
@@ -253,6 +260,7 @@ export type TbWorkshopWhereInput = {
   AND?: Prisma.TbWorkshopWhereInput | Prisma.TbWorkshopWhereInput[]
   OR?: Prisma.TbWorkshopWhereInput[]
   NOT?: Prisma.TbWorkshopWhereInput | Prisma.TbWorkshopWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkshop"> | string
   workshop_cd?: Prisma.StringFilter<"TbWorkshop"> | string
   plant_cd?: Prisma.StringFilter<"TbWorkshop"> | string
   parent_cd?: Prisma.StringNullableFilter<"TbWorkshop"> | string | null
@@ -273,6 +281,7 @@ export type TbWorkshopWhereInput = {
 }
 
 export type TbWorkshopOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   workshop_cd?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
   parent_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -297,6 +306,7 @@ export type TbWorkshopWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbWorkshopWhereInput | Prisma.TbWorkshopWhereInput[]
   OR?: Prisma.TbWorkshopWhereInput[]
   NOT?: Prisma.TbWorkshopWhereInput | Prisma.TbWorkshopWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkshop"> | string
   plant_cd?: Prisma.StringFilter<"TbWorkshop"> | string
   parent_cd?: Prisma.StringNullableFilter<"TbWorkshop"> | string | null
   workshop_nm?: Prisma.StringFilter<"TbWorkshop"> | string
@@ -316,6 +326,7 @@ export type TbWorkshopWhereUniqueInput = Prisma.AtLeast<{
 }, "workshop_cd">
 
 export type TbWorkshopOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   workshop_cd?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
   parent_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -338,6 +349,7 @@ export type TbWorkshopScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbWorkshopScalarWhereWithAggregatesInput | Prisma.TbWorkshopScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbWorkshopScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbWorkshopScalarWhereWithAggregatesInput | Prisma.TbWorkshopScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbWorkshop"> | string
   workshop_cd?: Prisma.StringWithAggregatesFilter<"TbWorkshop"> | string
   plant_cd?: Prisma.StringWithAggregatesFilter<"TbWorkshop"> | string
   parent_cd?: Prisma.StringNullableWithAggregatesFilter<"TbWorkshop"> | string | null
@@ -352,6 +364,7 @@ export type TbWorkshopScalarWhereWithAggregatesInput = {
 }
 
 export type TbWorkshopCreateInput = {
+  company_cd?: string
   workshop_cd: string
   workshop_nm: string
   workshop_type?: string | null
@@ -370,6 +383,7 @@ export type TbWorkshopCreateInput = {
 }
 
 export type TbWorkshopUncheckedCreateInput = {
+  company_cd?: string
   workshop_cd: string
   plant_cd: string
   parent_cd?: string | null
@@ -388,6 +402,7 @@ export type TbWorkshopUncheckedCreateInput = {
 }
 
 export type TbWorkshopUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -406,6 +421,7 @@ export type TbWorkshopUpdateInput = {
 }
 
 export type TbWorkshopUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
   parent_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -424,6 +440,7 @@ export type TbWorkshopUncheckedUpdateInput = {
 }
 
 export type TbWorkshopCreateManyInput = {
+  company_cd?: string
   workshop_cd: string
   plant_cd: string
   parent_cd?: string | null
@@ -438,6 +455,7 @@ export type TbWorkshopCreateManyInput = {
 }
 
 export type TbWorkshopUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -450,6 +468,7 @@ export type TbWorkshopUpdateManyMutationInput = {
 }
 
 export type TbWorkshopUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
   parent_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -479,6 +498,7 @@ export type TbWorkshopNullableScalarRelationFilter = {
 }
 
 export type TbWorkshopCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   workshop_cd?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
   parent_cd?: Prisma.SortOrder
@@ -497,6 +517,7 @@ export type TbWorkshopAvgOrderByAggregateInput = {
 }
 
 export type TbWorkshopMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   workshop_cd?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
   parent_cd?: Prisma.SortOrder
@@ -511,6 +532,7 @@ export type TbWorkshopMaxOrderByAggregateInput = {
 }
 
 export type TbWorkshopMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   workshop_cd?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
   parent_cd?: Prisma.SortOrder
@@ -685,6 +707,7 @@ export type TbWorkshopUpdateOneWithoutWorkersNestedInput = {
 }
 
 export type TbWorkshopCreateWithoutPlantInput = {
+  company_cd?: string
   workshop_cd: string
   workshop_nm: string
   workshop_type?: string | null
@@ -702,6 +725,7 @@ export type TbWorkshopCreateWithoutPlantInput = {
 }
 
 export type TbWorkshopUncheckedCreateWithoutPlantInput = {
+  company_cd?: string
   workshop_cd: string
   parent_cd?: string | null
   workshop_nm: string
@@ -748,6 +772,7 @@ export type TbWorkshopScalarWhereInput = {
   AND?: Prisma.TbWorkshopScalarWhereInput | Prisma.TbWorkshopScalarWhereInput[]
   OR?: Prisma.TbWorkshopScalarWhereInput[]
   NOT?: Prisma.TbWorkshopScalarWhereInput | Prisma.TbWorkshopScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkshop"> | string
   workshop_cd?: Prisma.StringFilter<"TbWorkshop"> | string
   plant_cd?: Prisma.StringFilter<"TbWorkshop"> | string
   parent_cd?: Prisma.StringNullableFilter<"TbWorkshop"> | string | null
@@ -762,6 +787,7 @@ export type TbWorkshopScalarWhereInput = {
 }
 
 export type TbWorkshopCreateWithoutChildrenInput = {
+  company_cd?: string
   workshop_cd: string
   workshop_nm: string
   workshop_type?: string | null
@@ -779,6 +805,7 @@ export type TbWorkshopCreateWithoutChildrenInput = {
 }
 
 export type TbWorkshopUncheckedCreateWithoutChildrenInput = {
+  company_cd?: string
   workshop_cd: string
   plant_cd: string
   parent_cd?: string | null
@@ -801,6 +828,7 @@ export type TbWorkshopCreateOrConnectWithoutChildrenInput = {
 }
 
 export type TbWorkshopCreateWithoutParentInput = {
+  company_cd?: string
   workshop_cd: string
   workshop_nm: string
   workshop_type?: string | null
@@ -818,6 +846,7 @@ export type TbWorkshopCreateWithoutParentInput = {
 }
 
 export type TbWorkshopUncheckedCreateWithoutParentInput = {
+  company_cd?: string
   workshop_cd: string
   plant_cd: string
   workshop_nm: string
@@ -856,6 +885,7 @@ export type TbWorkshopUpdateToOneWithWhereWithoutChildrenInput = {
 }
 
 export type TbWorkshopUpdateWithoutChildrenInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -873,6 +903,7 @@ export type TbWorkshopUpdateWithoutChildrenInput = {
 }
 
 export type TbWorkshopUncheckedUpdateWithoutChildrenInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
   parent_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -906,6 +937,7 @@ export type TbWorkshopUpdateManyWithWhereWithoutParentInput = {
 }
 
 export type TbWorkshopCreateWithoutProcessesInput = {
+  company_cd?: string
   workshop_cd: string
   workshop_nm: string
   workshop_type?: string | null
@@ -923,6 +955,7 @@ export type TbWorkshopCreateWithoutProcessesInput = {
 }
 
 export type TbWorkshopUncheckedCreateWithoutProcessesInput = {
+  company_cd?: string
   workshop_cd: string
   plant_cd: string
   parent_cd?: string | null
@@ -956,6 +989,7 @@ export type TbWorkshopUpdateToOneWithWhereWithoutProcessesInput = {
 }
 
 export type TbWorkshopUpdateWithoutProcessesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -973,6 +1007,7 @@ export type TbWorkshopUpdateWithoutProcessesInput = {
 }
 
 export type TbWorkshopUncheckedUpdateWithoutProcessesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
   parent_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -990,6 +1025,7 @@ export type TbWorkshopUncheckedUpdateWithoutProcessesInput = {
 }
 
 export type TbWorkshopCreateWithoutEquipmentInput = {
+  company_cd?: string
   workshop_cd: string
   workshop_nm: string
   workshop_type?: string | null
@@ -1007,6 +1043,7 @@ export type TbWorkshopCreateWithoutEquipmentInput = {
 }
 
 export type TbWorkshopUncheckedCreateWithoutEquipmentInput = {
+  company_cd?: string
   workshop_cd: string
   plant_cd: string
   parent_cd?: string | null
@@ -1040,6 +1077,7 @@ export type TbWorkshopUpdateToOneWithWhereWithoutEquipmentInput = {
 }
 
 export type TbWorkshopUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1057,6 +1095,7 @@ export type TbWorkshopUpdateWithoutEquipmentInput = {
 }
 
 export type TbWorkshopUncheckedUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
   parent_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1074,6 +1113,7 @@ export type TbWorkshopUncheckedUpdateWithoutEquipmentInput = {
 }
 
 export type TbWorkshopCreateWithoutWorkersInput = {
+  company_cd?: string
   workshop_cd: string
   workshop_nm: string
   workshop_type?: string | null
@@ -1091,6 +1131,7 @@ export type TbWorkshopCreateWithoutWorkersInput = {
 }
 
 export type TbWorkshopUncheckedCreateWithoutWorkersInput = {
+  company_cd?: string
   workshop_cd: string
   plant_cd: string
   parent_cd?: string | null
@@ -1124,6 +1165,7 @@ export type TbWorkshopUpdateToOneWithWhereWithoutWorkersInput = {
 }
 
 export type TbWorkshopUpdateWithoutWorkersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1141,6 +1183,7 @@ export type TbWorkshopUpdateWithoutWorkersInput = {
 }
 
 export type TbWorkshopUncheckedUpdateWithoutWorkersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
   parent_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1158,6 +1201,7 @@ export type TbWorkshopUncheckedUpdateWithoutWorkersInput = {
 }
 
 export type TbWorkshopCreateManyPlantInput = {
+  company_cd?: string
   workshop_cd: string
   parent_cd?: string | null
   workshop_nm: string
@@ -1171,6 +1215,7 @@ export type TbWorkshopCreateManyPlantInput = {
 }
 
 export type TbWorkshopUpdateWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1188,6 +1233,7 @@ export type TbWorkshopUpdateWithoutPlantInput = {
 }
 
 export type TbWorkshopUncheckedUpdateWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   parent_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1205,6 +1251,7 @@ export type TbWorkshopUncheckedUpdateWithoutPlantInput = {
 }
 
 export type TbWorkshopUncheckedUpdateManyWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   parent_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1218,6 +1265,7 @@ export type TbWorkshopUncheckedUpdateManyWithoutPlantInput = {
 }
 
 export type TbWorkshopCreateManyParentInput = {
+  company_cd?: string
   workshop_cd: string
   plant_cd: string
   workshop_nm: string
@@ -1231,6 +1279,7 @@ export type TbWorkshopCreateManyParentInput = {
 }
 
 export type TbWorkshopUpdateWithoutParentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1248,6 +1297,7 @@ export type TbWorkshopUpdateWithoutParentInput = {
 }
 
 export type TbWorkshopUncheckedUpdateWithoutParentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1265,6 +1315,7 @@ export type TbWorkshopUncheckedUpdateWithoutParentInput = {
 }
 
 export type TbWorkshopUncheckedUpdateManyWithoutParentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
   workshop_nm?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1336,6 +1387,7 @@ export type TbWorkshopCountOutputTypeCountWorkersArgs<ExtArgs extends runtime.Ty
 
 
 export type TbWorkshopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   workshop_cd?: boolean
   plant_cd?: boolean
   parent_cd?: boolean
@@ -1357,6 +1409,7 @@ export type TbWorkshopSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbWorkshop"]>
 
 export type TbWorkshopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   workshop_cd?: boolean
   plant_cd?: boolean
   parent_cd?: boolean
@@ -1373,6 +1426,7 @@ export type TbWorkshopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbWorkshop"]>
 
 export type TbWorkshopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   workshop_cd?: boolean
   plant_cd?: boolean
   parent_cd?: boolean
@@ -1389,6 +1443,7 @@ export type TbWorkshopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbWorkshop"]>
 
 export type TbWorkshopSelectScalar = {
+  company_cd?: boolean
   workshop_cd?: boolean
   plant_cd?: boolean
   parent_cd?: boolean
@@ -1402,7 +1457,7 @@ export type TbWorkshopSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbWorkshopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"workshop_cd" | "plant_cd" | "parent_cd" | "workshop_nm" | "workshop_type" | "sort_order" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWorkshop"]>
+export type TbWorkshopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "workshop_cd" | "plant_cd" | "parent_cd" | "workshop_nm" | "workshop_type" | "sort_order" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWorkshop"]>
 export type TbWorkshopInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plant?: boolean | Prisma.TbPlantDefaultArgs<ExtArgs>
   parent?: boolean | Prisma.TbWorkshop$parentArgs<ExtArgs>
@@ -1432,6 +1487,7 @@ export type $TbWorkshopPayload<ExtArgs extends runtime.Types.Extensions.Internal
     workers: Prisma.$TbWorkerPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     workshop_cd: string
     plant_cd: string
     parent_cd: string | null
@@ -1526,8 +1582,8 @@ export interface TbWorkshopDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbWorkshops
    * const tbWorkshops = await prisma.tbWorkshop.findMany({ take: 10 })
    * 
-   * // Only select the `workshop_cd`
-   * const tbWorkshopWithWorkshop_cdOnly = await prisma.tbWorkshop.findMany({ select: { workshop_cd: true } })
+   * // Only select the `company_cd`
+   * const tbWorkshopWithCompany_cdOnly = await prisma.tbWorkshop.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbWorkshopFindManyArgs>(args?: Prisma.SelectSubset<T, TbWorkshopFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbWorkshopPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1571,9 +1627,9 @@ export interface TbWorkshopDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbWorkshops and only return the `workshop_cd`
-   * const tbWorkshopWithWorkshop_cdOnly = await prisma.tbWorkshop.createManyAndReturn({
-   *   select: { workshop_cd: true },
+   * // Create many TbWorkshops and only return the `company_cd`
+   * const tbWorkshopWithCompany_cdOnly = await prisma.tbWorkshop.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1662,9 +1718,9 @@ export interface TbWorkshopDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbWorkshops and only return the `workshop_cd`
-   * const tbWorkshopWithWorkshop_cdOnly = await prisma.tbWorkshop.updateManyAndReturn({
-   *   select: { workshop_cd: true },
+   * // Update zero or more TbWorkshops and only return the `company_cd`
+   * const tbWorkshopWithCompany_cdOnly = await prisma.tbWorkshop.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1872,6 +1928,7 @@ export interface Prisma__TbWorkshopClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbWorkshop model
  */
 export interface TbWorkshopFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbWorkshop", 'String'>
   readonly workshop_cd: Prisma.FieldRef<"TbWorkshop", 'String'>
   readonly plant_cd: Prisma.FieldRef<"TbWorkshop", 'String'>
   readonly parent_cd: Prisma.FieldRef<"TbWorkshop", 'String'>

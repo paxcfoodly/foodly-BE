@@ -39,6 +39,7 @@ export type TbWoProcessSumAggregateOutputType = {
 }
 
 export type TbWoProcessMinAggregateOutputType = {
+  company_cd: string | null
   wo_process_id: number | null
   wo_id: number | null
   process_cd: string | null
@@ -52,6 +53,7 @@ export type TbWoProcessMinAggregateOutputType = {
 }
 
 export type TbWoProcessMaxAggregateOutputType = {
+  company_cd: string | null
   wo_process_id: number | null
   wo_id: number | null
   process_cd: string | null
@@ -65,6 +67,7 @@ export type TbWoProcessMaxAggregateOutputType = {
 }
 
 export type TbWoProcessCountAggregateOutputType = {
+  company_cd: number
   wo_process_id: number
   wo_id: number
   process_cd: number
@@ -92,6 +95,7 @@ export type TbWoProcessSumAggregateInputType = {
 }
 
 export type TbWoProcessMinAggregateInputType = {
+  company_cd?: true
   wo_process_id?: true
   wo_id?: true
   process_cd?: true
@@ -105,6 +109,7 @@ export type TbWoProcessMinAggregateInputType = {
 }
 
 export type TbWoProcessMaxAggregateInputType = {
+  company_cd?: true
   wo_process_id?: true
   wo_id?: true
   process_cd?: true
@@ -118,6 +123,7 @@ export type TbWoProcessMaxAggregateInputType = {
 }
 
 export type TbWoProcessCountAggregateInputType = {
+  company_cd?: true
   wo_process_id?: true
   wo_id?: true
   process_cd?: true
@@ -218,6 +224,7 @@ export type TbWoProcessGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type TbWoProcessGroupByOutputType = {
+  company_cd: string
   wo_process_id: number
   wo_id: number
   process_cd: string
@@ -254,6 +261,7 @@ export type TbWoProcessWhereInput = {
   AND?: Prisma.TbWoProcessWhereInput | Prisma.TbWoProcessWhereInput[]
   OR?: Prisma.TbWoProcessWhereInput[]
   NOT?: Prisma.TbWoProcessWhereInput | Prisma.TbWoProcessWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWoProcess"> | string
   wo_process_id?: Prisma.IntFilter<"TbWoProcess"> | number
   wo_id?: Prisma.IntFilter<"TbWoProcess"> | number
   process_cd?: Prisma.StringFilter<"TbWoProcess"> | string
@@ -270,6 +278,7 @@ export type TbWoProcessWhereInput = {
 }
 
 export type TbWoProcessOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   wo_process_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -290,6 +299,7 @@ export type TbWoProcessWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbWoProcessWhereInput | Prisma.TbWoProcessWhereInput[]
   OR?: Prisma.TbWoProcessWhereInput[]
   NOT?: Prisma.TbWoProcessWhereInput | Prisma.TbWoProcessWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWoProcess"> | string
   wo_id?: Prisma.IntFilter<"TbWoProcess"> | number
   process_cd?: Prisma.StringFilter<"TbWoProcess"> | string
   seq_no?: Prisma.IntFilter<"TbWoProcess"> | number
@@ -305,6 +315,7 @@ export type TbWoProcessWhereUniqueInput = Prisma.AtLeast<{
 }, "wo_process_id">
 
 export type TbWoProcessOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   wo_process_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -326,6 +337,7 @@ export type TbWoProcessScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbWoProcessScalarWhereWithAggregatesInput | Prisma.TbWoProcessScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbWoProcessScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbWoProcessScalarWhereWithAggregatesInput | Prisma.TbWoProcessScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbWoProcess"> | string
   wo_process_id?: Prisma.IntWithAggregatesFilter<"TbWoProcess"> | number
   wo_id?: Prisma.IntWithAggregatesFilter<"TbWoProcess"> | number
   process_cd?: Prisma.StringWithAggregatesFilter<"TbWoProcess"> | string
@@ -339,6 +351,7 @@ export type TbWoProcessScalarWhereWithAggregatesInput = {
 }
 
 export type TbWoProcessCreateInput = {
+  company_cd?: string
   seq_no: number
   status?: string
   create_by?: string | null
@@ -351,6 +364,7 @@ export type TbWoProcessCreateInput = {
 }
 
 export type TbWoProcessUncheckedCreateInput = {
+  company_cd?: string
   wo_process_id?: number
   wo_id: number
   process_cd: string
@@ -364,6 +378,7 @@ export type TbWoProcessUncheckedCreateInput = {
 }
 
 export type TbWoProcessUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -376,6 +391,7 @@ export type TbWoProcessUpdateInput = {
 }
 
 export type TbWoProcessUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_process_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -389,6 +405,7 @@ export type TbWoProcessUncheckedUpdateInput = {
 }
 
 export type TbWoProcessCreateManyInput = {
+  company_cd?: string
   wo_process_id?: number
   wo_id: number
   process_cd: string
@@ -402,6 +419,7 @@ export type TbWoProcessCreateManyInput = {
 }
 
 export type TbWoProcessUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -411,6 +429,7 @@ export type TbWoProcessUpdateManyMutationInput = {
 }
 
 export type TbWoProcessUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_process_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -434,6 +453,7 @@ export type TbWoProcessOrderByRelationAggregateInput = {
 }
 
 export type TbWoProcessCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_process_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -453,6 +473,7 @@ export type TbWoProcessAvgOrderByAggregateInput = {
 }
 
 export type TbWoProcessMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_process_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -466,6 +487,7 @@ export type TbWoProcessMaxOrderByAggregateInput = {
 }
 
 export type TbWoProcessMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_process_id?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -611,6 +633,7 @@ export type TbWoProcessUncheckedUpdateManyWithoutWork_orderNestedInput = {
 }
 
 export type TbWoProcessCreateWithoutProcessInput = {
+  company_cd?: string
   seq_no: number
   status?: string
   create_by?: string | null
@@ -622,6 +645,7 @@ export type TbWoProcessCreateWithoutProcessInput = {
 }
 
 export type TbWoProcessUncheckedCreateWithoutProcessInput = {
+  company_cd?: string
   wo_process_id?: number
   wo_id: number
   seq_no: number
@@ -663,6 +687,7 @@ export type TbWoProcessScalarWhereInput = {
   AND?: Prisma.TbWoProcessScalarWhereInput | Prisma.TbWoProcessScalarWhereInput[]
   OR?: Prisma.TbWoProcessScalarWhereInput[]
   NOT?: Prisma.TbWoProcessScalarWhereInput | Prisma.TbWoProcessScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWoProcess"> | string
   wo_process_id?: Prisma.IntFilter<"TbWoProcess"> | number
   wo_id?: Prisma.IntFilter<"TbWoProcess"> | number
   process_cd?: Prisma.StringFilter<"TbWoProcess"> | string
@@ -676,6 +701,7 @@ export type TbWoProcessScalarWhereInput = {
 }
 
 export type TbWoProcessCreateWithoutEquipmentInput = {
+  company_cd?: string
   seq_no: number
   status?: string
   create_by?: string | null
@@ -687,6 +713,7 @@ export type TbWoProcessCreateWithoutEquipmentInput = {
 }
 
 export type TbWoProcessUncheckedCreateWithoutEquipmentInput = {
+  company_cd?: string
   wo_process_id?: number
   wo_id: number
   process_cd: string
@@ -725,6 +752,7 @@ export type TbWoProcessUpdateManyWithWhereWithoutEquipmentInput = {
 }
 
 export type TbWoProcessCreateWithoutWork_orderInput = {
+  company_cd?: string
   seq_no: number
   status?: string
   create_by?: string | null
@@ -736,6 +764,7 @@ export type TbWoProcessCreateWithoutWork_orderInput = {
 }
 
 export type TbWoProcessUncheckedCreateWithoutWork_orderInput = {
+  company_cd?: string
   wo_process_id?: number
   process_cd: string
   seq_no: number
@@ -774,6 +803,7 @@ export type TbWoProcessUpdateManyWithWhereWithoutWork_orderInput = {
 }
 
 export type TbWoProcessCreateManyProcessInput = {
+  company_cd?: string
   wo_process_id?: number
   wo_id: number
   seq_no: number
@@ -786,6 +816,7 @@ export type TbWoProcessCreateManyProcessInput = {
 }
 
 export type TbWoProcessUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -797,6 +828,7 @@ export type TbWoProcessUpdateWithoutProcessInput = {
 }
 
 export type TbWoProcessUncheckedUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_process_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -809,6 +841,7 @@ export type TbWoProcessUncheckedUpdateWithoutProcessInput = {
 }
 
 export type TbWoProcessUncheckedUpdateManyWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_process_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -821,6 +854,7 @@ export type TbWoProcessUncheckedUpdateManyWithoutProcessInput = {
 }
 
 export type TbWoProcessCreateManyEquipmentInput = {
+  company_cd?: string
   wo_process_id?: number
   wo_id: number
   process_cd: string
@@ -833,6 +867,7 @@ export type TbWoProcessCreateManyEquipmentInput = {
 }
 
 export type TbWoProcessUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -844,6 +879,7 @@ export type TbWoProcessUpdateWithoutEquipmentInput = {
 }
 
 export type TbWoProcessUncheckedUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_process_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -856,6 +892,7 @@ export type TbWoProcessUncheckedUpdateWithoutEquipmentInput = {
 }
 
 export type TbWoProcessUncheckedUpdateManyWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_process_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -868,6 +905,7 @@ export type TbWoProcessUncheckedUpdateManyWithoutEquipmentInput = {
 }
 
 export type TbWoProcessCreateManyWork_orderInput = {
+  company_cd?: string
   wo_process_id?: number
   process_cd: string
   seq_no: number
@@ -880,6 +918,7 @@ export type TbWoProcessCreateManyWork_orderInput = {
 }
 
 export type TbWoProcessUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -891,6 +930,7 @@ export type TbWoProcessUpdateWithoutWork_orderInput = {
 }
 
 export type TbWoProcessUncheckedUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_process_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -903,6 +943,7 @@ export type TbWoProcessUncheckedUpdateWithoutWork_orderInput = {
 }
 
 export type TbWoProcessUncheckedUpdateManyWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_process_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -917,6 +958,7 @@ export type TbWoProcessUncheckedUpdateManyWithoutWork_orderInput = {
 
 
 export type TbWoProcessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_process_id?: boolean
   wo_id?: boolean
   process_cd?: boolean
@@ -933,6 +975,7 @@ export type TbWoProcessSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 }, ExtArgs["result"]["tbWoProcess"]>
 
 export type TbWoProcessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_process_id?: boolean
   wo_id?: boolean
   process_cd?: boolean
@@ -949,6 +992,7 @@ export type TbWoProcessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbWoProcess"]>
 
 export type TbWoProcessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_process_id?: boolean
   wo_id?: boolean
   process_cd?: boolean
@@ -965,6 +1009,7 @@ export type TbWoProcessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbWoProcess"]>
 
 export type TbWoProcessSelectScalar = {
+  company_cd?: boolean
   wo_process_id?: boolean
   wo_id?: boolean
   process_cd?: boolean
@@ -977,7 +1022,7 @@ export type TbWoProcessSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbWoProcessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"wo_process_id" | "wo_id" | "process_cd" | "seq_no" | "equip_cd" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWoProcess"]>
+export type TbWoProcessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "wo_process_id" | "wo_id" | "process_cd" | "seq_no" | "equip_cd" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWoProcess"]>
 export type TbWoProcessInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   work_order?: boolean | Prisma.TbWorkOrderDefaultArgs<ExtArgs>
   process?: boolean | Prisma.TbProcessDefaultArgs<ExtArgs>
@@ -1002,6 +1047,7 @@ export type $TbWoProcessPayload<ExtArgs extends runtime.Types.Extensions.Interna
     equipment: Prisma.$TbEquipmentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     wo_process_id: number
     wo_id: number
     process_cd: string
@@ -1095,8 +1141,8 @@ export interface TbWoProcessDelegate<ExtArgs extends runtime.Types.Extensions.In
    * // Get first 10 TbWoProcesses
    * const tbWoProcesses = await prisma.tbWoProcess.findMany({ take: 10 })
    * 
-   * // Only select the `wo_process_id`
-   * const tbWoProcessWithWo_process_idOnly = await prisma.tbWoProcess.findMany({ select: { wo_process_id: true } })
+   * // Only select the `company_cd`
+   * const tbWoProcessWithCompany_cdOnly = await prisma.tbWoProcess.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbWoProcessFindManyArgs>(args?: Prisma.SelectSubset<T, TbWoProcessFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbWoProcessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1140,9 +1186,9 @@ export interface TbWoProcessDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Create many TbWoProcesses and only return the `wo_process_id`
-   * const tbWoProcessWithWo_process_idOnly = await prisma.tbWoProcess.createManyAndReturn({
-   *   select: { wo_process_id: true },
+   * // Create many TbWoProcesses and only return the `company_cd`
+   * const tbWoProcessWithCompany_cdOnly = await prisma.tbWoProcess.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1231,9 +1277,9 @@ export interface TbWoProcessDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Update zero or more TbWoProcesses and only return the `wo_process_id`
-   * const tbWoProcessWithWo_process_idOnly = await prisma.tbWoProcess.updateManyAndReturn({
-   *   select: { wo_process_id: true },
+   * // Update zero or more TbWoProcesses and only return the `company_cd`
+   * const tbWoProcessWithCompany_cdOnly = await prisma.tbWoProcess.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1438,6 +1484,7 @@ export interface Prisma__TbWoProcessClient<T, Null = never, ExtArgs extends runt
  * Fields of the TbWoProcess model
  */
 export interface TbWoProcessFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbWoProcess", 'String'>
   readonly wo_process_id: Prisma.FieldRef<"TbWoProcess", 'Int'>
   readonly wo_id: Prisma.FieldRef<"TbWoProcess", 'Int'>
   readonly process_cd: Prisma.FieldRef<"TbWoProcess", 'String'>

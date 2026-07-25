@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import prisma from '../config/database';
 import { AppError } from '../middlewares/errorHandler';
+import { getTenantFilterCd } from '../middlewares/tenantContext';
 import { logDataChanges } from './dataHistoryService';
 import {
   parsePagination,
@@ -88,17 +89,19 @@ export async function checkCircularReference(parentItemCd: string, childItemCd: 
     WITH RECURSIVE ancestors AS (
       SELECT parent_item_cd AS ancestor_cd, 1 AS depth
       FROM tb_bom
-      WHERE child_item_cd = $1 AND use_yn = 'Y'
+      WHERE child_item_cd = $1 AND use_yn = 'Y' AND company_cd = COALESCE($2, company_cd)
       UNION ALL
       SELECT b.parent_item_cd, a.depth + 1
       FROM tb_bom b
       INNER JOIN ancestors a ON a.ancestor_cd = b.child_item_cd
+      WHERE b.company_cd = COALESCE($2, b.company_cd)
       WHERE b.use_yn = 'Y' AND a.depth < 20
     )
     SELECT ancestor_cd FROM ancestors WHERE ancestor_cd = $2 LIMIT 1
     `,
     parentItemCd,
     childItemCd,
+    getTenantFilterCd(),
   );
 
   if (result.length > 0) {
@@ -256,7 +259,7 @@ export async function getForwardTree(parentItemCd: string) {
       FROM tb_bom b
       JOIN tb_item i ON i.item_cd = b.child_item_cd
       JOIN tb_item pi ON pi.item_cd = b.parent_item_cd
-      WHERE b.parent_item_cd = $1 AND b.use_yn = 'Y'
+      WHERE b.parent_item_cd = $1 AND b.use_yn = 'Y' AND b.company_cd = COALESCE($2, b.company_cd)
 
       UNION ALL
 
@@ -275,11 +278,12 @@ export async function getForwardTree(parentItemCd: string) {
       INNER JOIN bom_tree bt ON bt.child_item_cd = b.parent_item_cd
       JOIN tb_item i ON i.item_cd = b.child_item_cd
       JOIN tb_item pi ON pi.item_cd = b.parent_item_cd
-      WHERE b.use_yn = 'Y' AND bt.tree_depth < 20
+      WHERE b.use_yn = 'Y' AND bt.tree_depth < 20 AND b.company_cd = COALESCE($2, b.company_cd)
     )
     SELECT * FROM bom_tree ORDER BY tree_depth, parent_item_cd, child_item_cd
     `,
     parentItemCd,
+    getTenantFilterCd(),
   );
 
   return rows.map(normalizeRawRow);
@@ -305,7 +309,7 @@ export async function getReverseTree(childItemCd: string) {
       FROM tb_bom b
       JOIN tb_item i ON i.item_cd = b.child_item_cd
       JOIN tb_item pi ON pi.item_cd = b.parent_item_cd
-      WHERE b.child_item_cd = $1 AND b.use_yn = 'Y'
+      WHERE b.child_item_cd = $1 AND b.use_yn = 'Y' AND b.company_cd = COALESCE($2, b.company_cd)
 
       UNION ALL
 
@@ -324,11 +328,12 @@ export async function getReverseTree(childItemCd: string) {
       INNER JOIN bom_tree bt ON bt.parent_item_cd = b.child_item_cd
       JOIN tb_item i ON i.item_cd = b.child_item_cd
       JOIN tb_item pi ON pi.item_cd = b.parent_item_cd
-      WHERE b.use_yn = 'Y' AND bt.tree_depth < 20
+      WHERE b.use_yn = 'Y' AND bt.tree_depth < 20 AND b.company_cd = COALESCE($2, b.company_cd)
     )
     SELECT * FROM bom_tree ORDER BY tree_depth, parent_item_cd, child_item_cd
     `,
     childItemCd,
+    getTenantFilterCd(),
   );
 
   return rows.map(normalizeRawRow);

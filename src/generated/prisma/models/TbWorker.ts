@@ -25,6 +25,7 @@ export type AggregateTbWorker = {
 }
 
 export type TbWorkerMinAggregateOutputType = {
+  company_cd: string | null
   worker_id: string | null
   worker_nm: string | null
   dept_cd: string | null
@@ -38,6 +39,7 @@ export type TbWorkerMinAggregateOutputType = {
 }
 
 export type TbWorkerMaxAggregateOutputType = {
+  company_cd: string | null
   worker_id: string | null
   worker_nm: string | null
   dept_cd: string | null
@@ -51,6 +53,7 @@ export type TbWorkerMaxAggregateOutputType = {
 }
 
 export type TbWorkerCountAggregateOutputType = {
+  company_cd: number
   worker_id: number
   worker_nm: number
   dept_cd: number
@@ -66,6 +69,7 @@ export type TbWorkerCountAggregateOutputType = {
 
 
 export type TbWorkerMinAggregateInputType = {
+  company_cd?: true
   worker_id?: true
   worker_nm?: true
   dept_cd?: true
@@ -79,6 +83,7 @@ export type TbWorkerMinAggregateInputType = {
 }
 
 export type TbWorkerMaxAggregateInputType = {
+  company_cd?: true
   worker_id?: true
   worker_nm?: true
   dept_cd?: true
@@ -92,6 +97,7 @@ export type TbWorkerMaxAggregateInputType = {
 }
 
 export type TbWorkerCountAggregateInputType = {
+  company_cd?: true
   worker_id?: true
   worker_nm?: true
   dept_cd?: true
@@ -178,6 +184,7 @@ export type TbWorkerGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type TbWorkerGroupByOutputType = {
+  company_cd: string
   worker_id: string
   worker_nm: string
   dept_cd: string | null
@@ -212,6 +219,7 @@ export type TbWorkerWhereInput = {
   AND?: Prisma.TbWorkerWhereInput | Prisma.TbWorkerWhereInput[]
   OR?: Prisma.TbWorkerWhereInput[]
   NOT?: Prisma.TbWorkerWhereInput | Prisma.TbWorkerWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorker"> | string
   worker_id?: Prisma.StringFilter<"TbWorker"> | string
   worker_nm?: Prisma.StringFilter<"TbWorker"> | string
   dept_cd?: Prisma.StringNullableFilter<"TbWorker"> | string | null
@@ -232,6 +240,7 @@ export type TbWorkerWhereInput = {
 }
 
 export type TbWorkerOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   worker_nm?: Prisma.SortOrder
   dept_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -256,6 +265,7 @@ export type TbWorkerWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbWorkerWhereInput | Prisma.TbWorkerWhereInput[]
   OR?: Prisma.TbWorkerWhereInput[]
   NOT?: Prisma.TbWorkerWhereInput | Prisma.TbWorkerWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorker"> | string
   worker_nm?: Prisma.StringFilter<"TbWorker"> | string
   dept_cd?: Prisma.StringNullableFilter<"TbWorker"> | string | null
   workshop_cd?: Prisma.StringNullableFilter<"TbWorker"> | string | null
@@ -275,6 +285,7 @@ export type TbWorkerWhereUniqueInput = Prisma.AtLeast<{
 }, "worker_id">
 
 export type TbWorkerOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   worker_nm?: Prisma.SortOrder
   dept_cd?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -294,6 +305,7 @@ export type TbWorkerScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbWorkerScalarWhereWithAggregatesInput | Prisma.TbWorkerScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbWorkerScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbWorkerScalarWhereWithAggregatesInput | Prisma.TbWorkerScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbWorker"> | string
   worker_id?: Prisma.StringWithAggregatesFilter<"TbWorker"> | string
   worker_nm?: Prisma.StringWithAggregatesFilter<"TbWorker"> | string
   dept_cd?: Prisma.StringNullableWithAggregatesFilter<"TbWorker"> | string | null
@@ -307,6 +319,7 @@ export type TbWorkerScalarWhereWithAggregatesInput = {
 }
 
 export type TbWorkerCreateInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -326,6 +339,7 @@ export type TbWorkerCreateInput = {
 }
 
 export type TbWorkerUncheckedCreateInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -345,6 +359,7 @@ export type TbWorkerUncheckedCreateInput = {
 }
 
 export type TbWorkerUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -364,6 +379,7 @@ export type TbWorkerUpdateInput = {
 }
 
 export type TbWorkerUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -383,6 +399,7 @@ export type TbWorkerUncheckedUpdateInput = {
 }
 
 export type TbWorkerCreateManyInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -396,6 +413,7 @@ export type TbWorkerCreateManyInput = {
 }
 
 export type TbWorkerUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -408,6 +426,7 @@ export type TbWorkerUpdateManyMutationInput = {
 }
 
 export type TbWorkerUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -431,6 +450,7 @@ export type TbWorkerOrderByRelationAggregateInput = {
 }
 
 export type TbWorkerCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   worker_nm?: Prisma.SortOrder
   dept_cd?: Prisma.SortOrder
@@ -444,6 +464,7 @@ export type TbWorkerCountOrderByAggregateInput = {
 }
 
 export type TbWorkerMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   worker_nm?: Prisma.SortOrder
   dept_cd?: Prisma.SortOrder
@@ -457,6 +478,7 @@ export type TbWorkerMaxOrderByAggregateInput = {
 }
 
 export type TbWorkerMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   worker_nm?: Prisma.SortOrder
   dept_cd?: Prisma.SortOrder
@@ -614,6 +636,7 @@ export type TbWorkerUpdateOneWithoutMaint_resultsNestedInput = {
 }
 
 export type TbWorkerCreateWithoutWorkshopInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -632,6 +655,7 @@ export type TbWorkerCreateWithoutWorkshopInput = {
 }
 
 export type TbWorkerUncheckedCreateWithoutWorkshopInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -679,6 +703,7 @@ export type TbWorkerScalarWhereInput = {
   AND?: Prisma.TbWorkerScalarWhereInput | Prisma.TbWorkerScalarWhereInput[]
   OR?: Prisma.TbWorkerScalarWhereInput[]
   NOT?: Prisma.TbWorkerScalarWhereInput | Prisma.TbWorkerScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorker"> | string
   worker_id?: Prisma.StringFilter<"TbWorker"> | string
   worker_nm?: Prisma.StringFilter<"TbWorker"> | string
   dept_cd?: Prisma.StringNullableFilter<"TbWorker"> | string | null
@@ -692,6 +717,7 @@ export type TbWorkerScalarWhereInput = {
 }
 
 export type TbWorkerCreateWithoutSkillsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -710,6 +736,7 @@ export type TbWorkerCreateWithoutSkillsInput = {
 }
 
 export type TbWorkerUncheckedCreateWithoutSkillsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -744,6 +771,7 @@ export type TbWorkerUpdateToOneWithWhereWithoutSkillsInput = {
 }
 
 export type TbWorkerUpdateWithoutSkillsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -762,6 +790,7 @@ export type TbWorkerUpdateWithoutSkillsInput = {
 }
 
 export type TbWorkerUncheckedUpdateWithoutSkillsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -780,6 +809,7 @@ export type TbWorkerUncheckedUpdateWithoutSkillsInput = {
 }
 
 export type TbWorkerCreateWithoutWo_workersInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -798,6 +828,7 @@ export type TbWorkerCreateWithoutWo_workersInput = {
 }
 
 export type TbWorkerUncheckedCreateWithoutWo_workersInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -832,6 +863,7 @@ export type TbWorkerUpdateToOneWithWhereWithoutWo_workersInput = {
 }
 
 export type TbWorkerUpdateWithoutWo_workersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -850,6 +882,7 @@ export type TbWorkerUpdateWithoutWo_workersInput = {
 }
 
 export type TbWorkerUncheckedUpdateWithoutWo_workersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -868,6 +901,7 @@ export type TbWorkerUncheckedUpdateWithoutWo_workersInput = {
 }
 
 export type TbWorkerCreateWithoutProd_resultsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -886,6 +920,7 @@ export type TbWorkerCreateWithoutProd_resultsInput = {
 }
 
 export type TbWorkerUncheckedCreateWithoutProd_resultsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -920,6 +955,7 @@ export type TbWorkerUpdateToOneWithWhereWithoutProd_resultsInput = {
 }
 
 export type TbWorkerUpdateWithoutProd_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -938,6 +974,7 @@ export type TbWorkerUpdateWithoutProd_resultsInput = {
 }
 
 export type TbWorkerUncheckedUpdateWithoutProd_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -956,6 +993,7 @@ export type TbWorkerUncheckedUpdateWithoutProd_resultsInput = {
 }
 
 export type TbWorkerCreateWithoutMaterial_inputsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -974,6 +1012,7 @@ export type TbWorkerCreateWithoutMaterial_inputsInput = {
 }
 
 export type TbWorkerUncheckedCreateWithoutMaterial_inputsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -1008,6 +1047,7 @@ export type TbWorkerUpdateToOneWithWhereWithoutMaterial_inputsInput = {
 }
 
 export type TbWorkerUpdateWithoutMaterial_inputsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1026,6 +1066,7 @@ export type TbWorkerUpdateWithoutMaterial_inputsInput = {
 }
 
 export type TbWorkerUncheckedUpdateWithoutMaterial_inputsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1044,6 +1085,7 @@ export type TbWorkerUncheckedUpdateWithoutMaterial_inputsInput = {
 }
 
 export type TbWorkerCreateWithoutMaint_plan_assignmentsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -1062,6 +1104,7 @@ export type TbWorkerCreateWithoutMaint_plan_assignmentsInput = {
 }
 
 export type TbWorkerUncheckedCreateWithoutMaint_plan_assignmentsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -1096,6 +1139,7 @@ export type TbWorkerUpdateToOneWithWhereWithoutMaint_plan_assignmentsInput = {
 }
 
 export type TbWorkerUpdateWithoutMaint_plan_assignmentsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1114,6 +1158,7 @@ export type TbWorkerUpdateWithoutMaint_plan_assignmentsInput = {
 }
 
 export type TbWorkerUncheckedUpdateWithoutMaint_plan_assignmentsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1132,6 +1177,7 @@ export type TbWorkerUncheckedUpdateWithoutMaint_plan_assignmentsInput = {
 }
 
 export type TbWorkerCreateWithoutMaint_resultsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -1150,6 +1196,7 @@ export type TbWorkerCreateWithoutMaint_resultsInput = {
 }
 
 export type TbWorkerUncheckedCreateWithoutMaint_resultsInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -1184,6 +1231,7 @@ export type TbWorkerUpdateToOneWithWhereWithoutMaint_resultsInput = {
 }
 
 export type TbWorkerUpdateWithoutMaint_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1202,6 +1250,7 @@ export type TbWorkerUpdateWithoutMaint_resultsInput = {
 }
 
 export type TbWorkerUncheckedUpdateWithoutMaint_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1220,6 +1269,7 @@ export type TbWorkerUncheckedUpdateWithoutMaint_resultsInput = {
 }
 
 export type TbWorkerCreateManyWorkshopInput = {
+  company_cd?: string
   worker_id: string
   worker_nm: string
   dept_cd?: string | null
@@ -1232,6 +1282,7 @@ export type TbWorkerCreateManyWorkshopInput = {
 }
 
 export type TbWorkerUpdateWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1250,6 +1301,7 @@ export type TbWorkerUpdateWithoutWorkshopInput = {
 }
 
 export type TbWorkerUncheckedUpdateWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1268,6 +1320,7 @@ export type TbWorkerUncheckedUpdateWithoutWorkshopInput = {
 }
 
 export type TbWorkerUncheckedUpdateManyWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   worker_nm?: Prisma.StringFieldUpdateOperationsInput | string
   dept_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1356,6 +1409,7 @@ export type TbWorkerCountOutputTypeCountMaint_plan_assignmentsArgs<ExtArgs exten
 
 
 export type TbWorkerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   worker_id?: boolean
   worker_nm?: boolean
   dept_cd?: boolean
@@ -1377,6 +1431,7 @@ export type TbWorkerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 }, ExtArgs["result"]["tbWorker"]>
 
 export type TbWorkerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   worker_id?: boolean
   worker_nm?: boolean
   dept_cd?: boolean
@@ -1391,6 +1446,7 @@ export type TbWorkerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 }, ExtArgs["result"]["tbWorker"]>
 
 export type TbWorkerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   worker_id?: boolean
   worker_nm?: boolean
   dept_cd?: boolean
@@ -1405,6 +1461,7 @@ export type TbWorkerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 }, ExtArgs["result"]["tbWorker"]>
 
 export type TbWorkerSelectScalar = {
+  company_cd?: boolean
   worker_id?: boolean
   worker_nm?: boolean
   dept_cd?: boolean
@@ -1417,7 +1474,7 @@ export type TbWorkerSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbWorkerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"worker_id" | "worker_nm" | "dept_cd" | "workshop_cd" | "shift_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWorker"]>
+export type TbWorkerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "worker_id" | "worker_nm" | "dept_cd" | "workshop_cd" | "shift_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWorker"]>
 export type TbWorkerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workshop?: boolean | Prisma.TbWorker$workshopArgs<ExtArgs>
   skills?: boolean | Prisma.TbWorker$skillsArgs<ExtArgs>
@@ -1447,6 +1504,7 @@ export type $TbWorkerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     maint_plan_assignments: Prisma.$TbMaintPlanPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     worker_id: string
     worker_nm: string
     dept_cd: string | null
@@ -1540,8 +1598,8 @@ export interface TbWorkerDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    * // Get first 10 TbWorkers
    * const tbWorkers = await prisma.tbWorker.findMany({ take: 10 })
    * 
-   * // Only select the `worker_id`
-   * const tbWorkerWithWorker_idOnly = await prisma.tbWorker.findMany({ select: { worker_id: true } })
+   * // Only select the `company_cd`
+   * const tbWorkerWithCompany_cdOnly = await prisma.tbWorker.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbWorkerFindManyArgs>(args?: Prisma.SelectSubset<T, TbWorkerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbWorkerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1585,9 +1643,9 @@ export interface TbWorkerDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Create many TbWorkers and only return the `worker_id`
-   * const tbWorkerWithWorker_idOnly = await prisma.tbWorker.createManyAndReturn({
-   *   select: { worker_id: true },
+   * // Create many TbWorkers and only return the `company_cd`
+   * const tbWorkerWithCompany_cdOnly = await prisma.tbWorker.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1676,9 +1734,9 @@ export interface TbWorkerDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Update zero or more TbWorkers and only return the `worker_id`
-   * const tbWorkerWithWorker_idOnly = await prisma.tbWorker.updateManyAndReturn({
-   *   select: { worker_id: true },
+   * // Update zero or more TbWorkers and only return the `company_cd`
+   * const tbWorkerWithCompany_cdOnly = await prisma.tbWorker.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1887,6 +1945,7 @@ export interface Prisma__TbWorkerClient<T, Null = never, ExtArgs extends runtime
  * Fields of the TbWorker model
  */
 export interface TbWorkerFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbWorker", 'String'>
   readonly worker_id: Prisma.FieldRef<"TbWorker", 'String'>
   readonly worker_nm: Prisma.FieldRef<"TbWorker", 'String'>
   readonly dept_cd: Prisma.FieldRef<"TbWorker", 'String'>

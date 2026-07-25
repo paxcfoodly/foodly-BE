@@ -45,6 +45,7 @@ export type TbWorkOrderSumAggregateOutputType = {
 }
 
 export type TbWorkOrderMinAggregateOutputType = {
+  company_cd: string | null
   wo_id: number | null
   wo_no: string | null
   plan_id: number | null
@@ -61,6 +62,7 @@ export type TbWorkOrderMinAggregateOutputType = {
 }
 
 export type TbWorkOrderMaxAggregateOutputType = {
+  company_cd: string | null
   wo_id: number | null
   wo_no: string | null
   plan_id: number | null
@@ -77,6 +79,7 @@ export type TbWorkOrderMaxAggregateOutputType = {
 }
 
 export type TbWorkOrderCountAggregateOutputType = {
+  company_cd: number
   wo_id: number
   wo_no: number
   plan_id: number
@@ -113,6 +116,7 @@ export type TbWorkOrderSumAggregateInputType = {
 }
 
 export type TbWorkOrderMinAggregateInputType = {
+  company_cd?: true
   wo_id?: true
   wo_no?: true
   plan_id?: true
@@ -129,6 +133,7 @@ export type TbWorkOrderMinAggregateInputType = {
 }
 
 export type TbWorkOrderMaxAggregateInputType = {
+  company_cd?: true
   wo_id?: true
   wo_no?: true
   plan_id?: true
@@ -145,6 +150,7 @@ export type TbWorkOrderMaxAggregateInputType = {
 }
 
 export type TbWorkOrderCountAggregateInputType = {
+  company_cd?: true
   wo_id?: true
   wo_no?: true
   plan_id?: true
@@ -248,6 +254,7 @@ export type TbWorkOrderGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type TbWorkOrderGroupByOutputType = {
+  company_cd: string
   wo_id: number
   wo_no: string
   plan_id: number | null
@@ -287,6 +294,7 @@ export type TbWorkOrderWhereInput = {
   AND?: Prisma.TbWorkOrderWhereInput | Prisma.TbWorkOrderWhereInput[]
   OR?: Prisma.TbWorkOrderWhereInput[]
   NOT?: Prisma.TbWorkOrderWhereInput | Prisma.TbWorkOrderWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkOrder"> | string
   wo_id?: Prisma.IntFilter<"TbWorkOrder"> | number
   wo_no?: Prisma.StringFilter<"TbWorkOrder"> | string
   plan_id?: Prisma.IntNullableFilter<"TbWorkOrder"> | number | null
@@ -313,6 +321,7 @@ export type TbWorkOrderWhereInput = {
 }
 
 export type TbWorkOrderOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   wo_no?: Prisma.SortOrder
   plan_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -340,10 +349,12 @@ export type TbWorkOrderOrderByWithRelationInput = {
 
 export type TbWorkOrderWhereUniqueInput = Prisma.AtLeast<{
   wo_id?: number
-  wo_no?: string
+  company_cd_wo_no?: Prisma.TbWorkOrderCompany_cdWo_noCompoundUniqueInput
   AND?: Prisma.TbWorkOrderWhereInput | Prisma.TbWorkOrderWhereInput[]
   OR?: Prisma.TbWorkOrderWhereInput[]
   NOT?: Prisma.TbWorkOrderWhereInput | Prisma.TbWorkOrderWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkOrder"> | string
+  wo_no?: Prisma.StringFilter<"TbWorkOrder"> | string
   plan_id?: Prisma.IntNullableFilter<"TbWorkOrder"> | number | null
   item_cd?: Prisma.StringFilter<"TbWorkOrder"> | string
   order_qty?: Prisma.DecimalFilter<"TbWorkOrder"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -365,9 +376,10 @@ export type TbWorkOrderWhereUniqueInput = Prisma.AtLeast<{
   material_issues?: Prisma.TbMaterialIssueListRelationFilter
   defects?: Prisma.TbDefectListRelationFilter
   inspect_results?: Prisma.TbInspectResultListRelationFilter
-}, "wo_id" | "wo_no">
+}, "wo_id" | "company_cd_wo_no">
 
 export type TbWorkOrderOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   wo_no?: Prisma.SortOrder
   plan_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -392,6 +404,7 @@ export type TbWorkOrderScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbWorkOrderScalarWhereWithAggregatesInput | Prisma.TbWorkOrderScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbWorkOrderScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbWorkOrderScalarWhereWithAggregatesInput | Prisma.TbWorkOrderScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbWorkOrder"> | string
   wo_id?: Prisma.IntWithAggregatesFilter<"TbWorkOrder"> | number
   wo_no?: Prisma.StringWithAggregatesFilter<"TbWorkOrder"> | string
   plan_id?: Prisma.IntNullableWithAggregatesFilter<"TbWorkOrder"> | number | null
@@ -408,6 +421,7 @@ export type TbWorkOrderScalarWhereWithAggregatesInput = {
 }
 
 export type TbWorkOrderCreateInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -431,6 +445,7 @@ export type TbWorkOrderCreateInput = {
 }
 
 export type TbWorkOrderUncheckedCreateInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -455,6 +470,7 @@ export type TbWorkOrderUncheckedCreateInput = {
 }
 
 export type TbWorkOrderUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -478,6 +494,7 @@ export type TbWorkOrderUpdateInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -502,6 +519,7 @@ export type TbWorkOrderUncheckedUpdateInput = {
 }
 
 export type TbWorkOrderCreateManyInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -518,6 +536,7 @@ export type TbWorkOrderCreateManyInput = {
 }
 
 export type TbWorkOrderUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -531,6 +550,7 @@ export type TbWorkOrderUpdateManyMutationInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -556,7 +576,13 @@ export type TbWorkOrderOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type TbWorkOrderCompany_cdWo_noCompoundUniqueInput = {
+  company_cd: string
+  wo_no: string
+}
+
 export type TbWorkOrderCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   wo_no?: Prisma.SortOrder
   plan_id?: Prisma.SortOrder
@@ -582,6 +608,7 @@ export type TbWorkOrderAvgOrderByAggregateInput = {
 }
 
 export type TbWorkOrderMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   wo_no?: Prisma.SortOrder
   plan_id?: Prisma.SortOrder
@@ -598,6 +625,7 @@ export type TbWorkOrderMaxOrderByAggregateInput = {
 }
 
 export type TbWorkOrderMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
   wo_no?: Prisma.SortOrder
   plan_id?: Prisma.SortOrder
@@ -837,6 +865,7 @@ export type TbWorkOrderUpdateOneWithoutDefectsNestedInput = {
 }
 
 export type TbWorkOrderCreateWithoutItemInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -859,6 +888,7 @@ export type TbWorkOrderCreateWithoutItemInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -911,6 +941,7 @@ export type TbWorkOrderScalarWhereInput = {
   AND?: Prisma.TbWorkOrderScalarWhereInput | Prisma.TbWorkOrderScalarWhereInput[]
   OR?: Prisma.TbWorkOrderScalarWhereInput[]
   NOT?: Prisma.TbWorkOrderScalarWhereInput | Prisma.TbWorkOrderScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkOrder"> | string
   wo_id?: Prisma.IntFilter<"TbWorkOrder"> | number
   wo_no?: Prisma.StringFilter<"TbWorkOrder"> | string
   plan_id?: Prisma.IntNullableFilter<"TbWorkOrder"> | number | null
@@ -927,6 +958,7 @@ export type TbWorkOrderScalarWhereInput = {
 }
 
 export type TbWorkOrderCreateWithoutProd_planInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -949,6 +981,7 @@ export type TbWorkOrderCreateWithoutProd_planInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutProd_planInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   item_cd: string
@@ -998,6 +1031,7 @@ export type TbWorkOrderUpdateManyWithWhereWithoutProd_planInput = {
 }
 
 export type TbWorkOrderCreateWithoutWo_processesInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1020,6 +1054,7 @@ export type TbWorkOrderCreateWithoutWo_processesInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutWo_processesInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1059,6 +1094,7 @@ export type TbWorkOrderUpdateToOneWithWhereWithoutWo_processesInput = {
 }
 
 export type TbWorkOrderUpdateWithoutWo_processesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1081,6 +1117,7 @@ export type TbWorkOrderUpdateWithoutWo_processesInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutWo_processesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1104,6 +1141,7 @@ export type TbWorkOrderUncheckedUpdateWithoutWo_processesInput = {
 }
 
 export type TbWorkOrderCreateWithoutWo_workersInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1126,6 +1164,7 @@ export type TbWorkOrderCreateWithoutWo_workersInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutWo_workersInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1165,6 +1204,7 @@ export type TbWorkOrderUpdateToOneWithWhereWithoutWo_workersInput = {
 }
 
 export type TbWorkOrderUpdateWithoutWo_workersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1187,6 +1227,7 @@ export type TbWorkOrderUpdateWithoutWo_workersInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutWo_workersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1210,6 +1251,7 @@ export type TbWorkOrderUncheckedUpdateWithoutWo_workersInput = {
 }
 
 export type TbWorkOrderCreateWithoutProd_resultsInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1232,6 +1274,7 @@ export type TbWorkOrderCreateWithoutProd_resultsInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutProd_resultsInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1271,6 +1314,7 @@ export type TbWorkOrderUpdateToOneWithWhereWithoutProd_resultsInput = {
 }
 
 export type TbWorkOrderUpdateWithoutProd_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1293,6 +1337,7 @@ export type TbWorkOrderUpdateWithoutProd_resultsInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutProd_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1316,6 +1361,7 @@ export type TbWorkOrderUncheckedUpdateWithoutProd_resultsInput = {
 }
 
 export type TbWorkOrderCreateWithoutLotsInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1338,6 +1384,7 @@ export type TbWorkOrderCreateWithoutLotsInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutLotsInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1377,6 +1424,7 @@ export type TbWorkOrderUpdateToOneWithWhereWithoutLotsInput = {
 }
 
 export type TbWorkOrderUpdateWithoutLotsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1399,6 +1447,7 @@ export type TbWorkOrderUpdateWithoutLotsInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutLotsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1422,6 +1471,7 @@ export type TbWorkOrderUncheckedUpdateWithoutLotsInput = {
 }
 
 export type TbWorkOrderCreateWithoutMaterial_inputsInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1444,6 +1494,7 @@ export type TbWorkOrderCreateWithoutMaterial_inputsInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutMaterial_inputsInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1483,6 +1534,7 @@ export type TbWorkOrderUpdateToOneWithWhereWithoutMaterial_inputsInput = {
 }
 
 export type TbWorkOrderUpdateWithoutMaterial_inputsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1505,6 +1557,7 @@ export type TbWorkOrderUpdateWithoutMaterial_inputsInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutMaterial_inputsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1528,6 +1581,7 @@ export type TbWorkOrderUncheckedUpdateWithoutMaterial_inputsInput = {
 }
 
 export type TbWorkOrderCreateWithoutMaterial_issuesInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1550,6 +1604,7 @@ export type TbWorkOrderCreateWithoutMaterial_issuesInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutMaterial_issuesInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1589,6 +1644,7 @@ export type TbWorkOrderUpdateToOneWithWhereWithoutMaterial_issuesInput = {
 }
 
 export type TbWorkOrderUpdateWithoutMaterial_issuesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1611,6 +1667,7 @@ export type TbWorkOrderUpdateWithoutMaterial_issuesInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutMaterial_issuesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1634,6 +1691,7 @@ export type TbWorkOrderUncheckedUpdateWithoutMaterial_issuesInput = {
 }
 
 export type TbWorkOrderCreateWithoutInspect_resultsInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1656,6 +1714,7 @@ export type TbWorkOrderCreateWithoutInspect_resultsInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutInspect_resultsInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1695,6 +1754,7 @@ export type TbWorkOrderUpdateToOneWithWhereWithoutInspect_resultsInput = {
 }
 
 export type TbWorkOrderUpdateWithoutInspect_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1717,6 +1777,7 @@ export type TbWorkOrderUpdateWithoutInspect_resultsInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutInspect_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1740,6 +1801,7 @@ export type TbWorkOrderUncheckedUpdateWithoutInspect_resultsInput = {
 }
 
 export type TbWorkOrderCreateWithoutDefectsInput = {
+  company_cd?: string
   wo_no: string
   order_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1762,6 +1824,7 @@ export type TbWorkOrderCreateWithoutDefectsInput = {
 }
 
 export type TbWorkOrderUncheckedCreateWithoutDefectsInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1801,6 +1864,7 @@ export type TbWorkOrderUpdateToOneWithWhereWithoutDefectsInput = {
 }
 
 export type TbWorkOrderUpdateWithoutDefectsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1823,6 +1887,7 @@ export type TbWorkOrderUpdateWithoutDefectsInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutDefectsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1846,6 +1911,7 @@ export type TbWorkOrderUncheckedUpdateWithoutDefectsInput = {
 }
 
 export type TbWorkOrderCreateManyItemInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   plan_id?: number | null
@@ -1861,6 +1927,7 @@ export type TbWorkOrderCreateManyItemInput = {
 }
 
 export type TbWorkOrderUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1883,6 +1950,7 @@ export type TbWorkOrderUpdateWithoutItemInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1906,6 +1974,7 @@ export type TbWorkOrderUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1921,6 +1990,7 @@ export type TbWorkOrderUncheckedUpdateManyWithoutItemInput = {
 }
 
 export type TbWorkOrderCreateManyProd_planInput = {
+  company_cd?: string
   wo_id?: number
   wo_no: string
   item_cd: string
@@ -1936,6 +2006,7 @@ export type TbWorkOrderCreateManyProd_planInput = {
 }
 
 export type TbWorkOrderUpdateWithoutProd_planInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   order_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   good_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1958,6 +2029,7 @@ export type TbWorkOrderUpdateWithoutProd_planInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateWithoutProd_planInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1981,6 +2053,7 @@ export type TbWorkOrderUncheckedUpdateWithoutProd_planInput = {
 }
 
 export type TbWorkOrderUncheckedUpdateManyWithoutProd_planInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.IntFieldUpdateOperationsInput | number
   wo_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2090,6 +2163,7 @@ export type TbWorkOrderCountOutputTypeCountInspect_resultsArgs<ExtArgs extends r
 
 
 export type TbWorkOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_id?: boolean
   wo_no?: boolean
   plan_id?: boolean
@@ -2117,6 +2191,7 @@ export type TbWorkOrderSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 }, ExtArgs["result"]["tbWorkOrder"]>
 
 export type TbWorkOrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_id?: boolean
   wo_no?: boolean
   plan_id?: boolean
@@ -2135,6 +2210,7 @@ export type TbWorkOrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbWorkOrder"]>
 
 export type TbWorkOrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wo_id?: boolean
   wo_no?: boolean
   plan_id?: boolean
@@ -2153,6 +2229,7 @@ export type TbWorkOrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbWorkOrder"]>
 
 export type TbWorkOrderSelectScalar = {
+  company_cd?: boolean
   wo_id?: boolean
   wo_no?: boolean
   plan_id?: boolean
@@ -2168,7 +2245,7 @@ export type TbWorkOrderSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbWorkOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"wo_id" | "wo_no" | "plan_id" | "item_cd" | "order_qty" | "good_qty" | "defect_qty" | "priority" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWorkOrder"]>
+export type TbWorkOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "wo_id" | "wo_no" | "plan_id" | "item_cd" | "order_qty" | "good_qty" | "defect_qty" | "priority" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWorkOrder"]>
 export type TbWorkOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   prod_plan?: boolean | Prisma.TbWorkOrder$prod_planArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
@@ -2206,6 +2283,7 @@ export type $TbWorkOrderPayload<ExtArgs extends runtime.Types.Extensions.Interna
     inspect_results: Prisma.$TbInspectResultPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     wo_id: number
     wo_no: string
     plan_id: number | null
@@ -2302,8 +2380,8 @@ export interface TbWorkOrderDelegate<ExtArgs extends runtime.Types.Extensions.In
    * // Get first 10 TbWorkOrders
    * const tbWorkOrders = await prisma.tbWorkOrder.findMany({ take: 10 })
    * 
-   * // Only select the `wo_id`
-   * const tbWorkOrderWithWo_idOnly = await prisma.tbWorkOrder.findMany({ select: { wo_id: true } })
+   * // Only select the `company_cd`
+   * const tbWorkOrderWithCompany_cdOnly = await prisma.tbWorkOrder.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbWorkOrderFindManyArgs>(args?: Prisma.SelectSubset<T, TbWorkOrderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbWorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -2347,9 +2425,9 @@ export interface TbWorkOrderDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Create many TbWorkOrders and only return the `wo_id`
-   * const tbWorkOrderWithWo_idOnly = await prisma.tbWorkOrder.createManyAndReturn({
-   *   select: { wo_id: true },
+   * // Create many TbWorkOrders and only return the `company_cd`
+   * const tbWorkOrderWithCompany_cdOnly = await prisma.tbWorkOrder.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -2438,9 +2516,9 @@ export interface TbWorkOrderDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Update zero or more TbWorkOrders and only return the `wo_id`
-   * const tbWorkOrderWithWo_idOnly = await prisma.tbWorkOrder.updateManyAndReturn({
-   *   select: { wo_id: true },
+   * // Update zero or more TbWorkOrders and only return the `company_cd`
+   * const tbWorkOrderWithCompany_cdOnly = await prisma.tbWorkOrder.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -2652,6 +2730,7 @@ export interface Prisma__TbWorkOrderClient<T, Null = never, ExtArgs extends runt
  * Fields of the TbWorkOrder model
  */
 export interface TbWorkOrderFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbWorkOrder", 'String'>
   readonly wo_id: Prisma.FieldRef<"TbWorkOrder", 'Int'>
   readonly wo_no: Prisma.FieldRef<"TbWorkOrder", 'String'>
   readonly plan_id: Prisma.FieldRef<"TbWorkOrder", 'Int'>

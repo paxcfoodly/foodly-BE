@@ -1,4 +1,5 @@
 import prisma from '../config/database';
+import { getTenantFilterCd } from '../middlewares/tenantContext';
 
 // ─── Interfaces ───
 
@@ -68,7 +69,7 @@ export async function getProductionDaily(
       INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
       INNER JOIN tb_wo_process wop ON wop.wo_id = wo.wo_id
       INNER JOIN tb_process p ON p.process_cd = wop.process_cd
-      WHERE pr.work_start_dt >= ${start}::date
+      WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
         AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         AND wo.item_cd = ${itemCd}
         AND p.workshop_cd = ${workshopCd}
@@ -86,7 +87,7 @@ export async function getProductionDaily(
       INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
       INNER JOIN tb_wo_process wop ON wop.wo_id = wo.wo_id
       INNER JOIN tb_process p ON p.process_cd = wop.process_cd
-      WHERE pr.work_start_dt >= ${start}::date
+      WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
         AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         AND wo.item_cd = ${itemCd}
         AND p.workshop_cd = ${workshopCd}
@@ -101,7 +102,7 @@ export async function getProductionDaily(
              SUM(wo.order_qty)::FLOAT AS order_qty
       FROM tb_prod_result pr
       INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
-      WHERE pr.work_start_dt >= ${start}::date
+      WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
         AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         AND wo.item_cd = ${itemCd}
         AND pr.worker_id = ${workerId}
@@ -118,7 +119,7 @@ export async function getProductionDaily(
       INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
       INNER JOIN tb_wo_process wop ON wop.wo_id = wo.wo_id
       INNER JOIN tb_process p ON p.process_cd = wop.process_cd
-      WHERE pr.work_start_dt >= ${start}::date
+      WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
         AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         AND p.workshop_cd = ${workshopCd}
         AND pr.worker_id = ${workerId}
@@ -133,7 +134,7 @@ export async function getProductionDaily(
              SUM(wo.order_qty)::FLOAT AS order_qty
       FROM tb_prod_result pr
       INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
-      WHERE pr.work_start_dt >= ${start}::date
+      WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
         AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         AND wo.item_cd = ${itemCd}
       GROUP BY DATE(pr.work_start_dt)
@@ -149,7 +150,7 @@ export async function getProductionDaily(
       INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
       INNER JOIN tb_wo_process wop ON wop.wo_id = wo.wo_id
       INNER JOIN tb_process p ON p.process_cd = wop.process_cd
-      WHERE pr.work_start_dt >= ${start}::date
+      WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
         AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         AND p.workshop_cd = ${workshopCd}
       GROUP BY DATE(pr.work_start_dt)
@@ -163,7 +164,7 @@ export async function getProductionDaily(
              SUM(wo.order_qty)::FLOAT AS order_qty
       FROM tb_prod_result pr
       INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
-      WHERE pr.work_start_dt >= ${start}::date
+      WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
         AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         AND pr.worker_id = ${workerId}
       GROUP BY DATE(pr.work_start_dt)
@@ -177,7 +178,7 @@ export async function getProductionDaily(
              SUM(wo.order_qty)::FLOAT AS order_qty
       FROM tb_prod_result pr
       INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
-      WHERE pr.work_start_dt >= ${start}::date
+      WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
         AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
       GROUP BY DATE(pr.work_start_dt)
       ORDER BY date ASC
@@ -238,7 +239,7 @@ export async function getProductionSummary(
         FROM tb_prod_result pr
         INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
         INNER JOIN tb_item i ON i.item_cd = wo.item_cd
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
           AND wo.item_cd = ${itemCd}
         GROUP BY wo.item_cd, i.item_nm
@@ -258,7 +259,7 @@ export async function getProductionSummary(
         INNER JOIN tb_item i ON i.item_cd = wo.item_cd
         INNER JOIN tb_wo_process wop ON wop.wo_id = wo.wo_id
         INNER JOIN tb_process p ON p.process_cd = wop.process_cd
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
           AND p.workshop_cd = ${workshopCd}
         GROUP BY wo.item_cd, i.item_nm
@@ -276,7 +277,7 @@ export async function getProductionSummary(
         FROM tb_prod_result pr
         INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
         INNER JOIN tb_item i ON i.item_cd = wo.item_cd
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
           AND pr.worker_id = ${workerId}
         GROUP BY wo.item_cd, i.item_nm
@@ -294,7 +295,7 @@ export async function getProductionSummary(
         FROM tb_prod_result pr
         INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
         INNER JOIN tb_item i ON i.item_cd = wo.item_cd
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         GROUP BY wo.item_cd, i.item_nm
         ORDER BY wo.item_cd ASC
@@ -315,7 +316,7 @@ export async function getProductionSummary(
         INNER JOIN tb_wo_process wop ON wop.wo_id = wo.wo_id
         INNER JOIN tb_process p ON p.process_cd = wop.process_cd
         INNER JOIN tb_workshop wp ON wp.workshop_cd = p.workshop_cd
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
           AND wp.workshop_cd = ${workshopCd}
         GROUP BY wp.workshop_cd, wp.workshop_nm
@@ -335,7 +336,7 @@ export async function getProductionSummary(
         INNER JOIN tb_wo_process wop ON wop.wo_id = wo.wo_id
         INNER JOIN tb_process p ON p.process_cd = wop.process_cd
         INNER JOIN tb_workshop wp ON wp.workshop_cd = p.workshop_cd
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
           AND wo.item_cd = ${itemCd}
         GROUP BY wp.workshop_cd, wp.workshop_nm
@@ -355,7 +356,7 @@ export async function getProductionSummary(
         INNER JOIN tb_wo_process wop ON wop.wo_id = wo.wo_id
         INNER JOIN tb_process p ON p.process_cd = wop.process_cd
         INNER JOIN tb_workshop wp ON wp.workshop_cd = p.workshop_cd
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         GROUP BY wp.workshop_cd, wp.workshop_nm
         ORDER BY wp.workshop_cd ASC
@@ -375,7 +376,7 @@ export async function getProductionSummary(
         FROM tb_prod_result pr
         INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
         INNER JOIN tb_worker w ON w.worker_id = pr.worker_id
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
           AND pr.worker_id = ${workerId}
         GROUP BY pr.worker_id, w.worker_nm
@@ -393,7 +394,7 @@ export async function getProductionSummary(
         FROM tb_prod_result pr
         INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
         INNER JOIN tb_worker w ON w.worker_id = pr.worker_id
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
           AND wo.item_cd = ${itemCd}
         GROUP BY pr.worker_id, w.worker_nm
@@ -411,7 +412,7 @@ export async function getProductionSummary(
         FROM tb_prod_result pr
         INNER JOIN tb_work_order wo ON wo.wo_id = pr.wo_id
         INNER JOIN tb_worker w ON w.worker_id = pr.worker_id
-        WHERE pr.work_start_dt >= ${start}::date
+        WHERE pr.work_start_dt >= ${start}::date AND pr.company_cd = COALESCE(${getTenantFilterCd()}, pr.company_cd)
           AND pr.work_start_dt < ${end}::date + INTERVAL '1 day'
         GROUP BY pr.worker_id, w.worker_nm
         ORDER BY pr.worker_id ASC
@@ -510,7 +511,7 @@ export async function getQualityPareto(
                SUM(d.defect_qty)::FLOAT AS total_qty
         FROM tb_defect d
         LEFT JOIN tb_common_code cc ON cc.group_cd = 'DEFECT_TYPE' AND cc.code = d.defect_type_cd
-        WHERE d.create_dt >= ${start}::date
+        WHERE d.create_dt >= ${start}::date AND d.company_cd = COALESCE(${getTenantFilterCd()}, d.company_cd)
           AND d.create_dt < ${end}::date + INTERVAL '1 day'
           AND d.defect_type_cd = ${defectTypeCd}
         GROUP BY d.defect_type_cd, cc.code_nm
@@ -522,7 +523,7 @@ export async function getQualityPareto(
                SUM(d.defect_qty)::FLOAT AS total_qty
         FROM tb_defect d
         LEFT JOIN tb_common_code cc ON cc.group_cd = 'DEFECT_TYPE' AND cc.code = d.defect_type_cd
-        WHERE d.create_dt >= ${start}::date
+        WHERE d.create_dt >= ${start}::date AND d.company_cd = COALESCE(${getTenantFilterCd()}, d.company_cd)
           AND d.create_dt < ${end}::date + INTERVAL '1 day'
         GROUP BY d.defect_type_cd, cc.code_nm
         ORDER BY total_qty DESC
@@ -574,7 +575,7 @@ export async function getQualityByProcess(
         FROM tb_defect d
         LEFT JOIN tb_process p ON p.process_cd = d.process_cd
         LEFT JOIN prod_totals pt ON pt.wo_id = d.wo_id
-        WHERE d.create_dt >= ${start}::date
+        WHERE d.create_dt >= ${start}::date AND d.company_cd = COALESCE(${getTenantFilterCd()}, d.company_cd)
           AND d.create_dt < ${end}::date + INTERVAL '1 day'
           AND d.defect_type_cd = ${defectTypeCd}
         GROUP BY d.process_cd, p.process_nm
@@ -595,7 +596,7 @@ export async function getQualityByProcess(
         FROM tb_defect d
         LEFT JOIN tb_process p ON p.process_cd = d.process_cd
         LEFT JOIN prod_totals pt ON pt.wo_id = d.wo_id
-        WHERE d.create_dt >= ${start}::date
+        WHERE d.create_dt >= ${start}::date AND d.company_cd = COALESCE(${getTenantFilterCd()}, d.company_cd)
           AND d.create_dt < ${end}::date + INTERVAL '1 day'
         GROUP BY d.process_cd, p.process_nm
         ORDER BY defect_qty DESC
@@ -635,7 +636,7 @@ export async function getQualityTrend(
           SELECT DATE(create_dt) AS date,
                  SUM(defect_qty)::FLOAT AS defect_qty
           FROM tb_defect
-          WHERE create_dt >= ${start}::date
+          WHERE create_dt >= ${start}::date AND company_cd = COALESCE(${getTenantFilterCd()}, company_cd)
             AND create_dt < ${end}::date + INTERVAL '1 day'
             AND defect_type_cd = ${defectTypeCd}
           GROUP BY DATE(create_dt)
@@ -644,7 +645,7 @@ export async function getQualityTrend(
           SELECT DATE(work_start_dt) AS date,
                  SUM(good_qty + defect_qty)::FLOAT AS total_qty
           FROM tb_prod_result
-          WHERE work_start_dt >= ${start}::date
+          WHERE work_start_dt >= ${start}::date AND company_cd = COALESCE(${getTenantFilterCd()}, company_cd)
             AND work_start_dt < ${end}::date + INTERVAL '1 day'
           GROUP BY DATE(work_start_dt)
         )
@@ -660,7 +661,7 @@ export async function getQualityTrend(
           SELECT DATE(create_dt) AS date,
                  SUM(defect_qty)::FLOAT AS defect_qty
           FROM tb_defect
-          WHERE create_dt >= ${start}::date
+          WHERE create_dt >= ${start}::date AND company_cd = COALESCE(${getTenantFilterCd()}, company_cd)
             AND create_dt < ${end}::date + INTERVAL '1 day'
           GROUP BY DATE(create_dt)
         ),
@@ -668,7 +669,7 @@ export async function getQualityTrend(
       SELECT DATE(work_start_dt) AS date,
              SUM(good_qty + defect_qty)::FLOAT AS total_qty
       FROM tb_prod_result
-      WHERE work_start_dt >= ${start}::date
+      WHERE work_start_dt >= ${start}::date AND company_cd = COALESCE(${getTenantFilterCd()}, company_cd)
         AND work_start_dt < ${end}::date + INTERVAL '1 day'
       GROUP BY DATE(work_start_dt)
     )
@@ -728,7 +729,7 @@ export async function getQualityDetail(
       LEFT JOIN tb_common_code cc1 ON cc1.group_cd = 'DEFECT_TYPE' AND cc1.code = d.defect_type_cd
       LEFT JOIN tb_common_code cc2 ON cc2.group_cd = 'DEFECT_CAUSE' AND cc2.code = d.defect_cause_cd
       LEFT JOIN tb_process p ON p.process_cd = d.process_cd
-      WHERE d.create_dt >= ${start}::date
+      WHERE d.create_dt >= ${start}::date AND d.company_cd = COALESCE(${getTenantFilterCd()}, d.company_cd)
         AND d.create_dt < ${end}::date + INTERVAL '1 day'
         AND d.defect_type_cd = ${defectTypeCd}
       ORDER BY d.defect_qty DESC
@@ -747,7 +748,7 @@ export async function getQualityDetail(
       LEFT JOIN tb_common_code cc1 ON cc1.group_cd = 'DEFECT_TYPE' AND cc1.code = d.defect_type_cd
       LEFT JOIN tb_common_code cc2 ON cc2.group_cd = 'DEFECT_CAUSE' AND cc2.code = d.defect_cause_cd
       LEFT JOIN tb_process p ON p.process_cd = d.process_cd
-      WHERE d.create_dt >= ${start}::date
+      WHERE d.create_dt >= ${start}::date AND d.company_cd = COALESCE(${getTenantFilterCd()}, d.company_cd)
         AND d.create_dt < ${end}::date + INTERVAL '1 day'
       ORDER BY d.defect_qty DESC
     `;
@@ -810,12 +811,12 @@ export async function getInventorySummary(
       LEFT JOIN (
         SELECT tx.item_cd, SUM(tx.tx_qty)::FLOAT AS out_qty
         FROM tb_inventory_tx tx
-        WHERE tx.tx_type = 'OUT'
+        WHERE tx.tx_type = 'OUT' AND tx.company_cd = COALESCE(${getTenantFilterCd()}, tx.company_cd)
           AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
         GROUP BY tx.item_cd
       ) out_sum ON out_sum.item_cd = inv.item_cd
       LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
-      WHERE inv.qty > 0
+      WHERE inv.qty > 0 AND inv.company_cd = COALESCE(${getTenantFilterCd()}, inv.company_cd)
         AND inv.wh_cd = ${whCd}
         AND inv.item_cd = ${itemCd}
       GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
@@ -840,12 +841,12 @@ export async function getInventorySummary(
       LEFT JOIN (
         SELECT tx.item_cd, SUM(tx.tx_qty)::FLOAT AS out_qty
         FROM tb_inventory_tx tx
-        WHERE tx.tx_type = 'OUT'
+        WHERE tx.tx_type = 'OUT' AND tx.company_cd = COALESCE(${getTenantFilterCd()}, tx.company_cd)
           AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
         GROUP BY tx.item_cd
       ) out_sum ON out_sum.item_cd = inv.item_cd
       LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
-      WHERE inv.qty > 0
+      WHERE inv.qty > 0 AND inv.company_cd = COALESCE(${getTenantFilterCd()}, inv.company_cd)
         AND inv.wh_cd = ${whCd}
       GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
       ORDER BY days_since_last_tx DESC
@@ -869,12 +870,12 @@ export async function getInventorySummary(
       LEFT JOIN (
         SELECT tx.item_cd, SUM(tx.tx_qty)::FLOAT AS out_qty
         FROM tb_inventory_tx tx
-        WHERE tx.tx_type = 'OUT'
+        WHERE tx.tx_type = 'OUT' AND tx.company_cd = COALESCE(${getTenantFilterCd()}, tx.company_cd)
           AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
         GROUP BY tx.item_cd
       ) out_sum ON out_sum.item_cd = inv.item_cd
       LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
-      WHERE inv.qty > 0
+      WHERE inv.qty > 0 AND inv.company_cd = COALESCE(${getTenantFilterCd()}, inv.company_cd)
         AND inv.item_cd = ${itemCd}
       GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
       ORDER BY days_since_last_tx DESC
@@ -898,12 +899,12 @@ export async function getInventorySummary(
       LEFT JOIN (
         SELECT tx.item_cd, SUM(tx.tx_qty)::FLOAT AS out_qty
         FROM tb_inventory_tx tx
-        WHERE tx.tx_type = 'OUT'
+        WHERE tx.tx_type = 'OUT' AND tx.company_cd = COALESCE(${getTenantFilterCd()}, tx.company_cd)
           AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
         GROUP BY tx.item_cd
       ) out_sum ON out_sum.item_cd = inv.item_cd
       LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
-      WHERE inv.qty > 0
+      WHERE inv.qty > 0 AND inv.company_cd = COALESCE(${getTenantFilterCd()}, inv.company_cd)
       GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
       ORDER BY days_since_last_tx DESC
     `;

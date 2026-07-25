@@ -37,6 +37,7 @@ export type TbFileSumAggregateOutputType = {
 }
 
 export type TbFileMinAggregateOutputType = {
+  company_cd: string | null
   file_id: number | null
   original_nm: string | null
   stored_nm: string | null
@@ -50,6 +51,7 @@ export type TbFileMinAggregateOutputType = {
 }
 
 export type TbFileMaxAggregateOutputType = {
+  company_cd: string | null
   file_id: number | null
   original_nm: string | null
   stored_nm: string | null
@@ -63,6 +65,7 @@ export type TbFileMaxAggregateOutputType = {
 }
 
 export type TbFileCountAggregateOutputType = {
+  company_cd: number
   file_id: number
   original_nm: number
   stored_nm: number
@@ -88,6 +91,7 @@ export type TbFileSumAggregateInputType = {
 }
 
 export type TbFileMinAggregateInputType = {
+  company_cd?: true
   file_id?: true
   original_nm?: true
   stored_nm?: true
@@ -101,6 +105,7 @@ export type TbFileMinAggregateInputType = {
 }
 
 export type TbFileMaxAggregateInputType = {
+  company_cd?: true
   file_id?: true
   original_nm?: true
   stored_nm?: true
@@ -114,6 +119,7 @@ export type TbFileMaxAggregateInputType = {
 }
 
 export type TbFileCountAggregateInputType = {
+  company_cd?: true
   file_id?: true
   original_nm?: true
   stored_nm?: true
@@ -214,6 +220,7 @@ export type TbFileGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type TbFileGroupByOutputType = {
+  company_cd: string
   file_id: number
   original_nm: string
   stored_nm: string
@@ -250,6 +257,7 @@ export type TbFileWhereInput = {
   AND?: Prisma.TbFileWhereInput | Prisma.TbFileWhereInput[]
   OR?: Prisma.TbFileWhereInput[]
   NOT?: Prisma.TbFileWhereInput | Prisma.TbFileWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbFile"> | string
   file_id?: Prisma.IntFilter<"TbFile"> | number
   original_nm?: Prisma.StringFilter<"TbFile"> | string
   stored_nm?: Prisma.StringFilter<"TbFile"> | string
@@ -263,6 +271,7 @@ export type TbFileWhereInput = {
 }
 
 export type TbFileOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   file_id?: Prisma.SortOrder
   original_nm?: Prisma.SortOrder
   stored_nm?: Prisma.SortOrder
@@ -280,6 +289,7 @@ export type TbFileWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbFileWhereInput | Prisma.TbFileWhereInput[]
   OR?: Prisma.TbFileWhereInput[]
   NOT?: Prisma.TbFileWhereInput | Prisma.TbFileWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbFile"> | string
   original_nm?: Prisma.StringFilter<"TbFile"> | string
   stored_nm?: Prisma.StringFilter<"TbFile"> | string
   file_path?: Prisma.StringFilter<"TbFile"> | string
@@ -292,6 +302,7 @@ export type TbFileWhereUniqueInput = Prisma.AtLeast<{
 }, "file_id">
 
 export type TbFileOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   file_id?: Prisma.SortOrder
   original_nm?: Prisma.SortOrder
   stored_nm?: Prisma.SortOrder
@@ -313,6 +324,7 @@ export type TbFileScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbFileScalarWhereWithAggregatesInput | Prisma.TbFileScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbFileScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbFileScalarWhereWithAggregatesInput | Prisma.TbFileScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbFile"> | string
   file_id?: Prisma.IntWithAggregatesFilter<"TbFile"> | number
   original_nm?: Prisma.StringWithAggregatesFilter<"TbFile"> | string
   stored_nm?: Prisma.StringWithAggregatesFilter<"TbFile"> | string
@@ -326,6 +338,7 @@ export type TbFileScalarWhereWithAggregatesInput = {
 }
 
 export type TbFileCreateInput = {
+  company_cd?: string
   original_nm: string
   stored_nm: string
   file_path: string
@@ -338,6 +351,7 @@ export type TbFileCreateInput = {
 }
 
 export type TbFileUncheckedCreateInput = {
+  company_cd?: string
   file_id?: number
   original_nm: string
   stored_nm: string
@@ -351,6 +365,7 @@ export type TbFileUncheckedCreateInput = {
 }
 
 export type TbFileUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   original_nm?: Prisma.StringFieldUpdateOperationsInput | string
   stored_nm?: Prisma.StringFieldUpdateOperationsInput | string
   file_path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -363,6 +378,7 @@ export type TbFileUpdateInput = {
 }
 
 export type TbFileUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   file_id?: Prisma.IntFieldUpdateOperationsInput | number
   original_nm?: Prisma.StringFieldUpdateOperationsInput | string
   stored_nm?: Prisma.StringFieldUpdateOperationsInput | string
@@ -376,6 +392,7 @@ export type TbFileUncheckedUpdateInput = {
 }
 
 export type TbFileCreateManyInput = {
+  company_cd?: string
   file_id?: number
   original_nm: string
   stored_nm: string
@@ -389,6 +406,7 @@ export type TbFileCreateManyInput = {
 }
 
 export type TbFileUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   original_nm?: Prisma.StringFieldUpdateOperationsInput | string
   stored_nm?: Prisma.StringFieldUpdateOperationsInput | string
   file_path?: Prisma.StringFieldUpdateOperationsInput | string
@@ -401,6 +419,7 @@ export type TbFileUpdateManyMutationInput = {
 }
 
 export type TbFileUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   file_id?: Prisma.IntFieldUpdateOperationsInput | number
   original_nm?: Prisma.StringFieldUpdateOperationsInput | string
   stored_nm?: Prisma.StringFieldUpdateOperationsInput | string
@@ -414,6 +433,7 @@ export type TbFileUncheckedUpdateManyInput = {
 }
 
 export type TbFileCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   file_id?: Prisma.SortOrder
   original_nm?: Prisma.SortOrder
   stored_nm?: Prisma.SortOrder
@@ -432,6 +452,7 @@ export type TbFileAvgOrderByAggregateInput = {
 }
 
 export type TbFileMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   file_id?: Prisma.SortOrder
   original_nm?: Prisma.SortOrder
   stored_nm?: Prisma.SortOrder
@@ -445,6 +466,7 @@ export type TbFileMaxOrderByAggregateInput = {
 }
 
 export type TbFileMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   file_id?: Prisma.SortOrder
   original_nm?: Prisma.SortOrder
   stored_nm?: Prisma.SortOrder
@@ -465,6 +487,7 @@ export type TbFileSumOrderByAggregateInput = {
 
 
 export type TbFileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   file_id?: boolean
   original_nm?: boolean
   stored_nm?: boolean
@@ -478,6 +501,7 @@ export type TbFileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 }, ExtArgs["result"]["tbFile"]>
 
 export type TbFileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   file_id?: boolean
   original_nm?: boolean
   stored_nm?: boolean
@@ -491,6 +515,7 @@ export type TbFileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 }, ExtArgs["result"]["tbFile"]>
 
 export type TbFileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   file_id?: boolean
   original_nm?: boolean
   stored_nm?: boolean
@@ -504,6 +529,7 @@ export type TbFileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 }, ExtArgs["result"]["tbFile"]>
 
 export type TbFileSelectScalar = {
+  company_cd?: boolean
   file_id?: boolean
   original_nm?: boolean
   stored_nm?: boolean
@@ -516,12 +542,13 @@ export type TbFileSelectScalar = {
   create_dt?: boolean
 }
 
-export type TbFileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"file_id" | "original_nm" | "stored_nm" | "file_path" | "file_size" | "file_ext" | "ref_table" | "ref_id" | "create_by" | "create_dt", ExtArgs["result"]["tbFile"]>
+export type TbFileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "file_id" | "original_nm" | "stored_nm" | "file_path" | "file_size" | "file_ext" | "ref_table" | "ref_id" | "create_by" | "create_dt", ExtArgs["result"]["tbFile"]>
 
 export type $TbFilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TbFile"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     file_id: number
     original_nm: string
     stored_nm: string
@@ -615,8 +642,8 @@ export interface TbFileDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * // Get first 10 TbFiles
    * const tbFiles = await prisma.tbFile.findMany({ take: 10 })
    * 
-   * // Only select the `file_id`
-   * const tbFileWithFile_idOnly = await prisma.tbFile.findMany({ select: { file_id: true } })
+   * // Only select the `company_cd`
+   * const tbFileWithCompany_cdOnly = await prisma.tbFile.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbFileFindManyArgs>(args?: Prisma.SelectSubset<T, TbFileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -660,9 +687,9 @@ export interface TbFileDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Create many TbFiles and only return the `file_id`
-   * const tbFileWithFile_idOnly = await prisma.tbFile.createManyAndReturn({
-   *   select: { file_id: true },
+   * // Create many TbFiles and only return the `company_cd`
+   * const tbFileWithCompany_cdOnly = await prisma.tbFile.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -751,9 +778,9 @@ export interface TbFileDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Update zero or more TbFiles and only return the `file_id`
-   * const tbFileWithFile_idOnly = await prisma.tbFile.updateManyAndReturn({
-   *   select: { file_id: true },
+   * // Update zero or more TbFiles and only return the `company_cd`
+   * const tbFileWithCompany_cdOnly = await prisma.tbFile.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -955,6 +982,7 @@ export interface Prisma__TbFileClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the TbFile model
  */
 export interface TbFileFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbFile", 'String'>
   readonly file_id: Prisma.FieldRef<"TbFile", 'Int'>
   readonly original_nm: Prisma.FieldRef<"TbFile", 'String'>
   readonly stored_nm: Prisma.FieldRef<"TbFile", 'String'>

@@ -38,7 +38,7 @@ describe('generateNumber', () => {
       // Mock UPDATE
       .mockResolvedValueOnce(undefined);
 
-    const result = await generateNumber('WO');
+    const result = await generateNumber('WO', 'T1');
 
     const today = new Date();
     const y = today.getFullYear();
@@ -61,13 +61,13 @@ describe('generateNumber', () => {
       ])
       .mockResolvedValueOnce(undefined);
 
-    const result = await generateNumber('WO');
+    const result = await generateNumber('WO', 'T1');
     expect(result).toMatch(/^WO-\d{8}-0043$/);
   });
 
   it('throws when num_type not found', async () => {
     mockQueryRawUnsafe.mockResolvedValueOnce([]);
-    await expect(generateNumber('UNKNOWN')).rejects.toThrow('채번 규칙을 찾을 수 없습니다');
+    await expect(generateNumber('UNKNOWN', 'T1')).rejects.toThrow('채번 규칙을 찾을 수 없습니다');
   });
 
   it('concurrent calls produce unique sequential numbers', async () => {
@@ -90,9 +90,9 @@ describe('generateNumber', () => {
     });
 
     const results = await Promise.all([
-      generateNumber('WO'),
-      generateNumber('WO'),
-      generateNumber('WO'),
+      generateNumber('WO', 'T1'),
+      generateNumber('WO', 'T1'),
+      generateNumber('WO', 'T1'),
     ]);
 
     // All three should be unique
@@ -114,7 +114,7 @@ describe('generateNumber', () => {
       ])
       .mockResolvedValueOnce(undefined);
 
-    const result = await generateNumber('PP');
+    const result = await generateNumber('PP', 'T1');
     // seq_length=3, so sequence part should be '006'
     expect(result).toMatch(/-006$/);
   });

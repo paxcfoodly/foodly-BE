@@ -41,6 +41,7 @@ export type TbRoutingSumAggregateOutputType = {
 }
 
 export type TbRoutingMinAggregateOutputType = {
+  company_cd: string | null
   routing_id: number | null
   item_cd: string | null
   process_cd: string | null
@@ -55,6 +56,7 @@ export type TbRoutingMinAggregateOutputType = {
 }
 
 export type TbRoutingMaxAggregateOutputType = {
+  company_cd: string | null
   routing_id: number | null
   item_cd: string | null
   process_cd: string | null
@@ -69,6 +71,7 @@ export type TbRoutingMaxAggregateOutputType = {
 }
 
 export type TbRoutingCountAggregateOutputType = {
+  company_cd: number
   routing_id: number
   item_cd: number
   process_cd: number
@@ -99,6 +102,7 @@ export type TbRoutingSumAggregateInputType = {
 }
 
 export type TbRoutingMinAggregateInputType = {
+  company_cd?: true
   routing_id?: true
   item_cd?: true
   process_cd?: true
@@ -113,6 +117,7 @@ export type TbRoutingMinAggregateInputType = {
 }
 
 export type TbRoutingMaxAggregateInputType = {
+  company_cd?: true
   routing_id?: true
   item_cd?: true
   process_cd?: true
@@ -127,6 +132,7 @@ export type TbRoutingMaxAggregateInputType = {
 }
 
 export type TbRoutingCountAggregateInputType = {
+  company_cd?: true
   routing_id?: true
   item_cd?: true
   process_cd?: true
@@ -228,6 +234,7 @@ export type TbRoutingGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 export type TbRoutingGroupByOutputType = {
+  company_cd: string
   routing_id: number
   item_cd: string
   process_cd: string
@@ -265,6 +272,7 @@ export type TbRoutingWhereInput = {
   AND?: Prisma.TbRoutingWhereInput | Prisma.TbRoutingWhereInput[]
   OR?: Prisma.TbRoutingWhereInput[]
   NOT?: Prisma.TbRoutingWhereInput | Prisma.TbRoutingWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbRouting"> | string
   routing_id?: Prisma.IntFilter<"TbRouting"> | number
   item_cd?: Prisma.StringFilter<"TbRouting"> | string
   process_cd?: Prisma.StringFilter<"TbRouting"> | string
@@ -281,6 +289,7 @@ export type TbRoutingWhereInput = {
 }
 
 export type TbRoutingOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   routing_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -302,6 +311,7 @@ export type TbRoutingWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbRoutingWhereInput | Prisma.TbRoutingWhereInput[]
   OR?: Prisma.TbRoutingWhereInput[]
   NOT?: Prisma.TbRoutingWhereInput | Prisma.TbRoutingWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbRouting"> | string
   item_cd?: Prisma.StringFilter<"TbRouting"> | string
   process_cd?: Prisma.StringFilter<"TbRouting"> | string
   seq_no?: Prisma.IntFilter<"TbRouting"> | number
@@ -317,6 +327,7 @@ export type TbRoutingWhereUniqueInput = Prisma.AtLeast<{
 }, "routing_id" | "item_cd_seq_no">
 
 export type TbRoutingOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   routing_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -339,6 +350,7 @@ export type TbRoutingScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbRoutingScalarWhereWithAggregatesInput | Prisma.TbRoutingScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbRoutingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbRoutingScalarWhereWithAggregatesInput | Prisma.TbRoutingScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbRouting"> | string
   routing_id?: Prisma.IntWithAggregatesFilter<"TbRouting"> | number
   item_cd?: Prisma.StringWithAggregatesFilter<"TbRouting"> | string
   process_cd?: Prisma.StringWithAggregatesFilter<"TbRouting"> | string
@@ -353,6 +365,7 @@ export type TbRoutingScalarWhereWithAggregatesInput = {
 }
 
 export type TbRoutingCreateInput = {
+  company_cd?: string
   seq_no: number
   std_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   setup_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -366,6 +379,7 @@ export type TbRoutingCreateInput = {
 }
 
 export type TbRoutingUncheckedCreateInput = {
+  company_cd?: string
   routing_id?: number
   item_cd: string
   process_cd: string
@@ -380,6 +394,7 @@ export type TbRoutingUncheckedCreateInput = {
 }
 
 export type TbRoutingUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   std_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   setup_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -393,6 +408,7 @@ export type TbRoutingUpdateInput = {
 }
 
 export type TbRoutingUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   routing_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -407,6 +423,7 @@ export type TbRoutingUncheckedUpdateInput = {
 }
 
 export type TbRoutingCreateManyInput = {
+  company_cd?: string
   routing_id?: number
   item_cd: string
   process_cd: string
@@ -421,6 +438,7 @@ export type TbRoutingCreateManyInput = {
 }
 
 export type TbRoutingUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   std_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   setup_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -432,6 +450,7 @@ export type TbRoutingUpdateManyMutationInput = {
 }
 
 export type TbRoutingUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   routing_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -461,6 +480,7 @@ export type TbRoutingItem_cdSeq_noCompoundUniqueInput = {
 }
 
 export type TbRoutingCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   routing_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -482,6 +502,7 @@ export type TbRoutingAvgOrderByAggregateInput = {
 }
 
 export type TbRoutingMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   routing_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -496,6 +517,7 @@ export type TbRoutingMaxOrderByAggregateInput = {
 }
 
 export type TbRoutingMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   routing_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
@@ -601,6 +623,7 @@ export type TbRoutingUncheckedUpdateManyWithoutProcessNestedInput = {
 }
 
 export type TbRoutingCreateWithoutItemInput = {
+  company_cd?: string
   seq_no: number
   std_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   setup_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -613,6 +636,7 @@ export type TbRoutingCreateWithoutItemInput = {
 }
 
 export type TbRoutingUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   routing_id?: number
   process_cd: string
   seq_no: number
@@ -655,6 +679,7 @@ export type TbRoutingScalarWhereInput = {
   AND?: Prisma.TbRoutingScalarWhereInput | Prisma.TbRoutingScalarWhereInput[]
   OR?: Prisma.TbRoutingScalarWhereInput[]
   NOT?: Prisma.TbRoutingScalarWhereInput | Prisma.TbRoutingScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbRouting"> | string
   routing_id?: Prisma.IntFilter<"TbRouting"> | number
   item_cd?: Prisma.StringFilter<"TbRouting"> | string
   process_cd?: Prisma.StringFilter<"TbRouting"> | string
@@ -669,6 +694,7 @@ export type TbRoutingScalarWhereInput = {
 }
 
 export type TbRoutingCreateWithoutProcessInput = {
+  company_cd?: string
   seq_no: number
   std_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   setup_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -681,6 +707,7 @@ export type TbRoutingCreateWithoutProcessInput = {
 }
 
 export type TbRoutingUncheckedCreateWithoutProcessInput = {
+  company_cd?: string
   routing_id?: number
   item_cd: string
   seq_no: number
@@ -720,6 +747,7 @@ export type TbRoutingUpdateManyWithWhereWithoutProcessInput = {
 }
 
 export type TbRoutingCreateManyItemInput = {
+  company_cd?: string
   routing_id?: number
   process_cd: string
   seq_no: number
@@ -733,6 +761,7 @@ export type TbRoutingCreateManyItemInput = {
 }
 
 export type TbRoutingUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   std_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   setup_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -745,6 +774,7 @@ export type TbRoutingUpdateWithoutItemInput = {
 }
 
 export type TbRoutingUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   routing_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -758,6 +788,7 @@ export type TbRoutingUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbRoutingUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   routing_id?: Prisma.IntFieldUpdateOperationsInput | number
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -771,6 +802,7 @@ export type TbRoutingUncheckedUpdateManyWithoutItemInput = {
 }
 
 export type TbRoutingCreateManyProcessInput = {
+  company_cd?: string
   routing_id?: number
   item_cd: string
   seq_no: number
@@ -784,6 +816,7 @@ export type TbRoutingCreateManyProcessInput = {
 }
 
 export type TbRoutingUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
   std_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   setup_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -796,6 +829,7 @@ export type TbRoutingUpdateWithoutProcessInput = {
 }
 
 export type TbRoutingUncheckedUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   routing_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -809,6 +843,7 @@ export type TbRoutingUncheckedUpdateWithoutProcessInput = {
 }
 
 export type TbRoutingUncheckedUpdateManyWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   routing_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   seq_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -824,6 +859,7 @@ export type TbRoutingUncheckedUpdateManyWithoutProcessInput = {
 
 
 export type TbRoutingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   routing_id?: boolean
   item_cd?: boolean
   process_cd?: boolean
@@ -840,6 +876,7 @@ export type TbRoutingSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 }, ExtArgs["result"]["tbRouting"]>
 
 export type TbRoutingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   routing_id?: boolean
   item_cd?: boolean
   process_cd?: boolean
@@ -856,6 +893,7 @@ export type TbRoutingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["tbRouting"]>
 
 export type TbRoutingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   routing_id?: boolean
   item_cd?: boolean
   process_cd?: boolean
@@ -872,6 +910,7 @@ export type TbRoutingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["tbRouting"]>
 
 export type TbRoutingSelectScalar = {
+  company_cd?: boolean
   routing_id?: boolean
   item_cd?: boolean
   process_cd?: boolean
@@ -885,7 +924,7 @@ export type TbRoutingSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbRoutingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"routing_id" | "item_cd" | "process_cd" | "seq_no" | "std_time" | "setup_time" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbRouting"]>
+export type TbRoutingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "routing_id" | "item_cd" | "process_cd" | "seq_no" | "std_time" | "setup_time" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbRouting"]>
 export type TbRoutingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
   process?: boolean | Prisma.TbProcessDefaultArgs<ExtArgs>
@@ -906,6 +945,7 @@ export type $TbRoutingPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     process: Prisma.$TbProcessPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     routing_id: number
     item_cd: string
     process_cd: string
@@ -1000,8 +1040,8 @@ export interface TbRoutingDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * // Get first 10 TbRoutings
    * const tbRoutings = await prisma.tbRouting.findMany({ take: 10 })
    * 
-   * // Only select the `routing_id`
-   * const tbRoutingWithRouting_idOnly = await prisma.tbRouting.findMany({ select: { routing_id: true } })
+   * // Only select the `company_cd`
+   * const tbRoutingWithCompany_cdOnly = await prisma.tbRouting.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbRoutingFindManyArgs>(args?: Prisma.SelectSubset<T, TbRoutingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbRoutingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1045,9 +1085,9 @@ export interface TbRoutingDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Create many TbRoutings and only return the `routing_id`
-   * const tbRoutingWithRouting_idOnly = await prisma.tbRouting.createManyAndReturn({
-   *   select: { routing_id: true },
+   * // Create many TbRoutings and only return the `company_cd`
+   * const tbRoutingWithCompany_cdOnly = await prisma.tbRouting.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1136,9 +1176,9 @@ export interface TbRoutingDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Update zero or more TbRoutings and only return the `routing_id`
-   * const tbRoutingWithRouting_idOnly = await prisma.tbRouting.updateManyAndReturn({
-   *   select: { routing_id: true },
+   * // Update zero or more TbRoutings and only return the `company_cd`
+   * const tbRoutingWithCompany_cdOnly = await prisma.tbRouting.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1342,6 +1382,7 @@ export interface Prisma__TbRoutingClient<T, Null = never, ExtArgs extends runtim
  * Fields of the TbRouting model
  */
 export interface TbRoutingFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbRouting", 'String'>
   readonly routing_id: Prisma.FieldRef<"TbRouting", 'Int'>
   readonly item_cd: Prisma.FieldRef<"TbRouting", 'String'>
   readonly process_cd: Prisma.FieldRef<"TbRouting", 'String'>

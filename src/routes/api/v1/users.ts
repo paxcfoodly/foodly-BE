@@ -8,6 +8,7 @@ import {
   updateUserHandler,
   deleteUserHandler,
   resetPasswordHandler,
+  listCompaniesHandler,
 } from '../../../controllers/userController';
 
 const usersRouter = Router();
@@ -25,6 +26,7 @@ usersRouter.use(requireRole('SYS_ADMIN'));
 
 usersRouter.post('/', createUserHandler);
 usersRouter.get('/', listUsersHandler);
+usersRouter.get('/companies', listCompaniesHandler);
 usersRouter.get('/:id', getUserHandler);
 usersRouter.put('/:id', updateUserHandler);
 usersRouter.delete('/:id', deleteUserHandler);

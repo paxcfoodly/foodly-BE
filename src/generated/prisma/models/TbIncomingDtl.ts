@@ -39,6 +39,7 @@ export type TbIncomingDtlSumAggregateOutputType = {
 }
 
 export type TbIncomingDtlMinAggregateOutputType = {
+  company_cd: string | null
   incoming_dtl_id: number | null
   incoming_id: number | null
   item_cd: string | null
@@ -52,6 +53,7 @@ export type TbIncomingDtlMinAggregateOutputType = {
 }
 
 export type TbIncomingDtlMaxAggregateOutputType = {
+  company_cd: string | null
   incoming_dtl_id: number | null
   incoming_id: number | null
   item_cd: string | null
@@ -65,6 +67,7 @@ export type TbIncomingDtlMaxAggregateOutputType = {
 }
 
 export type TbIncomingDtlCountAggregateOutputType = {
+  company_cd: number
   incoming_dtl_id: number
   incoming_id: number
   item_cd: number
@@ -92,6 +95,7 @@ export type TbIncomingDtlSumAggregateInputType = {
 }
 
 export type TbIncomingDtlMinAggregateInputType = {
+  company_cd?: true
   incoming_dtl_id?: true
   incoming_id?: true
   item_cd?: true
@@ -105,6 +109,7 @@ export type TbIncomingDtlMinAggregateInputType = {
 }
 
 export type TbIncomingDtlMaxAggregateInputType = {
+  company_cd?: true
   incoming_dtl_id?: true
   incoming_id?: true
   item_cd?: true
@@ -118,6 +123,7 @@ export type TbIncomingDtlMaxAggregateInputType = {
 }
 
 export type TbIncomingDtlCountAggregateInputType = {
+  company_cd?: true
   incoming_dtl_id?: true
   incoming_id?: true
   item_cd?: true
@@ -218,6 +224,7 @@ export type TbIncomingDtlGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type TbIncomingDtlGroupByOutputType = {
+  company_cd: string
   incoming_dtl_id: number
   incoming_id: number
   item_cd: string
@@ -254,6 +261,7 @@ export type TbIncomingDtlWhereInput = {
   AND?: Prisma.TbIncomingDtlWhereInput | Prisma.TbIncomingDtlWhereInput[]
   OR?: Prisma.TbIncomingDtlWhereInput[]
   NOT?: Prisma.TbIncomingDtlWhereInput | Prisma.TbIncomingDtlWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbIncomingDtl"> | string
   incoming_dtl_id?: Prisma.IntFilter<"TbIncomingDtl"> | number
   incoming_id?: Prisma.IntFilter<"TbIncomingDtl"> | number
   item_cd?: Prisma.StringFilter<"TbIncomingDtl"> | string
@@ -270,6 +278,7 @@ export type TbIncomingDtlWhereInput = {
 }
 
 export type TbIncomingDtlOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   incoming_dtl_id?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -290,6 +299,7 @@ export type TbIncomingDtlWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbIncomingDtlWhereInput | Prisma.TbIncomingDtlWhereInput[]
   OR?: Prisma.TbIncomingDtlWhereInput[]
   NOT?: Prisma.TbIncomingDtlWhereInput | Prisma.TbIncomingDtlWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbIncomingDtl"> | string
   incoming_id?: Prisma.IntFilter<"TbIncomingDtl"> | number
   item_cd?: Prisma.StringFilter<"TbIncomingDtl"> | string
   lot_no?: Prisma.StringNullableFilter<"TbIncomingDtl"> | string | null
@@ -305,6 +315,7 @@ export type TbIncomingDtlWhereUniqueInput = Prisma.AtLeast<{
 }, "incoming_dtl_id">
 
 export type TbIncomingDtlOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   incoming_dtl_id?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -326,6 +337,7 @@ export type TbIncomingDtlScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbIncomingDtlScalarWhereWithAggregatesInput | Prisma.TbIncomingDtlScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbIncomingDtlScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbIncomingDtlScalarWhereWithAggregatesInput | Prisma.TbIncomingDtlScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbIncomingDtl"> | string
   incoming_dtl_id?: Prisma.IntWithAggregatesFilter<"TbIncomingDtl"> | number
   incoming_id?: Prisma.IntWithAggregatesFilter<"TbIncomingDtl"> | number
   item_cd?: Prisma.StringWithAggregatesFilter<"TbIncomingDtl"> | string
@@ -339,6 +351,7 @@ export type TbIncomingDtlScalarWhereWithAggregatesInput = {
 }
 
 export type TbIncomingDtlCreateInput = {
+  company_cd?: string
   incoming_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: string | null
   create_by?: string | null
@@ -351,6 +364,7 @@ export type TbIncomingDtlCreateInput = {
 }
 
 export type TbIncomingDtlUncheckedCreateInput = {
+  company_cd?: string
   incoming_dtl_id?: number
   incoming_id: number
   item_cd: string
@@ -364,6 +378,7 @@ export type TbIncomingDtlUncheckedCreateInput = {
 }
 
 export type TbIncomingDtlUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -376,6 +391,7 @@ export type TbIncomingDtlUpdateInput = {
 }
 
 export type TbIncomingDtlUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -389,6 +405,7 @@ export type TbIncomingDtlUncheckedUpdateInput = {
 }
 
 export type TbIncomingDtlCreateManyInput = {
+  company_cd?: string
   incoming_dtl_id?: number
   incoming_id: number
   item_cd: string
@@ -402,6 +419,7 @@ export type TbIncomingDtlCreateManyInput = {
 }
 
 export type TbIncomingDtlUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -411,6 +429,7 @@ export type TbIncomingDtlUpdateManyMutationInput = {
 }
 
 export type TbIncomingDtlUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -434,6 +453,7 @@ export type TbIncomingDtlOrderByRelationAggregateInput = {
 }
 
 export type TbIncomingDtlCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   incoming_dtl_id?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -453,6 +473,7 @@ export type TbIncomingDtlAvgOrderByAggregateInput = {
 }
 
 export type TbIncomingDtlMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   incoming_dtl_id?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -466,6 +487,7 @@ export type TbIncomingDtlMaxOrderByAggregateInput = {
 }
 
 export type TbIncomingDtlMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   incoming_dtl_id?: Prisma.SortOrder
   incoming_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
@@ -611,6 +633,7 @@ export type TbIncomingDtlUncheckedUpdateManyWithoutIncomingNestedInput = {
 }
 
 export type TbIncomingDtlCreateWithoutItemInput = {
+  company_cd?: string
   incoming_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: string | null
   create_by?: string | null
@@ -622,6 +645,7 @@ export type TbIncomingDtlCreateWithoutItemInput = {
 }
 
 export type TbIncomingDtlUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   incoming_dtl_id?: number
   incoming_id: number
   lot_no?: string | null
@@ -663,6 +687,7 @@ export type TbIncomingDtlScalarWhereInput = {
   AND?: Prisma.TbIncomingDtlScalarWhereInput | Prisma.TbIncomingDtlScalarWhereInput[]
   OR?: Prisma.TbIncomingDtlScalarWhereInput[]
   NOT?: Prisma.TbIncomingDtlScalarWhereInput | Prisma.TbIncomingDtlScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbIncomingDtl"> | string
   incoming_dtl_id?: Prisma.IntFilter<"TbIncomingDtl"> | number
   incoming_id?: Prisma.IntFilter<"TbIncomingDtl"> | number
   item_cd?: Prisma.StringFilter<"TbIncomingDtl"> | string
@@ -676,6 +701,7 @@ export type TbIncomingDtlScalarWhereInput = {
 }
 
 export type TbIncomingDtlCreateWithoutLotInput = {
+  company_cd?: string
   incoming_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: string | null
   create_by?: string | null
@@ -687,6 +713,7 @@ export type TbIncomingDtlCreateWithoutLotInput = {
 }
 
 export type TbIncomingDtlUncheckedCreateWithoutLotInput = {
+  company_cd?: string
   incoming_dtl_id?: number
   incoming_id: number
   item_cd: string
@@ -725,6 +752,7 @@ export type TbIncomingDtlUpdateManyWithWhereWithoutLotInput = {
 }
 
 export type TbIncomingDtlCreateWithoutIncomingInput = {
+  company_cd?: string
   incoming_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: string | null
   create_by?: string | null
@@ -736,6 +764,7 @@ export type TbIncomingDtlCreateWithoutIncomingInput = {
 }
 
 export type TbIncomingDtlUncheckedCreateWithoutIncomingInput = {
+  company_cd?: string
   incoming_dtl_id?: number
   item_cd: string
   lot_no?: string | null
@@ -774,6 +803,7 @@ export type TbIncomingDtlUpdateManyWithWhereWithoutIncomingInput = {
 }
 
 export type TbIncomingDtlCreateManyItemInput = {
+  company_cd?: string
   incoming_dtl_id?: number
   incoming_id: number
   lot_no?: string | null
@@ -786,6 +816,7 @@ export type TbIncomingDtlCreateManyItemInput = {
 }
 
 export type TbIncomingDtlUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -797,6 +828,7 @@ export type TbIncomingDtlUpdateWithoutItemInput = {
 }
 
 export type TbIncomingDtlUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -809,6 +841,7 @@ export type TbIncomingDtlUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbIncomingDtlUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -821,6 +854,7 @@ export type TbIncomingDtlUncheckedUpdateManyWithoutItemInput = {
 }
 
 export type TbIncomingDtlCreateManyLotInput = {
+  company_cd?: string
   incoming_dtl_id?: number
   incoming_id: number
   item_cd: string
@@ -833,6 +867,7 @@ export type TbIncomingDtlCreateManyLotInput = {
 }
 
 export type TbIncomingDtlUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -844,6 +879,7 @@ export type TbIncomingDtlUpdateWithoutLotInput = {
 }
 
 export type TbIncomingDtlUncheckedUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -856,6 +892,7 @@ export type TbIncomingDtlUncheckedUpdateWithoutLotInput = {
 }
 
 export type TbIncomingDtlUncheckedUpdateManyWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   incoming_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -868,6 +905,7 @@ export type TbIncomingDtlUncheckedUpdateManyWithoutLotInput = {
 }
 
 export type TbIncomingDtlCreateManyIncomingInput = {
+  company_cd?: string
   incoming_dtl_id?: number
   item_cd: string
   lot_no?: string | null
@@ -880,6 +918,7 @@ export type TbIncomingDtlCreateManyIncomingInput = {
 }
 
 export type TbIncomingDtlUpdateWithoutIncomingInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   inspect_status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -891,6 +930,7 @@ export type TbIncomingDtlUpdateWithoutIncomingInput = {
 }
 
 export type TbIncomingDtlUncheckedUpdateWithoutIncomingInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -903,6 +943,7 @@ export type TbIncomingDtlUncheckedUpdateWithoutIncomingInput = {
 }
 
 export type TbIncomingDtlUncheckedUpdateManyWithoutIncomingInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   incoming_dtl_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -917,6 +958,7 @@ export type TbIncomingDtlUncheckedUpdateManyWithoutIncomingInput = {
 
 
 export type TbIncomingDtlSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   incoming_dtl_id?: boolean
   incoming_id?: boolean
   item_cd?: boolean
@@ -933,6 +975,7 @@ export type TbIncomingDtlSelect<ExtArgs extends runtime.Types.Extensions.Interna
 }, ExtArgs["result"]["tbIncomingDtl"]>
 
 export type TbIncomingDtlSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   incoming_dtl_id?: boolean
   incoming_id?: boolean
   item_cd?: boolean
@@ -949,6 +992,7 @@ export type TbIncomingDtlSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbIncomingDtl"]>
 
 export type TbIncomingDtlSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   incoming_dtl_id?: boolean
   incoming_id?: boolean
   item_cd?: boolean
@@ -965,6 +1009,7 @@ export type TbIncomingDtlSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbIncomingDtl"]>
 
 export type TbIncomingDtlSelectScalar = {
+  company_cd?: boolean
   incoming_dtl_id?: boolean
   incoming_id?: boolean
   item_cd?: boolean
@@ -977,7 +1022,7 @@ export type TbIncomingDtlSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbIncomingDtlOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"incoming_dtl_id" | "incoming_id" | "item_cd" | "lot_no" | "incoming_qty" | "inspect_status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbIncomingDtl"]>
+export type TbIncomingDtlOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "incoming_dtl_id" | "incoming_id" | "item_cd" | "lot_no" | "incoming_qty" | "inspect_status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbIncomingDtl"]>
 export type TbIncomingDtlInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   incoming?: boolean | Prisma.TbIncomingDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
@@ -1002,6 +1047,7 @@ export type $TbIncomingDtlPayload<ExtArgs extends runtime.Types.Extensions.Inter
     lot: Prisma.$TbLotPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     incoming_dtl_id: number
     incoming_id: number
     item_cd: string
@@ -1095,8 +1141,8 @@ export interface TbIncomingDtlDelegate<ExtArgs extends runtime.Types.Extensions.
    * // Get first 10 TbIncomingDtls
    * const tbIncomingDtls = await prisma.tbIncomingDtl.findMany({ take: 10 })
    * 
-   * // Only select the `incoming_dtl_id`
-   * const tbIncomingDtlWithIncoming_dtl_idOnly = await prisma.tbIncomingDtl.findMany({ select: { incoming_dtl_id: true } })
+   * // Only select the `company_cd`
+   * const tbIncomingDtlWithCompany_cdOnly = await prisma.tbIncomingDtl.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbIncomingDtlFindManyArgs>(args?: Prisma.SelectSubset<T, TbIncomingDtlFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbIncomingDtlPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1140,9 +1186,9 @@ export interface TbIncomingDtlDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Create many TbIncomingDtls and only return the `incoming_dtl_id`
-   * const tbIncomingDtlWithIncoming_dtl_idOnly = await prisma.tbIncomingDtl.createManyAndReturn({
-   *   select: { incoming_dtl_id: true },
+   * // Create many TbIncomingDtls and only return the `company_cd`
+   * const tbIncomingDtlWithCompany_cdOnly = await prisma.tbIncomingDtl.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1231,9 +1277,9 @@ export interface TbIncomingDtlDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Update zero or more TbIncomingDtls and only return the `incoming_dtl_id`
-   * const tbIncomingDtlWithIncoming_dtl_idOnly = await prisma.tbIncomingDtl.updateManyAndReturn({
-   *   select: { incoming_dtl_id: true },
+   * // Update zero or more TbIncomingDtls and only return the `company_cd`
+   * const tbIncomingDtlWithCompany_cdOnly = await prisma.tbIncomingDtl.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1438,6 +1484,7 @@ export interface Prisma__TbIncomingDtlClient<T, Null = never, ExtArgs extends ru
  * Fields of the TbIncomingDtl model
  */
 export interface TbIncomingDtlFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbIncomingDtl", 'String'>
   readonly incoming_dtl_id: Prisma.FieldRef<"TbIncomingDtl", 'Int'>
   readonly incoming_id: Prisma.FieldRef<"TbIncomingDtl", 'Int'>
   readonly item_cd: Prisma.FieldRef<"TbIncomingDtl", 'String'>

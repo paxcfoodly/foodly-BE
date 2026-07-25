@@ -39,6 +39,7 @@ export type TbDefectDisposeSumAggregateOutputType = {
 }
 
 export type TbDefectDisposeMinAggregateOutputType = {
+  company_cd: string | null
   dispose_id: number | null
   defect_id: number | null
   dispose_type: string | null
@@ -53,6 +54,7 @@ export type TbDefectDisposeMinAggregateOutputType = {
 }
 
 export type TbDefectDisposeMaxAggregateOutputType = {
+  company_cd: string | null
   dispose_id: number | null
   defect_id: number | null
   dispose_type: string | null
@@ -67,6 +69,7 @@ export type TbDefectDisposeMaxAggregateOutputType = {
 }
 
 export type TbDefectDisposeCountAggregateOutputType = {
+  company_cd: number
   dispose_id: number
   defect_id: number
   dispose_type: number
@@ -95,6 +98,7 @@ export type TbDefectDisposeSumAggregateInputType = {
 }
 
 export type TbDefectDisposeMinAggregateInputType = {
+  company_cd?: true
   dispose_id?: true
   defect_id?: true
   dispose_type?: true
@@ -109,6 +113,7 @@ export type TbDefectDisposeMinAggregateInputType = {
 }
 
 export type TbDefectDisposeMaxAggregateInputType = {
+  company_cd?: true
   dispose_id?: true
   defect_id?: true
   dispose_type?: true
@@ -123,6 +128,7 @@ export type TbDefectDisposeMaxAggregateInputType = {
 }
 
 export type TbDefectDisposeCountAggregateInputType = {
+  company_cd?: true
   dispose_id?: true
   defect_id?: true
   dispose_type?: true
@@ -224,6 +230,7 @@ export type TbDefectDisposeGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 export type TbDefectDisposeGroupByOutputType = {
+  company_cd: string
   dispose_id: number
   defect_id: number
   dispose_type: string | null
@@ -261,6 +268,7 @@ export type TbDefectDisposeWhereInput = {
   AND?: Prisma.TbDefectDisposeWhereInput | Prisma.TbDefectDisposeWhereInput[]
   OR?: Prisma.TbDefectDisposeWhereInput[]
   NOT?: Prisma.TbDefectDisposeWhereInput | Prisma.TbDefectDisposeWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbDefectDispose"> | string
   dispose_id?: Prisma.IntFilter<"TbDefectDispose"> | number
   defect_id?: Prisma.IntFilter<"TbDefectDispose"> | number
   dispose_type?: Prisma.StringNullableFilter<"TbDefectDispose"> | string | null
@@ -276,6 +284,7 @@ export type TbDefectDisposeWhereInput = {
 }
 
 export type TbDefectDisposeOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   dispose_id?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   dispose_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -295,6 +304,7 @@ export type TbDefectDisposeWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbDefectDisposeWhereInput | Prisma.TbDefectDisposeWhereInput[]
   OR?: Prisma.TbDefectDisposeWhereInput[]
   NOT?: Prisma.TbDefectDisposeWhereInput | Prisma.TbDefectDisposeWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbDefectDispose"> | string
   defect_id?: Prisma.IntFilter<"TbDefectDispose"> | number
   dispose_type?: Prisma.StringNullableFilter<"TbDefectDispose"> | string | null
   dispose_qty?: Prisma.DecimalFilter<"TbDefectDispose"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -309,6 +319,7 @@ export type TbDefectDisposeWhereUniqueInput = Prisma.AtLeast<{
 }, "dispose_id">
 
 export type TbDefectDisposeOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   dispose_id?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   dispose_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -331,6 +342,7 @@ export type TbDefectDisposeScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbDefectDisposeScalarWhereWithAggregatesInput | Prisma.TbDefectDisposeScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbDefectDisposeScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbDefectDisposeScalarWhereWithAggregatesInput | Prisma.TbDefectDisposeScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbDefectDispose"> | string
   dispose_id?: Prisma.IntWithAggregatesFilter<"TbDefectDispose"> | number
   defect_id?: Prisma.IntWithAggregatesFilter<"TbDefectDispose"> | number
   dispose_type?: Prisma.StringNullableWithAggregatesFilter<"TbDefectDispose"> | string | null
@@ -345,6 +357,7 @@ export type TbDefectDisposeScalarWhereWithAggregatesInput = {
 }
 
 export type TbDefectDisposeCreateInput = {
+  company_cd?: string
   dispose_type?: string | null
   dispose_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   approve_by?: string | null
@@ -358,6 +371,7 @@ export type TbDefectDisposeCreateInput = {
 }
 
 export type TbDefectDisposeUncheckedCreateInput = {
+  company_cd?: string
   dispose_id?: number
   defect_id: number
   dispose_type?: string | null
@@ -372,6 +386,7 @@ export type TbDefectDisposeUncheckedCreateInput = {
 }
 
 export type TbDefectDisposeUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   dispose_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dispose_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approve_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -385,6 +400,7 @@ export type TbDefectDisposeUpdateInput = {
 }
 
 export type TbDefectDisposeUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   dispose_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   dispose_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -399,6 +415,7 @@ export type TbDefectDisposeUncheckedUpdateInput = {
 }
 
 export type TbDefectDisposeCreateManyInput = {
+  company_cd?: string
   dispose_id?: number
   defect_id: number
   dispose_type?: string | null
@@ -413,6 +430,7 @@ export type TbDefectDisposeCreateManyInput = {
 }
 
 export type TbDefectDisposeUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   dispose_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dispose_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approve_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -425,6 +443,7 @@ export type TbDefectDisposeUpdateManyMutationInput = {
 }
 
 export type TbDefectDisposeUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   dispose_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   dispose_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -449,6 +468,7 @@ export type TbDefectDisposeOrderByRelationAggregateInput = {
 }
 
 export type TbDefectDisposeCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   dispose_id?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   dispose_type?: Prisma.SortOrder
@@ -469,6 +489,7 @@ export type TbDefectDisposeAvgOrderByAggregateInput = {
 }
 
 export type TbDefectDisposeMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   dispose_id?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   dispose_type?: Prisma.SortOrder
@@ -483,6 +504,7 @@ export type TbDefectDisposeMaxOrderByAggregateInput = {
 }
 
 export type TbDefectDisposeMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   dispose_id?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   dispose_type?: Prisma.SortOrder
@@ -545,6 +567,7 @@ export type TbDefectDisposeUncheckedUpdateManyWithoutDefectNestedInput = {
 }
 
 export type TbDefectDisposeCreateWithoutDefectInput = {
+  company_cd?: string
   dispose_type?: string | null
   dispose_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   approve_by?: string | null
@@ -557,6 +580,7 @@ export type TbDefectDisposeCreateWithoutDefectInput = {
 }
 
 export type TbDefectDisposeUncheckedCreateWithoutDefectInput = {
+  company_cd?: string
   dispose_id?: number
   dispose_type?: string | null
   dispose_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -599,6 +623,7 @@ export type TbDefectDisposeScalarWhereInput = {
   AND?: Prisma.TbDefectDisposeScalarWhereInput | Prisma.TbDefectDisposeScalarWhereInput[]
   OR?: Prisma.TbDefectDisposeScalarWhereInput[]
   NOT?: Prisma.TbDefectDisposeScalarWhereInput | Prisma.TbDefectDisposeScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbDefectDispose"> | string
   dispose_id?: Prisma.IntFilter<"TbDefectDispose"> | number
   defect_id?: Prisma.IntFilter<"TbDefectDispose"> | number
   dispose_type?: Prisma.StringNullableFilter<"TbDefectDispose"> | string | null
@@ -613,6 +638,7 @@ export type TbDefectDisposeScalarWhereInput = {
 }
 
 export type TbDefectDisposeCreateManyDefectInput = {
+  company_cd?: string
   dispose_id?: number
   dispose_type?: string | null
   dispose_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -626,6 +652,7 @@ export type TbDefectDisposeCreateManyDefectInput = {
 }
 
 export type TbDefectDisposeUpdateWithoutDefectInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   dispose_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dispose_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   approve_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -638,6 +665,7 @@ export type TbDefectDisposeUpdateWithoutDefectInput = {
 }
 
 export type TbDefectDisposeUncheckedUpdateWithoutDefectInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   dispose_id?: Prisma.IntFieldUpdateOperationsInput | number
   dispose_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dispose_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -651,6 +679,7 @@ export type TbDefectDisposeUncheckedUpdateWithoutDefectInput = {
 }
 
 export type TbDefectDisposeUncheckedUpdateManyWithoutDefectInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   dispose_id?: Prisma.IntFieldUpdateOperationsInput | number
   dispose_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dispose_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -666,6 +695,7 @@ export type TbDefectDisposeUncheckedUpdateManyWithoutDefectInput = {
 
 
 export type TbDefectDisposeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   dispose_id?: boolean
   defect_id?: boolean
   dispose_type?: boolean
@@ -681,6 +711,7 @@ export type TbDefectDisposeSelect<ExtArgs extends runtime.Types.Extensions.Inter
 }, ExtArgs["result"]["tbDefectDispose"]>
 
 export type TbDefectDisposeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   dispose_id?: boolean
   defect_id?: boolean
   dispose_type?: boolean
@@ -696,6 +727,7 @@ export type TbDefectDisposeSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
 }, ExtArgs["result"]["tbDefectDispose"]>
 
 export type TbDefectDisposeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   dispose_id?: boolean
   defect_id?: boolean
   dispose_type?: boolean
@@ -711,6 +743,7 @@ export type TbDefectDisposeSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
 }, ExtArgs["result"]["tbDefectDispose"]>
 
 export type TbDefectDisposeSelectScalar = {
+  company_cd?: boolean
   dispose_id?: boolean
   defect_id?: boolean
   dispose_type?: boolean
@@ -724,7 +757,7 @@ export type TbDefectDisposeSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbDefectDisposeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"dispose_id" | "defect_id" | "dispose_type" | "dispose_qty" | "approve_by" | "remark" | "approve_dt" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbDefectDispose"]>
+export type TbDefectDisposeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "dispose_id" | "defect_id" | "dispose_type" | "dispose_qty" | "approve_by" | "remark" | "approve_dt" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbDefectDispose"]>
 export type TbDefectDisposeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   defect?: boolean | Prisma.TbDefectDefaultArgs<ExtArgs>
 }
@@ -741,6 +774,7 @@ export type $TbDefectDisposePayload<ExtArgs extends runtime.Types.Extensions.Int
     defect: Prisma.$TbDefectPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     dispose_id: number
     defect_id: number
     dispose_type: string | null
@@ -835,8 +869,8 @@ export interface TbDefectDisposeDelegate<ExtArgs extends runtime.Types.Extension
    * // Get first 10 TbDefectDisposes
    * const tbDefectDisposes = await prisma.tbDefectDispose.findMany({ take: 10 })
    * 
-   * // Only select the `dispose_id`
-   * const tbDefectDisposeWithDispose_idOnly = await prisma.tbDefectDispose.findMany({ select: { dispose_id: true } })
+   * // Only select the `company_cd`
+   * const tbDefectDisposeWithCompany_cdOnly = await prisma.tbDefectDispose.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbDefectDisposeFindManyArgs>(args?: Prisma.SelectSubset<T, TbDefectDisposeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbDefectDisposePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -880,9 +914,9 @@ export interface TbDefectDisposeDelegate<ExtArgs extends runtime.Types.Extension
    *   ]
    * })
    * 
-   * // Create many TbDefectDisposes and only return the `dispose_id`
-   * const tbDefectDisposeWithDispose_idOnly = await prisma.tbDefectDispose.createManyAndReturn({
-   *   select: { dispose_id: true },
+   * // Create many TbDefectDisposes and only return the `company_cd`
+   * const tbDefectDisposeWithCompany_cdOnly = await prisma.tbDefectDispose.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -971,9 +1005,9 @@ export interface TbDefectDisposeDelegate<ExtArgs extends runtime.Types.Extension
    *   ]
    * })
    * 
-   * // Update zero or more TbDefectDisposes and only return the `dispose_id`
-   * const tbDefectDisposeWithDispose_idOnly = await prisma.tbDefectDispose.updateManyAndReturn({
-   *   select: { dispose_id: true },
+   * // Update zero or more TbDefectDisposes and only return the `company_cd`
+   * const tbDefectDisposeWithCompany_cdOnly = await prisma.tbDefectDispose.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1176,6 +1210,7 @@ export interface Prisma__TbDefectDisposeClient<T, Null = never, ExtArgs extends 
  * Fields of the TbDefectDispose model
  */
 export interface TbDefectDisposeFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbDefectDispose", 'String'>
   readonly dispose_id: Prisma.FieldRef<"TbDefectDispose", 'Int'>
   readonly defect_id: Prisma.FieldRef<"TbDefectDispose", 'Int'>
   readonly dispose_type: Prisma.FieldRef<"TbDefectDispose", 'String'>

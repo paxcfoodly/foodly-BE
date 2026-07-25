@@ -25,6 +25,7 @@ export type AggregateTbCustomer = {
 }
 
 export type TbCustomerMinAggregateOutputType = {
+  company_cd: string | null
   cust_cd: string | null
   cust_nm: string | null
   cust_type: string | null
@@ -41,6 +42,7 @@ export type TbCustomerMinAggregateOutputType = {
 }
 
 export type TbCustomerMaxAggregateOutputType = {
+  company_cd: string | null
   cust_cd: string | null
   cust_nm: string | null
   cust_type: string | null
@@ -57,6 +59,7 @@ export type TbCustomerMaxAggregateOutputType = {
 }
 
 export type TbCustomerCountAggregateOutputType = {
+  company_cd: number
   cust_cd: number
   cust_nm: number
   cust_type: number
@@ -75,6 +78,7 @@ export type TbCustomerCountAggregateOutputType = {
 
 
 export type TbCustomerMinAggregateInputType = {
+  company_cd?: true
   cust_cd?: true
   cust_nm?: true
   cust_type?: true
@@ -91,6 +95,7 @@ export type TbCustomerMinAggregateInputType = {
 }
 
 export type TbCustomerMaxAggregateInputType = {
+  company_cd?: true
   cust_cd?: true
   cust_nm?: true
   cust_type?: true
@@ -107,6 +112,7 @@ export type TbCustomerMaxAggregateInputType = {
 }
 
 export type TbCustomerCountAggregateInputType = {
+  company_cd?: true
   cust_cd?: true
   cust_nm?: true
   cust_type?: true
@@ -196,6 +202,7 @@ export type TbCustomerGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbCustomerGroupByOutputType = {
+  company_cd: string
   cust_cd: string
   cust_nm: string
   cust_type: string | null
@@ -233,6 +240,7 @@ export type TbCustomerWhereInput = {
   AND?: Prisma.TbCustomerWhereInput | Prisma.TbCustomerWhereInput[]
   OR?: Prisma.TbCustomerWhereInput[]
   NOT?: Prisma.TbCustomerWhereInput | Prisma.TbCustomerWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbCustomer"> | string
   cust_cd?: Prisma.StringFilter<"TbCustomer"> | string
   cust_nm?: Prisma.StringFilter<"TbCustomer"> | string
   cust_type?: Prisma.StringNullableFilter<"TbCustomer"> | string | null
@@ -252,6 +260,7 @@ export type TbCustomerWhereInput = {
 }
 
 export type TbCustomerOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
   cust_nm?: Prisma.SortOrder
   cust_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -275,6 +284,7 @@ export type TbCustomerWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbCustomerWhereInput | Prisma.TbCustomerWhereInput[]
   OR?: Prisma.TbCustomerWhereInput[]
   NOT?: Prisma.TbCustomerWhereInput | Prisma.TbCustomerWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbCustomer"> | string
   cust_nm?: Prisma.StringFilter<"TbCustomer"> | string
   cust_type?: Prisma.StringNullableFilter<"TbCustomer"> | string | null
   biz_no?: Prisma.StringNullableFilter<"TbCustomer"> | string | null
@@ -293,6 +303,7 @@ export type TbCustomerWhereUniqueInput = Prisma.AtLeast<{
 }, "cust_cd">
 
 export type TbCustomerOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
   cust_nm?: Prisma.SortOrder
   cust_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -315,6 +326,7 @@ export type TbCustomerScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbCustomerScalarWhereWithAggregatesInput | Prisma.TbCustomerScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbCustomerScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbCustomerScalarWhereWithAggregatesInput | Prisma.TbCustomerScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbCustomer"> | string
   cust_cd?: Prisma.StringWithAggregatesFilter<"TbCustomer"> | string
   cust_nm?: Prisma.StringWithAggregatesFilter<"TbCustomer"> | string
   cust_type?: Prisma.StringNullableWithAggregatesFilter<"TbCustomer"> | string | null
@@ -331,6 +343,7 @@ export type TbCustomerScalarWhereWithAggregatesInput = {
 }
 
 export type TbCustomerCreateInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -350,6 +363,7 @@ export type TbCustomerCreateInput = {
 }
 
 export type TbCustomerUncheckedCreateInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -369,6 +383,7 @@ export type TbCustomerUncheckedCreateInput = {
 }
 
 export type TbCustomerUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -388,6 +403,7 @@ export type TbCustomerUpdateInput = {
 }
 
 export type TbCustomerUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -407,6 +423,7 @@ export type TbCustomerUncheckedUpdateInput = {
 }
 
 export type TbCustomerCreateManyInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -423,6 +440,7 @@ export type TbCustomerCreateManyInput = {
 }
 
 export type TbCustomerUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -439,6 +457,7 @@ export type TbCustomerUpdateManyMutationInput = {
 }
 
 export type TbCustomerUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -455,6 +474,7 @@ export type TbCustomerUncheckedUpdateManyInput = {
 }
 
 export type TbCustomerCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
   cust_nm?: Prisma.SortOrder
   cust_type?: Prisma.SortOrder
@@ -471,6 +491,7 @@ export type TbCustomerCountOrderByAggregateInput = {
 }
 
 export type TbCustomerMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
   cust_nm?: Prisma.SortOrder
   cust_type?: Prisma.SortOrder
@@ -487,6 +508,7 @@ export type TbCustomerMaxOrderByAggregateInput = {
 }
 
 export type TbCustomerMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   cust_cd?: Prisma.SortOrder
   cust_nm?: Prisma.SortOrder
   cust_type?: Prisma.SortOrder
@@ -557,6 +579,7 @@ export type TbCustomerUpdateOneRequiredWithoutIncomingsNestedInput = {
 }
 
 export type TbCustomerCreateWithoutDemandsInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -575,6 +598,7 @@ export type TbCustomerCreateWithoutDemandsInput = {
 }
 
 export type TbCustomerUncheckedCreateWithoutDemandsInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -609,6 +633,7 @@ export type TbCustomerUpdateToOneWithWhereWithoutDemandsInput = {
 }
 
 export type TbCustomerUpdateWithoutDemandsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -627,6 +652,7 @@ export type TbCustomerUpdateWithoutDemandsInput = {
 }
 
 export type TbCustomerUncheckedUpdateWithoutDemandsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -645,6 +671,7 @@ export type TbCustomerUncheckedUpdateWithoutDemandsInput = {
 }
 
 export type TbCustomerCreateWithoutShipmentsInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -663,6 +690,7 @@ export type TbCustomerCreateWithoutShipmentsInput = {
 }
 
 export type TbCustomerUncheckedCreateWithoutShipmentsInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -697,6 +725,7 @@ export type TbCustomerUpdateToOneWithWhereWithoutShipmentsInput = {
 }
 
 export type TbCustomerUpdateWithoutShipmentsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -715,6 +744,7 @@ export type TbCustomerUpdateWithoutShipmentsInput = {
 }
 
 export type TbCustomerUncheckedUpdateWithoutShipmentsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -733,6 +763,7 @@ export type TbCustomerUncheckedUpdateWithoutShipmentsInput = {
 }
 
 export type TbCustomerCreateWithoutIncomingsInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -751,6 +782,7 @@ export type TbCustomerCreateWithoutIncomingsInput = {
 }
 
 export type TbCustomerUncheckedCreateWithoutIncomingsInput = {
+  company_cd?: string
   cust_cd: string
   cust_nm: string
   cust_type?: string | null
@@ -785,6 +817,7 @@ export type TbCustomerUpdateToOneWithWhereWithoutIncomingsInput = {
 }
 
 export type TbCustomerUpdateWithoutIncomingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -803,6 +836,7 @@ export type TbCustomerUpdateWithoutIncomingsInput = {
 }
 
 export type TbCustomerUncheckedUpdateWithoutIncomingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_cd?: Prisma.StringFieldUpdateOperationsInput | string
   cust_nm?: Prisma.StringFieldUpdateOperationsInput | string
   cust_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -870,6 +904,7 @@ export type TbCustomerCountOutputTypeCountDemandsArgs<ExtArgs extends runtime.Ty
 
 
 export type TbCustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   cust_cd?: boolean
   cust_nm?: boolean
   cust_type?: boolean
@@ -890,6 +925,7 @@ export type TbCustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbCustomer"]>
 
 export type TbCustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   cust_cd?: boolean
   cust_nm?: boolean
   cust_type?: boolean
@@ -906,6 +942,7 @@ export type TbCustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbCustomer"]>
 
 export type TbCustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   cust_cd?: boolean
   cust_nm?: boolean
   cust_type?: boolean
@@ -922,6 +959,7 @@ export type TbCustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbCustomer"]>
 
 export type TbCustomerSelectScalar = {
+  company_cd?: boolean
   cust_cd?: boolean
   cust_nm?: boolean
   cust_type?: boolean
@@ -937,7 +975,7 @@ export type TbCustomerSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbCustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"cust_cd" | "cust_nm" | "cust_type" | "biz_no" | "contact_nm" | "tel" | "email" | "address" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbCustomer"]>
+export type TbCustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "cust_cd" | "cust_nm" | "cust_type" | "biz_no" | "contact_nm" | "tel" | "email" | "address" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbCustomer"]>
 export type TbCustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shipments?: boolean | Prisma.TbCustomer$shipmentsArgs<ExtArgs>
   incomings?: boolean | Prisma.TbCustomer$incomingsArgs<ExtArgs>
@@ -955,6 +993,7 @@ export type $TbCustomerPayload<ExtArgs extends runtime.Types.Extensions.Internal
     demands: Prisma.$TbDemandPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     cust_cd: string
     cust_nm: string
     cust_type: string | null
@@ -1051,8 +1090,8 @@ export interface TbCustomerDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbCustomers
    * const tbCustomers = await prisma.tbCustomer.findMany({ take: 10 })
    * 
-   * // Only select the `cust_cd`
-   * const tbCustomerWithCust_cdOnly = await prisma.tbCustomer.findMany({ select: { cust_cd: true } })
+   * // Only select the `company_cd`
+   * const tbCustomerWithCompany_cdOnly = await prisma.tbCustomer.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbCustomerFindManyArgs>(args?: Prisma.SelectSubset<T, TbCustomerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbCustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1096,9 +1135,9 @@ export interface TbCustomerDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbCustomers and only return the `cust_cd`
-   * const tbCustomerWithCust_cdOnly = await prisma.tbCustomer.createManyAndReturn({
-   *   select: { cust_cd: true },
+   * // Create many TbCustomers and only return the `company_cd`
+   * const tbCustomerWithCompany_cdOnly = await prisma.tbCustomer.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1187,9 +1226,9 @@ export interface TbCustomerDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbCustomers and only return the `cust_cd`
-   * const tbCustomerWithCust_cdOnly = await prisma.tbCustomer.updateManyAndReturn({
-   *   select: { cust_cd: true },
+   * // Update zero or more TbCustomers and only return the `company_cd`
+   * const tbCustomerWithCompany_cdOnly = await prisma.tbCustomer.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1394,6 +1433,7 @@ export interface Prisma__TbCustomerClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbCustomer model
  */
 export interface TbCustomerFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbCustomer", 'String'>
   readonly cust_cd: Prisma.FieldRef<"TbCustomer", 'String'>
   readonly cust_nm: Prisma.FieldRef<"TbCustomer", 'String'>
   readonly cust_type: Prisma.FieldRef<"TbCustomer", 'String'>

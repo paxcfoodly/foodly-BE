@@ -25,6 +25,7 @@ export type AggregateTbEquipment = {
 }
 
 export type TbEquipmentMinAggregateOutputType = {
+  company_cd: string | null
   equip_cd: string | null
   equip_nm: string | null
   equip_type: string | null
@@ -40,6 +41,7 @@ export type TbEquipmentMinAggregateOutputType = {
 }
 
 export type TbEquipmentMaxAggregateOutputType = {
+  company_cd: string | null
   equip_cd: string | null
   equip_nm: string | null
   equip_type: string | null
@@ -55,6 +57,7 @@ export type TbEquipmentMaxAggregateOutputType = {
 }
 
 export type TbEquipmentCountAggregateOutputType = {
+  company_cd: number
   equip_cd: number
   equip_nm: number
   equip_type: number
@@ -72,6 +75,7 @@ export type TbEquipmentCountAggregateOutputType = {
 
 
 export type TbEquipmentMinAggregateInputType = {
+  company_cd?: true
   equip_cd?: true
   equip_nm?: true
   equip_type?: true
@@ -87,6 +91,7 @@ export type TbEquipmentMinAggregateInputType = {
 }
 
 export type TbEquipmentMaxAggregateInputType = {
+  company_cd?: true
   equip_cd?: true
   equip_nm?: true
   equip_type?: true
@@ -102,6 +107,7 @@ export type TbEquipmentMaxAggregateInputType = {
 }
 
 export type TbEquipmentCountAggregateInputType = {
+  company_cd?: true
   equip_cd?: true
   equip_nm?: true
   equip_type?: true
@@ -190,6 +196,7 @@ export type TbEquipmentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type TbEquipmentGroupByOutputType = {
+  company_cd: string
   equip_cd: string
   equip_nm: string
   equip_type: string | null
@@ -226,6 +233,7 @@ export type TbEquipmentWhereInput = {
   AND?: Prisma.TbEquipmentWhereInput | Prisma.TbEquipmentWhereInput[]
   OR?: Prisma.TbEquipmentWhereInput[]
   NOT?: Prisma.TbEquipmentWhereInput | Prisma.TbEquipmentWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipment"> | string
   equip_cd?: Prisma.StringFilter<"TbEquipment"> | string
   equip_nm?: Prisma.StringFilter<"TbEquipment"> | string
   equip_type?: Prisma.StringNullableFilter<"TbEquipment"> | string | null
@@ -248,6 +256,7 @@ export type TbEquipmentWhereInput = {
 }
 
 export type TbEquipmentOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   equip_nm?: Prisma.SortOrder
   equip_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -274,6 +283,7 @@ export type TbEquipmentWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbEquipmentWhereInput | Prisma.TbEquipmentWhereInput[]
   OR?: Prisma.TbEquipmentWhereInput[]
   NOT?: Prisma.TbEquipmentWhereInput | Prisma.TbEquipmentWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipment"> | string
   equip_nm?: Prisma.StringFilter<"TbEquipment"> | string
   equip_type?: Prisma.StringNullableFilter<"TbEquipment"> | string | null
   maker?: Prisma.StringNullableFilter<"TbEquipment"> | string | null
@@ -295,6 +305,7 @@ export type TbEquipmentWhereUniqueInput = Prisma.AtLeast<{
 }, "equip_cd">
 
 export type TbEquipmentOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   equip_nm?: Prisma.SortOrder
   equip_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -316,6 +327,7 @@ export type TbEquipmentScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbEquipmentScalarWhereWithAggregatesInput | Prisma.TbEquipmentScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbEquipmentScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbEquipmentScalarWhereWithAggregatesInput | Prisma.TbEquipmentScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbEquipment"> | string
   equip_cd?: Prisma.StringWithAggregatesFilter<"TbEquipment"> | string
   equip_nm?: Prisma.StringWithAggregatesFilter<"TbEquipment"> | string
   equip_type?: Prisma.StringNullableWithAggregatesFilter<"TbEquipment"> | string | null
@@ -331,6 +343,7 @@ export type TbEquipmentScalarWhereWithAggregatesInput = {
 }
 
 export type TbEquipmentCreateInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -352,6 +365,7 @@ export type TbEquipmentCreateInput = {
 }
 
 export type TbEquipmentUncheckedCreateInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -373,6 +387,7 @@ export type TbEquipmentUncheckedCreateInput = {
 }
 
 export type TbEquipmentUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -394,6 +409,7 @@ export type TbEquipmentUpdateInput = {
 }
 
 export type TbEquipmentUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -415,6 +431,7 @@ export type TbEquipmentUncheckedUpdateInput = {
 }
 
 export type TbEquipmentCreateManyInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -430,6 +447,7 @@ export type TbEquipmentCreateManyInput = {
 }
 
 export type TbEquipmentUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -444,6 +462,7 @@ export type TbEquipmentUpdateManyMutationInput = {
 }
 
 export type TbEquipmentUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -469,6 +488,7 @@ export type TbEquipmentOrderByRelationAggregateInput = {
 }
 
 export type TbEquipmentCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   equip_nm?: Prisma.SortOrder
   equip_type?: Prisma.SortOrder
@@ -484,6 +504,7 @@ export type TbEquipmentCountOrderByAggregateInput = {
 }
 
 export type TbEquipmentMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   equip_nm?: Prisma.SortOrder
   equip_type?: Prisma.SortOrder
@@ -499,6 +520,7 @@ export type TbEquipmentMaxOrderByAggregateInput = {
 }
 
 export type TbEquipmentMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   equip_nm?: Prisma.SortOrder
   equip_type?: Prisma.SortOrder
@@ -658,6 +680,7 @@ export type TbEquipmentUpdateOneRequiredWithoutMaint_resultsNestedInput = {
 }
 
 export type TbEquipmentCreateWithoutWorkshopInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -678,6 +701,7 @@ export type TbEquipmentCreateWithoutWorkshopInput = {
 }
 
 export type TbEquipmentUncheckedCreateWithoutWorkshopInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -727,6 +751,7 @@ export type TbEquipmentScalarWhereInput = {
   AND?: Prisma.TbEquipmentScalarWhereInput | Prisma.TbEquipmentScalarWhereInput[]
   OR?: Prisma.TbEquipmentScalarWhereInput[]
   NOT?: Prisma.TbEquipmentScalarWhereInput | Prisma.TbEquipmentScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipment"> | string
   equip_cd?: Prisma.StringFilter<"TbEquipment"> | string
   equip_nm?: Prisma.StringFilter<"TbEquipment"> | string
   equip_type?: Prisma.StringNullableFilter<"TbEquipment"> | string | null
@@ -742,6 +767,7 @@ export type TbEquipmentScalarWhereInput = {
 }
 
 export type TbEquipmentCreateWithoutProcess_mappingsInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -762,6 +788,7 @@ export type TbEquipmentCreateWithoutProcess_mappingsInput = {
 }
 
 export type TbEquipmentUncheckedCreateWithoutProcess_mappingsInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -798,6 +825,7 @@ export type TbEquipmentUpdateToOneWithWhereWithoutProcess_mappingsInput = {
 }
 
 export type TbEquipmentUpdateWithoutProcess_mappingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -818,6 +846,7 @@ export type TbEquipmentUpdateWithoutProcess_mappingsInput = {
 }
 
 export type TbEquipmentUncheckedUpdateWithoutProcess_mappingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -838,6 +867,7 @@ export type TbEquipmentUncheckedUpdateWithoutProcess_mappingsInput = {
 }
 
 export type TbEquipmentCreateWithoutWo_processesInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -858,6 +888,7 @@ export type TbEquipmentCreateWithoutWo_processesInput = {
 }
 
 export type TbEquipmentUncheckedCreateWithoutWo_processesInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -894,6 +925,7 @@ export type TbEquipmentUpdateToOneWithWhereWithoutWo_processesInput = {
 }
 
 export type TbEquipmentUpdateWithoutWo_processesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -914,6 +946,7 @@ export type TbEquipmentUpdateWithoutWo_processesInput = {
 }
 
 export type TbEquipmentUncheckedUpdateWithoutWo_processesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -934,6 +967,7 @@ export type TbEquipmentUncheckedUpdateWithoutWo_processesInput = {
 }
 
 export type TbEquipmentCreateWithoutProd_resultsInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -954,6 +988,7 @@ export type TbEquipmentCreateWithoutProd_resultsInput = {
 }
 
 export type TbEquipmentUncheckedCreateWithoutProd_resultsInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -990,6 +1025,7 @@ export type TbEquipmentUpdateToOneWithWhereWithoutProd_resultsInput = {
 }
 
 export type TbEquipmentUpdateWithoutProd_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1010,6 +1046,7 @@ export type TbEquipmentUpdateWithoutProd_resultsInput = {
 }
 
 export type TbEquipmentUncheckedUpdateWithoutProd_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1030,6 +1067,7 @@ export type TbEquipmentUncheckedUpdateWithoutProd_resultsInput = {
 }
 
 export type TbEquipmentCreateWithoutEquip_statusesInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -1050,6 +1088,7 @@ export type TbEquipmentCreateWithoutEquip_statusesInput = {
 }
 
 export type TbEquipmentUncheckedCreateWithoutEquip_statusesInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -1086,6 +1125,7 @@ export type TbEquipmentUpdateToOneWithWhereWithoutEquip_statusesInput = {
 }
 
 export type TbEquipmentUpdateWithoutEquip_statusesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1106,6 +1146,7 @@ export type TbEquipmentUpdateWithoutEquip_statusesInput = {
 }
 
 export type TbEquipmentUncheckedUpdateWithoutEquip_statusesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1126,6 +1167,7 @@ export type TbEquipmentUncheckedUpdateWithoutEquip_statusesInput = {
 }
 
 export type TbEquipmentCreateWithoutMaint_plansInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -1146,6 +1188,7 @@ export type TbEquipmentCreateWithoutMaint_plansInput = {
 }
 
 export type TbEquipmentUncheckedCreateWithoutMaint_plansInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -1182,6 +1225,7 @@ export type TbEquipmentUpdateToOneWithWhereWithoutMaint_plansInput = {
 }
 
 export type TbEquipmentUpdateWithoutMaint_plansInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1202,6 +1246,7 @@ export type TbEquipmentUpdateWithoutMaint_plansInput = {
 }
 
 export type TbEquipmentUncheckedUpdateWithoutMaint_plansInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1222,6 +1267,7 @@ export type TbEquipmentUncheckedUpdateWithoutMaint_plansInput = {
 }
 
 export type TbEquipmentCreateWithoutMaint_resultsInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -1242,6 +1288,7 @@ export type TbEquipmentCreateWithoutMaint_resultsInput = {
 }
 
 export type TbEquipmentUncheckedCreateWithoutMaint_resultsInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -1278,6 +1325,7 @@ export type TbEquipmentUpdateToOneWithWhereWithoutMaint_resultsInput = {
 }
 
 export type TbEquipmentUpdateWithoutMaint_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1298,6 +1346,7 @@ export type TbEquipmentUpdateWithoutMaint_resultsInput = {
 }
 
 export type TbEquipmentUncheckedUpdateWithoutMaint_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1318,6 +1367,7 @@ export type TbEquipmentUncheckedUpdateWithoutMaint_resultsInput = {
 }
 
 export type TbEquipmentCreateManyWorkshopInput = {
+  company_cd?: string
   equip_cd: string
   equip_nm: string
   equip_type?: string | null
@@ -1332,6 +1382,7 @@ export type TbEquipmentCreateManyWorkshopInput = {
 }
 
 export type TbEquipmentUpdateWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1352,6 +1403,7 @@ export type TbEquipmentUpdateWithoutWorkshopInput = {
 }
 
 export type TbEquipmentUncheckedUpdateWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1372,6 +1424,7 @@ export type TbEquipmentUncheckedUpdateWithoutWorkshopInput = {
 }
 
 export type TbEquipmentUncheckedUpdateManyWithoutWorkshopInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_nm?: Prisma.StringFieldUpdateOperationsInput | string
   equip_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1462,6 +1515,7 @@ export type TbEquipmentCountOutputTypeCountMaint_resultsArgs<ExtArgs extends run
 
 
 export type TbEquipmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   equip_cd?: boolean
   equip_nm?: boolean
   equip_type?: boolean
@@ -1485,6 +1539,7 @@ export type TbEquipmentSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 }, ExtArgs["result"]["tbEquipment"]>
 
 export type TbEquipmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   equip_cd?: boolean
   equip_nm?: boolean
   equip_type?: boolean
@@ -1501,6 +1556,7 @@ export type TbEquipmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbEquipment"]>
 
 export type TbEquipmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   equip_cd?: boolean
   equip_nm?: boolean
   equip_type?: boolean
@@ -1517,6 +1573,7 @@ export type TbEquipmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbEquipment"]>
 
 export type TbEquipmentSelectScalar = {
+  company_cd?: boolean
   equip_cd?: boolean
   equip_nm?: boolean
   equip_type?: boolean
@@ -1531,7 +1588,7 @@ export type TbEquipmentSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbEquipmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"equip_cd" | "equip_nm" | "equip_type" | "maker" | "model_nm" | "install_date" | "workshop_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbEquipment"]>
+export type TbEquipmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "equip_cd" | "equip_nm" | "equip_type" | "maker" | "model_nm" | "install_date" | "workshop_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbEquipment"]>
 export type TbEquipmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workshop?: boolean | Prisma.TbEquipment$workshopArgs<ExtArgs>
   process_mappings?: boolean | Prisma.TbEquipment$process_mappingsArgs<ExtArgs>
@@ -1561,6 +1618,7 @@ export type $TbEquipmentPayload<ExtArgs extends runtime.Types.Extensions.Interna
     maint_results: Prisma.$TbMaintResultPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     equip_cd: string
     equip_nm: string
     equip_type: string | null
@@ -1656,8 +1714,8 @@ export interface TbEquipmentDelegate<ExtArgs extends runtime.Types.Extensions.In
    * // Get first 10 TbEquipments
    * const tbEquipments = await prisma.tbEquipment.findMany({ take: 10 })
    * 
-   * // Only select the `equip_cd`
-   * const tbEquipmentWithEquip_cdOnly = await prisma.tbEquipment.findMany({ select: { equip_cd: true } })
+   * // Only select the `company_cd`
+   * const tbEquipmentWithCompany_cdOnly = await prisma.tbEquipment.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbEquipmentFindManyArgs>(args?: Prisma.SelectSubset<T, TbEquipmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbEquipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1701,9 +1759,9 @@ export interface TbEquipmentDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Create many TbEquipments and only return the `equip_cd`
-   * const tbEquipmentWithEquip_cdOnly = await prisma.tbEquipment.createManyAndReturn({
-   *   select: { equip_cd: true },
+   * // Create many TbEquipments and only return the `company_cd`
+   * const tbEquipmentWithCompany_cdOnly = await prisma.tbEquipment.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1792,9 +1850,9 @@ export interface TbEquipmentDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Update zero or more TbEquipments and only return the `equip_cd`
-   * const tbEquipmentWithEquip_cdOnly = await prisma.tbEquipment.updateManyAndReturn({
-   *   select: { equip_cd: true },
+   * // Update zero or more TbEquipments and only return the `company_cd`
+   * const tbEquipmentWithCompany_cdOnly = await prisma.tbEquipment.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -2003,6 +2061,7 @@ export interface Prisma__TbEquipmentClient<T, Null = never, ExtArgs extends runt
  * Fields of the TbEquipment model
  */
 export interface TbEquipmentFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbEquipment", 'String'>
   readonly equip_cd: Prisma.FieldRef<"TbEquipment", 'String'>
   readonly equip_nm: Prisma.FieldRef<"TbEquipment", 'String'>
   readonly equip_type: Prisma.FieldRef<"TbEquipment", 'String'>

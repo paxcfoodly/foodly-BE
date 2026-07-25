@@ -1,6 +1,7 @@
 import { Request } from 'express';
 import prisma from '../config/database';
 import { AppError } from '../middlewares/errorHandler';
+import { getTenantFilterCd } from '../middlewares/tenantContext';
 import { generateNumberWithDateReset } from './numberingService';
 import {
   parsePagination,
@@ -107,6 +108,7 @@ export async function forwardTrace(lotNo: string) {
         'CHILD_LOT' AS link_type
       FROM tb_lot l
       WHERE l.parent_lot_no = $1
+        AND l.company_cd = COALESCE($2, l.company_cd)
 
       UNION ALL
 
@@ -123,11 +125,12 @@ export async function forwardTrace(lotNo: string) {
         'CHILD_LOT' AS link_type
       FROM tb_lot l
       INNER JOIN forward_tree ft ON ft.lot_no = l.parent_lot_no
-      WHERE ft.depth < 20
+      WHERE ft.depth < 20 AND l.company_cd = COALESCE($2, l.company_cd)
     )
     SELECT * FROM forward_tree ORDER BY depth, lot_no
     `,
     lotNo,
+    getTenantFilterCd(),
   );
 
   // Also find downstream lots through material_input → prod_result linkage
@@ -148,8 +151,10 @@ export async function forwardTrace(lotNo: string) {
     WHERE mi.lot_no = $1
       AND pr.lot_no IS NOT NULL
       AND pr.lot_no != $1
+      AND l.company_cd = COALESCE($2, l.company_cd)
     `,
     lotNo,
+    getTenantFilterCd(),
   );
 
   return {
@@ -187,6 +192,7 @@ export async function backwardTrace(lotNo: string) {
         1 AS depth
       FROM tb_lot l
       WHERE l.lot_no = (SELECT parent_lot_no FROM tb_lot WHERE lot_no = $1)
+        AND l.company_cd = COALESCE($2, l.company_cd)
 
       UNION ALL
 
@@ -202,11 +208,12 @@ export async function backwardTrace(lotNo: string) {
         bt.depth + 1
       FROM tb_lot l
       INNER JOIN backward_tree bt ON bt.lot_no = l.parent_lot_no
-      WHERE bt.depth < 20
+      WHERE bt.depth < 20 AND l.company_cd = COALESCE($2, l.company_cd)
     )
     SELECT * FROM backward_tree ORDER BY depth, lot_no
     `,
     lotNo,
+    getTenantFilterCd(),
   );
 
   // Also find upstream lots through prod_result → material_input linkage
@@ -226,8 +233,10 @@ export async function backwardTrace(lotNo: string) {
     WHERE pr.lot_no = $1
       AND mi.lot_no IS NOT NULL
       AND mi.lot_no != $1
+      AND l.company_cd = COALESCE($2, l.company_cd)
     `,
     lotNo,
+    getTenantFilterCd(),
   );
 
   return {

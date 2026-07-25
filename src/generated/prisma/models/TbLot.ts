@@ -37,6 +37,7 @@ export type TbLotSumAggregateOutputType = {
 }
 
 export type TbLotMinAggregateOutputType = {
+  company_cd: string | null
   lot_no: string | null
   item_cd: string | null
   lot_qty: runtime.Decimal | null
@@ -52,6 +53,7 @@ export type TbLotMinAggregateOutputType = {
 }
 
 export type TbLotMaxAggregateOutputType = {
+  company_cd: string | null
   lot_no: string | null
   item_cd: string | null
   lot_qty: runtime.Decimal | null
@@ -67,6 +69,7 @@ export type TbLotMaxAggregateOutputType = {
 }
 
 export type TbLotCountAggregateOutputType = {
+  company_cd: number
   lot_no: number
   item_cd: number
   lot_qty: number
@@ -94,6 +97,7 @@ export type TbLotSumAggregateInputType = {
 }
 
 export type TbLotMinAggregateInputType = {
+  company_cd?: true
   lot_no?: true
   item_cd?: true
   lot_qty?: true
@@ -109,6 +113,7 @@ export type TbLotMinAggregateInputType = {
 }
 
 export type TbLotMaxAggregateInputType = {
+  company_cd?: true
   lot_no?: true
   item_cd?: true
   lot_qty?: true
@@ -124,6 +129,7 @@ export type TbLotMaxAggregateInputType = {
 }
 
 export type TbLotCountAggregateInputType = {
+  company_cd?: true
   lot_no?: true
   item_cd?: true
   lot_qty?: true
@@ -226,6 +232,7 @@ export type TbLotGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 export type TbLotGroupByOutputType = {
+  company_cd: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal
@@ -264,6 +271,7 @@ export type TbLotWhereInput = {
   AND?: Prisma.TbLotWhereInput | Prisma.TbLotWhereInput[]
   OR?: Prisma.TbLotWhereInput[]
   NOT?: Prisma.TbLotWhereInput | Prisma.TbLotWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbLot"> | string
   lot_no?: Prisma.StringFilter<"TbLot"> | string
   item_cd?: Prisma.StringFilter<"TbLot"> | string
   lot_qty?: Prisma.DecimalFilter<"TbLot"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -295,6 +303,7 @@ export type TbLotWhereInput = {
 }
 
 export type TbLotOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_qty?: Prisma.SortOrder
@@ -330,6 +339,7 @@ export type TbLotWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbLotWhereInput | Prisma.TbLotWhereInput[]
   OR?: Prisma.TbLotWhereInput[]
   NOT?: Prisma.TbLotWhereInput | Prisma.TbLotWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbLot"> | string
   item_cd?: Prisma.StringFilter<"TbLot"> | string
   lot_qty?: Prisma.DecimalFilter<"TbLot"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFilter<"TbLot"> | string
@@ -360,6 +370,7 @@ export type TbLotWhereUniqueInput = Prisma.AtLeast<{
 }, "lot_no">
 
 export type TbLotOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_qty?: Prisma.SortOrder
@@ -383,6 +394,7 @@ export type TbLotScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbLotScalarWhereWithAggregatesInput | Prisma.TbLotScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbLotScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbLotScalarWhereWithAggregatesInput | Prisma.TbLotScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbLot"> | string
   lot_no?: Prisma.StringWithAggregatesFilter<"TbLot"> | string
   item_cd?: Prisma.StringWithAggregatesFilter<"TbLot"> | string
   lot_qty?: Prisma.DecimalWithAggregatesFilter<"TbLot"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -398,6 +410,7 @@ export type TbLotScalarWhereWithAggregatesInput = {
 }
 
 export type TbLotCreateInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -425,6 +438,7 @@ export type TbLotCreateInput = {
 }
 
 export type TbLotUncheckedCreateInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -452,6 +466,7 @@ export type TbLotUncheckedCreateInput = {
 }
 
 export type TbLotUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -479,6 +494,7 @@ export type TbLotUpdateInput = {
 }
 
 export type TbLotUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -506,6 +522,7 @@ export type TbLotUncheckedUpdateInput = {
 }
 
 export type TbLotCreateManyInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -521,6 +538,7 @@ export type TbLotCreateManyInput = {
 }
 
 export type TbLotUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -532,6 +550,7 @@ export type TbLotUpdateManyMutationInput = {
 }
 
 export type TbLotUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -562,6 +581,7 @@ export type TbLotNullableScalarRelationFilter = {
 }
 
 export type TbLotCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_qty?: Prisma.SortOrder
@@ -582,6 +602,7 @@ export type TbLotAvgOrderByAggregateInput = {
 }
 
 export type TbLotMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_qty?: Prisma.SortOrder
@@ -597,6 +618,7 @@ export type TbLotMaxOrderByAggregateInput = {
 }
 
 export type TbLotMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_qty?: Prisma.SortOrder
@@ -980,6 +1002,7 @@ export type TbLotUpdateOneWithoutIncoming_dtlsNestedInput = {
 }
 
 export type TbLotCreateWithoutItemInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1006,6 +1029,7 @@ export type TbLotCreateWithoutItemInput = {
 }
 
 export type TbLotUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1061,6 +1085,7 @@ export type TbLotScalarWhereInput = {
   AND?: Prisma.TbLotScalarWhereInput | Prisma.TbLotScalarWhereInput[]
   OR?: Prisma.TbLotScalarWhereInput[]
   NOT?: Prisma.TbLotScalarWhereInput | Prisma.TbLotScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbLot"> | string
   lot_no?: Prisma.StringFilter<"TbLot"> | string
   item_cd?: Prisma.StringFilter<"TbLot"> | string
   lot_qty?: Prisma.DecimalFilter<"TbLot"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1076,6 +1101,7 @@ export type TbLotScalarWhereInput = {
 }
 
 export type TbLotCreateWithoutWarehouseInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1102,6 +1128,7 @@ export type TbLotCreateWithoutWarehouseInput = {
 }
 
 export type TbLotUncheckedCreateWithoutWarehouseInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1154,6 +1181,7 @@ export type TbLotUpdateManyWithWhereWithoutWarehouseInput = {
 }
 
 export type TbLotCreateWithoutWork_orderInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1180,6 +1208,7 @@ export type TbLotCreateWithoutWork_orderInput = {
 }
 
 export type TbLotUncheckedCreateWithoutWork_orderInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1232,6 +1261,7 @@ export type TbLotUpdateManyWithWhereWithoutWork_orderInput = {
 }
 
 export type TbLotCreateWithoutProd_resultsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1258,6 +1288,7 @@ export type TbLotCreateWithoutProd_resultsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutProd_resultsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1300,6 +1331,7 @@ export type TbLotUpdateToOneWithWhereWithoutProd_resultsInput = {
 }
 
 export type TbLotUpdateWithoutProd_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1326,6 +1358,7 @@ export type TbLotUpdateWithoutProd_resultsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutProd_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1352,6 +1385,7 @@ export type TbLotUncheckedUpdateWithoutProd_resultsInput = {
 }
 
 export type TbLotCreateWithoutChild_lotsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1378,6 +1412,7 @@ export type TbLotCreateWithoutChild_lotsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutChild_lotsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1409,6 +1444,7 @@ export type TbLotCreateOrConnectWithoutChild_lotsInput = {
 }
 
 export type TbLotCreateWithoutParent_lotInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1435,6 +1471,7 @@ export type TbLotCreateWithoutParent_lotInput = {
 }
 
 export type TbLotUncheckedCreateWithoutParent_lotInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1482,6 +1519,7 @@ export type TbLotUpdateToOneWithWhereWithoutChild_lotsInput = {
 }
 
 export type TbLotUpdateWithoutChild_lotsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1508,6 +1546,7 @@ export type TbLotUpdateWithoutChild_lotsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutChild_lotsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1550,6 +1589,7 @@ export type TbLotUpdateManyWithWhereWithoutParent_lotInput = {
 }
 
 export type TbLotCreateWithoutLot_historiesInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1576,6 +1616,7 @@ export type TbLotCreateWithoutLot_historiesInput = {
 }
 
 export type TbLotUncheckedCreateWithoutLot_historiesInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1618,6 +1659,7 @@ export type TbLotUpdateToOneWithWhereWithoutLot_historiesInput = {
 }
 
 export type TbLotUpdateWithoutLot_historiesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1644,6 +1686,7 @@ export type TbLotUpdateWithoutLot_historiesInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutLot_historiesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1670,6 +1713,7 @@ export type TbLotUncheckedUpdateWithoutLot_historiesInput = {
 }
 
 export type TbLotCreateWithoutMaterial_inputsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1696,6 +1740,7 @@ export type TbLotCreateWithoutMaterial_inputsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutMaterial_inputsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1738,6 +1783,7 @@ export type TbLotUpdateToOneWithWhereWithoutMaterial_inputsInput = {
 }
 
 export type TbLotUpdateWithoutMaterial_inputsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1764,6 +1810,7 @@ export type TbLotUpdateWithoutMaterial_inputsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutMaterial_inputsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1790,6 +1837,7 @@ export type TbLotUncheckedUpdateWithoutMaterial_inputsInput = {
 }
 
 export type TbLotCreateWithoutMaterial_issue_dtlsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1816,6 +1864,7 @@ export type TbLotCreateWithoutMaterial_issue_dtlsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutMaterial_issue_dtlsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1858,6 +1907,7 @@ export type TbLotUpdateToOneWithWhereWithoutMaterial_issue_dtlsInput = {
 }
 
 export type TbLotUpdateWithoutMaterial_issue_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1884,6 +1934,7 @@ export type TbLotUpdateWithoutMaterial_issue_dtlsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutMaterial_issue_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1910,6 +1961,7 @@ export type TbLotUncheckedUpdateWithoutMaterial_issue_dtlsInput = {
 }
 
 export type TbLotCreateWithoutInspect_resultsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -1936,6 +1988,7 @@ export type TbLotCreateWithoutInspect_resultsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutInspect_resultsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1978,6 +2031,7 @@ export type TbLotUpdateToOneWithWhereWithoutInspect_resultsInput = {
 }
 
 export type TbLotUpdateWithoutInspect_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2004,6 +2058,7 @@ export type TbLotUpdateWithoutInspect_resultsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutInspect_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2030,6 +2085,7 @@ export type TbLotUncheckedUpdateWithoutInspect_resultsInput = {
 }
 
 export type TbLotCreateWithoutDefectsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -2056,6 +2112,7 @@ export type TbLotCreateWithoutDefectsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutDefectsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2098,6 +2155,7 @@ export type TbLotUpdateToOneWithWhereWithoutDefectsInput = {
 }
 
 export type TbLotUpdateWithoutDefectsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2124,6 +2182,7 @@ export type TbLotUpdateWithoutDefectsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutDefectsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2150,6 +2209,7 @@ export type TbLotUncheckedUpdateWithoutDefectsInput = {
 }
 
 export type TbLotCreateWithoutInventoriesInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -2176,6 +2236,7 @@ export type TbLotCreateWithoutInventoriesInput = {
 }
 
 export type TbLotUncheckedCreateWithoutInventoriesInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2218,6 +2279,7 @@ export type TbLotUpdateToOneWithWhereWithoutInventoriesInput = {
 }
 
 export type TbLotUpdateWithoutInventoriesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2244,6 +2306,7 @@ export type TbLotUpdateWithoutInventoriesInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutInventoriesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2270,6 +2333,7 @@ export type TbLotUncheckedUpdateWithoutInventoriesInput = {
 }
 
 export type TbLotCreateWithoutInventory_txsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -2296,6 +2360,7 @@ export type TbLotCreateWithoutInventory_txsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutInventory_txsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2338,6 +2403,7 @@ export type TbLotUpdateToOneWithWhereWithoutInventory_txsInput = {
 }
 
 export type TbLotUpdateWithoutInventory_txsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2364,6 +2430,7 @@ export type TbLotUpdateWithoutInventory_txsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutInventory_txsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2390,6 +2457,7 @@ export type TbLotUncheckedUpdateWithoutInventory_txsInput = {
 }
 
 export type TbLotCreateWithoutInventory_adjustsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -2416,6 +2484,7 @@ export type TbLotCreateWithoutInventory_adjustsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutInventory_adjustsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2458,6 +2527,7 @@ export type TbLotUpdateToOneWithWhereWithoutInventory_adjustsInput = {
 }
 
 export type TbLotUpdateWithoutInventory_adjustsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2484,6 +2554,7 @@ export type TbLotUpdateWithoutInventory_adjustsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutInventory_adjustsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2510,6 +2581,7 @@ export type TbLotUncheckedUpdateWithoutInventory_adjustsInput = {
 }
 
 export type TbLotCreateWithoutShipment_dtlsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -2536,6 +2608,7 @@ export type TbLotCreateWithoutShipment_dtlsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutShipment_dtlsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2578,6 +2651,7 @@ export type TbLotUpdateToOneWithWhereWithoutShipment_dtlsInput = {
 }
 
 export type TbLotUpdateWithoutShipment_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2604,6 +2678,7 @@ export type TbLotUpdateWithoutShipment_dtlsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutShipment_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2630,6 +2705,7 @@ export type TbLotUncheckedUpdateWithoutShipment_dtlsInput = {
 }
 
 export type TbLotCreateWithoutIncoming_dtlsInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -2656,6 +2732,7 @@ export type TbLotCreateWithoutIncoming_dtlsInput = {
 }
 
 export type TbLotUncheckedCreateWithoutIncoming_dtlsInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2698,6 +2775,7 @@ export type TbLotUpdateToOneWithWhereWithoutIncoming_dtlsInput = {
 }
 
 export type TbLotUpdateWithoutIncoming_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2724,6 +2802,7 @@ export type TbLotUpdateWithoutIncoming_dtlsInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutIncoming_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2750,6 +2829,7 @@ export type TbLotUncheckedUpdateWithoutIncoming_dtlsInput = {
 }
 
 export type TbLotCreateManyItemInput = {
+  company_cd?: string
   lot_no: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: string
@@ -2764,6 +2844,7 @@ export type TbLotCreateManyItemInput = {
 }
 
 export type TbLotUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2790,6 +2871,7 @@ export type TbLotUpdateWithoutItemInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2816,6 +2898,7 @@ export type TbLotUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbLotUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2830,6 +2913,7 @@ export type TbLotUncheckedUpdateManyWithoutItemInput = {
 }
 
 export type TbLotCreateManyWarehouseInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2844,6 +2928,7 @@ export type TbLotCreateManyWarehouseInput = {
 }
 
 export type TbLotUpdateWithoutWarehouseInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2870,6 +2955,7 @@ export type TbLotUpdateWithoutWarehouseInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutWarehouseInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2896,6 +2982,7 @@ export type TbLotUncheckedUpdateWithoutWarehouseInput = {
 }
 
 export type TbLotUncheckedUpdateManyWithoutWarehouseInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2910,6 +2997,7 @@ export type TbLotUncheckedUpdateManyWithoutWarehouseInput = {
 }
 
 export type TbLotCreateManyWork_orderInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2924,6 +3012,7 @@ export type TbLotCreateManyWork_orderInput = {
 }
 
 export type TbLotUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2950,6 +3039,7 @@ export type TbLotUpdateWithoutWork_orderInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2976,6 +3066,7 @@ export type TbLotUncheckedUpdateWithoutWork_orderInput = {
 }
 
 export type TbLotUncheckedUpdateManyWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -2990,6 +3081,7 @@ export type TbLotUncheckedUpdateManyWithoutWork_orderInput = {
 }
 
 export type TbLotCreateManyParent_lotInput = {
+  company_cd?: string
   lot_no: string
   item_cd: string
   lot_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -3004,6 +3096,7 @@ export type TbLotCreateManyParent_lotInput = {
 }
 
 export type TbLotUpdateWithoutParent_lotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   lot_status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3030,6 +3123,7 @@ export type TbLotUpdateWithoutParent_lotInput = {
 }
 
 export type TbLotUncheckedUpdateWithoutParent_lotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -3056,6 +3150,7 @@ export type TbLotUncheckedUpdateWithoutParent_lotInput = {
 }
 
 export type TbLotUncheckedUpdateManyWithoutParent_lotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -3200,6 +3295,7 @@ export type TbLotCountOutputTypeCountIncoming_dtlsArgs<ExtArgs extends runtime.T
 
 
 export type TbLotSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   lot_no?: boolean
   item_cd?: boolean
   lot_qty?: boolean
@@ -3232,6 +3328,7 @@ export type TbLotSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 }, ExtArgs["result"]["tbLot"]>
 
 export type TbLotSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   lot_no?: boolean
   item_cd?: boolean
   lot_qty?: boolean
@@ -3251,6 +3348,7 @@ export type TbLotSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 }, ExtArgs["result"]["tbLot"]>
 
 export type TbLotSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   lot_no?: boolean
   item_cd?: boolean
   lot_qty?: boolean
@@ -3270,6 +3368,7 @@ export type TbLotSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 }, ExtArgs["result"]["tbLot"]>
 
 export type TbLotSelectScalar = {
+  company_cd?: boolean
   lot_no?: boolean
   item_cd?: boolean
   lot_qty?: boolean
@@ -3284,7 +3383,7 @@ export type TbLotSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbLotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"lot_no" | "item_cd" | "lot_qty" | "lot_status" | "create_type" | "parent_lot_no" | "wo_id" | "wh_cd" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbLot"]>
+export type TbLotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "lot_no" | "item_cd" | "lot_qty" | "lot_status" | "create_type" | "parent_lot_no" | "wo_id" | "wh_cd" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbLot"]>
 export type TbLotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
   parent_lot?: boolean | Prisma.TbLot$parent_lotArgs<ExtArgs>
@@ -3338,6 +3437,7 @@ export type $TbLotPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     incoming_dtls: Prisma.$TbIncomingDtlPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     lot_no: string
     item_cd: string
     lot_qty: runtime.Decimal
@@ -3433,8 +3533,8 @@ export interface TbLotDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * // Get first 10 TbLots
    * const tbLots = await prisma.tbLot.findMany({ take: 10 })
    * 
-   * // Only select the `lot_no`
-   * const tbLotWithLot_noOnly = await prisma.tbLot.findMany({ select: { lot_no: true } })
+   * // Only select the `company_cd`
+   * const tbLotWithCompany_cdOnly = await prisma.tbLot.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbLotFindManyArgs>(args?: Prisma.SelectSubset<T, TbLotFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbLotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -3478,9 +3578,9 @@ export interface TbLotDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   ]
    * })
    * 
-   * // Create many TbLots and only return the `lot_no`
-   * const tbLotWithLot_noOnly = await prisma.tbLot.createManyAndReturn({
-   *   select: { lot_no: true },
+   * // Create many TbLots and only return the `company_cd`
+   * const tbLotWithCompany_cdOnly = await prisma.tbLot.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -3569,9 +3669,9 @@ export interface TbLotDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   ]
    * })
    * 
-   * // Update zero or more TbLots and only return the `lot_no`
-   * const tbLotWithLot_noOnly = await prisma.tbLot.updateManyAndReturn({
-   *   select: { lot_no: true },
+   * // Update zero or more TbLots and only return the `company_cd`
+   * const tbLotWithCompany_cdOnly = await prisma.tbLot.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -3789,6 +3889,7 @@ export interface Prisma__TbLotClient<T, Null = never, ExtArgs extends runtime.Ty
  * Fields of the TbLot model
  */
 export interface TbLotFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbLot", 'String'>
   readonly lot_no: Prisma.FieldRef<"TbLot", 'String'>
   readonly item_cd: Prisma.FieldRef<"TbLot", 'String'>
   readonly lot_qty: Prisma.FieldRef<"TbLot", 'Decimal'>

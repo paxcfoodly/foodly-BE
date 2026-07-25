@@ -35,6 +35,7 @@ export type TbBatchLogSumAggregateOutputType = {
 }
 
 export type TbBatchLogMinAggregateOutputType = {
+  company_cd: string | null
   batch_log_id: number | null
   batch_nm: string | null
   start_dt: Date | null
@@ -45,6 +46,7 @@ export type TbBatchLogMinAggregateOutputType = {
 }
 
 export type TbBatchLogMaxAggregateOutputType = {
+  company_cd: string | null
   batch_log_id: number | null
   batch_nm: string | null
   start_dt: Date | null
@@ -55,6 +57,7 @@ export type TbBatchLogMaxAggregateOutputType = {
 }
 
 export type TbBatchLogCountAggregateOutputType = {
+  company_cd: number
   batch_log_id: number
   batch_nm: number
   start_dt: number
@@ -75,6 +78,7 @@ export type TbBatchLogSumAggregateInputType = {
 }
 
 export type TbBatchLogMinAggregateInputType = {
+  company_cd?: true
   batch_log_id?: true
   batch_nm?: true
   start_dt?: true
@@ -85,6 +89,7 @@ export type TbBatchLogMinAggregateInputType = {
 }
 
 export type TbBatchLogMaxAggregateInputType = {
+  company_cd?: true
   batch_log_id?: true
   batch_nm?: true
   start_dt?: true
@@ -95,6 +100,7 @@ export type TbBatchLogMaxAggregateInputType = {
 }
 
 export type TbBatchLogCountAggregateInputType = {
+  company_cd?: true
   batch_log_id?: true
   batch_nm?: true
   start_dt?: true
@@ -192,6 +198,7 @@ export type TbBatchLogGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbBatchLogGroupByOutputType = {
+  company_cd: string
   batch_log_id: number
   batch_nm: string
   start_dt: Date | null
@@ -225,6 +232,7 @@ export type TbBatchLogWhereInput = {
   AND?: Prisma.TbBatchLogWhereInput | Prisma.TbBatchLogWhereInput[]
   OR?: Prisma.TbBatchLogWhereInput[]
   NOT?: Prisma.TbBatchLogWhereInput | Prisma.TbBatchLogWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbBatchLog"> | string
   batch_log_id?: Prisma.IntFilter<"TbBatchLog"> | number
   batch_nm?: Prisma.StringFilter<"TbBatchLog"> | string
   start_dt?: Prisma.DateTimeNullableFilter<"TbBatchLog"> | Date | string | null
@@ -235,6 +243,7 @@ export type TbBatchLogWhereInput = {
 }
 
 export type TbBatchLogOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   batch_log_id?: Prisma.SortOrder
   batch_nm?: Prisma.SortOrder
   start_dt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -249,6 +258,7 @@ export type TbBatchLogWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbBatchLogWhereInput | Prisma.TbBatchLogWhereInput[]
   OR?: Prisma.TbBatchLogWhereInput[]
   NOT?: Prisma.TbBatchLogWhereInput | Prisma.TbBatchLogWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbBatchLog"> | string
   batch_nm?: Prisma.StringFilter<"TbBatchLog"> | string
   start_dt?: Prisma.DateTimeNullableFilter<"TbBatchLog"> | Date | string | null
   end_dt?: Prisma.DateTimeNullableFilter<"TbBatchLog"> | Date | string | null
@@ -258,6 +268,7 @@ export type TbBatchLogWhereUniqueInput = Prisma.AtLeast<{
 }, "batch_log_id">
 
 export type TbBatchLogOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   batch_log_id?: Prisma.SortOrder
   batch_nm?: Prisma.SortOrder
   start_dt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -276,6 +287,7 @@ export type TbBatchLogScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbBatchLogScalarWhereWithAggregatesInput | Prisma.TbBatchLogScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbBatchLogScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbBatchLogScalarWhereWithAggregatesInput | Prisma.TbBatchLogScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbBatchLog"> | string
   batch_log_id?: Prisma.IntWithAggregatesFilter<"TbBatchLog"> | number
   batch_nm?: Prisma.StringWithAggregatesFilter<"TbBatchLog"> | string
   start_dt?: Prisma.DateTimeNullableWithAggregatesFilter<"TbBatchLog"> | Date | string | null
@@ -286,6 +298,7 @@ export type TbBatchLogScalarWhereWithAggregatesInput = {
 }
 
 export type TbBatchLogCreateInput = {
+  company_cd?: string
   batch_nm: string
   start_dt?: Date | string | null
   end_dt?: Date | string | null
@@ -295,6 +308,7 @@ export type TbBatchLogCreateInput = {
 }
 
 export type TbBatchLogUncheckedCreateInput = {
+  company_cd?: string
   batch_log_id?: number
   batch_nm: string
   start_dt?: Date | string | null
@@ -305,6 +319,7 @@ export type TbBatchLogUncheckedCreateInput = {
 }
 
 export type TbBatchLogUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   batch_nm?: Prisma.StringFieldUpdateOperationsInput | string
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -314,6 +329,7 @@ export type TbBatchLogUpdateInput = {
 }
 
 export type TbBatchLogUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   batch_log_id?: Prisma.IntFieldUpdateOperationsInput | number
   batch_nm?: Prisma.StringFieldUpdateOperationsInput | string
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -324,6 +340,7 @@ export type TbBatchLogUncheckedUpdateInput = {
 }
 
 export type TbBatchLogCreateManyInput = {
+  company_cd?: string
   batch_log_id?: number
   batch_nm: string
   start_dt?: Date | string | null
@@ -334,6 +351,7 @@ export type TbBatchLogCreateManyInput = {
 }
 
 export type TbBatchLogUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   batch_nm?: Prisma.StringFieldUpdateOperationsInput | string
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -343,6 +361,7 @@ export type TbBatchLogUpdateManyMutationInput = {
 }
 
 export type TbBatchLogUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   batch_log_id?: Prisma.IntFieldUpdateOperationsInput | number
   batch_nm?: Prisma.StringFieldUpdateOperationsInput | string
   start_dt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -353,6 +372,7 @@ export type TbBatchLogUncheckedUpdateManyInput = {
 }
 
 export type TbBatchLogCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   batch_log_id?: Prisma.SortOrder
   batch_nm?: Prisma.SortOrder
   start_dt?: Prisma.SortOrder
@@ -367,6 +387,7 @@ export type TbBatchLogAvgOrderByAggregateInput = {
 }
 
 export type TbBatchLogMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   batch_log_id?: Prisma.SortOrder
   batch_nm?: Prisma.SortOrder
   start_dt?: Prisma.SortOrder
@@ -377,6 +398,7 @@ export type TbBatchLogMaxOrderByAggregateInput = {
 }
 
 export type TbBatchLogMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   batch_log_id?: Prisma.SortOrder
   batch_nm?: Prisma.SortOrder
   start_dt?: Prisma.SortOrder
@@ -393,6 +415,7 @@ export type TbBatchLogSumOrderByAggregateInput = {
 
 
 export type TbBatchLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   batch_log_id?: boolean
   batch_nm?: boolean
   start_dt?: boolean
@@ -403,6 +426,7 @@ export type TbBatchLogSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbBatchLog"]>
 
 export type TbBatchLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   batch_log_id?: boolean
   batch_nm?: boolean
   start_dt?: boolean
@@ -413,6 +437,7 @@ export type TbBatchLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbBatchLog"]>
 
 export type TbBatchLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   batch_log_id?: boolean
   batch_nm?: boolean
   start_dt?: boolean
@@ -423,6 +448,7 @@ export type TbBatchLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbBatchLog"]>
 
 export type TbBatchLogSelectScalar = {
+  company_cd?: boolean
   batch_log_id?: boolean
   batch_nm?: boolean
   start_dt?: boolean
@@ -432,12 +458,13 @@ export type TbBatchLogSelectScalar = {
   create_dt?: boolean
 }
 
-export type TbBatchLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"batch_log_id" | "batch_nm" | "start_dt" | "end_dt" | "status" | "result_msg" | "create_dt", ExtArgs["result"]["tbBatchLog"]>
+export type TbBatchLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "batch_log_id" | "batch_nm" | "start_dt" | "end_dt" | "status" | "result_msg" | "create_dt", ExtArgs["result"]["tbBatchLog"]>
 
 export type $TbBatchLogPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TbBatchLog"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     batch_log_id: number
     batch_nm: string
     start_dt: Date | null
@@ -528,8 +555,8 @@ export interface TbBatchLogDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbBatchLogs
    * const tbBatchLogs = await prisma.tbBatchLog.findMany({ take: 10 })
    * 
-   * // Only select the `batch_log_id`
-   * const tbBatchLogWithBatch_log_idOnly = await prisma.tbBatchLog.findMany({ select: { batch_log_id: true } })
+   * // Only select the `company_cd`
+   * const tbBatchLogWithCompany_cdOnly = await prisma.tbBatchLog.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbBatchLogFindManyArgs>(args?: Prisma.SelectSubset<T, TbBatchLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbBatchLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -573,9 +600,9 @@ export interface TbBatchLogDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbBatchLogs and only return the `batch_log_id`
-   * const tbBatchLogWithBatch_log_idOnly = await prisma.tbBatchLog.createManyAndReturn({
-   *   select: { batch_log_id: true },
+   * // Create many TbBatchLogs and only return the `company_cd`
+   * const tbBatchLogWithCompany_cdOnly = await prisma.tbBatchLog.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -664,9 +691,9 @@ export interface TbBatchLogDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbBatchLogs and only return the `batch_log_id`
-   * const tbBatchLogWithBatch_log_idOnly = await prisma.tbBatchLog.updateManyAndReturn({
-   *   select: { batch_log_id: true },
+   * // Update zero or more TbBatchLogs and only return the `company_cd`
+   * const tbBatchLogWithCompany_cdOnly = await prisma.tbBatchLog.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -868,6 +895,7 @@ export interface Prisma__TbBatchLogClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbBatchLog model
  */
 export interface TbBatchLogFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbBatchLog", 'String'>
   readonly batch_log_id: Prisma.FieldRef<"TbBatchLog", 'Int'>
   readonly batch_nm: Prisma.FieldRef<"TbBatchLog", 'String'>
   readonly start_dt: Prisma.FieldRef<"TbBatchLog", 'DateTime'>

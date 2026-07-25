@@ -80,11 +80,11 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.6.0
+ * Prisma Client JS version: 7.7.0
  * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.6.0",
+  client: "7.7.0",
   engine: "75cbdc1eb7150937890ad5465d861175c6624711"
 }
 
@@ -4751,6 +4751,7 @@ export type TbPlantScalarFieldEnum = (typeof TbPlantScalarFieldEnum)[keyof typeo
 
 
 export const TbWorkshopScalarFieldEnum = {
+  company_cd: 'company_cd',
   workshop_cd: 'workshop_cd',
   plant_cd: 'plant_cd',
   parent_cd: 'parent_cd',
@@ -4768,6 +4769,7 @@ export type TbWorkshopScalarFieldEnum = (typeof TbWorkshopScalarFieldEnum)[keyof
 
 
 export const TbItemScalarFieldEnum = {
+  company_cd: 'company_cd',
   item_cd: 'item_cd',
   item_nm: 'item_nm',
   item_type: 'item_type',
@@ -4786,6 +4788,7 @@ export type TbItemScalarFieldEnum = (typeof TbItemScalarFieldEnum)[keyof typeof 
 
 
 export const TbBomScalarFieldEnum = {
+  company_cd: 'company_cd',
   bom_id: 'bom_id',
   parent_item_cd: 'parent_item_cd',
   child_item_cd: 'child_item_cd',
@@ -4805,6 +4808,7 @@ export type TbBomScalarFieldEnum = (typeof TbBomScalarFieldEnum)[keyof typeof Tb
 
 
 export const TbProcessScalarFieldEnum = {
+  company_cd: 'company_cd',
   process_cd: 'process_cd',
   process_nm: 'process_nm',
   process_type: 'process_type',
@@ -4821,6 +4825,7 @@ export type TbProcessScalarFieldEnum = (typeof TbProcessScalarFieldEnum)[keyof t
 
 
 export const TbRoutingScalarFieldEnum = {
+  company_cd: 'company_cd',
   routing_id: 'routing_id',
   item_cd: 'item_cd',
   process_cd: 'process_cd',
@@ -4838,6 +4843,7 @@ export type TbRoutingScalarFieldEnum = (typeof TbRoutingScalarFieldEnum)[keyof t
 
 
 export const TbEquipmentScalarFieldEnum = {
+  company_cd: 'company_cd',
   equip_cd: 'equip_cd',
   equip_nm: 'equip_nm',
   equip_type: 'equip_type',
@@ -4856,6 +4862,7 @@ export type TbEquipmentScalarFieldEnum = (typeof TbEquipmentScalarFieldEnum)[key
 
 
 export const TbEquipProcessScalarFieldEnum = {
+  company_cd: 'company_cd',
   equip_cd: 'equip_cd',
   process_cd: 'process_cd',
   priority: 'priority',
@@ -4869,6 +4876,7 @@ export type TbEquipProcessScalarFieldEnum = (typeof TbEquipProcessScalarFieldEnu
 
 
 export const TbMoldScalarFieldEnum = {
+  company_cd: 'company_cd',
   mold_cd: 'mold_cd',
   mold_nm: 'mold_nm',
   item_cd: 'item_cd',
@@ -4885,6 +4893,7 @@ export type TbMoldScalarFieldEnum = (typeof TbMoldScalarFieldEnum)[keyof typeof 
 
 
 export const TbWorkerScalarFieldEnum = {
+  company_cd: 'company_cd',
   worker_id: 'worker_id',
   worker_nm: 'worker_nm',
   dept_cd: 'dept_cd',
@@ -4901,6 +4910,7 @@ export type TbWorkerScalarFieldEnum = (typeof TbWorkerScalarFieldEnum)[keyof typ
 
 
 export const TbWorkerSkillScalarFieldEnum = {
+  company_cd: 'company_cd',
   worker_id: 'worker_id',
   process_cd: 'process_cd',
   skill_level: 'skill_level',
@@ -4914,6 +4924,7 @@ export type TbWorkerSkillScalarFieldEnum = (typeof TbWorkerSkillScalarFieldEnum)
 
 
 export const TbCustomerScalarFieldEnum = {
+  company_cd: 'company_cd',
   cust_cd: 'cust_cd',
   cust_nm: 'cust_nm',
   cust_type: 'cust_type',
@@ -4933,6 +4944,7 @@ export type TbCustomerScalarFieldEnum = (typeof TbCustomerScalarFieldEnum)[keyof
 
 
 export const TbInspectStdScalarFieldEnum = {
+  company_cd: 'company_cd',
   inspect_std_id: 'inspect_std_id',
   item_cd: 'item_cd',
   process_cd: 'process_cd',
@@ -4955,6 +4967,7 @@ export type TbInspectStdScalarFieldEnum = (typeof TbInspectStdScalarFieldEnum)[k
 
 
 export const TbWarehouseScalarFieldEnum = {
+  company_cd: 'company_cd',
   wh_cd: 'wh_cd',
   wh_nm: 'wh_nm',
   wh_type: 'wh_type',
@@ -4970,6 +4983,7 @@ export type TbWarehouseScalarFieldEnum = (typeof TbWarehouseScalarFieldEnum)[key
 
 
 export const TbDemandScalarFieldEnum = {
+  company_cd: 'company_cd',
   demand_id: 'demand_id',
   demand_no: 'demand_no',
   cust_cd: 'cust_cd',
@@ -4988,6 +5002,7 @@ export type TbDemandScalarFieldEnum = (typeof TbDemandScalarFieldEnum)[keyof typ
 
 
 export const TbProdPlanScalarFieldEnum = {
+  company_cd: 'company_cd',
   plan_id: 'plan_id',
   plan_no: 'plan_no',
   plant_cd: 'plant_cd',
@@ -5007,6 +5022,7 @@ export type TbProdPlanScalarFieldEnum = (typeof TbProdPlanScalarFieldEnum)[keyof
 
 
 export const TbWorkOrderScalarFieldEnum = {
+  company_cd: 'company_cd',
   wo_id: 'wo_id',
   wo_no: 'wo_no',
   plan_id: 'plan_id',
@@ -5026,6 +5042,7 @@ export type TbWorkOrderScalarFieldEnum = (typeof TbWorkOrderScalarFieldEnum)[key
 
 
 export const TbWoProcessScalarFieldEnum = {
+  company_cd: 'company_cd',
   wo_process_id: 'wo_process_id',
   wo_id: 'wo_id',
   process_cd: 'process_cd',
@@ -5042,6 +5059,7 @@ export type TbWoProcessScalarFieldEnum = (typeof TbWoProcessScalarFieldEnum)[key
 
 
 export const TbWoWorkerScalarFieldEnum = {
+  company_cd: 'company_cd',
   wo_id: 'wo_id',
   worker_id: 'worker_id',
   assign_dt: 'assign_dt',
@@ -5055,6 +5073,7 @@ export type TbWoWorkerScalarFieldEnum = (typeof TbWoWorkerScalarFieldEnum)[keyof
 
 
 export const TbProdResultScalarFieldEnum = {
+  company_cd: 'company_cd',
   result_id: 'result_id',
   wo_id: 'wo_id',
   lot_no: 'lot_no',
@@ -5074,6 +5093,7 @@ export type TbProdResultScalarFieldEnum = (typeof TbProdResultScalarFieldEnum)[k
 
 
 export const TbLotScalarFieldEnum = {
+  company_cd: 'company_cd',
   lot_no: 'lot_no',
   item_cd: 'item_cd',
   lot_qty: 'lot_qty',
@@ -5092,6 +5112,7 @@ export type TbLotScalarFieldEnum = (typeof TbLotScalarFieldEnum)[keyof typeof Tb
 
 
 export const TbLotHistoryScalarFieldEnum = {
+  company_cd: 'company_cd',
   lot_hist_id: 'lot_hist_id',
   lot_no: 'lot_no',
   event_type: 'event_type',
@@ -5105,6 +5126,7 @@ export type TbLotHistoryScalarFieldEnum = (typeof TbLotHistoryScalarFieldEnum)[k
 
 
 export const TbMaterialInputScalarFieldEnum = {
+  company_cd: 'company_cd',
   input_id: 'input_id',
   wo_id: 'wo_id',
   item_cd: 'item_cd',
@@ -5121,6 +5143,7 @@ export type TbMaterialInputScalarFieldEnum = (typeof TbMaterialInputScalarFieldE
 
 
 export const TbMaterialIssueScalarFieldEnum = {
+  company_cd: 'company_cd',
   issue_id: 'issue_id',
   issue_no: 'issue_no',
   wo_id: 'wo_id',
@@ -5135,6 +5158,7 @@ export type TbMaterialIssueScalarFieldEnum = (typeof TbMaterialIssueScalarFieldE
 
 
 export const TbMaterialIssueDtlScalarFieldEnum = {
+  company_cd: 'company_cd',
   issue_dtl_id: 'issue_dtl_id',
   issue_id: 'issue_id',
   item_cd: 'item_cd',
@@ -5151,6 +5175,7 @@ export type TbMaterialIssueDtlScalarFieldEnum = (typeof TbMaterialIssueDtlScalar
 
 
 export const TbInspectResultScalarFieldEnum = {
+  company_cd: 'company_cd',
   inspect_id: 'inspect_id',
   inspect_no: 'inspect_no',
   inspect_type: 'inspect_type',
@@ -5170,6 +5195,7 @@ export type TbInspectResultScalarFieldEnum = (typeof TbInspectResultScalarFieldE
 
 
 export const TbInspectResultDtlScalarFieldEnum = {
+  company_cd: 'company_cd',
   inspect_dtl_id: 'inspect_dtl_id',
   inspect_id: 'inspect_id',
   inspect_std_id: 'inspect_std_id',
@@ -5185,6 +5211,7 @@ export type TbInspectResultDtlScalarFieldEnum = (typeof TbInspectResultDtlScalar
 
 
 export const TbDefectScalarFieldEnum = {
+  company_cd: 'company_cd',
   defect_id: 'defect_id',
   defect_no: 'defect_no',
   wo_id: 'wo_id',
@@ -5207,6 +5234,7 @@ export type TbDefectScalarFieldEnum = (typeof TbDefectScalarFieldEnum)[keyof typ
 
 
 export const TbDefectDisposeScalarFieldEnum = {
+  company_cd: 'company_cd',
   dispose_id: 'dispose_id',
   defect_id: 'defect_id',
   dispose_type: 'dispose_type',
@@ -5224,6 +5252,7 @@ export type TbDefectDisposeScalarFieldEnum = (typeof TbDefectDisposeScalarFieldE
 
 
 export const TbEquipStatusScalarFieldEnum = {
+  company_cd: 'company_cd',
   status_id: 'status_id',
   equip_cd: 'equip_cd',
   status_type: 'status_type',
@@ -5242,6 +5271,7 @@ export type TbEquipStatusScalarFieldEnum = (typeof TbEquipStatusScalarFieldEnum)
 
 
 export const TbMaintPlanScalarFieldEnum = {
+  company_cd: 'company_cd',
   maint_plan_id: 'maint_plan_id',
   equip_cd: 'equip_cd',
   plan_nm: 'plan_nm',
@@ -5260,6 +5290,7 @@ export type TbMaintPlanScalarFieldEnum = (typeof TbMaintPlanScalarFieldEnum)[key
 
 
 export const TbMaintPlanDtlScalarFieldEnum = {
+  company_cd: 'company_cd',
   plan_dtl_id: 'plan_dtl_id',
   maint_plan_id: 'maint_plan_id',
   item_no: 'item_no',
@@ -5275,6 +5306,7 @@ export type TbMaintPlanDtlScalarFieldEnum = (typeof TbMaintPlanDtlScalarFieldEnu
 
 
 export const TbMaintResultScalarFieldEnum = {
+  company_cd: 'company_cd',
   maint_result_id: 'maint_result_id',
   equip_cd: 'equip_cd',
   maint_no: 'maint_no',
@@ -5295,6 +5327,7 @@ export type TbMaintResultScalarFieldEnum = (typeof TbMaintResultScalarFieldEnum)
 
 
 export const TbMaintResultDtlScalarFieldEnum = {
+  company_cd: 'company_cd',
   result_dtl_id: 'result_dtl_id',
   maint_result_id: 'maint_result_id',
   plan_dtl_id: 'plan_dtl_id',
@@ -5311,6 +5344,7 @@ export type TbMaintResultDtlScalarFieldEnum = (typeof TbMaintResultDtlScalarFiel
 
 
 export const TbInventoryScalarFieldEnum = {
+  company_cd: 'company_cd',
   inventory_id: 'inventory_id',
   item_cd: 'item_cd',
   lot_no: 'lot_no',
@@ -5328,6 +5362,7 @@ export type TbInventoryScalarFieldEnum = (typeof TbInventoryScalarFieldEnum)[key
 
 
 export const TbInventoryTxScalarFieldEnum = {
+  company_cd: 'company_cd',
   tx_id: 'tx_id',
   item_cd: 'item_cd',
   lot_no: 'lot_no',
@@ -5343,6 +5378,7 @@ export type TbInventoryTxScalarFieldEnum = (typeof TbInventoryTxScalarFieldEnum)
 
 
 export const TbInventoryAdjustScalarFieldEnum = {
+  company_cd: 'company_cd',
   adjust_id: 'adjust_id',
   item_cd: 'item_cd',
   lot_no: 'lot_no',
@@ -5358,6 +5394,7 @@ export type TbInventoryAdjustScalarFieldEnum = (typeof TbInventoryAdjustScalarFi
 
 
 export const TbShipmentScalarFieldEnum = {
+  company_cd: 'company_cd',
   ship_id: 'ship_id',
   ship_no: 'ship_no',
   cust_cd: 'cust_cd',
@@ -5378,6 +5415,7 @@ export type TbShipmentScalarFieldEnum = (typeof TbShipmentScalarFieldEnum)[keyof
 
 
 export const TbShipmentDtlScalarFieldEnum = {
+  company_cd: 'company_cd',
   ship_dtl_id: 'ship_dtl_id',
   ship_id: 'ship_id',
   item_cd: 'item_cd',
@@ -5394,6 +5432,7 @@ export type TbShipmentDtlScalarFieldEnum = (typeof TbShipmentDtlScalarFieldEnum)
 
 
 export const TbIncomingScalarFieldEnum = {
+  company_cd: 'company_cd',
   incoming_id: 'incoming_id',
   incoming_no: 'incoming_no',
   cust_cd: 'cust_cd',
@@ -5408,6 +5447,7 @@ export type TbIncomingScalarFieldEnum = (typeof TbIncomingScalarFieldEnum)[keyof
 
 
 export const TbIncomingDtlScalarFieldEnum = {
+  company_cd: 'company_cd',
   incoming_dtl_id: 'incoming_dtl_id',
   incoming_id: 'incoming_id',
   item_cd: 'item_cd',
@@ -5517,6 +5557,7 @@ export type TbCommonCodeScalarFieldEnum = (typeof TbCommonCodeScalarFieldEnum)[k
 
 
 export const TbNumberingScalarFieldEnum = {
+  company_cd: 'company_cd',
   num_type: 'num_type',
   prefix: 'prefix',
   date_format: 'date_format',
@@ -5532,6 +5573,7 @@ export type TbNumberingScalarFieldEnum = (typeof TbNumberingScalarFieldEnum)[key
 
 
 export const TbFileScalarFieldEnum = {
+  company_cd: 'company_cd',
   file_id: 'file_id',
   original_nm: 'original_nm',
   stored_nm: 'stored_nm',
@@ -5548,6 +5590,7 @@ export type TbFileScalarFieldEnum = (typeof TbFileScalarFieldEnum)[keyof typeof 
 
 
 export const TbAuditLogScalarFieldEnum = {
+  company_cd: 'company_cd',
   log_id: 'log_id',
   user_id: 'user_id',
   action: 'action',
@@ -5563,6 +5606,7 @@ export type TbAuditLogScalarFieldEnum = (typeof TbAuditLogScalarFieldEnum)[keyof
 
 
 export const TbNotificationScalarFieldEnum = {
+  company_cd: 'company_cd',
   noti_id: 'noti_id',
   noti_type: 'noti_type',
   noti_title: 'noti_title',
@@ -5578,6 +5622,7 @@ export type TbNotificationScalarFieldEnum = (typeof TbNotificationScalarFieldEnu
 
 
 export const TbNotiRuleScalarFieldEnum = {
+  company_cd: 'company_cd',
   rule_id: 'rule_id',
   event_type: 'event_type',
   target_role_cd: 'target_role_cd',
@@ -5594,6 +5639,7 @@ export type TbNotiRuleScalarFieldEnum = (typeof TbNotiRuleScalarFieldEnum)[keyof
 
 
 export const TbBatchLogScalarFieldEnum = {
+  company_cd: 'company_cd',
   batch_log_id: 'batch_log_id',
   batch_nm: 'batch_nm',
   start_dt: 'start_dt',
@@ -5607,6 +5653,7 @@ export type TbBatchLogScalarFieldEnum = (typeof TbBatchLogScalarFieldEnum)[keyof
 
 
 export const TbNoticeScalarFieldEnum = {
+  company_cd: 'company_cd',
   notice_id: 'notice_id',
   title: 'title',
   content: 'content',
@@ -5621,6 +5668,7 @@ export type TbNoticeScalarFieldEnum = (typeof TbNoticeScalarFieldEnum)[keyof typ
 
 
 export const TbSysSettingScalarFieldEnum = {
+  company_cd: 'company_cd',
   setting_key: 'setting_key',
   setting_value: 'setting_value',
   setting_group: 'setting_group',
@@ -5636,6 +5684,7 @@ export type TbSysSettingScalarFieldEnum = (typeof TbSysSettingScalarFieldEnum)[k
 
 
 export const TbDataHistoryScalarFieldEnum = {
+  company_cd: 'company_cd',
   history_id: 'history_id',
   table_nm: 'table_nm',
   record_id: 'record_id',

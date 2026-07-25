@@ -52,12 +52,13 @@ export async function updateNumbering(
   data: { prefix?: string; seq_length?: number },
   userId?: string,
 ) {
-  const existing = await prisma.tbNumbering.findUnique({ where: { num_type: numType } });
+  // 회사별 규칙 — findFirst는 테넌트 확장이 자동 필터, update는 복합 키로 대상 회사 고정
+  const existing = await prisma.tbNumbering.findFirst({ where: { num_type: numType } });
   if (!existing) {
     throw new AppError('해당 채번 규칙을 찾을 수 없습니다.', 404);
   }
   return prisma.tbNumbering.update({
-    where: { num_type: numType },
+    where: { company_cd_num_type: { company_cd: existing.company_cd, num_type: numType } },
     data: {
       ...(data.prefix !== undefined && { prefix: data.prefix }),
       ...(data.seq_length !== undefined && { seq_length: data.seq_length }),

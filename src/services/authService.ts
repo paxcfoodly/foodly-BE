@@ -13,6 +13,7 @@ export interface LoginResult {
     roleCd: string | null;
     roleNm: string | null;
     companyCd: string | null;
+    companyNm: string | null;
   };
 }
 
@@ -23,6 +24,7 @@ export interface UserProfile {
   roleCd: string | null;
   roleNm: string | null;
   companyCd: string | null;
+  companyNm: string | null;
   status: string;
   permissions: Array<{
     menuId: number;
@@ -42,25 +44,25 @@ export async function login(loginId: string, password: string, ipAddress?: strin
   // 1. Find user with role info
   const user = await prisma.tbUser.findUnique({
     where: { login_id: loginId },
-    include: { role: true },
+    include: { role: true, company: true },
   });
 
   if (!user) {
     // Log failed login attempt (no user_id available)
-    await writeAuditLog(null, 'LOGIN_FAIL', ipAddress, { loginId, reason: 'user_not_found' });
+    await writeAuditLog(null, 'LOGIN_FAIL', ipAddress, { loginId, reason: 'user_not_found' }, null);
     throw new AppError('아이디 또는 비밀번호가 올바르지 않습니다.', 401);
   }
 
   // 2. Check account status
   if (user.status !== 'ACTIVE') {
-    await writeAuditLog(user.user_id, 'LOGIN_FAIL', ipAddress, { loginId, reason: 'account_inactive', status: user.status });
+    await writeAuditLog(user.user_id, 'LOGIN_FAIL', ipAddress, { loginId, reason: 'account_inactive', status: user.status }, user.company_cd);
     throw new AppError('비활성화된 계정입니다. 관리자에게 문의하세요.', 403);
   }
 
   // 3. Verify password
   const isValid = await bcrypt.compare(password, user.password);
   if (!isValid) {
-    await writeAuditLog(user.user_id, 'LOGIN_FAIL', ipAddress, { loginId, reason: 'wrong_password' });
+    await writeAuditLog(user.user_id, 'LOGIN_FAIL', ipAddress, { loginId, reason: 'wrong_password' }, user.company_cd);
     throw new AppError('아이디 또는 비밀번호가 올바르지 않습니다.', 401);
   }
 
@@ -77,7 +79,7 @@ export async function login(loginId: string, password: string, ipAddress?: strin
   const refreshToken = generateRefreshToken(tokenPayload);
 
   // 5. Audit log success
-  await writeAuditLog(user.user_id, 'LOGIN', ipAddress);
+  await writeAuditLog(user.user_id, 'LOGIN', ipAddress, undefined, user.company_cd);
 
   return {
     accessToken,
@@ -89,6 +91,7 @@ export async function login(loginId: string, password: string, ipAddress?: strin
       roleCd: user.role_cd,
       roleNm: user.role?.role_nm ?? null,
       companyCd: user.company_cd,
+      companyNm: user.company?.company_nm ?? null,
     },
   };
 }
@@ -134,7 +137,7 @@ export async function refresh(refreshTokenStr: string): Promise<{ accessToken: s
 export async function getProfile(userId: number): Promise<UserProfile> {
   const user = await prisma.tbUser.findUnique({
     where: { user_id: userId },
-    include: { role: true },
+    include: { role: true, company: true },
   });
 
   if (!user) {
@@ -168,6 +171,7 @@ export async function getProfile(userId: number): Promise<UserProfile> {
     roleCd: user.role_cd,
     roleNm: user.role?.role_nm ?? null,
     companyCd: user.company_cd,
+    companyNm: user.company?.company_nm ?? null,
     status: user.status,
     permissions,
   };
@@ -187,10 +191,13 @@ async function writeAuditLog(
   action: string,
   ipAddress?: string,
   afterData?: Record<string, unknown>,
+  companyCd?: string | null,
 ): Promise<void> {
   try {
     await prisma.tbAuditLog.create({
       data: {
+        // 로그인/로그아웃은 테넌트 컨텍스트 밖 — 회사 미상은 SYSTEM으로 기록
+        company_cd: companyCd ?? 'SYSTEM',
         user_id: userId,
         action,
         target_table: 'tb_user',

@@ -25,6 +25,7 @@ export type AggregateTbWarehouse = {
 }
 
 export type TbWarehouseMinAggregateOutputType = {
+  company_cd: string | null
   wh_cd: string | null
   wh_nm: string | null
   wh_type: string | null
@@ -37,6 +38,7 @@ export type TbWarehouseMinAggregateOutputType = {
 }
 
 export type TbWarehouseMaxAggregateOutputType = {
+  company_cd: string | null
   wh_cd: string | null
   wh_nm: string | null
   wh_type: string | null
@@ -49,6 +51,7 @@ export type TbWarehouseMaxAggregateOutputType = {
 }
 
 export type TbWarehouseCountAggregateOutputType = {
+  company_cd: number
   wh_cd: number
   wh_nm: number
   wh_type: number
@@ -63,6 +66,7 @@ export type TbWarehouseCountAggregateOutputType = {
 
 
 export type TbWarehouseMinAggregateInputType = {
+  company_cd?: true
   wh_cd?: true
   wh_nm?: true
   wh_type?: true
@@ -75,6 +79,7 @@ export type TbWarehouseMinAggregateInputType = {
 }
 
 export type TbWarehouseMaxAggregateInputType = {
+  company_cd?: true
   wh_cd?: true
   wh_nm?: true
   wh_type?: true
@@ -87,6 +92,7 @@ export type TbWarehouseMaxAggregateInputType = {
 }
 
 export type TbWarehouseCountAggregateInputType = {
+  company_cd?: true
   wh_cd?: true
   wh_nm?: true
   wh_type?: true
@@ -172,6 +178,7 @@ export type TbWarehouseGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 export type TbWarehouseGroupByOutputType = {
+  company_cd: string
   wh_cd: string
   wh_nm: string
   wh_type: string | null
@@ -205,6 +212,7 @@ export type TbWarehouseWhereInput = {
   AND?: Prisma.TbWarehouseWhereInput | Prisma.TbWarehouseWhereInput[]
   OR?: Prisma.TbWarehouseWhereInput[]
   NOT?: Prisma.TbWarehouseWhereInput | Prisma.TbWarehouseWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWarehouse"> | string
   wh_cd?: Prisma.StringFilter<"TbWarehouse"> | string
   wh_nm?: Prisma.StringFilter<"TbWarehouse"> | string
   wh_type?: Prisma.StringNullableFilter<"TbWarehouse"> | string | null
@@ -220,6 +228,7 @@ export type TbWarehouseWhereInput = {
 }
 
 export type TbWarehouseOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   wh_cd?: Prisma.SortOrder
   wh_nm?: Prisma.SortOrder
   wh_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -239,6 +248,7 @@ export type TbWarehouseWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbWarehouseWhereInput | Prisma.TbWarehouseWhereInput[]
   OR?: Prisma.TbWarehouseWhereInput[]
   NOT?: Prisma.TbWarehouseWhereInput | Prisma.TbWarehouseWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWarehouse"> | string
   wh_nm?: Prisma.StringFilter<"TbWarehouse"> | string
   wh_type?: Prisma.StringNullableFilter<"TbWarehouse"> | string | null
   plant_cd?: Prisma.StringNullableFilter<"TbWarehouse"> | string | null
@@ -253,6 +263,7 @@ export type TbWarehouseWhereUniqueInput = Prisma.AtLeast<{
 }, "wh_cd">
 
 export type TbWarehouseOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   wh_cd?: Prisma.SortOrder
   wh_nm?: Prisma.SortOrder
   wh_type?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -271,6 +282,7 @@ export type TbWarehouseScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbWarehouseScalarWhereWithAggregatesInput | Prisma.TbWarehouseScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbWarehouseScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbWarehouseScalarWhereWithAggregatesInput | Prisma.TbWarehouseScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbWarehouse"> | string
   wh_cd?: Prisma.StringWithAggregatesFilter<"TbWarehouse"> | string
   wh_nm?: Prisma.StringWithAggregatesFilter<"TbWarehouse"> | string
   wh_type?: Prisma.StringNullableWithAggregatesFilter<"TbWarehouse"> | string | null
@@ -283,6 +295,7 @@ export type TbWarehouseScalarWhereWithAggregatesInput = {
 }
 
 export type TbWarehouseCreateInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -297,6 +310,7 @@ export type TbWarehouseCreateInput = {
 }
 
 export type TbWarehouseUncheckedCreateInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -311,6 +325,7 @@ export type TbWarehouseUncheckedCreateInput = {
 }
 
 export type TbWarehouseUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -325,6 +340,7 @@ export type TbWarehouseUpdateInput = {
 }
 
 export type TbWarehouseUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -339,6 +355,7 @@ export type TbWarehouseUncheckedUpdateInput = {
 }
 
 export type TbWarehouseCreateManyInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -351,6 +368,7 @@ export type TbWarehouseCreateManyInput = {
 }
 
 export type TbWarehouseUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -362,6 +380,7 @@ export type TbWarehouseUpdateManyMutationInput = {
 }
 
 export type TbWarehouseUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -384,6 +403,7 @@ export type TbWarehouseOrderByRelationAggregateInput = {
 }
 
 export type TbWarehouseCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wh_cd?: Prisma.SortOrder
   wh_nm?: Prisma.SortOrder
   wh_type?: Prisma.SortOrder
@@ -396,6 +416,7 @@ export type TbWarehouseCountOrderByAggregateInput = {
 }
 
 export type TbWarehouseMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wh_cd?: Prisma.SortOrder
   wh_nm?: Prisma.SortOrder
   wh_type?: Prisma.SortOrder
@@ -408,6 +429,7 @@ export type TbWarehouseMaxOrderByAggregateInput = {
 }
 
 export type TbWarehouseMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   wh_cd?: Prisma.SortOrder
   wh_nm?: Prisma.SortOrder
   wh_type?: Prisma.SortOrder
@@ -502,6 +524,7 @@ export type TbWarehouseUpdateOneRequiredWithoutInventoriesNestedInput = {
 }
 
 export type TbWarehouseCreateWithoutPlantInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -515,6 +538,7 @@ export type TbWarehouseCreateWithoutPlantInput = {
 }
 
 export type TbWarehouseUncheckedCreateWithoutPlantInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -557,6 +581,7 @@ export type TbWarehouseScalarWhereInput = {
   AND?: Prisma.TbWarehouseScalarWhereInput | Prisma.TbWarehouseScalarWhereInput[]
   OR?: Prisma.TbWarehouseScalarWhereInput[]
   NOT?: Prisma.TbWarehouseScalarWhereInput | Prisma.TbWarehouseScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWarehouse"> | string
   wh_cd?: Prisma.StringFilter<"TbWarehouse"> | string
   wh_nm?: Prisma.StringFilter<"TbWarehouse"> | string
   wh_type?: Prisma.StringNullableFilter<"TbWarehouse"> | string | null
@@ -569,6 +594,7 @@ export type TbWarehouseScalarWhereInput = {
 }
 
 export type TbWarehouseCreateWithoutLotsInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -582,6 +608,7 @@ export type TbWarehouseCreateWithoutLotsInput = {
 }
 
 export type TbWarehouseUncheckedCreateWithoutLotsInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -611,6 +638,7 @@ export type TbWarehouseUpdateToOneWithWhereWithoutLotsInput = {
 }
 
 export type TbWarehouseUpdateWithoutLotsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -624,6 +652,7 @@ export type TbWarehouseUpdateWithoutLotsInput = {
 }
 
 export type TbWarehouseUncheckedUpdateWithoutLotsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -637,6 +666,7 @@ export type TbWarehouseUncheckedUpdateWithoutLotsInput = {
 }
 
 export type TbWarehouseCreateWithoutInventoriesInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -650,6 +680,7 @@ export type TbWarehouseCreateWithoutInventoriesInput = {
 }
 
 export type TbWarehouseUncheckedCreateWithoutInventoriesInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -679,6 +710,7 @@ export type TbWarehouseUpdateToOneWithWhereWithoutInventoriesInput = {
 }
 
 export type TbWarehouseUpdateWithoutInventoriesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -692,6 +724,7 @@ export type TbWarehouseUpdateWithoutInventoriesInput = {
 }
 
 export type TbWarehouseUncheckedUpdateWithoutInventoriesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -705,6 +738,7 @@ export type TbWarehouseUncheckedUpdateWithoutInventoriesInput = {
 }
 
 export type TbWarehouseCreateManyPlantInput = {
+  company_cd?: string
   wh_cd: string
   wh_nm: string
   wh_type?: string | null
@@ -716,6 +750,7 @@ export type TbWarehouseCreateManyPlantInput = {
 }
 
 export type TbWarehouseUpdateWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -729,6 +764,7 @@ export type TbWarehouseUpdateWithoutPlantInput = {
 }
 
 export type TbWarehouseUncheckedUpdateWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -742,6 +778,7 @@ export type TbWarehouseUncheckedUpdateWithoutPlantInput = {
 }
 
 export type TbWarehouseUncheckedUpdateManyWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_cd?: Prisma.StringFieldUpdateOperationsInput | string
   wh_nm?: Prisma.StringFieldUpdateOperationsInput | string
   wh_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -793,6 +830,7 @@ export type TbWarehouseCountOutputTypeCountInventoriesArgs<ExtArgs extends runti
 
 
 export type TbWarehouseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wh_cd?: boolean
   wh_nm?: boolean
   wh_type?: boolean
@@ -809,6 +847,7 @@ export type TbWarehouseSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 }, ExtArgs["result"]["tbWarehouse"]>
 
 export type TbWarehouseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wh_cd?: boolean
   wh_nm?: boolean
   wh_type?: boolean
@@ -822,6 +861,7 @@ export type TbWarehouseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbWarehouse"]>
 
 export type TbWarehouseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   wh_cd?: boolean
   wh_nm?: boolean
   wh_type?: boolean
@@ -835,6 +875,7 @@ export type TbWarehouseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 }, ExtArgs["result"]["tbWarehouse"]>
 
 export type TbWarehouseSelectScalar = {
+  company_cd?: boolean
   wh_cd?: boolean
   wh_nm?: boolean
   wh_type?: boolean
@@ -846,7 +887,7 @@ export type TbWarehouseSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbWarehouseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"wh_cd" | "wh_nm" | "wh_type" | "plant_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWarehouse"]>
+export type TbWarehouseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "wh_cd" | "wh_nm" | "wh_type" | "plant_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWarehouse"]>
 export type TbWarehouseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plant?: boolean | Prisma.TbWarehouse$plantArgs<ExtArgs>
   lots?: boolean | Prisma.TbWarehouse$lotsArgs<ExtArgs>
@@ -868,6 +909,7 @@ export type $TbWarehousePayload<ExtArgs extends runtime.Types.Extensions.Interna
     inventories: Prisma.$TbInventoryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     wh_cd: string
     wh_nm: string
     wh_type: string | null
@@ -960,8 +1002,8 @@ export interface TbWarehouseDelegate<ExtArgs extends runtime.Types.Extensions.In
    * // Get first 10 TbWarehouses
    * const tbWarehouses = await prisma.tbWarehouse.findMany({ take: 10 })
    * 
-   * // Only select the `wh_cd`
-   * const tbWarehouseWithWh_cdOnly = await prisma.tbWarehouse.findMany({ select: { wh_cd: true } })
+   * // Only select the `company_cd`
+   * const tbWarehouseWithCompany_cdOnly = await prisma.tbWarehouse.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbWarehouseFindManyArgs>(args?: Prisma.SelectSubset<T, TbWarehouseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbWarehousePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1005,9 +1047,9 @@ export interface TbWarehouseDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Create many TbWarehouses and only return the `wh_cd`
-   * const tbWarehouseWithWh_cdOnly = await prisma.tbWarehouse.createManyAndReturn({
-   *   select: { wh_cd: true },
+   * // Create many TbWarehouses and only return the `company_cd`
+   * const tbWarehouseWithCompany_cdOnly = await prisma.tbWarehouse.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1096,9 +1138,9 @@ export interface TbWarehouseDelegate<ExtArgs extends runtime.Types.Extensions.In
    *   ]
    * })
    * 
-   * // Update zero or more TbWarehouses and only return the `wh_cd`
-   * const tbWarehouseWithWh_cdOnly = await prisma.tbWarehouse.updateManyAndReturn({
-   *   select: { wh_cd: true },
+   * // Update zero or more TbWarehouses and only return the `company_cd`
+   * const tbWarehouseWithCompany_cdOnly = await prisma.tbWarehouse.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1303,6 +1345,7 @@ export interface Prisma__TbWarehouseClient<T, Null = never, ExtArgs extends runt
  * Fields of the TbWarehouse model
  */
 export interface TbWarehouseFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbWarehouse", 'String'>
   readonly wh_cd: Prisma.FieldRef<"TbWarehouse", 'String'>
   readonly wh_nm: Prisma.FieldRef<"TbWarehouse", 'String'>
   readonly wh_type: Prisma.FieldRef<"TbWarehouse", 'String'>

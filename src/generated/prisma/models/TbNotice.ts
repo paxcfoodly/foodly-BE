@@ -35,6 +35,7 @@ export type TbNoticeSumAggregateOutputType = {
 }
 
 export type TbNoticeMinAggregateOutputType = {
+  company_cd: string | null
   notice_id: number | null
   title: string | null
   content: string | null
@@ -46,6 +47,7 @@ export type TbNoticeMinAggregateOutputType = {
 }
 
 export type TbNoticeMaxAggregateOutputType = {
+  company_cd: string | null
   notice_id: number | null
   title: string | null
   content: string | null
@@ -57,6 +59,7 @@ export type TbNoticeMaxAggregateOutputType = {
 }
 
 export type TbNoticeCountAggregateOutputType = {
+  company_cd: number
   notice_id: number
   title: number
   content: number
@@ -78,6 +81,7 @@ export type TbNoticeSumAggregateInputType = {
 }
 
 export type TbNoticeMinAggregateInputType = {
+  company_cd?: true
   notice_id?: true
   title?: true
   content?: true
@@ -89,6 +93,7 @@ export type TbNoticeMinAggregateInputType = {
 }
 
 export type TbNoticeMaxAggregateInputType = {
+  company_cd?: true
   notice_id?: true
   title?: true
   content?: true
@@ -100,6 +105,7 @@ export type TbNoticeMaxAggregateInputType = {
 }
 
 export type TbNoticeCountAggregateInputType = {
+  company_cd?: true
   notice_id?: true
   title?: true
   content?: true
@@ -198,6 +204,7 @@ export type TbNoticeGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type TbNoticeGroupByOutputType = {
+  company_cd: string
   notice_id: number
   title: string
   content: string | null
@@ -232,6 +239,7 @@ export type TbNoticeWhereInput = {
   AND?: Prisma.TbNoticeWhereInput | Prisma.TbNoticeWhereInput[]
   OR?: Prisma.TbNoticeWhereInput[]
   NOT?: Prisma.TbNoticeWhereInput | Prisma.TbNoticeWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbNotice"> | string
   notice_id?: Prisma.IntFilter<"TbNotice"> | number
   title?: Prisma.StringFilter<"TbNotice"> | string
   content?: Prisma.StringNullableFilter<"TbNotice"> | string | null
@@ -243,6 +251,7 @@ export type TbNoticeWhereInput = {
 }
 
 export type TbNoticeOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   notice_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -258,6 +267,7 @@ export type TbNoticeWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbNoticeWhereInput | Prisma.TbNoticeWhereInput[]
   OR?: Prisma.TbNoticeWhereInput[]
   NOT?: Prisma.TbNoticeWhereInput | Prisma.TbNoticeWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbNotice"> | string
   title?: Prisma.StringFilter<"TbNotice"> | string
   content?: Prisma.StringNullableFilter<"TbNotice"> | string | null
   is_popup?: Prisma.StringFilter<"TbNotice"> | string
@@ -268,6 +278,7 @@ export type TbNoticeWhereUniqueInput = Prisma.AtLeast<{
 }, "notice_id">
 
 export type TbNoticeOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   notice_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -287,6 +298,7 @@ export type TbNoticeScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbNoticeScalarWhereWithAggregatesInput | Prisma.TbNoticeScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbNoticeScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbNoticeScalarWhereWithAggregatesInput | Prisma.TbNoticeScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbNotice"> | string
   notice_id?: Prisma.IntWithAggregatesFilter<"TbNotice"> | number
   title?: Prisma.StringWithAggregatesFilter<"TbNotice"> | string
   content?: Prisma.StringNullableWithAggregatesFilter<"TbNotice"> | string | null
@@ -298,6 +310,7 @@ export type TbNoticeScalarWhereWithAggregatesInput = {
 }
 
 export type TbNoticeCreateInput = {
+  company_cd?: string
   title: string
   content?: string | null
   is_popup?: string
@@ -308,6 +321,7 @@ export type TbNoticeCreateInput = {
 }
 
 export type TbNoticeUncheckedCreateInput = {
+  company_cd?: string
   notice_id?: number
   title: string
   content?: string | null
@@ -319,6 +333,7 @@ export type TbNoticeUncheckedCreateInput = {
 }
 
 export type TbNoticeUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_popup?: Prisma.StringFieldUpdateOperationsInput | string
@@ -329,6 +344,7 @@ export type TbNoticeUpdateInput = {
 }
 
 export type TbNoticeUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   notice_id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -340,6 +356,7 @@ export type TbNoticeUncheckedUpdateInput = {
 }
 
 export type TbNoticeCreateManyInput = {
+  company_cd?: string
   notice_id?: number
   title: string
   content?: string | null
@@ -351,6 +368,7 @@ export type TbNoticeCreateManyInput = {
 }
 
 export type TbNoticeUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_popup?: Prisma.StringFieldUpdateOperationsInput | string
@@ -361,6 +379,7 @@ export type TbNoticeUpdateManyMutationInput = {
 }
 
 export type TbNoticeUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   notice_id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -372,6 +391,7 @@ export type TbNoticeUncheckedUpdateManyInput = {
 }
 
 export type TbNoticeCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   notice_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
@@ -387,6 +407,7 @@ export type TbNoticeAvgOrderByAggregateInput = {
 }
 
 export type TbNoticeMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   notice_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
@@ -398,6 +419,7 @@ export type TbNoticeMaxOrderByAggregateInput = {
 }
 
 export type TbNoticeMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   notice_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
@@ -415,6 +437,7 @@ export type TbNoticeSumOrderByAggregateInput = {
 
 
 export type TbNoticeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   notice_id?: boolean
   title?: boolean
   content?: boolean
@@ -426,6 +449,7 @@ export type TbNoticeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 }, ExtArgs["result"]["tbNotice"]>
 
 export type TbNoticeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   notice_id?: boolean
   title?: boolean
   content?: boolean
@@ -437,6 +461,7 @@ export type TbNoticeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 }, ExtArgs["result"]["tbNotice"]>
 
 export type TbNoticeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   notice_id?: boolean
   title?: boolean
   content?: boolean
@@ -448,6 +473,7 @@ export type TbNoticeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 }, ExtArgs["result"]["tbNotice"]>
 
 export type TbNoticeSelectScalar = {
+  company_cd?: boolean
   notice_id?: boolean
   title?: boolean
   content?: boolean
@@ -458,12 +484,13 @@ export type TbNoticeSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbNoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"notice_id" | "title" | "content" | "is_popup" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbNotice"]>
+export type TbNoticeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "notice_id" | "title" | "content" | "is_popup" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbNotice"]>
 
 export type $TbNoticePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TbNotice"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     notice_id: number
     title: string
     content: string | null
@@ -555,8 +582,8 @@ export interface TbNoticeDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    * // Get first 10 TbNotices
    * const tbNotices = await prisma.tbNotice.findMany({ take: 10 })
    * 
-   * // Only select the `notice_id`
-   * const tbNoticeWithNotice_idOnly = await prisma.tbNotice.findMany({ select: { notice_id: true } })
+   * // Only select the `company_cd`
+   * const tbNoticeWithCompany_cdOnly = await prisma.tbNotice.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbNoticeFindManyArgs>(args?: Prisma.SelectSubset<T, TbNoticeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbNoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -600,9 +627,9 @@ export interface TbNoticeDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Create many TbNotices and only return the `notice_id`
-   * const tbNoticeWithNotice_idOnly = await prisma.tbNotice.createManyAndReturn({
-   *   select: { notice_id: true },
+   * // Create many TbNotices and only return the `company_cd`
+   * const tbNoticeWithCompany_cdOnly = await prisma.tbNotice.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -691,9 +718,9 @@ export interface TbNoticeDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Update zero or more TbNotices and only return the `notice_id`
-   * const tbNoticeWithNotice_idOnly = await prisma.tbNotice.updateManyAndReturn({
-   *   select: { notice_id: true },
+   * // Update zero or more TbNotices and only return the `company_cd`
+   * const tbNoticeWithCompany_cdOnly = await prisma.tbNotice.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -895,6 +922,7 @@ export interface Prisma__TbNoticeClient<T, Null = never, ExtArgs extends runtime
  * Fields of the TbNotice model
  */
 export interface TbNoticeFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbNotice", 'String'>
   readonly notice_id: Prisma.FieldRef<"TbNotice", 'Int'>
   readonly title: Prisma.FieldRef<"TbNotice", 'String'>
   readonly content: Prisma.FieldRef<"TbNotice", 'String'>

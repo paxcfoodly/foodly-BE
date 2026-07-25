@@ -337,3 +337,13 @@ export async function resetPasswordHandler(req: Request, res: Response, next: Ne
     next(err);
   }
 }
+
+/** GET /api/v1/users/companies — 회사 목록 (SYS_ADMIN) */
+export async function listCompaniesHandler(_req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    const companies = await userService.listCompanies();
+    res.json(successResponse(companies));
+  } catch (err) {
+    next(err);
+  }
+}

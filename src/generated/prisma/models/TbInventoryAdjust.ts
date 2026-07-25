@@ -37,6 +37,7 @@ export type TbInventoryAdjustSumAggregateOutputType = {
 }
 
 export type TbInventoryAdjustMinAggregateOutputType = {
+  company_cd: string | null
   adjust_id: number | null
   item_cd: string | null
   lot_no: string | null
@@ -49,6 +50,7 @@ export type TbInventoryAdjustMinAggregateOutputType = {
 }
 
 export type TbInventoryAdjustMaxAggregateOutputType = {
+  company_cd: string | null
   adjust_id: number | null
   item_cd: string | null
   lot_no: string | null
@@ -61,6 +63,7 @@ export type TbInventoryAdjustMaxAggregateOutputType = {
 }
 
 export type TbInventoryAdjustCountAggregateOutputType = {
+  company_cd: number
   adjust_id: number
   item_cd: number
   lot_no: number
@@ -85,6 +88,7 @@ export type TbInventoryAdjustSumAggregateInputType = {
 }
 
 export type TbInventoryAdjustMinAggregateInputType = {
+  company_cd?: true
   adjust_id?: true
   item_cd?: true
   lot_no?: true
@@ -97,6 +101,7 @@ export type TbInventoryAdjustMinAggregateInputType = {
 }
 
 export type TbInventoryAdjustMaxAggregateInputType = {
+  company_cd?: true
   adjust_id?: true
   item_cd?: true
   lot_no?: true
@@ -109,6 +114,7 @@ export type TbInventoryAdjustMaxAggregateInputType = {
 }
 
 export type TbInventoryAdjustCountAggregateInputType = {
+  company_cd?: true
   adjust_id?: true
   item_cd?: true
   lot_no?: true
@@ -208,6 +214,7 @@ export type TbInventoryAdjustGroupByArgs<ExtArgs extends runtime.Types.Extension
 }
 
 export type TbInventoryAdjustGroupByOutputType = {
+  company_cd: string
   adjust_id: number
   item_cd: string
   lot_no: string | null
@@ -243,6 +250,7 @@ export type TbInventoryAdjustWhereInput = {
   AND?: Prisma.TbInventoryAdjustWhereInput | Prisma.TbInventoryAdjustWhereInput[]
   OR?: Prisma.TbInventoryAdjustWhereInput[]
   NOT?: Prisma.TbInventoryAdjustWhereInput | Prisma.TbInventoryAdjustWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInventoryAdjust"> | string
   adjust_id?: Prisma.IntFilter<"TbInventoryAdjust"> | number
   item_cd?: Prisma.StringFilter<"TbInventoryAdjust"> | string
   lot_no?: Prisma.StringNullableFilter<"TbInventoryAdjust"> | string | null
@@ -257,6 +265,7 @@ export type TbInventoryAdjustWhereInput = {
 }
 
 export type TbInventoryAdjustOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   adjust_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -275,6 +284,7 @@ export type TbInventoryAdjustWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbInventoryAdjustWhereInput | Prisma.TbInventoryAdjustWhereInput[]
   OR?: Prisma.TbInventoryAdjustWhereInput[]
   NOT?: Prisma.TbInventoryAdjustWhereInput | Prisma.TbInventoryAdjustWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInventoryAdjust"> | string
   item_cd?: Prisma.StringFilter<"TbInventoryAdjust"> | string
   lot_no?: Prisma.StringNullableFilter<"TbInventoryAdjust"> | string | null
   adjust_qty?: Prisma.DecimalFilter<"TbInventoryAdjust"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -288,6 +298,7 @@ export type TbInventoryAdjustWhereUniqueInput = Prisma.AtLeast<{
 }, "adjust_id">
 
 export type TbInventoryAdjustOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   adjust_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -308,6 +319,7 @@ export type TbInventoryAdjustScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbInventoryAdjustScalarWhereWithAggregatesInput | Prisma.TbInventoryAdjustScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbInventoryAdjustScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbInventoryAdjustScalarWhereWithAggregatesInput | Prisma.TbInventoryAdjustScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbInventoryAdjust"> | string
   adjust_id?: Prisma.IntWithAggregatesFilter<"TbInventoryAdjust"> | number
   item_cd?: Prisma.StringWithAggregatesFilter<"TbInventoryAdjust"> | string
   lot_no?: Prisma.StringNullableWithAggregatesFilter<"TbInventoryAdjust"> | string | null
@@ -320,6 +332,7 @@ export type TbInventoryAdjustScalarWhereWithAggregatesInput = {
 }
 
 export type TbInventoryAdjustCreateInput = {
+  company_cd?: string
   adjust_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   adjust_reason?: string | null
   create_by?: string | null
@@ -331,6 +344,7 @@ export type TbInventoryAdjustCreateInput = {
 }
 
 export type TbInventoryAdjustUncheckedCreateInput = {
+  company_cd?: string
   adjust_id?: number
   item_cd: string
   lot_no?: string | null
@@ -343,6 +357,7 @@ export type TbInventoryAdjustUncheckedCreateInput = {
 }
 
 export type TbInventoryAdjustUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   adjust_reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -354,6 +369,7 @@ export type TbInventoryAdjustUpdateInput = {
 }
 
 export type TbInventoryAdjustUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -366,6 +382,7 @@ export type TbInventoryAdjustUncheckedUpdateInput = {
 }
 
 export type TbInventoryAdjustCreateManyInput = {
+  company_cd?: string
   adjust_id?: number
   item_cd: string
   lot_no?: string | null
@@ -378,6 +395,7 @@ export type TbInventoryAdjustCreateManyInput = {
 }
 
 export type TbInventoryAdjustUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   adjust_reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -387,6 +405,7 @@ export type TbInventoryAdjustUpdateManyMutationInput = {
 }
 
 export type TbInventoryAdjustUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -409,6 +428,7 @@ export type TbInventoryAdjustOrderByRelationAggregateInput = {
 }
 
 export type TbInventoryAdjustCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   adjust_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
@@ -426,6 +446,7 @@ export type TbInventoryAdjustAvgOrderByAggregateInput = {
 }
 
 export type TbInventoryAdjustMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   adjust_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
@@ -438,6 +459,7 @@ export type TbInventoryAdjustMaxOrderByAggregateInput = {
 }
 
 export type TbInventoryAdjustMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   adjust_id?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   lot_no?: Prisma.SortOrder
@@ -539,6 +561,7 @@ export type TbInventoryAdjustUncheckedUpdateManyWithoutLotNestedInput = {
 }
 
 export type TbInventoryAdjustCreateWithoutItemInput = {
+  company_cd?: string
   adjust_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   adjust_reason?: string | null
   create_by?: string | null
@@ -549,6 +572,7 @@ export type TbInventoryAdjustCreateWithoutItemInput = {
 }
 
 export type TbInventoryAdjustUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   adjust_id?: number
   lot_no?: string | null
   adjust_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -589,6 +613,7 @@ export type TbInventoryAdjustScalarWhereInput = {
   AND?: Prisma.TbInventoryAdjustScalarWhereInput | Prisma.TbInventoryAdjustScalarWhereInput[]
   OR?: Prisma.TbInventoryAdjustScalarWhereInput[]
   NOT?: Prisma.TbInventoryAdjustScalarWhereInput | Prisma.TbInventoryAdjustScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbInventoryAdjust"> | string
   adjust_id?: Prisma.IntFilter<"TbInventoryAdjust"> | number
   item_cd?: Prisma.StringFilter<"TbInventoryAdjust"> | string
   lot_no?: Prisma.StringNullableFilter<"TbInventoryAdjust"> | string | null
@@ -601,6 +626,7 @@ export type TbInventoryAdjustScalarWhereInput = {
 }
 
 export type TbInventoryAdjustCreateWithoutLotInput = {
+  company_cd?: string
   adjust_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   adjust_reason?: string | null
   create_by?: string | null
@@ -611,6 +637,7 @@ export type TbInventoryAdjustCreateWithoutLotInput = {
 }
 
 export type TbInventoryAdjustUncheckedCreateWithoutLotInput = {
+  company_cd?: string
   adjust_id?: number
   item_cd: string
   adjust_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -648,6 +675,7 @@ export type TbInventoryAdjustUpdateManyWithWhereWithoutLotInput = {
 }
 
 export type TbInventoryAdjustCreateManyItemInput = {
+  company_cd?: string
   adjust_id?: number
   lot_no?: string | null
   adjust_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -659,6 +687,7 @@ export type TbInventoryAdjustCreateManyItemInput = {
 }
 
 export type TbInventoryAdjustUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   adjust_reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -669,6 +698,7 @@ export type TbInventoryAdjustUpdateWithoutItemInput = {
 }
 
 export type TbInventoryAdjustUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjust_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -680,6 +710,7 @@ export type TbInventoryAdjustUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbInventoryAdjustUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_id?: Prisma.IntFieldUpdateOperationsInput | number
   lot_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   adjust_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -691,6 +722,7 @@ export type TbInventoryAdjustUncheckedUpdateManyWithoutItemInput = {
 }
 
 export type TbInventoryAdjustCreateManyLotInput = {
+  company_cd?: string
   adjust_id?: number
   item_cd: string
   adjust_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -702,6 +734,7 @@ export type TbInventoryAdjustCreateManyLotInput = {
 }
 
 export type TbInventoryAdjustUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   adjust_reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -712,6 +745,7 @@ export type TbInventoryAdjustUpdateWithoutLotInput = {
 }
 
 export type TbInventoryAdjustUncheckedUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -723,6 +757,7 @@ export type TbInventoryAdjustUncheckedUpdateWithoutLotInput = {
 }
 
 export type TbInventoryAdjustUncheckedUpdateManyWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_id?: Prisma.IntFieldUpdateOperationsInput | number
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   adjust_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -736,6 +771,7 @@ export type TbInventoryAdjustUncheckedUpdateManyWithoutLotInput = {
 
 
 export type TbInventoryAdjustSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   adjust_id?: boolean
   item_cd?: boolean
   lot_no?: boolean
@@ -750,6 +786,7 @@ export type TbInventoryAdjustSelect<ExtArgs extends runtime.Types.Extensions.Int
 }, ExtArgs["result"]["tbInventoryAdjust"]>
 
 export type TbInventoryAdjustSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   adjust_id?: boolean
   item_cd?: boolean
   lot_no?: boolean
@@ -764,6 +801,7 @@ export type TbInventoryAdjustSelectCreateManyAndReturn<ExtArgs extends runtime.T
 }, ExtArgs["result"]["tbInventoryAdjust"]>
 
 export type TbInventoryAdjustSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   adjust_id?: boolean
   item_cd?: boolean
   lot_no?: boolean
@@ -778,6 +816,7 @@ export type TbInventoryAdjustSelectUpdateManyAndReturn<ExtArgs extends runtime.T
 }, ExtArgs["result"]["tbInventoryAdjust"]>
 
 export type TbInventoryAdjustSelectScalar = {
+  company_cd?: boolean
   adjust_id?: boolean
   item_cd?: boolean
   lot_no?: boolean
@@ -789,7 +828,7 @@ export type TbInventoryAdjustSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbInventoryAdjustOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"adjust_id" | "item_cd" | "lot_no" | "adjust_qty" | "adjust_reason" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbInventoryAdjust"]>
+export type TbInventoryAdjustOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "adjust_id" | "item_cd" | "lot_no" | "adjust_qty" | "adjust_reason" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbInventoryAdjust"]>
 export type TbInventoryAdjustInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
   lot?: boolean | Prisma.TbInventoryAdjust$lotArgs<ExtArgs>
@@ -810,6 +849,7 @@ export type $TbInventoryAdjustPayload<ExtArgs extends runtime.Types.Extensions.I
     lot: Prisma.$TbLotPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     adjust_id: number
     item_cd: string
     lot_no: string | null
@@ -902,8 +942,8 @@ export interface TbInventoryAdjustDelegate<ExtArgs extends runtime.Types.Extensi
    * // Get first 10 TbInventoryAdjusts
    * const tbInventoryAdjusts = await prisma.tbInventoryAdjust.findMany({ take: 10 })
    * 
-   * // Only select the `adjust_id`
-   * const tbInventoryAdjustWithAdjust_idOnly = await prisma.tbInventoryAdjust.findMany({ select: { adjust_id: true } })
+   * // Only select the `company_cd`
+   * const tbInventoryAdjustWithCompany_cdOnly = await prisma.tbInventoryAdjust.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbInventoryAdjustFindManyArgs>(args?: Prisma.SelectSubset<T, TbInventoryAdjustFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbInventoryAdjustPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -947,9 +987,9 @@ export interface TbInventoryAdjustDelegate<ExtArgs extends runtime.Types.Extensi
    *   ]
    * })
    * 
-   * // Create many TbInventoryAdjusts and only return the `adjust_id`
-   * const tbInventoryAdjustWithAdjust_idOnly = await prisma.tbInventoryAdjust.createManyAndReturn({
-   *   select: { adjust_id: true },
+   * // Create many TbInventoryAdjusts and only return the `company_cd`
+   * const tbInventoryAdjustWithCompany_cdOnly = await prisma.tbInventoryAdjust.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1038,9 +1078,9 @@ export interface TbInventoryAdjustDelegate<ExtArgs extends runtime.Types.Extensi
    *   ]
    * })
    * 
-   * // Update zero or more TbInventoryAdjusts and only return the `adjust_id`
-   * const tbInventoryAdjustWithAdjust_idOnly = await prisma.tbInventoryAdjust.updateManyAndReturn({
-   *   select: { adjust_id: true },
+   * // Update zero or more TbInventoryAdjusts and only return the `company_cd`
+   * const tbInventoryAdjustWithCompany_cdOnly = await prisma.tbInventoryAdjust.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1244,6 +1284,7 @@ export interface Prisma__TbInventoryAdjustClient<T, Null = never, ExtArgs extend
  * Fields of the TbInventoryAdjust model
  */
 export interface TbInventoryAdjustFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbInventoryAdjust", 'String'>
   readonly adjust_id: Prisma.FieldRef<"TbInventoryAdjust", 'Int'>
   readonly item_cd: Prisma.FieldRef<"TbInventoryAdjust", 'String'>
   readonly lot_no: Prisma.FieldRef<"TbInventoryAdjust", 'String'>

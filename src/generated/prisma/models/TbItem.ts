@@ -35,6 +35,7 @@ export type TbItemSumAggregateOutputType = {
 }
 
 export type TbItemMinAggregateOutputType = {
+  company_cd: string | null
   item_cd: string | null
   item_nm: string | null
   item_type: string | null
@@ -50,6 +51,7 @@ export type TbItemMinAggregateOutputType = {
 }
 
 export type TbItemMaxAggregateOutputType = {
+  company_cd: string | null
   item_cd: string | null
   item_nm: string | null
   item_type: string | null
@@ -65,6 +67,7 @@ export type TbItemMaxAggregateOutputType = {
 }
 
 export type TbItemCountAggregateOutputType = {
+  company_cd: number
   item_cd: number
   item_nm: number
   item_type: number
@@ -90,6 +93,7 @@ export type TbItemSumAggregateInputType = {
 }
 
 export type TbItemMinAggregateInputType = {
+  company_cd?: true
   item_cd?: true
   item_nm?: true
   item_type?: true
@@ -105,6 +109,7 @@ export type TbItemMinAggregateInputType = {
 }
 
 export type TbItemMaxAggregateInputType = {
+  company_cd?: true
   item_cd?: true
   item_nm?: true
   item_type?: true
@@ -120,6 +125,7 @@ export type TbItemMaxAggregateInputType = {
 }
 
 export type TbItemCountAggregateInputType = {
+  company_cd?: true
   item_cd?: true
   item_nm?: true
   item_type?: true
@@ -222,6 +228,7 @@ export type TbItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type TbItemGroupByOutputType = {
+  company_cd: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -260,6 +267,7 @@ export type TbItemWhereInput = {
   AND?: Prisma.TbItemWhereInput | Prisma.TbItemWhereInput[]
   OR?: Prisma.TbItemWhereInput[]
   NOT?: Prisma.TbItemWhereInput | Prisma.TbItemWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbItem"> | string
   item_cd?: Prisma.StringFilter<"TbItem"> | string
   item_nm?: Prisma.StringFilter<"TbItem"> | string
   item_type?: Prisma.StringFilter<"TbItem"> | string
@@ -294,6 +302,7 @@ export type TbItemWhereInput = {
 }
 
 export type TbItemOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   item_nm?: Prisma.SortOrder
   item_type?: Prisma.SortOrder
@@ -332,6 +341,7 @@ export type TbItemWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbItemWhereInput | Prisma.TbItemWhereInput[]
   OR?: Prisma.TbItemWhereInput[]
   NOT?: Prisma.TbItemWhereInput | Prisma.TbItemWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbItem"> | string
   item_nm?: Prisma.StringFilter<"TbItem"> | string
   item_type?: Prisma.StringFilter<"TbItem"> | string
   unit_cd?: Prisma.StringNullableFilter<"TbItem"> | string | null
@@ -365,6 +375,7 @@ export type TbItemWhereUniqueInput = Prisma.AtLeast<{
 }, "item_cd">
 
 export type TbItemOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   item_nm?: Prisma.SortOrder
   item_type?: Prisma.SortOrder
@@ -388,6 +399,7 @@ export type TbItemScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbItemScalarWhereWithAggregatesInput | Prisma.TbItemScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbItemScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbItemScalarWhereWithAggregatesInput | Prisma.TbItemScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbItem"> | string
   item_cd?: Prisma.StringWithAggregatesFilter<"TbItem"> | string
   item_nm?: Prisma.StringWithAggregatesFilter<"TbItem"> | string
   item_type?: Prisma.StringWithAggregatesFilter<"TbItem"> | string
@@ -403,6 +415,7 @@ export type TbItemScalarWhereWithAggregatesInput = {
 }
 
 export type TbItemCreateInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -437,6 +450,7 @@ export type TbItemCreateInput = {
 }
 
 export type TbItemUncheckedCreateInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -471,6 +485,7 @@ export type TbItemUncheckedCreateInput = {
 }
 
 export type TbItemUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -505,6 +520,7 @@ export type TbItemUpdateInput = {
 }
 
 export type TbItemUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -539,6 +555,7 @@ export type TbItemUncheckedUpdateInput = {
 }
 
 export type TbItemCreateManyInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -554,6 +571,7 @@ export type TbItemCreateManyInput = {
 }
 
 export type TbItemUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -569,6 +587,7 @@ export type TbItemUpdateManyMutationInput = {
 }
 
 export type TbItemUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -584,6 +603,7 @@ export type TbItemUncheckedUpdateManyInput = {
 }
 
 export type TbItemCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   item_nm?: Prisma.SortOrder
   item_type?: Prisma.SortOrder
@@ -603,6 +623,7 @@ export type TbItemAvgOrderByAggregateInput = {
 }
 
 export type TbItemMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   item_nm?: Prisma.SortOrder
   item_type?: Prisma.SortOrder
@@ -618,6 +639,7 @@ export type TbItemMaxOrderByAggregateInput = {
 }
 
 export type TbItemMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   item_cd?: Prisma.SortOrder
   item_nm?: Prisma.SortOrder
   item_type?: Prisma.SortOrder
@@ -931,6 +953,7 @@ export type TbItemUpdateOneRequiredWithoutIncoming_dtlsNestedInput = {
 }
 
 export type TbItemCreateWithoutBom_parentsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -964,6 +987,7 @@ export type TbItemCreateWithoutBom_parentsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutBom_parentsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1002,6 +1026,7 @@ export type TbItemCreateOrConnectWithoutBom_parentsInput = {
 }
 
 export type TbItemCreateWithoutBom_childrenInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1035,6 +1060,7 @@ export type TbItemCreateWithoutBom_childrenInput = {
 }
 
 export type TbItemUncheckedCreateWithoutBom_childrenInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1073,6 +1099,7 @@ export type TbItemCreateOrConnectWithoutBom_childrenInput = {
 }
 
 export type TbItemCreateWithoutBom_altsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1106,6 +1133,7 @@ export type TbItemCreateWithoutBom_altsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutBom_altsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1155,6 +1183,7 @@ export type TbItemUpdateToOneWithWhereWithoutBom_parentsInput = {
 }
 
 export type TbItemUpdateWithoutBom_parentsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1188,6 +1217,7 @@ export type TbItemUpdateWithoutBom_parentsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutBom_parentsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1232,6 +1262,7 @@ export type TbItemUpdateToOneWithWhereWithoutBom_childrenInput = {
 }
 
 export type TbItemUpdateWithoutBom_childrenInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1265,6 +1296,7 @@ export type TbItemUpdateWithoutBom_childrenInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutBom_childrenInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1309,6 +1341,7 @@ export type TbItemUpdateToOneWithWhereWithoutBom_altsInput = {
 }
 
 export type TbItemUpdateWithoutBom_altsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1342,6 +1375,7 @@ export type TbItemUpdateWithoutBom_altsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutBom_altsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1375,6 +1409,7 @@ export type TbItemUncheckedUpdateWithoutBom_altsInput = {
 }
 
 export type TbItemCreateWithoutRoutingsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1408,6 +1443,7 @@ export type TbItemCreateWithoutRoutingsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutRoutingsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1457,6 +1493,7 @@ export type TbItemUpdateToOneWithWhereWithoutRoutingsInput = {
 }
 
 export type TbItemUpdateWithoutRoutingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1490,6 +1527,7 @@ export type TbItemUpdateWithoutRoutingsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutRoutingsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1523,6 +1561,7 @@ export type TbItemUncheckedUpdateWithoutRoutingsInput = {
 }
 
 export type TbItemCreateWithoutMoldsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1556,6 +1595,7 @@ export type TbItemCreateWithoutMoldsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutMoldsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1605,6 +1645,7 @@ export type TbItemUpdateToOneWithWhereWithoutMoldsInput = {
 }
 
 export type TbItemUpdateWithoutMoldsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1638,6 +1679,7 @@ export type TbItemUpdateWithoutMoldsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutMoldsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1671,6 +1713,7 @@ export type TbItemUncheckedUpdateWithoutMoldsInput = {
 }
 
 export type TbItemCreateWithoutInspect_stdsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1704,6 +1747,7 @@ export type TbItemCreateWithoutInspect_stdsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutInspect_stdsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1753,6 +1797,7 @@ export type TbItemUpdateToOneWithWhereWithoutInspect_stdsInput = {
 }
 
 export type TbItemUpdateWithoutInspect_stdsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1786,6 +1831,7 @@ export type TbItemUpdateWithoutInspect_stdsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutInspect_stdsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1819,6 +1865,7 @@ export type TbItemUncheckedUpdateWithoutInspect_stdsInput = {
 }
 
 export type TbItemCreateWithoutDemandsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1852,6 +1899,7 @@ export type TbItemCreateWithoutDemandsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutDemandsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -1901,6 +1949,7 @@ export type TbItemUpdateToOneWithWhereWithoutDemandsInput = {
 }
 
 export type TbItemUpdateWithoutDemandsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1934,6 +1983,7 @@ export type TbItemUpdateWithoutDemandsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutDemandsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1967,6 +2017,7 @@ export type TbItemUncheckedUpdateWithoutDemandsInput = {
 }
 
 export type TbItemCreateWithoutProd_plansInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2000,6 +2051,7 @@ export type TbItemCreateWithoutProd_plansInput = {
 }
 
 export type TbItemUncheckedCreateWithoutProd_plansInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2049,6 +2101,7 @@ export type TbItemUpdateToOneWithWhereWithoutProd_plansInput = {
 }
 
 export type TbItemUpdateWithoutProd_plansInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2082,6 +2135,7 @@ export type TbItemUpdateWithoutProd_plansInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutProd_plansInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2115,6 +2169,7 @@ export type TbItemUncheckedUpdateWithoutProd_plansInput = {
 }
 
 export type TbItemCreateWithoutWork_ordersInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2148,6 +2203,7 @@ export type TbItemCreateWithoutWork_ordersInput = {
 }
 
 export type TbItemUncheckedCreateWithoutWork_ordersInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2197,6 +2253,7 @@ export type TbItemUpdateToOneWithWhereWithoutWork_ordersInput = {
 }
 
 export type TbItemUpdateWithoutWork_ordersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2230,6 +2287,7 @@ export type TbItemUpdateWithoutWork_ordersInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutWork_ordersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2263,6 +2321,7 @@ export type TbItemUncheckedUpdateWithoutWork_ordersInput = {
 }
 
 export type TbItemCreateWithoutLotsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2296,6 +2355,7 @@ export type TbItemCreateWithoutLotsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutLotsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2345,6 +2405,7 @@ export type TbItemUpdateToOneWithWhereWithoutLotsInput = {
 }
 
 export type TbItemUpdateWithoutLotsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2378,6 +2439,7 @@ export type TbItemUpdateWithoutLotsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutLotsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2411,6 +2473,7 @@ export type TbItemUncheckedUpdateWithoutLotsInput = {
 }
 
 export type TbItemCreateWithoutMaterial_inputsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2444,6 +2507,7 @@ export type TbItemCreateWithoutMaterial_inputsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutMaterial_inputsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2493,6 +2557,7 @@ export type TbItemUpdateToOneWithWhereWithoutMaterial_inputsInput = {
 }
 
 export type TbItemUpdateWithoutMaterial_inputsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2526,6 +2591,7 @@ export type TbItemUpdateWithoutMaterial_inputsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutMaterial_inputsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2559,6 +2625,7 @@ export type TbItemUncheckedUpdateWithoutMaterial_inputsInput = {
 }
 
 export type TbItemCreateWithoutMaterial_issue_dtlsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2592,6 +2659,7 @@ export type TbItemCreateWithoutMaterial_issue_dtlsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutMaterial_issue_dtlsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2641,6 +2709,7 @@ export type TbItemUpdateToOneWithWhereWithoutMaterial_issue_dtlsInput = {
 }
 
 export type TbItemUpdateWithoutMaterial_issue_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2674,6 +2743,7 @@ export type TbItemUpdateWithoutMaterial_issue_dtlsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutMaterial_issue_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2707,6 +2777,7 @@ export type TbItemUncheckedUpdateWithoutMaterial_issue_dtlsInput = {
 }
 
 export type TbItemCreateWithoutInspect_resultsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2740,6 +2811,7 @@ export type TbItemCreateWithoutInspect_resultsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutInspect_resultsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2789,6 +2861,7 @@ export type TbItemUpdateToOneWithWhereWithoutInspect_resultsInput = {
 }
 
 export type TbItemUpdateWithoutInspect_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2822,6 +2895,7 @@ export type TbItemUpdateWithoutInspect_resultsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutInspect_resultsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2855,6 +2929,7 @@ export type TbItemUncheckedUpdateWithoutInspect_resultsInput = {
 }
 
 export type TbItemCreateWithoutDefectsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2888,6 +2963,7 @@ export type TbItemCreateWithoutDefectsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutDefectsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -2937,6 +3013,7 @@ export type TbItemUpdateToOneWithWhereWithoutDefectsInput = {
 }
 
 export type TbItemUpdateWithoutDefectsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2970,6 +3047,7 @@ export type TbItemUpdateWithoutDefectsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutDefectsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3003,6 +3081,7 @@ export type TbItemUncheckedUpdateWithoutDefectsInput = {
 }
 
 export type TbItemCreateWithoutInventoriesInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3036,6 +3115,7 @@ export type TbItemCreateWithoutInventoriesInput = {
 }
 
 export type TbItemUncheckedCreateWithoutInventoriesInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3085,6 +3165,7 @@ export type TbItemUpdateToOneWithWhereWithoutInventoriesInput = {
 }
 
 export type TbItemUpdateWithoutInventoriesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3118,6 +3199,7 @@ export type TbItemUpdateWithoutInventoriesInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutInventoriesInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3151,6 +3233,7 @@ export type TbItemUncheckedUpdateWithoutInventoriesInput = {
 }
 
 export type TbItemCreateWithoutInventory_txsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3184,6 +3267,7 @@ export type TbItemCreateWithoutInventory_txsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutInventory_txsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3233,6 +3317,7 @@ export type TbItemUpdateToOneWithWhereWithoutInventory_txsInput = {
 }
 
 export type TbItemUpdateWithoutInventory_txsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3266,6 +3351,7 @@ export type TbItemUpdateWithoutInventory_txsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutInventory_txsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3299,6 +3385,7 @@ export type TbItemUncheckedUpdateWithoutInventory_txsInput = {
 }
 
 export type TbItemCreateWithoutInventory_adjustsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3332,6 +3419,7 @@ export type TbItemCreateWithoutInventory_adjustsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutInventory_adjustsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3381,6 +3469,7 @@ export type TbItemUpdateToOneWithWhereWithoutInventory_adjustsInput = {
 }
 
 export type TbItemUpdateWithoutInventory_adjustsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3414,6 +3503,7 @@ export type TbItemUpdateWithoutInventory_adjustsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutInventory_adjustsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3447,6 +3537,7 @@ export type TbItemUncheckedUpdateWithoutInventory_adjustsInput = {
 }
 
 export type TbItemCreateWithoutShipment_dtlsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3480,6 +3571,7 @@ export type TbItemCreateWithoutShipment_dtlsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutShipment_dtlsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3529,6 +3621,7 @@ export type TbItemUpdateToOneWithWhereWithoutShipment_dtlsInput = {
 }
 
 export type TbItemUpdateWithoutShipment_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3562,6 +3655,7 @@ export type TbItemUpdateWithoutShipment_dtlsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutShipment_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3595,6 +3689,7 @@ export type TbItemUncheckedUpdateWithoutShipment_dtlsInput = {
 }
 
 export type TbItemCreateWithoutIncoming_dtlsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3628,6 +3723,7 @@ export type TbItemCreateWithoutIncoming_dtlsInput = {
 }
 
 export type TbItemUncheckedCreateWithoutIncoming_dtlsInput = {
+  company_cd?: string
   item_cd: string
   item_nm: string
   item_type: string
@@ -3677,6 +3773,7 @@ export type TbItemUpdateToOneWithWhereWithoutIncoming_dtlsInput = {
 }
 
 export type TbItemUpdateWithoutIncoming_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3710,6 +3807,7 @@ export type TbItemUpdateWithoutIncoming_dtlsInput = {
 }
 
 export type TbItemUncheckedUpdateWithoutIncoming_dtlsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   item_nm?: Prisma.StringFieldUpdateOperationsInput | string
   item_type?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3936,6 +4034,7 @@ export type TbItemCountOutputTypeCountDemandsArgs<ExtArgs extends runtime.Types.
 
 
 export type TbItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   item_cd?: boolean
   item_nm?: boolean
   item_type?: boolean
@@ -3971,6 +4070,7 @@ export type TbItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 }, ExtArgs["result"]["tbItem"]>
 
 export type TbItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   item_cd?: boolean
   item_nm?: boolean
   item_type?: boolean
@@ -3986,6 +4086,7 @@ export type TbItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 }, ExtArgs["result"]["tbItem"]>
 
 export type TbItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   item_cd?: boolean
   item_nm?: boolean
   item_type?: boolean
@@ -4001,6 +4102,7 @@ export type TbItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 }, ExtArgs["result"]["tbItem"]>
 
 export type TbItemSelectScalar = {
+  company_cd?: boolean
   item_cd?: boolean
   item_nm?: boolean
   item_type?: boolean
@@ -4015,7 +4117,7 @@ export type TbItemSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"item_cd" | "item_nm" | "item_type" | "unit_cd" | "spec" | "drawing_no" | "safety_stock" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbItem"]>
+export type TbItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "item_cd" | "item_nm" | "item_type" | "unit_cd" | "spec" | "drawing_no" | "safety_stock" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbItem"]>
 export type TbItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bom_parents?: boolean | Prisma.TbItem$bom_parentsArgs<ExtArgs>
   bom_children?: boolean | Prisma.TbItem$bom_childrenArgs<ExtArgs>
@@ -4065,6 +4167,7 @@ export type $TbItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     demands: Prisma.$TbDemandPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     item_cd: string
     item_nm: string
     item_type: string
@@ -4160,8 +4263,8 @@ export interface TbItemDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * // Get first 10 TbItems
    * const tbItems = await prisma.tbItem.findMany({ take: 10 })
    * 
-   * // Only select the `item_cd`
-   * const tbItemWithItem_cdOnly = await prisma.tbItem.findMany({ select: { item_cd: true } })
+   * // Only select the `company_cd`
+   * const tbItemWithCompany_cdOnly = await prisma.tbItem.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbItemFindManyArgs>(args?: Prisma.SelectSubset<T, TbItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -4205,9 +4308,9 @@ export interface TbItemDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Create many TbItems and only return the `item_cd`
-   * const tbItemWithItem_cdOnly = await prisma.tbItem.createManyAndReturn({
-   *   select: { item_cd: true },
+   * // Create many TbItems and only return the `company_cd`
+   * const tbItemWithCompany_cdOnly = await prisma.tbItem.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -4296,9 +4399,9 @@ export interface TbItemDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Update zero or more TbItems and only return the `item_cd`
-   * const tbItemWithItem_cdOnly = await prisma.tbItem.updateManyAndReturn({
-   *   select: { item_cd: true },
+   * // Update zero or more TbItems and only return the `company_cd`
+   * const tbItemWithCompany_cdOnly = await prisma.tbItem.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -4519,6 +4622,7 @@ export interface Prisma__TbItemClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the TbItem model
  */
 export interface TbItemFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbItem", 'String'>
   readonly item_cd: Prisma.FieldRef<"TbItem", 'String'>
   readonly item_nm: Prisma.FieldRef<"TbItem", 'String'>
   readonly item_type: Prisma.FieldRef<"TbItem", 'String'>

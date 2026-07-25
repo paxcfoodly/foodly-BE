@@ -37,6 +37,7 @@ export type TbMaterialIssueSumAggregateOutputType = {
 }
 
 export type TbMaterialIssueMinAggregateOutputType = {
+  company_cd: string | null
   issue_id: number | null
   issue_no: string | null
   wo_id: number | null
@@ -48,6 +49,7 @@ export type TbMaterialIssueMinAggregateOutputType = {
 }
 
 export type TbMaterialIssueMaxAggregateOutputType = {
+  company_cd: string | null
   issue_id: number | null
   issue_no: string | null
   wo_id: number | null
@@ -59,6 +61,7 @@ export type TbMaterialIssueMaxAggregateOutputType = {
 }
 
 export type TbMaterialIssueCountAggregateOutputType = {
+  company_cd: number
   issue_id: number
   issue_no: number
   wo_id: number
@@ -82,6 +85,7 @@ export type TbMaterialIssueSumAggregateInputType = {
 }
 
 export type TbMaterialIssueMinAggregateInputType = {
+  company_cd?: true
   issue_id?: true
   issue_no?: true
   wo_id?: true
@@ -93,6 +97,7 @@ export type TbMaterialIssueMinAggregateInputType = {
 }
 
 export type TbMaterialIssueMaxAggregateInputType = {
+  company_cd?: true
   issue_id?: true
   issue_no?: true
   wo_id?: true
@@ -104,6 +109,7 @@ export type TbMaterialIssueMaxAggregateInputType = {
 }
 
 export type TbMaterialIssueCountAggregateInputType = {
+  company_cd?: true
   issue_id?: true
   issue_no?: true
   wo_id?: true
@@ -202,6 +208,7 @@ export type TbMaterialIssueGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 export type TbMaterialIssueGroupByOutputType = {
+  company_cd: string
   issue_id: number
   issue_no: string
   wo_id: number | null
@@ -236,6 +243,7 @@ export type TbMaterialIssueWhereInput = {
   AND?: Prisma.TbMaterialIssueWhereInput | Prisma.TbMaterialIssueWhereInput[]
   OR?: Prisma.TbMaterialIssueWhereInput[]
   NOT?: Prisma.TbMaterialIssueWhereInput | Prisma.TbMaterialIssueWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaterialIssue"> | string
   issue_id?: Prisma.IntFilter<"TbMaterialIssue"> | number
   issue_no?: Prisma.StringFilter<"TbMaterialIssue"> | string
   wo_id?: Prisma.IntNullableFilter<"TbMaterialIssue"> | number | null
@@ -249,6 +257,7 @@ export type TbMaterialIssueWhereInput = {
 }
 
 export type TbMaterialIssueOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   issue_id?: Prisma.SortOrder
   issue_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -263,10 +272,12 @@ export type TbMaterialIssueOrderByWithRelationInput = {
 
 export type TbMaterialIssueWhereUniqueInput = Prisma.AtLeast<{
   issue_id?: number
-  issue_no?: string
+  company_cd_issue_no?: Prisma.TbMaterialIssueCompany_cdIssue_noCompoundUniqueInput
   AND?: Prisma.TbMaterialIssueWhereInput | Prisma.TbMaterialIssueWhereInput[]
   OR?: Prisma.TbMaterialIssueWhereInput[]
   NOT?: Prisma.TbMaterialIssueWhereInput | Prisma.TbMaterialIssueWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaterialIssue"> | string
+  issue_no?: Prisma.StringFilter<"TbMaterialIssue"> | string
   wo_id?: Prisma.IntNullableFilter<"TbMaterialIssue"> | number | null
   status?: Prisma.StringFilter<"TbMaterialIssue"> | string
   create_by?: Prisma.StringNullableFilter<"TbMaterialIssue"> | string | null
@@ -275,9 +286,10 @@ export type TbMaterialIssueWhereUniqueInput = Prisma.AtLeast<{
   update_dt?: Prisma.DateTimeFilter<"TbMaterialIssue"> | Date | string
   work_order?: Prisma.XOR<Prisma.TbWorkOrderNullableScalarRelationFilter, Prisma.TbWorkOrderWhereInput> | null
   details?: Prisma.TbMaterialIssueDtlListRelationFilter
-}, "issue_id" | "issue_no">
+}, "issue_id" | "company_cd_issue_no">
 
 export type TbMaterialIssueOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   issue_id?: Prisma.SortOrder
   issue_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -297,6 +309,7 @@ export type TbMaterialIssueScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbMaterialIssueScalarWhereWithAggregatesInput | Prisma.TbMaterialIssueScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbMaterialIssueScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbMaterialIssueScalarWhereWithAggregatesInput | Prisma.TbMaterialIssueScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbMaterialIssue"> | string
   issue_id?: Prisma.IntWithAggregatesFilter<"TbMaterialIssue"> | number
   issue_no?: Prisma.StringWithAggregatesFilter<"TbMaterialIssue"> | string
   wo_id?: Prisma.IntNullableWithAggregatesFilter<"TbMaterialIssue"> | number | null
@@ -308,6 +321,7 @@ export type TbMaterialIssueScalarWhereWithAggregatesInput = {
 }
 
 export type TbMaterialIssueCreateInput = {
+  company_cd?: string
   issue_no: string
   status?: string
   create_by?: string | null
@@ -319,6 +333,7 @@ export type TbMaterialIssueCreateInput = {
 }
 
 export type TbMaterialIssueUncheckedCreateInput = {
+  company_cd?: string
   issue_id?: number
   issue_no: string
   wo_id?: number | null
@@ -331,6 +346,7 @@ export type TbMaterialIssueUncheckedCreateInput = {
 }
 
 export type TbMaterialIssueUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -342,6 +358,7 @@ export type TbMaterialIssueUpdateInput = {
 }
 
 export type TbMaterialIssueUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_id?: Prisma.IntFieldUpdateOperationsInput | number
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -354,6 +371,7 @@ export type TbMaterialIssueUncheckedUpdateInput = {
 }
 
 export type TbMaterialIssueCreateManyInput = {
+  company_cd?: string
   issue_id?: number
   issue_no: string
   wo_id?: number | null
@@ -365,6 +383,7 @@ export type TbMaterialIssueCreateManyInput = {
 }
 
 export type TbMaterialIssueUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -374,6 +393,7 @@ export type TbMaterialIssueUpdateManyMutationInput = {
 }
 
 export type TbMaterialIssueUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_id?: Prisma.IntFieldUpdateOperationsInput | number
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -394,7 +414,13 @@ export type TbMaterialIssueOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type TbMaterialIssueCompany_cdIssue_noCompoundUniqueInput = {
+  company_cd: string
+  issue_no: string
+}
+
 export type TbMaterialIssueCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   issue_id?: Prisma.SortOrder
   issue_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
@@ -411,6 +437,7 @@ export type TbMaterialIssueAvgOrderByAggregateInput = {
 }
 
 export type TbMaterialIssueMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   issue_id?: Prisma.SortOrder
   issue_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
@@ -422,6 +449,7 @@ export type TbMaterialIssueMaxOrderByAggregateInput = {
 }
 
 export type TbMaterialIssueMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   issue_id?: Prisma.SortOrder
   issue_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
@@ -499,6 +527,7 @@ export type TbMaterialIssueUpdateOneRequiredWithoutDetailsNestedInput = {
 }
 
 export type TbMaterialIssueCreateWithoutWork_orderInput = {
+  company_cd?: string
   issue_no: string
   status?: string
   create_by?: string | null
@@ -509,6 +538,7 @@ export type TbMaterialIssueCreateWithoutWork_orderInput = {
 }
 
 export type TbMaterialIssueUncheckedCreateWithoutWork_orderInput = {
+  company_cd?: string
   issue_id?: number
   issue_no: string
   status?: string
@@ -549,6 +579,7 @@ export type TbMaterialIssueScalarWhereInput = {
   AND?: Prisma.TbMaterialIssueScalarWhereInput | Prisma.TbMaterialIssueScalarWhereInput[]
   OR?: Prisma.TbMaterialIssueScalarWhereInput[]
   NOT?: Prisma.TbMaterialIssueScalarWhereInput | Prisma.TbMaterialIssueScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbMaterialIssue"> | string
   issue_id?: Prisma.IntFilter<"TbMaterialIssue"> | number
   issue_no?: Prisma.StringFilter<"TbMaterialIssue"> | string
   wo_id?: Prisma.IntNullableFilter<"TbMaterialIssue"> | number | null
@@ -560,6 +591,7 @@ export type TbMaterialIssueScalarWhereInput = {
 }
 
 export type TbMaterialIssueCreateWithoutDetailsInput = {
+  company_cd?: string
   issue_no: string
   status?: string
   create_by?: string | null
@@ -570,6 +602,7 @@ export type TbMaterialIssueCreateWithoutDetailsInput = {
 }
 
 export type TbMaterialIssueUncheckedCreateWithoutDetailsInput = {
+  company_cd?: string
   issue_id?: number
   issue_no: string
   wo_id?: number | null
@@ -597,6 +630,7 @@ export type TbMaterialIssueUpdateToOneWithWhereWithoutDetailsInput = {
 }
 
 export type TbMaterialIssueUpdateWithoutDetailsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -607,6 +641,7 @@ export type TbMaterialIssueUpdateWithoutDetailsInput = {
 }
 
 export type TbMaterialIssueUncheckedUpdateWithoutDetailsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_id?: Prisma.IntFieldUpdateOperationsInput | number
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -618,6 +653,7 @@ export type TbMaterialIssueUncheckedUpdateWithoutDetailsInput = {
 }
 
 export type TbMaterialIssueCreateManyWork_orderInput = {
+  company_cd?: string
   issue_id?: number
   issue_no: string
   status?: string
@@ -628,6 +664,7 @@ export type TbMaterialIssueCreateManyWork_orderInput = {
 }
 
 export type TbMaterialIssueUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -638,6 +675,7 @@ export type TbMaterialIssueUpdateWithoutWork_orderInput = {
 }
 
 export type TbMaterialIssueUncheckedUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_id?: Prisma.IntFieldUpdateOperationsInput | number
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -649,6 +687,7 @@ export type TbMaterialIssueUncheckedUpdateWithoutWork_orderInput = {
 }
 
 export type TbMaterialIssueUncheckedUpdateManyWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   issue_id?: Prisma.IntFieldUpdateOperationsInput | number
   issue_no?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -690,6 +729,7 @@ export type TbMaterialIssueCountOutputTypeCountDetailsArgs<ExtArgs extends runti
 
 
 export type TbMaterialIssueSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   issue_id?: boolean
   issue_no?: boolean
   wo_id?: boolean
@@ -704,6 +744,7 @@ export type TbMaterialIssueSelect<ExtArgs extends runtime.Types.Extensions.Inter
 }, ExtArgs["result"]["tbMaterialIssue"]>
 
 export type TbMaterialIssueSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   issue_id?: boolean
   issue_no?: boolean
   wo_id?: boolean
@@ -716,6 +757,7 @@ export type TbMaterialIssueSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
 }, ExtArgs["result"]["tbMaterialIssue"]>
 
 export type TbMaterialIssueSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   issue_id?: boolean
   issue_no?: boolean
   wo_id?: boolean
@@ -728,6 +770,7 @@ export type TbMaterialIssueSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
 }, ExtArgs["result"]["tbMaterialIssue"]>
 
 export type TbMaterialIssueSelectScalar = {
+  company_cd?: boolean
   issue_id?: boolean
   issue_no?: boolean
   wo_id?: boolean
@@ -738,7 +781,7 @@ export type TbMaterialIssueSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbMaterialIssueOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"issue_id" | "issue_no" | "wo_id" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMaterialIssue"]>
+export type TbMaterialIssueOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "issue_id" | "issue_no" | "wo_id" | "status" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbMaterialIssue"]>
 export type TbMaterialIssueInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   work_order?: boolean | Prisma.TbMaterialIssue$work_orderArgs<ExtArgs>
   details?: boolean | Prisma.TbMaterialIssue$detailsArgs<ExtArgs>
@@ -758,6 +801,7 @@ export type $TbMaterialIssuePayload<ExtArgs extends runtime.Types.Extensions.Int
     details: Prisma.$TbMaterialIssueDtlPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     issue_id: number
     issue_no: string
     wo_id: number | null
@@ -849,8 +893,8 @@ export interface TbMaterialIssueDelegate<ExtArgs extends runtime.Types.Extension
    * // Get first 10 TbMaterialIssues
    * const tbMaterialIssues = await prisma.tbMaterialIssue.findMany({ take: 10 })
    * 
-   * // Only select the `issue_id`
-   * const tbMaterialIssueWithIssue_idOnly = await prisma.tbMaterialIssue.findMany({ select: { issue_id: true } })
+   * // Only select the `company_cd`
+   * const tbMaterialIssueWithCompany_cdOnly = await prisma.tbMaterialIssue.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbMaterialIssueFindManyArgs>(args?: Prisma.SelectSubset<T, TbMaterialIssueFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbMaterialIssuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -894,9 +938,9 @@ export interface TbMaterialIssueDelegate<ExtArgs extends runtime.Types.Extension
    *   ]
    * })
    * 
-   * // Create many TbMaterialIssues and only return the `issue_id`
-   * const tbMaterialIssueWithIssue_idOnly = await prisma.tbMaterialIssue.createManyAndReturn({
-   *   select: { issue_id: true },
+   * // Create many TbMaterialIssues and only return the `company_cd`
+   * const tbMaterialIssueWithCompany_cdOnly = await prisma.tbMaterialIssue.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -985,9 +1029,9 @@ export interface TbMaterialIssueDelegate<ExtArgs extends runtime.Types.Extension
    *   ]
    * })
    * 
-   * // Update zero or more TbMaterialIssues and only return the `issue_id`
-   * const tbMaterialIssueWithIssue_idOnly = await prisma.tbMaterialIssue.updateManyAndReturn({
-   *   select: { issue_id: true },
+   * // Update zero or more TbMaterialIssues and only return the `company_cd`
+   * const tbMaterialIssueWithCompany_cdOnly = await prisma.tbMaterialIssue.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1191,6 +1235,7 @@ export interface Prisma__TbMaterialIssueClient<T, Null = never, ExtArgs extends 
  * Fields of the TbMaterialIssue model
  */
 export interface TbMaterialIssueFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbMaterialIssue", 'String'>
   readonly issue_id: Prisma.FieldRef<"TbMaterialIssue", 'Int'>
   readonly issue_no: Prisma.FieldRef<"TbMaterialIssue", 'String'>
   readonly wo_id: Prisma.FieldRef<"TbMaterialIssue", 'Int'>

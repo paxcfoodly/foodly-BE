@@ -41,6 +41,7 @@ export type TbProdPlanSumAggregateOutputType = {
 }
 
 export type TbProdPlanMinAggregateOutputType = {
+  company_cd: string | null
   plan_id: number | null
   plan_no: string | null
   plant_cd: string | null
@@ -57,6 +58,7 @@ export type TbProdPlanMinAggregateOutputType = {
 }
 
 export type TbProdPlanMaxAggregateOutputType = {
+  company_cd: string | null
   plan_id: number | null
   plan_no: string | null
   plant_cd: string | null
@@ -73,6 +75,7 @@ export type TbProdPlanMaxAggregateOutputType = {
 }
 
 export type TbProdPlanCountAggregateOutputType = {
+  company_cd: number
   plan_id: number
   plan_no: number
   plant_cd: number
@@ -105,6 +108,7 @@ export type TbProdPlanSumAggregateInputType = {
 }
 
 export type TbProdPlanMinAggregateInputType = {
+  company_cd?: true
   plan_id?: true
   plan_no?: true
   plant_cd?: true
@@ -121,6 +125,7 @@ export type TbProdPlanMinAggregateInputType = {
 }
 
 export type TbProdPlanMaxAggregateInputType = {
+  company_cd?: true
   plan_id?: true
   plan_no?: true
   plant_cd?: true
@@ -137,6 +142,7 @@ export type TbProdPlanMaxAggregateInputType = {
 }
 
 export type TbProdPlanCountAggregateInputType = {
+  company_cd?: true
   plan_id?: true
   plan_no?: true
   plant_cd?: true
@@ -240,6 +246,7 @@ export type TbProdPlanGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type TbProdPlanGroupByOutputType = {
+  company_cd: string
   plan_id: number
   plan_no: string
   plant_cd: string
@@ -279,6 +286,7 @@ export type TbProdPlanWhereInput = {
   AND?: Prisma.TbProdPlanWhereInput | Prisma.TbProdPlanWhereInput[]
   OR?: Prisma.TbProdPlanWhereInput[]
   NOT?: Prisma.TbProdPlanWhereInput | Prisma.TbProdPlanWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProdPlan"> | string
   plan_id?: Prisma.IntFilter<"TbProdPlan"> | number
   plan_no?: Prisma.StringFilter<"TbProdPlan"> | string
   plant_cd?: Prisma.StringFilter<"TbProdPlan"> | string
@@ -299,6 +307,7 @@ export type TbProdPlanWhereInput = {
 }
 
 export type TbProdPlanOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   plan_id?: Prisma.SortOrder
   plan_no?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
@@ -320,11 +329,13 @@ export type TbProdPlanOrderByWithRelationInput = {
 
 export type TbProdPlanWhereUniqueInput = Prisma.AtLeast<{
   plan_id?: number
-  plan_no?: string
   demand_id?: number
+  company_cd_plan_no?: Prisma.TbProdPlanCompany_cdPlan_noCompoundUniqueInput
   AND?: Prisma.TbProdPlanWhereInput | Prisma.TbProdPlanWhereInput[]
   OR?: Prisma.TbProdPlanWhereInput[]
   NOT?: Prisma.TbProdPlanWhereInput | Prisma.TbProdPlanWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProdPlan"> | string
+  plan_no?: Prisma.StringFilter<"TbProdPlan"> | string
   plant_cd?: Prisma.StringFilter<"TbProdPlan"> | string
   item_cd?: Prisma.StringFilter<"TbProdPlan"> | string
   plan_qty?: Prisma.DecimalFilter<"TbProdPlan"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -339,9 +350,10 @@ export type TbProdPlanWhereUniqueInput = Prisma.AtLeast<{
   item?: Prisma.XOR<Prisma.TbItemScalarRelationFilter, Prisma.TbItemWhereInput>
   demand?: Prisma.XOR<Prisma.TbDemandNullableScalarRelationFilter, Prisma.TbDemandWhereInput> | null
   work_orders?: Prisma.TbWorkOrderListRelationFilter
-}, "plan_id" | "plan_no" | "demand_id">
+}, "plan_id" | "demand_id" | "company_cd_plan_no">
 
 export type TbProdPlanOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   plan_id?: Prisma.SortOrder
   plan_no?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
@@ -366,6 +378,7 @@ export type TbProdPlanScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbProdPlanScalarWhereWithAggregatesInput | Prisma.TbProdPlanScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbProdPlanScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbProdPlanScalarWhereWithAggregatesInput | Prisma.TbProdPlanScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbProdPlan"> | string
   plan_id?: Prisma.IntWithAggregatesFilter<"TbProdPlan"> | number
   plan_no?: Prisma.StringWithAggregatesFilter<"TbProdPlan"> | string
   plant_cd?: Prisma.StringWithAggregatesFilter<"TbProdPlan"> | string
@@ -382,6 +395,7 @@ export type TbProdPlanScalarWhereWithAggregatesInput = {
 }
 
 export type TbProdPlanCreateInput = {
+  company_cd?: string
   plan_no: string
   plan_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date: Date | string
@@ -398,6 +412,7 @@ export type TbProdPlanCreateInput = {
 }
 
 export type TbProdPlanUncheckedCreateInput = {
+  company_cd?: string
   plan_id?: number
   plan_no: string
   plant_cd: string
@@ -415,6 +430,7 @@ export type TbProdPlanUncheckedCreateInput = {
 }
 
 export type TbProdPlanUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -431,6 +447,7 @@ export type TbProdPlanUpdateInput = {
 }
 
 export type TbProdPlanUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -448,6 +465,7 @@ export type TbProdPlanUncheckedUpdateInput = {
 }
 
 export type TbProdPlanCreateManyInput = {
+  company_cd?: string
   plan_id?: number
   plan_no: string
   plant_cd: string
@@ -464,6 +482,7 @@ export type TbProdPlanCreateManyInput = {
 }
 
 export type TbProdPlanUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -476,6 +495,7 @@ export type TbProdPlanUpdateManyMutationInput = {
 }
 
 export type TbProdPlanUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -506,7 +526,13 @@ export type TbProdPlanNullableScalarRelationFilter = {
   isNot?: Prisma.TbProdPlanWhereInput | null
 }
 
+export type TbProdPlanCompany_cdPlan_noCompoundUniqueInput = {
+  company_cd: string
+  plan_no: string
+}
+
 export type TbProdPlanCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   plan_id?: Prisma.SortOrder
   plan_no?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
@@ -530,6 +556,7 @@ export type TbProdPlanAvgOrderByAggregateInput = {
 }
 
 export type TbProdPlanMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   plan_id?: Prisma.SortOrder
   plan_no?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
@@ -546,6 +573,7 @@ export type TbProdPlanMaxOrderByAggregateInput = {
 }
 
 export type TbProdPlanMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   plan_id?: Prisma.SortOrder
   plan_no?: Prisma.SortOrder
   plant_cd?: Prisma.SortOrder
@@ -701,6 +729,7 @@ export type TbProdPlanUpdateOneWithoutWork_ordersNestedInput = {
 }
 
 export type TbProdPlanCreateWithoutPlantInput = {
+  company_cd?: string
   plan_no: string
   plan_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date: Date | string
@@ -716,6 +745,7 @@ export type TbProdPlanCreateWithoutPlantInput = {
 }
 
 export type TbProdPlanUncheckedCreateWithoutPlantInput = {
+  company_cd?: string
   plan_id?: number
   plan_no: string
   item_cd: string
@@ -761,6 +791,7 @@ export type TbProdPlanScalarWhereInput = {
   AND?: Prisma.TbProdPlanScalarWhereInput | Prisma.TbProdPlanScalarWhereInput[]
   OR?: Prisma.TbProdPlanScalarWhereInput[]
   NOT?: Prisma.TbProdPlanScalarWhereInput | Prisma.TbProdPlanScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbProdPlan"> | string
   plan_id?: Prisma.IntFilter<"TbProdPlan"> | number
   plan_no?: Prisma.StringFilter<"TbProdPlan"> | string
   plant_cd?: Prisma.StringFilter<"TbProdPlan"> | string
@@ -777,6 +808,7 @@ export type TbProdPlanScalarWhereInput = {
 }
 
 export type TbProdPlanCreateWithoutItemInput = {
+  company_cd?: string
   plan_no: string
   plan_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date: Date | string
@@ -792,6 +824,7 @@ export type TbProdPlanCreateWithoutItemInput = {
 }
 
 export type TbProdPlanUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   plan_id?: number
   plan_no: string
   plant_cd: string
@@ -834,6 +867,7 @@ export type TbProdPlanUpdateManyWithWhereWithoutItemInput = {
 }
 
 export type TbProdPlanCreateWithoutDemandInput = {
+  company_cd?: string
   plan_no: string
   plan_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date: Date | string
@@ -849,6 +883,7 @@ export type TbProdPlanCreateWithoutDemandInput = {
 }
 
 export type TbProdPlanUncheckedCreateWithoutDemandInput = {
+  company_cd?: string
   plan_id?: number
   plan_no: string
   plant_cd: string
@@ -881,6 +916,7 @@ export type TbProdPlanUpdateToOneWithWhereWithoutDemandInput = {
 }
 
 export type TbProdPlanUpdateWithoutDemandInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -896,6 +932,7 @@ export type TbProdPlanUpdateWithoutDemandInput = {
 }
 
 export type TbProdPlanUncheckedUpdateWithoutDemandInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -912,6 +949,7 @@ export type TbProdPlanUncheckedUpdateWithoutDemandInput = {
 }
 
 export type TbProdPlanCreateWithoutWork_ordersInput = {
+  company_cd?: string
   plan_no: string
   plan_qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date: Date | string
@@ -927,6 +965,7 @@ export type TbProdPlanCreateWithoutWork_ordersInput = {
 }
 
 export type TbProdPlanUncheckedCreateWithoutWork_ordersInput = {
+  company_cd?: string
   plan_id?: number
   plan_no: string
   plant_cd: string
@@ -959,6 +998,7 @@ export type TbProdPlanUpdateToOneWithWhereWithoutWork_ordersInput = {
 }
 
 export type TbProdPlanUpdateWithoutWork_ordersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -974,6 +1014,7 @@ export type TbProdPlanUpdateWithoutWork_ordersInput = {
 }
 
 export type TbProdPlanUncheckedUpdateWithoutWork_ordersInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -990,6 +1031,7 @@ export type TbProdPlanUncheckedUpdateWithoutWork_ordersInput = {
 }
 
 export type TbProdPlanCreateManyPlantInput = {
+  company_cd?: string
   plan_id?: number
   plan_no: string
   item_cd: string
@@ -1005,6 +1047,7 @@ export type TbProdPlanCreateManyPlantInput = {
 }
 
 export type TbProdPlanUpdateWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1020,6 +1063,7 @@ export type TbProdPlanUpdateWithoutPlantInput = {
 }
 
 export type TbProdPlanUncheckedUpdateWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1036,6 +1080,7 @@ export type TbProdPlanUncheckedUpdateWithoutPlantInput = {
 }
 
 export type TbProdPlanUncheckedUpdateManyWithoutPlantInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1051,6 +1096,7 @@ export type TbProdPlanUncheckedUpdateManyWithoutPlantInput = {
 }
 
 export type TbProdPlanCreateManyItemInput = {
+  company_cd?: string
   plan_id?: number
   plan_no: string
   plant_cd: string
@@ -1066,6 +1112,7 @@ export type TbProdPlanCreateManyItemInput = {
 }
 
 export type TbProdPlanUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plan_qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1081,6 +1128,7 @@ export type TbProdPlanUpdateWithoutItemInput = {
 }
 
 export type TbProdPlanUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1097,6 +1145,7 @@ export type TbProdPlanUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbProdPlanUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   plan_id?: Prisma.IntFieldUpdateOperationsInput | number
   plan_no?: Prisma.StringFieldUpdateOperationsInput | string
   plant_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1143,6 +1192,7 @@ export type TbProdPlanCountOutputTypeCountWork_ordersArgs<ExtArgs extends runtim
 
 
 export type TbProdPlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   plan_id?: boolean
   plan_no?: boolean
   plant_cd?: boolean
@@ -1164,6 +1214,7 @@ export type TbProdPlanSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 }, ExtArgs["result"]["tbProdPlan"]>
 
 export type TbProdPlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   plan_id?: boolean
   plan_no?: boolean
   plant_cd?: boolean
@@ -1183,6 +1234,7 @@ export type TbProdPlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbProdPlan"]>
 
 export type TbProdPlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   plan_id?: boolean
   plan_no?: boolean
   plant_cd?: boolean
@@ -1202,6 +1254,7 @@ export type TbProdPlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 }, ExtArgs["result"]["tbProdPlan"]>
 
 export type TbProdPlanSelectScalar = {
+  company_cd?: boolean
   plan_id?: boolean
   plan_no?: boolean
   plant_cd?: boolean
@@ -1217,7 +1270,7 @@ export type TbProdPlanSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbProdPlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"plan_id" | "plan_no" | "plant_cd" | "item_cd" | "plan_qty" | "due_date" | "priority" | "status" | "demand_id" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbProdPlan"]>
+export type TbProdPlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "plan_id" | "plan_no" | "plant_cd" | "item_cd" | "plan_qty" | "due_date" | "priority" | "status" | "demand_id" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbProdPlan"]>
 export type TbProdPlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   plant?: boolean | Prisma.TbPlantDefaultArgs<ExtArgs>
   item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
@@ -1245,6 +1298,7 @@ export type $TbProdPlanPayload<ExtArgs extends runtime.Types.Extensions.Internal
     work_orders: Prisma.$TbWorkOrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     plan_id: number
     plan_no: string
     plant_cd: string
@@ -1341,8 +1395,8 @@ export interface TbProdPlanDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 TbProdPlans
    * const tbProdPlans = await prisma.tbProdPlan.findMany({ take: 10 })
    * 
-   * // Only select the `plan_id`
-   * const tbProdPlanWithPlan_idOnly = await prisma.tbProdPlan.findMany({ select: { plan_id: true } })
+   * // Only select the `company_cd`
+   * const tbProdPlanWithCompany_cdOnly = await prisma.tbProdPlan.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbProdPlanFindManyArgs>(args?: Prisma.SelectSubset<T, TbProdPlanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbProdPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1386,9 +1440,9 @@ export interface TbProdPlanDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many TbProdPlans and only return the `plan_id`
-   * const tbProdPlanWithPlan_idOnly = await prisma.tbProdPlan.createManyAndReturn({
-   *   select: { plan_id: true },
+   * // Create many TbProdPlans and only return the `company_cd`
+   * const tbProdPlanWithCompany_cdOnly = await prisma.tbProdPlan.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1477,9 +1531,9 @@ export interface TbProdPlanDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more TbProdPlans and only return the `plan_id`
-   * const tbProdPlanWithPlan_idOnly = await prisma.tbProdPlan.updateManyAndReturn({
-   *   select: { plan_id: true },
+   * // Update zero or more TbProdPlans and only return the `company_cd`
+   * const tbProdPlanWithCompany_cdOnly = await prisma.tbProdPlan.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1685,6 +1739,7 @@ export interface Prisma__TbProdPlanClient<T, Null = never, ExtArgs extends runti
  * Fields of the TbProdPlan model
  */
 export interface TbProdPlanFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbProdPlan", 'String'>
   readonly plan_id: Prisma.FieldRef<"TbProdPlan", 'Int'>
   readonly plan_no: Prisma.FieldRef<"TbProdPlan", 'String'>
   readonly plant_cd: Prisma.FieldRef<"TbProdPlan", 'String'>

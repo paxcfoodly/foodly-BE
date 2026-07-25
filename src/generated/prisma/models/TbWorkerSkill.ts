@@ -35,6 +35,7 @@ export type TbWorkerSkillSumAggregateOutputType = {
 }
 
 export type TbWorkerSkillMinAggregateOutputType = {
+  company_cd: string | null
   worker_id: string | null
   process_cd: string | null
   skill_level: number | null
@@ -45,6 +46,7 @@ export type TbWorkerSkillMinAggregateOutputType = {
 }
 
 export type TbWorkerSkillMaxAggregateOutputType = {
+  company_cd: string | null
   worker_id: string | null
   process_cd: string | null
   skill_level: number | null
@@ -55,6 +57,7 @@ export type TbWorkerSkillMaxAggregateOutputType = {
 }
 
 export type TbWorkerSkillCountAggregateOutputType = {
+  company_cd: number
   worker_id: number
   process_cd: number
   skill_level: number
@@ -75,6 +78,7 @@ export type TbWorkerSkillSumAggregateInputType = {
 }
 
 export type TbWorkerSkillMinAggregateInputType = {
+  company_cd?: true
   worker_id?: true
   process_cd?: true
   skill_level?: true
@@ -85,6 +89,7 @@ export type TbWorkerSkillMinAggregateInputType = {
 }
 
 export type TbWorkerSkillMaxAggregateInputType = {
+  company_cd?: true
   worker_id?: true
   process_cd?: true
   skill_level?: true
@@ -95,6 +100,7 @@ export type TbWorkerSkillMaxAggregateInputType = {
 }
 
 export type TbWorkerSkillCountAggregateInputType = {
+  company_cd?: true
   worker_id?: true
   process_cd?: true
   skill_level?: true
@@ -192,6 +198,7 @@ export type TbWorkerSkillGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type TbWorkerSkillGroupByOutputType = {
+  company_cd: string
   worker_id: string
   process_cd: string
   skill_level: number | null
@@ -225,6 +232,7 @@ export type TbWorkerSkillWhereInput = {
   AND?: Prisma.TbWorkerSkillWhereInput | Prisma.TbWorkerSkillWhereInput[]
   OR?: Prisma.TbWorkerSkillWhereInput[]
   NOT?: Prisma.TbWorkerSkillWhereInput | Prisma.TbWorkerSkillWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkerSkill"> | string
   worker_id?: Prisma.StringFilter<"TbWorkerSkill"> | string
   process_cd?: Prisma.StringFilter<"TbWorkerSkill"> | string
   skill_level?: Prisma.IntNullableFilter<"TbWorkerSkill"> | number | null
@@ -237,6 +245,7 @@ export type TbWorkerSkillWhereInput = {
 }
 
 export type TbWorkerSkillOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   skill_level?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -253,6 +262,7 @@ export type TbWorkerSkillWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbWorkerSkillWhereInput | Prisma.TbWorkerSkillWhereInput[]
   OR?: Prisma.TbWorkerSkillWhereInput[]
   NOT?: Prisma.TbWorkerSkillWhereInput | Prisma.TbWorkerSkillWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkerSkill"> | string
   worker_id?: Prisma.StringFilter<"TbWorkerSkill"> | string
   process_cd?: Prisma.StringFilter<"TbWorkerSkill"> | string
   skill_level?: Prisma.IntNullableFilter<"TbWorkerSkill"> | number | null
@@ -265,6 +275,7 @@ export type TbWorkerSkillWhereUniqueInput = Prisma.AtLeast<{
 }, "worker_id_process_cd">
 
 export type TbWorkerSkillOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   skill_level?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -283,6 +294,7 @@ export type TbWorkerSkillScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbWorkerSkillScalarWhereWithAggregatesInput | Prisma.TbWorkerSkillScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbWorkerSkillScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbWorkerSkillScalarWhereWithAggregatesInput | Prisma.TbWorkerSkillScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbWorkerSkill"> | string
   worker_id?: Prisma.StringWithAggregatesFilter<"TbWorkerSkill"> | string
   process_cd?: Prisma.StringWithAggregatesFilter<"TbWorkerSkill"> | string
   skill_level?: Prisma.IntNullableWithAggregatesFilter<"TbWorkerSkill"> | number | null
@@ -293,6 +305,7 @@ export type TbWorkerSkillScalarWhereWithAggregatesInput = {
 }
 
 export type TbWorkerSkillCreateInput = {
+  company_cd?: string
   skill_level?: number | null
   create_by?: string | null
   create_dt?: Date | string
@@ -303,6 +316,7 @@ export type TbWorkerSkillCreateInput = {
 }
 
 export type TbWorkerSkillUncheckedCreateInput = {
+  company_cd?: string
   worker_id: string
   process_cd: string
   skill_level?: number | null
@@ -313,6 +327,7 @@ export type TbWorkerSkillUncheckedCreateInput = {
 }
 
 export type TbWorkerSkillUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -323,6 +338,7 @@ export type TbWorkerSkillUpdateInput = {
 }
 
 export type TbWorkerSkillUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -333,6 +349,7 @@ export type TbWorkerSkillUncheckedUpdateInput = {
 }
 
 export type TbWorkerSkillCreateManyInput = {
+  company_cd?: string
   worker_id: string
   process_cd: string
   skill_level?: number | null
@@ -343,6 +360,7 @@ export type TbWorkerSkillCreateManyInput = {
 }
 
 export type TbWorkerSkillUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -351,6 +369,7 @@ export type TbWorkerSkillUpdateManyMutationInput = {
 }
 
 export type TbWorkerSkillUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -376,6 +395,7 @@ export type TbWorkerSkillWorker_idProcess_cdCompoundUniqueInput = {
 }
 
 export type TbWorkerSkillCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   skill_level?: Prisma.SortOrder
@@ -390,6 +410,7 @@ export type TbWorkerSkillAvgOrderByAggregateInput = {
 }
 
 export type TbWorkerSkillMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   skill_level?: Prisma.SortOrder
@@ -400,6 +421,7 @@ export type TbWorkerSkillMaxOrderByAggregateInput = {
 }
 
 export type TbWorkerSkillMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   worker_id?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   skill_level?: Prisma.SortOrder
@@ -498,6 +520,7 @@ export type TbWorkerSkillUncheckedUpdateManyWithoutWorkerNestedInput = {
 }
 
 export type TbWorkerSkillCreateWithoutProcessInput = {
+  company_cd?: string
   skill_level?: number | null
   create_by?: string | null
   create_dt?: Date | string
@@ -507,6 +530,7 @@ export type TbWorkerSkillCreateWithoutProcessInput = {
 }
 
 export type TbWorkerSkillUncheckedCreateWithoutProcessInput = {
+  company_cd?: string
   worker_id: string
   skill_level?: number | null
   create_by?: string | null
@@ -545,6 +569,7 @@ export type TbWorkerSkillScalarWhereInput = {
   AND?: Prisma.TbWorkerSkillScalarWhereInput | Prisma.TbWorkerSkillScalarWhereInput[]
   OR?: Prisma.TbWorkerSkillScalarWhereInput[]
   NOT?: Prisma.TbWorkerSkillScalarWhereInput | Prisma.TbWorkerSkillScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbWorkerSkill"> | string
   worker_id?: Prisma.StringFilter<"TbWorkerSkill"> | string
   process_cd?: Prisma.StringFilter<"TbWorkerSkill"> | string
   skill_level?: Prisma.IntNullableFilter<"TbWorkerSkill"> | number | null
@@ -555,6 +580,7 @@ export type TbWorkerSkillScalarWhereInput = {
 }
 
 export type TbWorkerSkillCreateWithoutWorkerInput = {
+  company_cd?: string
   skill_level?: number | null
   create_by?: string | null
   create_dt?: Date | string
@@ -564,6 +590,7 @@ export type TbWorkerSkillCreateWithoutWorkerInput = {
 }
 
 export type TbWorkerSkillUncheckedCreateWithoutWorkerInput = {
+  company_cd?: string
   process_cd: string
   skill_level?: number | null
   create_by?: string | null
@@ -599,6 +626,7 @@ export type TbWorkerSkillUpdateManyWithWhereWithoutWorkerInput = {
 }
 
 export type TbWorkerSkillCreateManyProcessInput = {
+  company_cd?: string
   worker_id: string
   skill_level?: number | null
   create_by?: string | null
@@ -608,6 +636,7 @@ export type TbWorkerSkillCreateManyProcessInput = {
 }
 
 export type TbWorkerSkillUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -617,6 +646,7 @@ export type TbWorkerSkillUpdateWithoutProcessInput = {
 }
 
 export type TbWorkerSkillUncheckedUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -626,6 +656,7 @@ export type TbWorkerSkillUncheckedUpdateWithoutProcessInput = {
 }
 
 export type TbWorkerSkillUncheckedUpdateManyWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   worker_id?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -635,6 +666,7 @@ export type TbWorkerSkillUncheckedUpdateManyWithoutProcessInput = {
 }
 
 export type TbWorkerSkillCreateManyWorkerInput = {
+  company_cd?: string
   process_cd: string
   skill_level?: number | null
   create_by?: string | null
@@ -644,6 +676,7 @@ export type TbWorkerSkillCreateManyWorkerInput = {
 }
 
 export type TbWorkerSkillUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -653,6 +686,7 @@ export type TbWorkerSkillUpdateWithoutWorkerInput = {
 }
 
 export type TbWorkerSkillUncheckedUpdateWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -662,6 +696,7 @@ export type TbWorkerSkillUncheckedUpdateWithoutWorkerInput = {
 }
 
 export type TbWorkerSkillUncheckedUpdateManyWithoutWorkerInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   skill_level?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -673,6 +708,7 @@ export type TbWorkerSkillUncheckedUpdateManyWithoutWorkerInput = {
 
 
 export type TbWorkerSkillSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   worker_id?: boolean
   process_cd?: boolean
   skill_level?: boolean
@@ -685,6 +721,7 @@ export type TbWorkerSkillSelect<ExtArgs extends runtime.Types.Extensions.Interna
 }, ExtArgs["result"]["tbWorkerSkill"]>
 
 export type TbWorkerSkillSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   worker_id?: boolean
   process_cd?: boolean
   skill_level?: boolean
@@ -697,6 +734,7 @@ export type TbWorkerSkillSelectCreateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbWorkerSkill"]>
 
 export type TbWorkerSkillSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   worker_id?: boolean
   process_cd?: boolean
   skill_level?: boolean
@@ -709,6 +747,7 @@ export type TbWorkerSkillSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbWorkerSkill"]>
 
 export type TbWorkerSkillSelectScalar = {
+  company_cd?: boolean
   worker_id?: boolean
   process_cd?: boolean
   skill_level?: boolean
@@ -718,7 +757,7 @@ export type TbWorkerSkillSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbWorkerSkillOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"worker_id" | "process_cd" | "skill_level" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWorkerSkill"]>
+export type TbWorkerSkillOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "worker_id" | "process_cd" | "skill_level" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbWorkerSkill"]>
 export type TbWorkerSkillInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   worker?: boolean | Prisma.TbWorkerDefaultArgs<ExtArgs>
   process?: boolean | Prisma.TbProcessDefaultArgs<ExtArgs>
@@ -739,6 +778,7 @@ export type $TbWorkerSkillPayload<ExtArgs extends runtime.Types.Extensions.Inter
     process: Prisma.$TbProcessPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     worker_id: string
     process_cd: string
     skill_level: number | null
@@ -829,8 +869,8 @@ export interface TbWorkerSkillDelegate<ExtArgs extends runtime.Types.Extensions.
    * // Get first 10 TbWorkerSkills
    * const tbWorkerSkills = await prisma.tbWorkerSkill.findMany({ take: 10 })
    * 
-   * // Only select the `worker_id`
-   * const tbWorkerSkillWithWorker_idOnly = await prisma.tbWorkerSkill.findMany({ select: { worker_id: true } })
+   * // Only select the `company_cd`
+   * const tbWorkerSkillWithCompany_cdOnly = await prisma.tbWorkerSkill.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbWorkerSkillFindManyArgs>(args?: Prisma.SelectSubset<T, TbWorkerSkillFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbWorkerSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -874,9 +914,9 @@ export interface TbWorkerSkillDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Create many TbWorkerSkills and only return the `worker_id`
-   * const tbWorkerSkillWithWorker_idOnly = await prisma.tbWorkerSkill.createManyAndReturn({
-   *   select: { worker_id: true },
+   * // Create many TbWorkerSkills and only return the `company_cd`
+   * const tbWorkerSkillWithCompany_cdOnly = await prisma.tbWorkerSkill.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -965,9 +1005,9 @@ export interface TbWorkerSkillDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Update zero or more TbWorkerSkills and only return the `worker_id`
-   * const tbWorkerSkillWithWorker_idOnly = await prisma.tbWorkerSkill.updateManyAndReturn({
-   *   select: { worker_id: true },
+   * // Update zero or more TbWorkerSkills and only return the `company_cd`
+   * const tbWorkerSkillWithCompany_cdOnly = await prisma.tbWorkerSkill.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1171,6 +1211,7 @@ export interface Prisma__TbWorkerSkillClient<T, Null = never, ExtArgs extends ru
  * Fields of the TbWorkerSkill model
  */
 export interface TbWorkerSkillFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbWorkerSkill", 'String'>
   readonly worker_id: Prisma.FieldRef<"TbWorkerSkill", 'String'>
   readonly process_cd: Prisma.FieldRef<"TbWorkerSkill", 'String'>
   readonly skill_level: Prisma.FieldRef<"TbWorkerSkill", 'Int'>

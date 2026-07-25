@@ -41,6 +41,7 @@ export type TbDefectSumAggregateOutputType = {
 }
 
 export type TbDefectMinAggregateOutputType = {
+  company_cd: string | null
   defect_id: number | null
   defect_no: string | null
   wo_id: number | null
@@ -60,6 +61,7 @@ export type TbDefectMinAggregateOutputType = {
 }
 
 export type TbDefectMaxAggregateOutputType = {
+  company_cd: string | null
   defect_id: number | null
   defect_no: string | null
   wo_id: number | null
@@ -79,6 +81,7 @@ export type TbDefectMaxAggregateOutputType = {
 }
 
 export type TbDefectCountAggregateOutputType = {
+  company_cd: number
   defect_id: number
   defect_no: number
   wo_id: number
@@ -114,6 +117,7 @@ export type TbDefectSumAggregateInputType = {
 }
 
 export type TbDefectMinAggregateInputType = {
+  company_cd?: true
   defect_id?: true
   defect_no?: true
   wo_id?: true
@@ -133,6 +137,7 @@ export type TbDefectMinAggregateInputType = {
 }
 
 export type TbDefectMaxAggregateInputType = {
+  company_cd?: true
   defect_id?: true
   defect_no?: true
   wo_id?: true
@@ -152,6 +157,7 @@ export type TbDefectMaxAggregateInputType = {
 }
 
 export type TbDefectCountAggregateInputType = {
+  company_cd?: true
   defect_id?: true
   defect_no?: true
   wo_id?: true
@@ -258,6 +264,7 @@ export type TbDefectGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type TbDefectGroupByOutputType = {
+  company_cd: string
   defect_id: number
   defect_no: string
   wo_id: number | null
@@ -300,6 +307,7 @@ export type TbDefectWhereInput = {
   AND?: Prisma.TbDefectWhereInput | Prisma.TbDefectWhereInput[]
   OR?: Prisma.TbDefectWhereInput[]
   NOT?: Prisma.TbDefectWhereInput | Prisma.TbDefectWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbDefect"> | string
   defect_id?: Prisma.IntFilter<"TbDefect"> | number
   defect_no?: Prisma.StringFilter<"TbDefect"> | string
   wo_id?: Prisma.IntNullableFilter<"TbDefect"> | number | null
@@ -324,6 +332,7 @@ export type TbDefectWhereInput = {
 }
 
 export type TbDefectOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   defect_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -349,10 +358,12 @@ export type TbDefectOrderByWithRelationInput = {
 
 export type TbDefectWhereUniqueInput = Prisma.AtLeast<{
   defect_id?: number
-  defect_no?: string
+  company_cd_defect_no?: Prisma.TbDefectCompany_cdDefect_noCompoundUniqueInput
   AND?: Prisma.TbDefectWhereInput | Prisma.TbDefectWhereInput[]
   OR?: Prisma.TbDefectWhereInput[]
   NOT?: Prisma.TbDefectWhereInput | Prisma.TbDefectWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbDefect"> | string
+  defect_no?: Prisma.StringFilter<"TbDefect"> | string
   wo_id?: Prisma.IntNullableFilter<"TbDefect"> | number | null
   item_cd?: Prisma.StringNullableFilter<"TbDefect"> | string | null
   lot_no?: Prisma.StringNullableFilter<"TbDefect"> | string | null
@@ -372,9 +383,10 @@ export type TbDefectWhereUniqueInput = Prisma.AtLeast<{
   lot?: Prisma.XOR<Prisma.TbLotNullableScalarRelationFilter, Prisma.TbLotWhereInput> | null
   disposals?: Prisma.TbDefectDisposeListRelationFilter
   process?: Prisma.XOR<Prisma.TbProcessNullableScalarRelationFilter, Prisma.TbProcessWhereInput> | null
-}, "defect_id" | "defect_no">
+}, "defect_id" | "company_cd_defect_no">
 
 export type TbDefectOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   defect_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -402,6 +414,7 @@ export type TbDefectScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbDefectScalarWhereWithAggregatesInput | Prisma.TbDefectScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbDefectScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbDefectScalarWhereWithAggregatesInput | Prisma.TbDefectScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbDefect"> | string
   defect_id?: Prisma.IntWithAggregatesFilter<"TbDefect"> | number
   defect_no?: Prisma.StringWithAggregatesFilter<"TbDefect"> | string
   wo_id?: Prisma.IntNullableWithAggregatesFilter<"TbDefect"> | number | null
@@ -421,6 +434,7 @@ export type TbDefectScalarWhereWithAggregatesInput = {
 }
 
 export type TbDefectCreateInput = {
+  company_cd?: string
   defect_no: string
   defect_type_cd?: string | null
   defect_cause_cd?: string | null
@@ -440,6 +454,7 @@ export type TbDefectCreateInput = {
 }
 
 export type TbDefectUncheckedCreateInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -460,6 +475,7 @@ export type TbDefectUncheckedCreateInput = {
 }
 
 export type TbDefectUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   defect_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defect_cause_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -479,6 +495,7 @@ export type TbDefectUpdateInput = {
 }
 
 export type TbDefectUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -499,6 +516,7 @@ export type TbDefectUncheckedUpdateInput = {
 }
 
 export type TbDefectCreateManyInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -518,6 +536,7 @@ export type TbDefectCreateManyInput = {
 }
 
 export type TbDefectUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   defect_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defect_cause_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -532,6 +551,7 @@ export type TbDefectUpdateManyMutationInput = {
 }
 
 export type TbDefectUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -560,7 +580,13 @@ export type TbDefectOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type TbDefectCompany_cdDefect_noCompoundUniqueInput = {
+  company_cd: string
+  defect_no: string
+}
+
 export type TbDefectCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   defect_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
@@ -587,6 +613,7 @@ export type TbDefectAvgOrderByAggregateInput = {
 }
 
 export type TbDefectMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   defect_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
@@ -606,6 +633,7 @@ export type TbDefectMaxOrderByAggregateInput = {
 }
 
 export type TbDefectMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   defect_id?: Prisma.SortOrder
   defect_no?: Prisma.SortOrder
   wo_id?: Prisma.SortOrder
@@ -819,6 +847,7 @@ export type TbDefectUpdateOneRequiredWithoutDisposalsNestedInput = {
 }
 
 export type TbDefectCreateWithoutItemInput = {
+  company_cd?: string
   defect_no: string
   defect_type_cd?: string | null
   defect_cause_cd?: string | null
@@ -837,6 +866,7 @@ export type TbDefectCreateWithoutItemInput = {
 }
 
 export type TbDefectUncheckedCreateWithoutItemInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -885,6 +915,7 @@ export type TbDefectScalarWhereInput = {
   AND?: Prisma.TbDefectScalarWhereInput | Prisma.TbDefectScalarWhereInput[]
   OR?: Prisma.TbDefectScalarWhereInput[]
   NOT?: Prisma.TbDefectScalarWhereInput | Prisma.TbDefectScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbDefect"> | string
   defect_id?: Prisma.IntFilter<"TbDefect"> | number
   defect_no?: Prisma.StringFilter<"TbDefect"> | string
   wo_id?: Prisma.IntNullableFilter<"TbDefect"> | number | null
@@ -904,6 +935,7 @@ export type TbDefectScalarWhereInput = {
 }
 
 export type TbDefectCreateWithoutProcessInput = {
+  company_cd?: string
   defect_no: string
   defect_type_cd?: string | null
   defect_cause_cd?: string | null
@@ -922,6 +954,7 @@ export type TbDefectCreateWithoutProcessInput = {
 }
 
 export type TbDefectUncheckedCreateWithoutProcessInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -967,6 +1000,7 @@ export type TbDefectUpdateManyWithWhereWithoutProcessInput = {
 }
 
 export type TbDefectCreateWithoutWork_orderInput = {
+  company_cd?: string
   defect_no: string
   defect_type_cd?: string | null
   defect_cause_cd?: string | null
@@ -985,6 +1019,7 @@ export type TbDefectCreateWithoutWork_orderInput = {
 }
 
 export type TbDefectUncheckedCreateWithoutWork_orderInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   item_cd?: string | null
@@ -1030,6 +1065,7 @@ export type TbDefectUpdateManyWithWhereWithoutWork_orderInput = {
 }
 
 export type TbDefectCreateWithoutLotInput = {
+  company_cd?: string
   defect_no: string
   defect_type_cd?: string | null
   defect_cause_cd?: string | null
@@ -1048,6 +1084,7 @@ export type TbDefectCreateWithoutLotInput = {
 }
 
 export type TbDefectUncheckedCreateWithoutLotInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -1093,6 +1130,7 @@ export type TbDefectUpdateManyWithWhereWithoutLotInput = {
 }
 
 export type TbDefectCreateWithoutDisposalsInput = {
+  company_cd?: string
   defect_no: string
   defect_type_cd?: string | null
   defect_cause_cd?: string | null
@@ -1111,6 +1149,7 @@ export type TbDefectCreateWithoutDisposalsInput = {
 }
 
 export type TbDefectUncheckedCreateWithoutDisposalsInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -1146,6 +1185,7 @@ export type TbDefectUpdateToOneWithWhereWithoutDisposalsInput = {
 }
 
 export type TbDefectUpdateWithoutDisposalsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   defect_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defect_cause_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1164,6 +1204,7 @@ export type TbDefectUpdateWithoutDisposalsInput = {
 }
 
 export type TbDefectUncheckedUpdateWithoutDisposalsInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1183,6 +1224,7 @@ export type TbDefectUncheckedUpdateWithoutDisposalsInput = {
 }
 
 export type TbDefectCreateManyItemInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -1201,6 +1243,7 @@ export type TbDefectCreateManyItemInput = {
 }
 
 export type TbDefectUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   defect_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defect_cause_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1219,6 +1262,7 @@ export type TbDefectUpdateWithoutItemInput = {
 }
 
 export type TbDefectUncheckedUpdateWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1238,6 +1282,7 @@ export type TbDefectUncheckedUpdateWithoutItemInput = {
 }
 
 export type TbDefectUncheckedUpdateManyWithoutItemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1256,6 +1301,7 @@ export type TbDefectUncheckedUpdateManyWithoutItemInput = {
 }
 
 export type TbDefectCreateManyProcessInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -1274,6 +1320,7 @@ export type TbDefectCreateManyProcessInput = {
 }
 
 export type TbDefectUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   defect_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defect_cause_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1292,6 +1339,7 @@ export type TbDefectUpdateWithoutProcessInput = {
 }
 
 export type TbDefectUncheckedUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1311,6 +1359,7 @@ export type TbDefectUncheckedUpdateWithoutProcessInput = {
 }
 
 export type TbDefectUncheckedUpdateManyWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1329,6 +1378,7 @@ export type TbDefectUncheckedUpdateManyWithoutProcessInput = {
 }
 
 export type TbDefectCreateManyWork_orderInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   item_cd?: string | null
@@ -1347,6 +1397,7 @@ export type TbDefectCreateManyWork_orderInput = {
 }
 
 export type TbDefectUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   defect_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defect_cause_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1365,6 +1416,7 @@ export type TbDefectUpdateWithoutWork_orderInput = {
 }
 
 export type TbDefectUncheckedUpdateWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1384,6 +1436,7 @@ export type TbDefectUncheckedUpdateWithoutWork_orderInput = {
 }
 
 export type TbDefectUncheckedUpdateManyWithoutWork_orderInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   item_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1402,6 +1455,7 @@ export type TbDefectUncheckedUpdateManyWithoutWork_orderInput = {
 }
 
 export type TbDefectCreateManyLotInput = {
+  company_cd?: string
   defect_id?: number
   defect_no: string
   wo_id?: number | null
@@ -1420,6 +1474,7 @@ export type TbDefectCreateManyLotInput = {
 }
 
 export type TbDefectUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   defect_type_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   defect_cause_cd?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1438,6 +1493,7 @@ export type TbDefectUpdateWithoutLotInput = {
 }
 
 export type TbDefectUncheckedUpdateWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1457,6 +1513,7 @@ export type TbDefectUncheckedUpdateWithoutLotInput = {
 }
 
 export type TbDefectUncheckedUpdateManyWithoutLotInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   defect_id?: Prisma.IntFieldUpdateOperationsInput | number
   defect_no?: Prisma.StringFieldUpdateOperationsInput | string
   wo_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1506,6 +1563,7 @@ export type TbDefectCountOutputTypeCountDisposalsArgs<ExtArgs extends runtime.Ty
 
 
 export type TbDefectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   defect_id?: boolean
   defect_no?: boolean
   wo_id?: boolean
@@ -1531,6 +1589,7 @@ export type TbDefectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 }, ExtArgs["result"]["tbDefect"]>
 
 export type TbDefectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   defect_id?: boolean
   defect_no?: boolean
   wo_id?: boolean
@@ -1554,6 +1613,7 @@ export type TbDefectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 }, ExtArgs["result"]["tbDefect"]>
 
 export type TbDefectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   defect_id?: boolean
   defect_no?: boolean
   wo_id?: boolean
@@ -1577,6 +1637,7 @@ export type TbDefectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 }, ExtArgs["result"]["tbDefect"]>
 
 export type TbDefectSelectScalar = {
+  company_cd?: boolean
   defect_id?: boolean
   defect_no?: boolean
   wo_id?: boolean
@@ -1595,7 +1656,7 @@ export type TbDefectSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbDefectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"defect_id" | "defect_no" | "wo_id" | "item_cd" | "lot_no" | "defect_type_cd" | "defect_cause_cd" | "defect_qty" | "status" | "process_cd" | "remark" | "file_id" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbDefect"]>
+export type TbDefectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "defect_id" | "defect_no" | "wo_id" | "item_cd" | "lot_no" | "defect_type_cd" | "defect_cause_cd" | "defect_qty" | "status" | "process_cd" | "remark" | "file_id" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbDefect"]>
 export type TbDefectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   work_order?: boolean | Prisma.TbDefect$work_orderArgs<ExtArgs>
   item?: boolean | Prisma.TbDefect$itemArgs<ExtArgs>
@@ -1627,6 +1688,7 @@ export type $TbDefectPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     process: Prisma.$TbProcessPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     defect_id: number
     defect_no: string
     wo_id: number | null
@@ -1726,8 +1788,8 @@ export interface TbDefectDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    * // Get first 10 TbDefects
    * const tbDefects = await prisma.tbDefect.findMany({ take: 10 })
    * 
-   * // Only select the `defect_id`
-   * const tbDefectWithDefect_idOnly = await prisma.tbDefect.findMany({ select: { defect_id: true } })
+   * // Only select the `company_cd`
+   * const tbDefectWithCompany_cdOnly = await prisma.tbDefect.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbDefectFindManyArgs>(args?: Prisma.SelectSubset<T, TbDefectFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbDefectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1771,9 +1833,9 @@ export interface TbDefectDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Create many TbDefects and only return the `defect_id`
-   * const tbDefectWithDefect_idOnly = await prisma.tbDefect.createManyAndReturn({
-   *   select: { defect_id: true },
+   * // Create many TbDefects and only return the `company_cd`
+   * const tbDefectWithCompany_cdOnly = await prisma.tbDefect.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1862,9 +1924,9 @@ export interface TbDefectDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Update zero or more TbDefects and only return the `defect_id`
-   * const tbDefectWithDefect_idOnly = await prisma.tbDefect.updateManyAndReturn({
-   *   select: { defect_id: true },
+   * // Update zero or more TbDefects and only return the `company_cd`
+   * const tbDefectWithCompany_cdOnly = await prisma.tbDefect.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -2071,6 +2133,7 @@ export interface Prisma__TbDefectClient<T, Null = never, ExtArgs extends runtime
  * Fields of the TbDefect model
  */
 export interface TbDefectFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbDefect", 'String'>
   readonly defect_id: Prisma.FieldRef<"TbDefect", 'Int'>
   readonly defect_no: Prisma.FieldRef<"TbDefect", 'String'>
   readonly wo_id: Prisma.FieldRef<"TbDefect", 'Int'>

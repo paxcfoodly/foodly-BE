@@ -1,5 +1,21 @@
 import prisma from '../config/database';
 import { AppError } from '../middlewares/errorHandler';
+import { getTenantContext } from '../middlewares/tenantContext';
+
+/**
+ * 채번 대상 회사 결정 (멀티테넌시 스펙 D-8).
+ * 일반 사용자 = 소속 회사, SYS_ADMIN = X-Company-Cd 헤더 지정 회사.
+ * 시스템 컨텍스트(시드/스크립트)는 호출부가 companyCd를 직접 넘겨야 한다.
+ */
+function resolveCompanyCd(explicit?: string): string {
+  if (explicit) return explicit;
+  const ctx = getTenantContext();
+  const cd = ctx?.bypass ? ctx.adminWriteCompanyCd : ctx?.companyCd;
+  if (!cd) {
+    throw new AppError('채번 대상 회사를 결정할 수 없습니다. (테넌트 컨텍스트 없음)', 400);
+  }
+  return cd;
+}
 
 /**
  * Generate the next sequential number for a given type.
@@ -7,14 +23,16 @@ import { AppError } from '../middlewares/errorHandler';
  * Format: {prefix}-{date}-{seq}
  * Example: 'WO' → 'WO-20260407-0001'
  *
- * Uses Prisma interactive transaction with serializable isolation
+ * 회사별 독립 시퀀스 — tb_numbering 복합 PK (company_cd, num_type).
+ * Uses Prisma interactive transaction with row lock (FOR UPDATE)
  * to prevent duplicate numbers under concurrent calls.
  */
-export async function generateNumber(numType: string): Promise<string> {
+export async function generateNumber(numType: string, companyCd?: string): Promise<string> {
+  const cd = resolveCompanyCd(companyCd);
   return prisma.$transaction(async (tx) => {
-    // Lock row with FOR UPDATE via raw query for concurrency safety
     const rows: any[] = await tx.$queryRawUnsafe(
-      `SELECT * FROM tb_numbering WHERE num_type = $1 FOR UPDATE`,
+      `SELECT * FROM tb_numbering WHERE company_cd = $1 AND num_type = $2 FOR UPDATE`,
+      cd,
       numType,
     );
 
@@ -28,10 +46,10 @@ export async function generateNumber(numType: string): Promise<string> {
     const seqStr = String(nextSeq).padStart(rule.seq_length, '0');
     const generatedNumber = `${rule.prefix}-${today}-${seqStr}`;
 
-    // Update last_seq
     await tx.$queryRawUnsafe(
-      `UPDATE tb_numbering SET last_seq = $1, update_dt = NOW() WHERE num_type = $2`,
+      `UPDATE tb_numbering SET last_seq = $1, update_dt = NOW() WHERE company_cd = $2 AND num_type = $3`,
       nextSeq,
+      cd,
       numType,
     );
 
@@ -41,12 +59,14 @@ export async function generateNumber(numType: string): Promise<string> {
 
 /**
  * Generate a number with date-based sequence reset.
- * Resets last_seq to 0 when the date changes.
+ * Resets last_seq to 0 when the date changes. 회사별 독립 시퀀스.
  */
-export async function generateNumberWithDateReset(numType: string): Promise<string> {
+export async function generateNumberWithDateReset(numType: string, companyCd?: string): Promise<string> {
+  const cd = resolveCompanyCd(companyCd);
   return prisma.$transaction(async (tx) => {
     const rows: any[] = await tx.$queryRawUnsafe(
-      `SELECT * FROM tb_numbering WHERE num_type = $1 FOR UPDATE`,
+      `SELECT * FROM tb_numbering WHERE company_cd = $1 AND num_type = $2 FOR UPDATE`,
+      cd,
       numType,
     );
 
@@ -65,8 +85,9 @@ export async function generateNumberWithDateReset(numType: string): Promise<stri
     const generatedNumber = `${rule.prefix}-${today}-${seqStr}`;
 
     await tx.$queryRawUnsafe(
-      `UPDATE tb_numbering SET last_seq = $1, update_dt = NOW() WHERE num_type = $2`,
+      `UPDATE tb_numbering SET last_seq = $1, update_dt = NOW() WHERE company_cd = $2 AND num_type = $3`,
       nextSeq,
+      cd,
       numType,
     );
 

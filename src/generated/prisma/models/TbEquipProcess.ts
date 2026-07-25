@@ -35,6 +35,7 @@ export type TbEquipProcessSumAggregateOutputType = {
 }
 
 export type TbEquipProcessMinAggregateOutputType = {
+  company_cd: string | null
   equip_cd: string | null
   process_cd: string | null
   priority: number | null
@@ -45,6 +46,7 @@ export type TbEquipProcessMinAggregateOutputType = {
 }
 
 export type TbEquipProcessMaxAggregateOutputType = {
+  company_cd: string | null
   equip_cd: string | null
   process_cd: string | null
   priority: number | null
@@ -55,6 +57,7 @@ export type TbEquipProcessMaxAggregateOutputType = {
 }
 
 export type TbEquipProcessCountAggregateOutputType = {
+  company_cd: number
   equip_cd: number
   process_cd: number
   priority: number
@@ -75,6 +78,7 @@ export type TbEquipProcessSumAggregateInputType = {
 }
 
 export type TbEquipProcessMinAggregateInputType = {
+  company_cd?: true
   equip_cd?: true
   process_cd?: true
   priority?: true
@@ -85,6 +89,7 @@ export type TbEquipProcessMinAggregateInputType = {
 }
 
 export type TbEquipProcessMaxAggregateInputType = {
+  company_cd?: true
   equip_cd?: true
   process_cd?: true
   priority?: true
@@ -95,6 +100,7 @@ export type TbEquipProcessMaxAggregateInputType = {
 }
 
 export type TbEquipProcessCountAggregateInputType = {
+  company_cd?: true
   equip_cd?: true
   process_cd?: true
   priority?: true
@@ -192,6 +198,7 @@ export type TbEquipProcessGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 export type TbEquipProcessGroupByOutputType = {
+  company_cd: string
   equip_cd: string
   process_cd: string
   priority: number
@@ -225,6 +232,7 @@ export type TbEquipProcessWhereInput = {
   AND?: Prisma.TbEquipProcessWhereInput | Prisma.TbEquipProcessWhereInput[]
   OR?: Prisma.TbEquipProcessWhereInput[]
   NOT?: Prisma.TbEquipProcessWhereInput | Prisma.TbEquipProcessWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   equip_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   process_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   priority?: Prisma.IntFilter<"TbEquipProcess"> | number
@@ -237,6 +245,7 @@ export type TbEquipProcessWhereInput = {
 }
 
 export type TbEquipProcessOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -253,6 +262,7 @@ export type TbEquipProcessWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbEquipProcessWhereInput | Prisma.TbEquipProcessWhereInput[]
   OR?: Prisma.TbEquipProcessWhereInput[]
   NOT?: Prisma.TbEquipProcessWhereInput | Prisma.TbEquipProcessWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   equip_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   process_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   priority?: Prisma.IntFilter<"TbEquipProcess"> | number
@@ -265,6 +275,7 @@ export type TbEquipProcessWhereUniqueInput = Prisma.AtLeast<{
 }, "equip_cd_process_cd">
 
 export type TbEquipProcessOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -283,6 +294,7 @@ export type TbEquipProcessScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbEquipProcessScalarWhereWithAggregatesInput | Prisma.TbEquipProcessScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbEquipProcessScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbEquipProcessScalarWhereWithAggregatesInput | Prisma.TbEquipProcessScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbEquipProcess"> | string
   equip_cd?: Prisma.StringWithAggregatesFilter<"TbEquipProcess"> | string
   process_cd?: Prisma.StringWithAggregatesFilter<"TbEquipProcess"> | string
   priority?: Prisma.IntWithAggregatesFilter<"TbEquipProcess"> | number
@@ -293,6 +305,7 @@ export type TbEquipProcessScalarWhereWithAggregatesInput = {
 }
 
 export type TbEquipProcessCreateInput = {
+  company_cd?: string
   priority?: number
   create_by?: string | null
   create_dt?: Date | string
@@ -303,6 +316,7 @@ export type TbEquipProcessCreateInput = {
 }
 
 export type TbEquipProcessUncheckedCreateInput = {
+  company_cd?: string
   equip_cd: string
   process_cd: string
   priority?: number
@@ -313,6 +327,7 @@ export type TbEquipProcessUncheckedCreateInput = {
 }
 
 export type TbEquipProcessUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -323,6 +338,7 @@ export type TbEquipProcessUpdateInput = {
 }
 
 export type TbEquipProcessUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
@@ -333,6 +349,7 @@ export type TbEquipProcessUncheckedUpdateInput = {
 }
 
 export type TbEquipProcessCreateManyInput = {
+  company_cd?: string
   equip_cd: string
   process_cd: string
   priority?: number
@@ -343,6 +360,7 @@ export type TbEquipProcessCreateManyInput = {
 }
 
 export type TbEquipProcessUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -351,6 +369,7 @@ export type TbEquipProcessUpdateManyMutationInput = {
 }
 
 export type TbEquipProcessUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
@@ -376,6 +395,7 @@ export type TbEquipProcessEquip_cdProcess_cdCompoundUniqueInput = {
 }
 
 export type TbEquipProcessCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -390,6 +410,7 @@ export type TbEquipProcessAvgOrderByAggregateInput = {
 }
 
 export type TbEquipProcessMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -400,6 +421,7 @@ export type TbEquipProcessMaxOrderByAggregateInput = {
 }
 
 export type TbEquipProcessMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   equip_cd?: Prisma.SortOrder
   process_cd?: Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -498,6 +520,7 @@ export type TbEquipProcessUncheckedUpdateManyWithoutEquipmentNestedInput = {
 }
 
 export type TbEquipProcessCreateWithoutProcessInput = {
+  company_cd?: string
   priority?: number
   create_by?: string | null
   create_dt?: Date | string
@@ -507,6 +530,7 @@ export type TbEquipProcessCreateWithoutProcessInput = {
 }
 
 export type TbEquipProcessUncheckedCreateWithoutProcessInput = {
+  company_cd?: string
   equip_cd: string
   priority?: number
   create_by?: string | null
@@ -545,6 +569,7 @@ export type TbEquipProcessScalarWhereInput = {
   AND?: Prisma.TbEquipProcessScalarWhereInput | Prisma.TbEquipProcessScalarWhereInput[]
   OR?: Prisma.TbEquipProcessScalarWhereInput[]
   NOT?: Prisma.TbEquipProcessScalarWhereInput | Prisma.TbEquipProcessScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   equip_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   process_cd?: Prisma.StringFilter<"TbEquipProcess"> | string
   priority?: Prisma.IntFilter<"TbEquipProcess"> | number
@@ -555,6 +580,7 @@ export type TbEquipProcessScalarWhereInput = {
 }
 
 export type TbEquipProcessCreateWithoutEquipmentInput = {
+  company_cd?: string
   priority?: number
   create_by?: string | null
   create_dt?: Date | string
@@ -564,6 +590,7 @@ export type TbEquipProcessCreateWithoutEquipmentInput = {
 }
 
 export type TbEquipProcessUncheckedCreateWithoutEquipmentInput = {
+  company_cd?: string
   process_cd: string
   priority?: number
   create_by?: string | null
@@ -599,6 +626,7 @@ export type TbEquipProcessUpdateManyWithWhereWithoutEquipmentInput = {
 }
 
 export type TbEquipProcessCreateManyProcessInput = {
+  company_cd?: string
   equip_cd: string
   priority?: number
   create_by?: string | null
@@ -608,6 +636,7 @@ export type TbEquipProcessCreateManyProcessInput = {
 }
 
 export type TbEquipProcessUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -617,6 +646,7 @@ export type TbEquipProcessUpdateWithoutProcessInput = {
 }
 
 export type TbEquipProcessUncheckedUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -626,6 +656,7 @@ export type TbEquipProcessUncheckedUpdateWithoutProcessInput = {
 }
 
 export type TbEquipProcessUncheckedUpdateManyWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   equip_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -635,6 +666,7 @@ export type TbEquipProcessUncheckedUpdateManyWithoutProcessInput = {
 }
 
 export type TbEquipProcessCreateManyEquipmentInput = {
+  company_cd?: string
   process_cd: string
   priority?: number
   create_by?: string | null
@@ -644,6 +676,7 @@ export type TbEquipProcessCreateManyEquipmentInput = {
 }
 
 export type TbEquipProcessUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   create_dt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -653,6 +686,7 @@ export type TbEquipProcessUpdateWithoutEquipmentInput = {
 }
 
 export type TbEquipProcessUncheckedUpdateWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -662,6 +696,7 @@ export type TbEquipProcessUncheckedUpdateWithoutEquipmentInput = {
 }
 
 export type TbEquipProcessUncheckedUpdateManyWithoutEquipmentInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   process_cd?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.IntFieldUpdateOperationsInput | number
   create_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -673,6 +708,7 @@ export type TbEquipProcessUncheckedUpdateManyWithoutEquipmentInput = {
 
 
 export type TbEquipProcessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   equip_cd?: boolean
   process_cd?: boolean
   priority?: boolean
@@ -685,6 +721,7 @@ export type TbEquipProcessSelect<ExtArgs extends runtime.Types.Extensions.Intern
 }, ExtArgs["result"]["tbEquipProcess"]>
 
 export type TbEquipProcessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   equip_cd?: boolean
   process_cd?: boolean
   priority?: boolean
@@ -697,6 +734,7 @@ export type TbEquipProcessSelectCreateManyAndReturn<ExtArgs extends runtime.Type
 }, ExtArgs["result"]["tbEquipProcess"]>
 
 export type TbEquipProcessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   equip_cd?: boolean
   process_cd?: boolean
   priority?: boolean
@@ -709,6 +747,7 @@ export type TbEquipProcessSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
 }, ExtArgs["result"]["tbEquipProcess"]>
 
 export type TbEquipProcessSelectScalar = {
+  company_cd?: boolean
   equip_cd?: boolean
   process_cd?: boolean
   priority?: boolean
@@ -718,7 +757,7 @@ export type TbEquipProcessSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbEquipProcessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"equip_cd" | "process_cd" | "priority" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbEquipProcess"]>
+export type TbEquipProcessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "equip_cd" | "process_cd" | "priority" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbEquipProcess"]>
 export type TbEquipProcessInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipment?: boolean | Prisma.TbEquipmentDefaultArgs<ExtArgs>
   process?: boolean | Prisma.TbProcessDefaultArgs<ExtArgs>
@@ -739,6 +778,7 @@ export type $TbEquipProcessPayload<ExtArgs extends runtime.Types.Extensions.Inte
     process: Prisma.$TbProcessPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     equip_cd: string
     process_cd: string
     priority: number
@@ -829,8 +869,8 @@ export interface TbEquipProcessDelegate<ExtArgs extends runtime.Types.Extensions
    * // Get first 10 TbEquipProcesses
    * const tbEquipProcesses = await prisma.tbEquipProcess.findMany({ take: 10 })
    * 
-   * // Only select the `equip_cd`
-   * const tbEquipProcessWithEquip_cdOnly = await prisma.tbEquipProcess.findMany({ select: { equip_cd: true } })
+   * // Only select the `company_cd`
+   * const tbEquipProcessWithCompany_cdOnly = await prisma.tbEquipProcess.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbEquipProcessFindManyArgs>(args?: Prisma.SelectSubset<T, TbEquipProcessFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbEquipProcessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -874,9 +914,9 @@ export interface TbEquipProcessDelegate<ExtArgs extends runtime.Types.Extensions
    *   ]
    * })
    * 
-   * // Create many TbEquipProcesses and only return the `equip_cd`
-   * const tbEquipProcessWithEquip_cdOnly = await prisma.tbEquipProcess.createManyAndReturn({
-   *   select: { equip_cd: true },
+   * // Create many TbEquipProcesses and only return the `company_cd`
+   * const tbEquipProcessWithCompany_cdOnly = await prisma.tbEquipProcess.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -965,9 +1005,9 @@ export interface TbEquipProcessDelegate<ExtArgs extends runtime.Types.Extensions
    *   ]
    * })
    * 
-   * // Update zero or more TbEquipProcesses and only return the `equip_cd`
-   * const tbEquipProcessWithEquip_cdOnly = await prisma.tbEquipProcess.updateManyAndReturn({
-   *   select: { equip_cd: true },
+   * // Update zero or more TbEquipProcesses and only return the `company_cd`
+   * const tbEquipProcessWithCompany_cdOnly = await prisma.tbEquipProcess.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1171,6 +1211,7 @@ export interface Prisma__TbEquipProcessClient<T, Null = never, ExtArgs extends r
  * Fields of the TbEquipProcess model
  */
 export interface TbEquipProcessFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbEquipProcess", 'String'>
   readonly equip_cd: Prisma.FieldRef<"TbEquipProcess", 'String'>
   readonly process_cd: Prisma.FieldRef<"TbEquipProcess", 'String'>
   readonly priority: Prisma.FieldRef<"TbEquipProcess", 'Int'>

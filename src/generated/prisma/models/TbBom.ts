@@ -41,6 +41,7 @@ export type TbBomSumAggregateOutputType = {
 }
 
 export type TbBomMinAggregateOutputType = {
+  company_cd: string | null
   bom_id: number | null
   parent_item_cd: string | null
   child_item_cd: string | null
@@ -57,6 +58,7 @@ export type TbBomMinAggregateOutputType = {
 }
 
 export type TbBomMaxAggregateOutputType = {
+  company_cd: string | null
   bom_id: number | null
   parent_item_cd: string | null
   child_item_cd: string | null
@@ -73,6 +75,7 @@ export type TbBomMaxAggregateOutputType = {
 }
 
 export type TbBomCountAggregateOutputType = {
+  company_cd: number
   bom_id: number
   parent_item_cd: number
   child_item_cd: number
@@ -105,6 +108,7 @@ export type TbBomSumAggregateInputType = {
 }
 
 export type TbBomMinAggregateInputType = {
+  company_cd?: true
   bom_id?: true
   parent_item_cd?: true
   child_item_cd?: true
@@ -121,6 +125,7 @@ export type TbBomMinAggregateInputType = {
 }
 
 export type TbBomMaxAggregateInputType = {
+  company_cd?: true
   bom_id?: true
   parent_item_cd?: true
   child_item_cd?: true
@@ -137,6 +142,7 @@ export type TbBomMaxAggregateInputType = {
 }
 
 export type TbBomCountAggregateInputType = {
+  company_cd?: true
   bom_id?: true
   parent_item_cd?: true
   child_item_cd?: true
@@ -240,6 +246,7 @@ export type TbBomGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 export type TbBomGroupByOutputType = {
+  company_cd: string
   bom_id: number
   parent_item_cd: string
   child_item_cd: string
@@ -279,6 +286,7 @@ export type TbBomWhereInput = {
   AND?: Prisma.TbBomWhereInput | Prisma.TbBomWhereInput[]
   OR?: Prisma.TbBomWhereInput[]
   NOT?: Prisma.TbBomWhereInput | Prisma.TbBomWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbBom"> | string
   bom_id?: Prisma.IntFilter<"TbBom"> | number
   parent_item_cd?: Prisma.StringFilter<"TbBom"> | string
   child_item_cd?: Prisma.StringFilter<"TbBom"> | string
@@ -299,6 +307,7 @@ export type TbBomWhereInput = {
 }
 
 export type TbBomOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   bom_id?: Prisma.SortOrder
   parent_item_cd?: Prisma.SortOrder
   child_item_cd?: Prisma.SortOrder
@@ -323,6 +332,7 @@ export type TbBomWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbBomWhereInput | Prisma.TbBomWhereInput[]
   OR?: Prisma.TbBomWhereInput[]
   NOT?: Prisma.TbBomWhereInput | Prisma.TbBomWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbBom"> | string
   parent_item_cd?: Prisma.StringFilter<"TbBom"> | string
   child_item_cd?: Prisma.StringFilter<"TbBom"> | string
   level_no?: Prisma.IntFilter<"TbBom"> | number
@@ -342,6 +352,7 @@ export type TbBomWhereUniqueInput = Prisma.AtLeast<{
 }, "bom_id">
 
 export type TbBomOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   bom_id?: Prisma.SortOrder
   parent_item_cd?: Prisma.SortOrder
   child_item_cd?: Prisma.SortOrder
@@ -366,6 +377,7 @@ export type TbBomScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbBomScalarWhereWithAggregatesInput | Prisma.TbBomScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbBomScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbBomScalarWhereWithAggregatesInput | Prisma.TbBomScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbBom"> | string
   bom_id?: Prisma.IntWithAggregatesFilter<"TbBom"> | number
   parent_item_cd?: Prisma.StringWithAggregatesFilter<"TbBom"> | string
   child_item_cd?: Prisma.StringWithAggregatesFilter<"TbBom"> | string
@@ -382,6 +394,7 @@ export type TbBomScalarWhereWithAggregatesInput = {
 }
 
 export type TbBomCreateInput = {
+  company_cd?: string
   level_no?: number
   qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -397,6 +410,7 @@ export type TbBomCreateInput = {
 }
 
 export type TbBomUncheckedCreateInput = {
+  company_cd?: string
   bom_id?: number
   parent_item_cd: string
   child_item_cd: string
@@ -413,6 +427,7 @@ export type TbBomUncheckedCreateInput = {
 }
 
 export type TbBomUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
   qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -428,6 +443,7 @@ export type TbBomUpdateInput = {
 }
 
 export type TbBomUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   parent_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   child_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -444,6 +460,7 @@ export type TbBomUncheckedUpdateInput = {
 }
 
 export type TbBomCreateManyInput = {
+  company_cd?: string
   bom_id?: number
   parent_item_cd: string
   child_item_cd: string
@@ -460,6 +477,7 @@ export type TbBomCreateManyInput = {
 }
 
 export type TbBomUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
   qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -471,6 +489,7 @@ export type TbBomUpdateManyMutationInput = {
 }
 
 export type TbBomUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   parent_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   child_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -497,6 +516,7 @@ export type TbBomOrderByRelationAggregateInput = {
 }
 
 export type TbBomCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   bom_id?: Prisma.SortOrder
   parent_item_cd?: Prisma.SortOrder
   child_item_cd?: Prisma.SortOrder
@@ -520,6 +540,7 @@ export type TbBomAvgOrderByAggregateInput = {
 }
 
 export type TbBomMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   bom_id?: Prisma.SortOrder
   parent_item_cd?: Prisma.SortOrder
   child_item_cd?: Prisma.SortOrder
@@ -536,6 +557,7 @@ export type TbBomMaxOrderByAggregateInput = {
 }
 
 export type TbBomMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   bom_id?: Prisma.SortOrder
   parent_item_cd?: Prisma.SortOrder
   child_item_cd?: Prisma.SortOrder
@@ -735,6 +757,7 @@ export type TbBomUncheckedUpdateManyWithoutProcessNestedInput = {
 }
 
 export type TbBomCreateWithoutParent_itemInput = {
+  company_cd?: string
   level_no?: number
   qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -749,6 +772,7 @@ export type TbBomCreateWithoutParent_itemInput = {
 }
 
 export type TbBomUncheckedCreateWithoutParent_itemInput = {
+  company_cd?: string
   bom_id?: number
   child_item_cd: string
   level_no?: number
@@ -774,6 +798,7 @@ export type TbBomCreateManyParent_itemInputEnvelope = {
 }
 
 export type TbBomCreateWithoutChild_itemInput = {
+  company_cd?: string
   level_no?: number
   qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -788,6 +813,7 @@ export type TbBomCreateWithoutChild_itemInput = {
 }
 
 export type TbBomUncheckedCreateWithoutChild_itemInput = {
+  company_cd?: string
   bom_id?: number
   parent_item_cd: string
   level_no?: number
@@ -813,6 +839,7 @@ export type TbBomCreateManyChild_itemInputEnvelope = {
 }
 
 export type TbBomCreateWithoutAlt_itemInput = {
+  company_cd?: string
   level_no?: number
   qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -827,6 +854,7 @@ export type TbBomCreateWithoutAlt_itemInput = {
 }
 
 export type TbBomUncheckedCreateWithoutAlt_itemInput = {
+  company_cd?: string
   bom_id?: number
   parent_item_cd: string
   child_item_cd: string
@@ -871,6 +899,7 @@ export type TbBomScalarWhereInput = {
   AND?: Prisma.TbBomScalarWhereInput | Prisma.TbBomScalarWhereInput[]
   OR?: Prisma.TbBomScalarWhereInput[]
   NOT?: Prisma.TbBomScalarWhereInput | Prisma.TbBomScalarWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbBom"> | string
   bom_id?: Prisma.IntFilter<"TbBom"> | number
   parent_item_cd?: Prisma.StringFilter<"TbBom"> | string
   child_item_cd?: Prisma.StringFilter<"TbBom"> | string
@@ -919,6 +948,7 @@ export type TbBomUpdateManyWithWhereWithoutAlt_itemInput = {
 }
 
 export type TbBomCreateWithoutProcessInput = {
+  company_cd?: string
   level_no?: number
   qty: runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -933,6 +963,7 @@ export type TbBomCreateWithoutProcessInput = {
 }
 
 export type TbBomUncheckedCreateWithoutProcessInput = {
+  company_cd?: string
   bom_id?: number
   parent_item_cd: string
   child_item_cd: string
@@ -974,6 +1005,7 @@ export type TbBomUpdateManyWithWhereWithoutProcessInput = {
 }
 
 export type TbBomCreateManyParent_itemInput = {
+  company_cd?: string
   bom_id?: number
   child_item_cd: string
   level_no?: number
@@ -989,6 +1021,7 @@ export type TbBomCreateManyParent_itemInput = {
 }
 
 export type TbBomCreateManyChild_itemInput = {
+  company_cd?: string
   bom_id?: number
   parent_item_cd: string
   level_no?: number
@@ -1004,6 +1037,7 @@ export type TbBomCreateManyChild_itemInput = {
 }
 
 export type TbBomCreateManyAlt_itemInput = {
+  company_cd?: string
   bom_id?: number
   parent_item_cd: string
   child_item_cd: string
@@ -1019,6 +1053,7 @@ export type TbBomCreateManyAlt_itemInput = {
 }
 
 export type TbBomUpdateWithoutParent_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
   qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1033,6 +1068,7 @@ export type TbBomUpdateWithoutParent_itemInput = {
 }
 
 export type TbBomUncheckedUpdateWithoutParent_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   child_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1048,6 +1084,7 @@ export type TbBomUncheckedUpdateWithoutParent_itemInput = {
 }
 
 export type TbBomUncheckedUpdateManyWithoutParent_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   child_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1063,6 +1100,7 @@ export type TbBomUncheckedUpdateManyWithoutParent_itemInput = {
 }
 
 export type TbBomUpdateWithoutChild_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
   qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1077,6 +1115,7 @@ export type TbBomUpdateWithoutChild_itemInput = {
 }
 
 export type TbBomUncheckedUpdateWithoutChild_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   parent_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1092,6 +1131,7 @@ export type TbBomUncheckedUpdateWithoutChild_itemInput = {
 }
 
 export type TbBomUncheckedUpdateManyWithoutChild_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   parent_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1107,6 +1147,7 @@ export type TbBomUncheckedUpdateManyWithoutChild_itemInput = {
 }
 
 export type TbBomUpdateWithoutAlt_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
   qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1121,6 +1162,7 @@ export type TbBomUpdateWithoutAlt_itemInput = {
 }
 
 export type TbBomUncheckedUpdateWithoutAlt_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   parent_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   child_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1136,6 +1178,7 @@ export type TbBomUncheckedUpdateWithoutAlt_itemInput = {
 }
 
 export type TbBomUncheckedUpdateManyWithoutAlt_itemInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   parent_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   child_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1151,6 +1194,7 @@ export type TbBomUncheckedUpdateManyWithoutAlt_itemInput = {
 }
 
 export type TbBomCreateManyProcessInput = {
+  company_cd?: string
   bom_id?: number
   parent_item_cd: string
   child_item_cd: string
@@ -1166,6 +1210,7 @@ export type TbBomCreateManyProcessInput = {
 }
 
 export type TbBomUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   level_no?: Prisma.IntFieldUpdateOperationsInput | number
   qty?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   loss_rate?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1180,6 +1225,7 @@ export type TbBomUpdateWithoutProcessInput = {
 }
 
 export type TbBomUncheckedUpdateWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   parent_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   child_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1195,6 +1241,7 @@ export type TbBomUncheckedUpdateWithoutProcessInput = {
 }
 
 export type TbBomUncheckedUpdateManyWithoutProcessInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   bom_id?: Prisma.IntFieldUpdateOperationsInput | number
   parent_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
   child_item_cd?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1212,6 +1259,7 @@ export type TbBomUncheckedUpdateManyWithoutProcessInput = {
 
 
 export type TbBomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   bom_id?: boolean
   parent_item_cd?: boolean
   child_item_cd?: boolean
@@ -1232,6 +1280,7 @@ export type TbBomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 }, ExtArgs["result"]["tbBom"]>
 
 export type TbBomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   bom_id?: boolean
   parent_item_cd?: boolean
   child_item_cd?: boolean
@@ -1252,6 +1301,7 @@ export type TbBomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 }, ExtArgs["result"]["tbBom"]>
 
 export type TbBomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   bom_id?: boolean
   parent_item_cd?: boolean
   child_item_cd?: boolean
@@ -1272,6 +1322,7 @@ export type TbBomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 }, ExtArgs["result"]["tbBom"]>
 
 export type TbBomSelectScalar = {
+  company_cd?: boolean
   bom_id?: boolean
   parent_item_cd?: boolean
   child_item_cd?: boolean
@@ -1287,7 +1338,7 @@ export type TbBomSelectScalar = {
   update_dt?: boolean
 }
 
-export type TbBomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"bom_id" | "parent_item_cd" | "child_item_cd" | "level_no" | "qty" | "loss_rate" | "alt_item_cd" | "process_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbBom"]>
+export type TbBomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "bom_id" | "parent_item_cd" | "child_item_cd" | "level_no" | "qty" | "loss_rate" | "alt_item_cd" | "process_cd" | "use_yn" | "create_by" | "create_dt" | "update_by" | "update_dt", ExtArgs["result"]["tbBom"]>
 export type TbBomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   parent_item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
   child_item?: boolean | Prisma.TbItemDefaultArgs<ExtArgs>
@@ -1316,6 +1367,7 @@ export type $TbBomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     process: Prisma.$TbProcessPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     bom_id: number
     parent_item_cd: string
     child_item_cd: string
@@ -1412,8 +1464,8 @@ export interface TbBomDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    * // Get first 10 TbBoms
    * const tbBoms = await prisma.tbBom.findMany({ take: 10 })
    * 
-   * // Only select the `bom_id`
-   * const tbBomWithBom_idOnly = await prisma.tbBom.findMany({ select: { bom_id: true } })
+   * // Only select the `company_cd`
+   * const tbBomWithCompany_cdOnly = await prisma.tbBom.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbBomFindManyArgs>(args?: Prisma.SelectSubset<T, TbBomFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbBomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1457,9 +1509,9 @@ export interface TbBomDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   ]
    * })
    * 
-   * // Create many TbBoms and only return the `bom_id`
-   * const tbBomWithBom_idOnly = await prisma.tbBom.createManyAndReturn({
-   *   select: { bom_id: true },
+   * // Create many TbBoms and only return the `company_cd`
+   * const tbBomWithCompany_cdOnly = await prisma.tbBom.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1548,9 +1600,9 @@ export interface TbBomDelegate<ExtArgs extends runtime.Types.Extensions.Internal
    *   ]
    * })
    * 
-   * // Update zero or more TbBoms and only return the `bom_id`
-   * const tbBomWithBom_idOnly = await prisma.tbBom.updateManyAndReturn({
-   *   select: { bom_id: true },
+   * // Update zero or more TbBoms and only return the `company_cd`
+   * const tbBomWithCompany_cdOnly = await prisma.tbBom.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1756,6 +1808,7 @@ export interface Prisma__TbBomClient<T, Null = never, ExtArgs extends runtime.Ty
  * Fields of the TbBom model
  */
 export interface TbBomFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbBom", 'String'>
   readonly bom_id: Prisma.FieldRef<"TbBom", 'Int'>
   readonly parent_item_cd: Prisma.FieldRef<"TbBom", 'String'>
   readonly child_item_cd: Prisma.FieldRef<"TbBom", 'String'>

@@ -1,4 +1,5 @@
 import prisma from '../config/database';
+import { getTenantContext } from '../middlewares/tenantContext';
 
 export interface AuditLogParams {
   userId: number | null;
@@ -18,6 +19,8 @@ export async function logAudit(params: AuditLogParams): Promise<void> {
   try {
     await prisma.tbAuditLog.create({
       data: {
+        // 일반 사용자는 확장이 주입. SYS_ADMIN(bypass)·시스템 컨텍스트는 SYSTEM으로 명시
+        ...(!getTenantContext() || getTenantContext()!.bypass ? { company_cd: 'SYSTEM' } : {}),
         user_id: params.userId,
         action: params.action,
         target_table: params.targetTable ?? null,

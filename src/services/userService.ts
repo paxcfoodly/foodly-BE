@@ -211,3 +211,11 @@ export async function resetPassword(userId: number, newPassword?: string, resetB
 
   return { message: '비밀번호가 초기화되었습니다.' };
 }
+
+/** 회사 목록 (SYS_ADMIN 사용자관리 화면의 회사 선택용) */
+export async function listCompanies() {
+  return prisma.tbCompany.findMany({
+    select: { company_cd: true, company_nm: true },
+    orderBy: { company_cd: 'asc' },
+  });
+}

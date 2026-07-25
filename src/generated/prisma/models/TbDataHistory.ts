@@ -35,6 +35,7 @@ export type TbDataHistorySumAggregateOutputType = {
 }
 
 export type TbDataHistoryMinAggregateOutputType = {
+  company_cd: string | null
   history_id: number | null
   table_nm: string | null
   record_id: string | null
@@ -47,6 +48,7 @@ export type TbDataHistoryMinAggregateOutputType = {
 }
 
 export type TbDataHistoryMaxAggregateOutputType = {
+  company_cd: string | null
   history_id: number | null
   table_nm: string | null
   record_id: string | null
@@ -59,6 +61,7 @@ export type TbDataHistoryMaxAggregateOutputType = {
 }
 
 export type TbDataHistoryCountAggregateOutputType = {
+  company_cd: number
   history_id: number
   table_nm: number
   record_id: number
@@ -81,6 +84,7 @@ export type TbDataHistorySumAggregateInputType = {
 }
 
 export type TbDataHistoryMinAggregateInputType = {
+  company_cd?: true
   history_id?: true
   table_nm?: true
   record_id?: true
@@ -93,6 +97,7 @@ export type TbDataHistoryMinAggregateInputType = {
 }
 
 export type TbDataHistoryMaxAggregateInputType = {
+  company_cd?: true
   history_id?: true
   table_nm?: true
   record_id?: true
@@ -105,6 +110,7 @@ export type TbDataHistoryMaxAggregateInputType = {
 }
 
 export type TbDataHistoryCountAggregateInputType = {
+  company_cd?: true
   history_id?: true
   table_nm?: true
   record_id?: true
@@ -204,6 +210,7 @@ export type TbDataHistoryGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type TbDataHistoryGroupByOutputType = {
+  company_cd: string
   history_id: number
   table_nm: string
   record_id: string
@@ -239,6 +246,7 @@ export type TbDataHistoryWhereInput = {
   AND?: Prisma.TbDataHistoryWhereInput | Prisma.TbDataHistoryWhereInput[]
   OR?: Prisma.TbDataHistoryWhereInput[]
   NOT?: Prisma.TbDataHistoryWhereInput | Prisma.TbDataHistoryWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbDataHistory"> | string
   history_id?: Prisma.IntFilter<"TbDataHistory"> | number
   table_nm?: Prisma.StringFilter<"TbDataHistory"> | string
   record_id?: Prisma.StringFilter<"TbDataHistory"> | string
@@ -251,6 +259,7 @@ export type TbDataHistoryWhereInput = {
 }
 
 export type TbDataHistoryOrderByWithRelationInput = {
+  company_cd?: Prisma.SortOrder
   history_id?: Prisma.SortOrder
   table_nm?: Prisma.SortOrder
   record_id?: Prisma.SortOrder
@@ -267,6 +276,7 @@ export type TbDataHistoryWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TbDataHistoryWhereInput | Prisma.TbDataHistoryWhereInput[]
   OR?: Prisma.TbDataHistoryWhereInput[]
   NOT?: Prisma.TbDataHistoryWhereInput | Prisma.TbDataHistoryWhereInput[]
+  company_cd?: Prisma.StringFilter<"TbDataHistory"> | string
   table_nm?: Prisma.StringFilter<"TbDataHistory"> | string
   record_id?: Prisma.StringFilter<"TbDataHistory"> | string
   column_nm?: Prisma.StringFilter<"TbDataHistory"> | string
@@ -278,6 +288,7 @@ export type TbDataHistoryWhereUniqueInput = Prisma.AtLeast<{
 }, "history_id">
 
 export type TbDataHistoryOrderByWithAggregationInput = {
+  company_cd?: Prisma.SortOrder
   history_id?: Prisma.SortOrder
   table_nm?: Prisma.SortOrder
   record_id?: Prisma.SortOrder
@@ -298,6 +309,7 @@ export type TbDataHistoryScalarWhereWithAggregatesInput = {
   AND?: Prisma.TbDataHistoryScalarWhereWithAggregatesInput | Prisma.TbDataHistoryScalarWhereWithAggregatesInput[]
   OR?: Prisma.TbDataHistoryScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TbDataHistoryScalarWhereWithAggregatesInput | Prisma.TbDataHistoryScalarWhereWithAggregatesInput[]
+  company_cd?: Prisma.StringWithAggregatesFilter<"TbDataHistory"> | string
   history_id?: Prisma.IntWithAggregatesFilter<"TbDataHistory"> | number
   table_nm?: Prisma.StringWithAggregatesFilter<"TbDataHistory"> | string
   record_id?: Prisma.StringWithAggregatesFilter<"TbDataHistory"> | string
@@ -310,6 +322,7 @@ export type TbDataHistoryScalarWhereWithAggregatesInput = {
 }
 
 export type TbDataHistoryCreateInput = {
+  company_cd?: string
   table_nm: string
   record_id: string
   column_nm: string
@@ -321,6 +334,7 @@ export type TbDataHistoryCreateInput = {
 }
 
 export type TbDataHistoryUncheckedCreateInput = {
+  company_cd?: string
   history_id?: number
   table_nm: string
   record_id: string
@@ -333,6 +347,7 @@ export type TbDataHistoryUncheckedCreateInput = {
 }
 
 export type TbDataHistoryUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   table_nm?: Prisma.StringFieldUpdateOperationsInput | string
   record_id?: Prisma.StringFieldUpdateOperationsInput | string
   column_nm?: Prisma.StringFieldUpdateOperationsInput | string
@@ -344,6 +359,7 @@ export type TbDataHistoryUpdateInput = {
 }
 
 export type TbDataHistoryUncheckedUpdateInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   history_id?: Prisma.IntFieldUpdateOperationsInput | number
   table_nm?: Prisma.StringFieldUpdateOperationsInput | string
   record_id?: Prisma.StringFieldUpdateOperationsInput | string
@@ -356,6 +372,7 @@ export type TbDataHistoryUncheckedUpdateInput = {
 }
 
 export type TbDataHistoryCreateManyInput = {
+  company_cd?: string
   history_id?: number
   table_nm: string
   record_id: string
@@ -368,6 +385,7 @@ export type TbDataHistoryCreateManyInput = {
 }
 
 export type TbDataHistoryUpdateManyMutationInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   table_nm?: Prisma.StringFieldUpdateOperationsInput | string
   record_id?: Prisma.StringFieldUpdateOperationsInput | string
   column_nm?: Prisma.StringFieldUpdateOperationsInput | string
@@ -379,6 +397,7 @@ export type TbDataHistoryUpdateManyMutationInput = {
 }
 
 export type TbDataHistoryUncheckedUpdateManyInput = {
+  company_cd?: Prisma.StringFieldUpdateOperationsInput | string
   history_id?: Prisma.IntFieldUpdateOperationsInput | number
   table_nm?: Prisma.StringFieldUpdateOperationsInput | string
   record_id?: Prisma.StringFieldUpdateOperationsInput | string
@@ -391,6 +410,7 @@ export type TbDataHistoryUncheckedUpdateManyInput = {
 }
 
 export type TbDataHistoryCountOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   history_id?: Prisma.SortOrder
   table_nm?: Prisma.SortOrder
   record_id?: Prisma.SortOrder
@@ -407,6 +427,7 @@ export type TbDataHistoryAvgOrderByAggregateInput = {
 }
 
 export type TbDataHistoryMaxOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   history_id?: Prisma.SortOrder
   table_nm?: Prisma.SortOrder
   record_id?: Prisma.SortOrder
@@ -419,6 +440,7 @@ export type TbDataHistoryMaxOrderByAggregateInput = {
 }
 
 export type TbDataHistoryMinOrderByAggregateInput = {
+  company_cd?: Prisma.SortOrder
   history_id?: Prisma.SortOrder
   table_nm?: Prisma.SortOrder
   record_id?: Prisma.SortOrder
@@ -437,6 +459,7 @@ export type TbDataHistorySumOrderByAggregateInput = {
 
 
 export type TbDataHistorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   history_id?: boolean
   table_nm?: boolean
   record_id?: boolean
@@ -449,6 +472,7 @@ export type TbDataHistorySelect<ExtArgs extends runtime.Types.Extensions.Interna
 }, ExtArgs["result"]["tbDataHistory"]>
 
 export type TbDataHistorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   history_id?: boolean
   table_nm?: boolean
   record_id?: boolean
@@ -461,6 +485,7 @@ export type TbDataHistorySelectCreateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbDataHistory"]>
 
 export type TbDataHistorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  company_cd?: boolean
   history_id?: boolean
   table_nm?: boolean
   record_id?: boolean
@@ -473,6 +498,7 @@ export type TbDataHistorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types
 }, ExtArgs["result"]["tbDataHistory"]>
 
 export type TbDataHistorySelectScalar = {
+  company_cd?: boolean
   history_id?: boolean
   table_nm?: boolean
   record_id?: boolean
@@ -484,12 +510,13 @@ export type TbDataHistorySelectScalar = {
   change_dt?: boolean
 }
 
-export type TbDataHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"history_id" | "table_nm" | "record_id" | "column_nm" | "before_value" | "after_value" | "change_reason" | "change_by" | "change_dt", ExtArgs["result"]["tbDataHistory"]>
+export type TbDataHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"company_cd" | "history_id" | "table_nm" | "record_id" | "column_nm" | "before_value" | "after_value" | "change_reason" | "change_by" | "change_dt", ExtArgs["result"]["tbDataHistory"]>
 
 export type $TbDataHistoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TbDataHistory"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    company_cd: string
     history_id: number
     table_nm: string
     record_id: string
@@ -582,8 +609,8 @@ export interface TbDataHistoryDelegate<ExtArgs extends runtime.Types.Extensions.
    * // Get first 10 TbDataHistories
    * const tbDataHistories = await prisma.tbDataHistory.findMany({ take: 10 })
    * 
-   * // Only select the `history_id`
-   * const tbDataHistoryWithHistory_idOnly = await prisma.tbDataHistory.findMany({ select: { history_id: true } })
+   * // Only select the `company_cd`
+   * const tbDataHistoryWithCompany_cdOnly = await prisma.tbDataHistory.findMany({ select: { company_cd: true } })
    * 
    */
   findMany<T extends TbDataHistoryFindManyArgs>(args?: Prisma.SelectSubset<T, TbDataHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TbDataHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -627,9 +654,9 @@ export interface TbDataHistoryDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Create many TbDataHistories and only return the `history_id`
-   * const tbDataHistoryWithHistory_idOnly = await prisma.tbDataHistory.createManyAndReturn({
-   *   select: { history_id: true },
+   * // Create many TbDataHistories and only return the `company_cd`
+   * const tbDataHistoryWithCompany_cdOnly = await prisma.tbDataHistory.createManyAndReturn({
+   *   select: { company_cd: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -718,9 +745,9 @@ export interface TbDataHistoryDelegate<ExtArgs extends runtime.Types.Extensions.
    *   ]
    * })
    * 
-   * // Update zero or more TbDataHistories and only return the `history_id`
-   * const tbDataHistoryWithHistory_idOnly = await prisma.tbDataHistory.updateManyAndReturn({
-   *   select: { history_id: true },
+   * // Update zero or more TbDataHistories and only return the `company_cd`
+   * const tbDataHistoryWithCompany_cdOnly = await prisma.tbDataHistory.updateManyAndReturn({
+   *   select: { company_cd: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -922,6 +949,7 @@ export interface Prisma__TbDataHistoryClient<T, Null = never, ExtArgs extends ru
  * Fields of the TbDataHistory model
  */
 export interface TbDataHistoryFieldRefs {
+  readonly company_cd: Prisma.FieldRef<"TbDataHistory", 'String'>
   readonly history_id: Prisma.FieldRef<"TbDataHistory", 'Int'>
   readonly table_nm: Prisma.FieldRef<"TbDataHistory", 'String'>
   readonly record_id: Prisma.FieldRef<"TbDataHistory", 'String'>
