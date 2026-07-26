@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { authenticate } from '../../../middlewares/auth';
 import { requirePermission } from '../../../middlewares/permission';
-import { upload } from '../../../utils';
+import { upload, uploadMemory } from '../../../utils';
 import {
   listMoldsHandler,
   getMoldHandler,
@@ -37,6 +37,6 @@ moldsRouter.put('/:moldCd', updateMoldHandler);
 moldsRouter.delete('/:moldCd', deleteMoldHandler);
 
 // Bulk import from Excel
-moldsRouter.post('/import', upload.single('file'), importMoldsHandler);
+moldsRouter.post('/import', uploadMemory.single('file'), importMoldsHandler);
 
 export default moldsRouter;

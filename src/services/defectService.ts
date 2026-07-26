@@ -2,6 +2,7 @@ import { Request } from 'express';
 import prisma from '../config/database';
 import { AppError } from '../middlewares/errorHandler';
 import { generateNumberWithDateReset } from './numberingService';
+import { notifyCurrentCompany } from './notificationService';
 import {
   parsePagination,
   buildPaginatedResponse,
@@ -142,6 +143,12 @@ export async function createDefect(input: DefectCreateInput, userId?: string) {
     },
     select: defectSelect,
   });
+
+  await notifyCurrentCompany(
+    'DEFECT',
+    '불량 등록',
+    `불량 ${defect.defect_no} (수량 ${defect.defect_qty})이 등록되었습니다.`,
+  );
 
   return toPlain(defect);
 }

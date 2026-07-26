@@ -2,6 +2,7 @@ import { Request } from 'express';
 import prisma from '../config/database';
 import { AppError } from '../middlewares/errorHandler';
 import { generateNumberWithDateReset } from './numberingService';
+import { notifyCurrentCompany } from './notificationService';
 import {
   parsePagination,
   buildPaginatedResponse,
@@ -345,6 +346,12 @@ export async function cancelRequest(shipId: number, cancelReason: string, userId
     },
     select: shipmentSelect,
   });
+
+  await notifyCurrentCompany(
+    'SHIPMENT',
+    '출하 취소요청',
+    `출하 ${existing.ship_no ?? shipId} 건에 취소요청이 등록되었습니다. 승인/반려가 필요합니다.`,
+  );
 
   return toPlain(shipment);
 }

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { authenticate } from '../../../middlewares/auth';
 import { requirePermission } from '../../../middlewares/permission';
-import { upload } from '../../../utils';
+import { upload, uploadMemory } from '../../../utils';
 import {
   listWorkshopsHandler,
   getWorkshopHandler,
@@ -37,6 +37,6 @@ workshopsRouter.put('/:workshopCd', updateWorkshopHandler);
 workshopsRouter.delete('/:workshopCd', deleteWorkshopHandler);
 
 // Bulk import from Excel
-workshopsRouter.post('/import', upload.single('file'), importWorkshopsHandler);
+workshopsRouter.post('/import', uploadMemory.single('file'), importWorkshopsHandler);
 
 export default workshopsRouter;
