@@ -566,6 +566,7 @@ export async function getQualityByProcess(
                  SUM(good_qty)::FLOAT AS good_qty,
                  SUM(defect_qty)::FLOAT AS defect_qty
           FROM tb_prod_result
+          WHERE company_cd = COALESCE(${getTenantFilterCd()}, company_cd)
           GROUP BY wo_id
         )
         SELECT d.process_cd,
@@ -587,6 +588,7 @@ export async function getQualityByProcess(
                  SUM(good_qty)::FLOAT AS good_qty,
                  SUM(defect_qty)::FLOAT AS defect_qty
           FROM tb_prod_result
+          WHERE company_cd = COALESCE(${getTenantFilterCd()}, company_cd)
           GROUP BY wo_id
         )
         SELECT d.process_cd,
@@ -815,7 +817,7 @@ export async function getInventorySummary(
           AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
         GROUP BY tx.item_cd
       ) out_sum ON out_sum.item_cd = inv.item_cd
-      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
+      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd AND tx_all.company_cd = inv.company_cd
       WHERE inv.qty > 0 AND inv.company_cd = COALESCE(${getTenantFilterCd()}, inv.company_cd)
         AND inv.wh_cd = ${whCd}
         AND inv.item_cd = ${itemCd}
@@ -845,7 +847,7 @@ export async function getInventorySummary(
           AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
         GROUP BY tx.item_cd
       ) out_sum ON out_sum.item_cd = inv.item_cd
-      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
+      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd AND tx_all.company_cd = inv.company_cd
       WHERE inv.qty > 0 AND inv.company_cd = COALESCE(${getTenantFilterCd()}, inv.company_cd)
         AND inv.wh_cd = ${whCd}
       GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
@@ -874,7 +876,7 @@ export async function getInventorySummary(
           AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
         GROUP BY tx.item_cd
       ) out_sum ON out_sum.item_cd = inv.item_cd
-      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
+      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd AND tx_all.company_cd = inv.company_cd
       WHERE inv.qty > 0 AND inv.company_cd = COALESCE(${getTenantFilterCd()}, inv.company_cd)
         AND inv.item_cd = ${itemCd}
       GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
@@ -903,7 +905,7 @@ export async function getInventorySummary(
           AND tx.create_dt >= (CURRENT_DATE - INTERVAL '90 day')
         GROUP BY tx.item_cd
       ) out_sum ON out_sum.item_cd = inv.item_cd
-      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd
+      LEFT JOIN tb_inventory_tx tx_all ON tx_all.item_cd = inv.item_cd AND tx_all.company_cd = inv.company_cd
       WHERE inv.qty > 0 AND inv.company_cd = COALESCE(${getTenantFilterCd()}, inv.company_cd)
       GROUP BY inv.item_cd, it.item_nm, inv.wh_cd, wh.wh_nm, inv.qty, it.unit_cd, out_sum.out_qty
       ORDER BY days_since_last_tx DESC

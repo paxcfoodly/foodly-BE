@@ -1,8 +1,12 @@
 import { Router } from 'express';
+import { authenticate } from '../../../middlewares/auth';
 import { upload } from '../../../utils/fileUpload';
 import { uploadFiles, downloadFile } from '../../../controllers/fileController';
 
 const filesRouter = Router();
+
+// 인증 필수 — 테넌트 컨텍스트 장착 (파일/이력도 회사별 격리 대상)
+filesRouter.use(authenticate);
 
 /**
  * @openapi

@@ -16,6 +16,8 @@ const basePrisma = new PrismaClient({
 // 테넌트 대상 49개 모델 화이트리스트 — schema.prisma와 1:1 유지
 // ─────────────────────────────────────────────────────────────
 export const TENANT_MODELS = new Set([
+  // 공장 — company_cd 보유. 격리 대상에 포함 (타사 plant_cd 참조 차단)
+  'TbPlant',
   // 기준정보 13
   'TbWorkshop', 'TbItem', 'TbBom', 'TbProcess', 'TbRouting', 'TbEquipment',
   'TbEquipProcess', 'TbMold', 'TbWorker', 'TbWorkerSkill', 'TbCustomer',
@@ -34,10 +36,15 @@ export const TENANT_MODELS = new Set([
 
 const READ_WHERE_OPS = new Set([
   'findMany', 'findFirst', 'findFirstOrThrow', 'count', 'aggregate', 'groupBy',
-  'updateMany', 'deleteMany',
+  'updateMany', 'deleteMany', 'updateManyAndReturn',
 ]);
 const UNIQUE_READ_OPS = new Set(['findUnique', 'findUniqueOrThrow']);
 const UNIQUE_WRITE_OPS = new Set(['update', 'delete', 'upsert']);
+const CREATE_OPS = new Set(['create', 'createMany', 'createManyAndReturn']);
+// 확장이 명시적으로 처리하는 전체 연산 — 이 목록에 없는 연산은 fail-closed
+const HANDLED_OPS = new Set([
+  ...READ_WHERE_OPS, ...UNIQUE_READ_OPS, ...UNIQUE_WRITE_OPS, ...CREATE_OPS,
+]);
 
 /** 쓰기 시 강제할 회사코드. 일반 사용자=소속사, SYS_ADMIN=X-Company-Cd 헤더(D-14). */
 function resolveWriteCompanyCd(): string | null {
@@ -105,7 +112,7 @@ const prisma = basePrisma.$extends({
         }
 
         // ── 생성: company_cd 강제 (클라이언트 값 무시, D-6/D-14) ──
-        if (operation === 'create' || operation === 'createMany') {
+        if (CREATE_OPS.has(operation)) {
           const ctx = getTenantContext();
           // bypass(SYS_ADMIN)·시스템 컨텍스트: 서비스가 명시한 company_cd를 존중 (감사로그 등)
           if (!ctx || ctx.bypass) {
@@ -142,6 +149,14 @@ const prisma = basePrisma.$extends({
             return query(args);
           }
           return query(args);
+        }
+
+        // ── 미처리 연산: fail-closed (필터 없이 전 테넌트에 실행되는 것을 차단) ──
+        if (!HANDLED_OPS.has(operation)) {
+          throw new AppError(
+            `테넌트 격리 미지원 연산(${operation})입니다. 확장에 처리를 추가해야 합니다.`,
+            500,
+          );
         }
 
         return query(args);

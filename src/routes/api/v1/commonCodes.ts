@@ -1,7 +1,10 @@
 import { Router } from 'express';
+import { authenticate } from '../../../middlewares/auth';
 import { listCodeGroups, listCodesByGroup } from '../../../controllers/commonCodeController';
 
 const router = Router();
+
+router.use(authenticate);
 
 /**
  * @openapi

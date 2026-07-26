@@ -1,7 +1,11 @@
 import { Router } from 'express';
+import { authenticate } from '../../../middlewares/auth';
 import { queryDataHistory } from '../../../controllers/dataHistoryController';
 
 const router = Router();
+
+// 인증 필수 — 테넌트 컨텍스트 장착 (파일/이력도 회사별 격리 대상)
+router.use(authenticate);
 
 /**
  * @openapi

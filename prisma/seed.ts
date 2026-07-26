@@ -687,15 +687,19 @@ async function main() {
   }
   console.log(`✅ 역할-메뉴 권한: ${roleMenuCount}개`);
 
-  // --- 채번 규칙 ---
-  for (const nr of numberingRules) {
-    await prisma.tbNumbering.upsert({
-      where: { num_type: nr.num_type },
-      update: { prefix: nr.prefix, date_format: nr.date_format, seq_length: nr.seq_length },
-      create: { ...nr, create_by: 'SYSTEM' },
-    });
+  // --- 채번 규칙 (회사별 — 복합 PK) ---
+  // 프로덕션(L1)은 테넌트 회사가 없으므로 채번은 온보딩(create-tenant.ts)에서 생성.
+  // 데모(L2+)만 FOODLY01 회사에 채번 규칙을 심는다.
+  if (SEED_LEVEL === 'l2' || SEED_LEVEL === 'l3') {
+    for (const nr of numberingRules) {
+      await prisma.tbNumbering.upsert({
+        where: { company_cd_num_type: { company_cd: demoCompany.company_cd, num_type: nr.num_type } },
+        update: { prefix: nr.prefix, date_format: nr.date_format, seq_length: nr.seq_length },
+        create: { ...nr, company_cd: demoCompany.company_cd, create_by: 'SYSTEM' },
+      });
+    }
+    console.log(`✅ 채번 규칙: ${numberingRules.length}개 (${demoCompany.company_cd})`);
   }
-  console.log(`✅ 채번 규칙: ${numberingRules.length}개`);
 
   // --- 초기 관리자 계정 ---
   const rawAdminPassword = process.env.SEED_ADMIN_PASSWORD;

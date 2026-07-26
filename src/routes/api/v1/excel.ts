@@ -1,7 +1,10 @@
 import { Router } from 'express';
+import { authenticate } from '../../../middlewares/auth';
 import { excelExport } from '../../../controllers/excelController';
 
 const excelRouter = Router();
+
+excelRouter.use(authenticate);
 
 /**
  * @openapi

@@ -89,13 +89,12 @@ export async function checkCircularReference(parentItemCd: string, childItemCd: 
     WITH RECURSIVE ancestors AS (
       SELECT parent_item_cd AS ancestor_cd, 1 AS depth
       FROM tb_bom
-      WHERE child_item_cd = $1 AND use_yn = 'Y' AND company_cd = COALESCE($2, company_cd)
+      WHERE child_item_cd = $1 AND use_yn = 'Y' AND company_cd = COALESCE($3, company_cd)
       UNION ALL
       SELECT b.parent_item_cd, a.depth + 1
       FROM tb_bom b
       INNER JOIN ancestors a ON a.ancestor_cd = b.child_item_cd
-      WHERE b.company_cd = COALESCE($2, b.company_cd)
-      WHERE b.use_yn = 'Y' AND a.depth < 20
+      WHERE b.use_yn = 'Y' AND a.depth < 20 AND b.company_cd = COALESCE($3, b.company_cd)
     )
     SELECT ancestor_cd FROM ancestors WHERE ancestor_cd = $2 LIMIT 1
     `,

@@ -1578,7 +1578,7 @@ model TbNotice {
 // ────────────────────────────────────────
 model TbSysSetting {
   company_cd String @default("") @db.VarChar(20) // 테넌트 키 — 확장이 주입, DB CHECK로 빈값 차단
-  setting_key   String  @id @db.VarChar(50)
+  setting_key   String  @db.VarChar(50)
   setting_value String? @db.VarChar(200)
   setting_group String? @db.VarChar(30)
   setting_desc  String? @db.VarChar(200)
@@ -1589,6 +1589,7 @@ model TbSysSetting {
   update_by String?  @db.VarChar(50)
   update_dt DateTime @updatedAt
 
+  @@id([company_cd, setting_key])
   @@index([company_cd, create_dt])
   @@map("tb_sys_setting")
 }
