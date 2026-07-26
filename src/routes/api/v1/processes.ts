@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { authenticate } from '../../../middlewares/auth';
 import { requirePermission } from '../../../middlewares/permission';
-import { upload } from '../../../utils';
+import { upload, uploadMemory } from '../../../utils';
 import {
   listProcessesHandler,
   getProcessHandler,
@@ -43,7 +43,7 @@ processesRouter.put('/:processCd', updateProcessHandler);
 processesRouter.delete('/:processCd', deleteProcessHandler);
 
 // Bulk import from Excel
-processesRouter.post('/import', upload.single('file'), importProcessesHandler);
+processesRouter.post('/import', uploadMemory.single('file'), importProcessesHandler);
 
 // ─── Equipment Mapping (nested under process) ───
 

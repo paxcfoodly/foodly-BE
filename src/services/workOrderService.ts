@@ -4,6 +4,7 @@ import prisma from '../config/database';
 import { AppError } from '../middlewares/errorHandler';
 import { logDataChanges } from './dataHistoryService';
 import { generateNumberWithDateReset } from './numberingService';
+import { notifyCurrentCompany } from './notificationService';
 import { listRoutingsByItem } from './routingService';
 import { getForwardTree } from './bomService';
 import {
@@ -164,6 +165,12 @@ export async function createWorkOrder(input: WorkOrderCreateInput, userId?: stri
 
     return wo;
   });
+
+  await notifyCurrentCompany(
+    'WORK_ORDER',
+    '작업지시 생성',
+    `작업지시 ${order.wo_no}이 생성되었습니다.`,
+  );
 
   return toPlain(order);
 }

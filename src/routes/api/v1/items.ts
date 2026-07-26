@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { authenticate } from '../../../middlewares/auth';
 import { requirePermission } from '../../../middlewares/permission';
-import { upload } from '../../../utils';
+import { upload, uploadMemory } from '../../../utils';
 import {
   listItemsHandler,
   getItemHandler,
@@ -37,6 +37,6 @@ itemsRouter.put('/:itemCd', updateItemHandler);
 itemsRouter.delete('/:itemCd', deleteItemHandler);
 
 // Bulk import from Excel
-itemsRouter.post('/import', upload.single('file'), importItemsHandler);
+itemsRouter.post('/import', uploadMemory.single('file'), importItemsHandler);
 
 export default itemsRouter;

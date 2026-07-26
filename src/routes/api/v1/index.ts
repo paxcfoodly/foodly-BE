@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { auditLog } from '../../../middlewares/auditLog';
 import authRouter from './auth';
 import filesRouter from './files';
 import excelRouter from './excel';
@@ -39,6 +40,7 @@ import reportsRouter from './reports';
 import demandsRouter from './demands';
 import settingsRouter from './settings';
 import notiRulesRouter from './notiRules';
+import notificationsRouter from './notifications';
 
 const v1Router = Router();
 
@@ -67,6 +69,9 @@ v1Router.get('/', (_req, res) => {
     error: null,
   });
 });
+
+// 요청 레벨 감사 로그 — 변경 요청 성공 시 tb_audit_log 기록 (res.finish 시점)
+v1Router.use(auditLog);
 
 // Domain routers
 v1Router.use('/auth', authRouter);
@@ -109,5 +114,6 @@ v1Router.use('/reports', reportsRouter);
 v1Router.use('/demands', demandsRouter);
 v1Router.use('/settings', settingsRouter);
 v1Router.use('/noti-rules', notiRulesRouter);
+v1Router.use('/notifications', notificationsRouter);
 
 export default v1Router;

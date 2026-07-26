@@ -68,4 +68,16 @@ export const upload = multer({
   limits: { fileSize: MAX_FILE_SIZE },
 });
 
+/**
+ * 엑셀 일괄 업로드 전용 — 메모리 저장.
+ * bulkImport 서비스들이 req.file.buffer를 사용하므로 diskStorage가 아니라
+ * memoryStorage여야 한다. 디스크에 임시 파일을 남기지 않는다.
+ * Usage: router.post('/import', uploadMemory.single('file'), handler)
+ */
+export const uploadMemory = multer({
+  storage: multer.memoryStorage(),
+  fileFilter,
+  limits: { fileSize: MAX_FILE_SIZE },
+});
+
 export { MAX_FILE_SIZE, ALLOWED_EXTENSIONS, UPLOAD_BASE_DIR };

@@ -99,3 +99,22 @@ export async function permissionsHandler(req: Request, res: Response, next: Next
     next(err);
   }
 }
+
+/**
+ * POST /api/v1/auth/change-password
+ */
+export async function changePasswordHandler(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    const { current_password, new_password } = req.body;
+    if (!current_password || !new_password) {
+      res.status(400).json(errorResponse('current_password와 new_password가 필요합니다.'));
+      return;
+    }
+    const ipAddress = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim()
+      || req.socket.remoteAddress || undefined;
+    await authService.changePassword(req.user!.userId, current_password, new_password, ipAddress);
+    res.json(successResponse({ message: '비밀번호가 변경되었습니다.' }));
+  } catch (err) {
+    next(err);
+  }
+}

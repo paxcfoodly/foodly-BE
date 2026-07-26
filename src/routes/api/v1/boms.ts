@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { authenticate } from '../../../middlewares/auth';
 import { requirePermission } from '../../../middlewares/permission';
-import { upload } from '../../../utils';
+import { upload, uploadMemory } from '../../../utils';
 import {
   listBomsHandler,
   getBomHandler,
@@ -40,7 +40,7 @@ bomsRouter.post('/', createBomHandler);
 bomsRouter.put('/:bomId', updateBomHandler);
 
 // Bulk import from Excel
-bomsRouter.post('/import', upload.single('file'), importBomsHandler);
+bomsRouter.post('/import', uploadMemory.single('file'), importBomsHandler);
 
 // Delete BOM
 bomsRouter.delete('/:bomId', deleteBomHandler);

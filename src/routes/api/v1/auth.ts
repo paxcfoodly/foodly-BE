@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { loginHandler, refreshHandler, logoutHandler, meHandler, permissionsHandler } from '../../../controllers/authController';
+import { loginHandler, refreshHandler, logoutHandler, meHandler, permissionsHandler, changePasswordHandler } from '../../../controllers/authController';
 import { authenticate } from '../../../middlewares/auth';
 
 const authRouter = Router();
@@ -91,6 +91,7 @@ authRouter.post('/logout', authenticate, logoutHandler);
  *         description: 인증 필요
  */
 authRouter.get('/me', authenticate, meHandler);
+authRouter.post('/change-password', authenticate, changePasswordHandler);
 
 /**
  * @openapi

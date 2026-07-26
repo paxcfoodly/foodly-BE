@@ -12,17 +12,15 @@ import {
 
 const noticesRouter = Router();
 
-// Popup notices — accessible to all authenticated users
-noticesRouter.get('/popup', authenticate, getPopupNoticesHandler);
-
-// All other notice management routes require SYS_ADMIN
+// 조회 — 모든 인증 사용자 (회사 공지, 테넌트 확장이 격리). MES_USER 포함.
 noticesRouter.use(authenticate);
-noticesRouter.use(requireRole('SYS_ADMIN'));
-
+noticesRouter.get('/popup', getPopupNoticesHandler);
 noticesRouter.get('/', listNoticesHandler);
 noticesRouter.get('/:id', getNoticeHandler);
-noticesRouter.post('/', createNoticeHandler);
-noticesRouter.put('/:id', updateNoticeHandler);
-noticesRouter.delete('/:id', deleteNoticeHandler);
+
+// 생성/수정/삭제 — SYS_ADMIN 전용
+noticesRouter.post('/', requireRole('SYS_ADMIN'), createNoticeHandler);
+noticesRouter.put('/:id', requireRole('SYS_ADMIN'), updateNoticeHandler);
+noticesRouter.delete('/:id', requireRole('SYS_ADMIN'), deleteNoticeHandler);
 
 export default noticesRouter;

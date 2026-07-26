@@ -59,6 +59,18 @@ export async function login(loginId: string, password: string, ipAddress?: strin
     throw new AppError('비활성화된 계정입니다. 관리자에게 문의하세요.', 403);
   }
 
+  // 2-1. Check company status (중지된 회사 소속이면 차단, admin 등 무소속은 예외)
+  if (user.company_cd) {
+    const company = await prisma.tbCompany.findUnique({
+      where: { company_cd: user.company_cd },
+      select: { use_yn: true },
+    });
+    if (company && company.use_yn !== 'Y') {
+      await writeAuditLog(user.user_id, 'LOGIN_FAIL', ipAddress, { loginId, reason: 'company_inactive' }, user.company_cd);
+      throw new AppError('소속 회사가 중지된 상태입니다. 관리자에게 문의하세요.', 403);
+    }
+  }
+
   // 3. Verify password
   const isValid = await bcrypt.compare(password, user.password);
   if (!isValid) {
@@ -114,6 +126,17 @@ export async function refresh(refreshTokenStr: string): Promise<{ accessToken: s
 
   if (!user || user.status !== 'ACTIVE') {
     throw new AppError('비활성화된 계정입니다.', 403);
+  }
+
+  // 회사 중지 여부 확인 (refresh 시점에도 차단)
+  if (user.company_cd) {
+    const company = await prisma.tbCompany.findUnique({
+      where: { company_cd: user.company_cd },
+      select: { use_yn: true },
+    });
+    if (company && company.use_yn !== 'Y') {
+      throw new AppError('소속 회사가 중지된 상태입니다.', 403);
+    }
   }
 
   // Issue fresh tokens (in case role/company changed since last login)
@@ -209,4 +232,31 @@ async function writeAuditLog(
     // Don't let audit logging failures break the auth flow
     console.error('[AUTH] Failed to write audit log:', err);
   }
+}
+
+/**
+ * 본인 비밀번호 변경 (멀티테넌시 Phase 2 ④).
+ * 현재 비밀번호 검증 후 새 비밀번호(8자 이상)로 교체한다.
+ */
+export async function changePassword(
+  userId: number,
+  currentPassword: string,
+  newPassword: string,
+  ipAddress?: string,
+): Promise<void> {
+  if (!newPassword || newPassword.length < 8) {
+    throw new AppError('새 비밀번호는 8자 이상이어야 합니다.', 400);
+  }
+  const user = await prisma.tbUser.findUnique({ where: { user_id: userId } });
+  if (!user) throw new AppError('사용자를 찾을 수 없습니다.', 404);
+
+  const isValid = await bcrypt.compare(currentPassword, user.password);
+  if (!isValid) throw new AppError('현재 비밀번호가 올바르지 않습니다.', 400);
+
+  const hashed = await bcrypt.hash(newPassword, 10);
+  await prisma.tbUser.update({
+    where: { user_id: userId },
+    data: { password: hashed, update_by: user.login_id },
+  });
+  await writeAuditLog(userId, 'PASSWORD_CHANGE', ipAddress, undefined, user.company_cd);
 }
